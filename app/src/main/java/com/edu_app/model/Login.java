@@ -26,7 +26,7 @@ public class Login {
     }
 
     private void post(String userName, String password){
-        final String SERVER_HOST = "http://192.168.123.22:2000";// TODO: 修改为服务器地址
+        final String SERVER_HOST = "http://192.168.123.22:2000/login";// TODO: 修改为服务器地址
         URL url;
         try {
             url = new URL(SERVER_HOST);

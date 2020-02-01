@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">edu-app</string>
-    <string name="personPage_login">登录/注册</string>
-    <string name="personPage_word">eduapp专注于教育的app</string>
-    <string name="personPageOp_1">个人信息</string>
-    <string name="personPageOp_2">我的课程</string>
-    <string name="personPageOp_3">下载缓存</string>
-    <string name="personPageOp_4">联系客服</string>
+    <string name="login_text">登录</string>
+    <string name="username_text">用户名</string>
+    <string name="password_text">密码</string>
+    <string name="login_title">登录</string>
+    <string name="register_text">注册</string>
+    <string name="register_title">注册</string>
+    <string name="repeat_password_text">重复密码</string>
+    <string name="back_to_login_text">已有账号，登录</string>
 </resources>

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="start"
-    android:orientation="vertical"
-    tools:context=".PersonInfoActivity">
+    android:orientation="vertical">
 
     <android.widget.LinearLayout
         android:id="@+id/personPage_login"
@@ -60,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_personInfo"></ImageView>
+            android:src="@mipmap/ic_personinfo"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -152,7 +151,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10sp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_contactCS"></ImageView>
+            android:src="@mipmap/ic_contact"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"

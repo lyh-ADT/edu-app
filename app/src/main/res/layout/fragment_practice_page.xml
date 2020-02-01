@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow>
+        <Button
+            android:id="@+id/add_practice_btn"
+            android:text="@string/add_practice_text"/>
+        <Button
+            android:id="@+id/delete_practice_btn"
+            android:text="@string/delete_practice_text"/>
+    </TableRow>
+
+
+    <ListView
+        android:id="@+id/practice_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+</TableLayout>

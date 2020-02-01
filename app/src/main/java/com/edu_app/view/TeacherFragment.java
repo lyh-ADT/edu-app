@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.edu_app.R;
+import com.edu_app.controller.TeacherPracticeController;
+import com.edu_app.model.TeacherInfo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +53,12 @@ public class TeacherFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        return textView;
+        View view = null;
+        if("practice".equals(fragmentType)){
+            view = inflater.inflate(R.layout.fragment_practice_page, container, false);
+            TeacherInfo info = (TeacherInfo) savedInstanceState.getSerializable("teacherInfo");
+            new TeacherPracticeController(this, view, info);
+        }
+        return view;
     }
 }

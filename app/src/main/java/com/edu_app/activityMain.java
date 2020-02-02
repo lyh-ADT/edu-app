@@ -54,7 +54,6 @@ public class activityMain extends Activity implements View.OnClickListener {
                 break;
         }
         ft.replace(R.id.main_fragment, f);
-        ft.addToBackStack(null);
         ft.commit();
     }
 }

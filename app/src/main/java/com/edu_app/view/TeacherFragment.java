@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edu_app.R;
+import com.edu_app.controller.TeacherAddPracticeController;
 import com.edu_app.controller.TeacherPracticeController;
 import com.edu_app.model.TeacherInfo;
 
@@ -58,6 +59,9 @@ public class TeacherFragment extends Fragment {
         if("practice".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
             new TeacherPracticeController(this, view, teacherInfo);
+        } else if("add_practice".equals(fragmentType)) {
+            view = inflater.inflate(R.layout.fragment_teacher_add_practice_page, container, false);
+            new TeacherAddPracticeController(this, view);
         }
         return view;
     }

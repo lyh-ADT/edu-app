@@ -7,11 +7,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.model.TeacherInfo;
 import com.edu_app.model.TeacherPractice;
 import com.edu_app.model.TeacherPracticeItem;
+import com.edu_app.view.TeacherFragment;
 
 import java.util.List;
 
@@ -47,8 +50,12 @@ public class TeacherPracticeController {
             @Override
             public void onClick(View v) {
                 // TODO: 添加练习的页面
-                model.addPractice(new TeacherPracticeItem("练习"));
-                adapter.notifyDataSetChanged();
+                FragmentManager manager = fragment.requireFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.main_fragment, TeacherFragment.newInstance("add_practice", null));
+                transaction.commit();
+//                model.addPractice(new TeacherPracticeItem("练习"));
+//                adapter.notifyDataSetChanged();
             }
         });
         Button deletePractice_btn = (Button)view.findViewById(R.id.delete_practice_btn);

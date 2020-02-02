@@ -1,7 +1,5 @@
 package com.edu_app.model;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +15,9 @@ public class TeacherPractice {
 
     public void getPracticeList(){
         // TODO: 实现
-        practiceList.add(new TeacherPracticeItem());
-        practiceList.add(new TeacherPracticeItem());
-        practiceList.add(new TeacherPracticeItem());
-        practiceList.add(new TeacherPracticeItem());
+        for(int i=0; i < 10; ++i){
+            practiceList.add(new TeacherPracticeItem("练习"+String.valueOf(i)));
+        }
     }
 
     public void addPractice(TeacherPracticeItem item){

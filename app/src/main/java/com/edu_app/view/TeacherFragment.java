@@ -56,7 +56,7 @@ public class TeacherFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = null;
         if("practice".equals(fragmentType)){
-            view = inflater.inflate(R.layout.fragment_practice_page, container, false);
+            view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
             new TeacherPracticeController(this, view, teacherInfo);
         }
         return view;

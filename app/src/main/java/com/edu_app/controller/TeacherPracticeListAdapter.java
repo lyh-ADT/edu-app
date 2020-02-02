@@ -35,7 +35,7 @@ public class TeacherPracticeListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.fragment_practice, parent, false);
+            convertView = inflater.inflate(R.layout.fragment_teacher_practice_item, parent, false);
             new TeacherPracticeItemController(convertView, model.getPracticeItemAt(position));
         }
         return convertView;

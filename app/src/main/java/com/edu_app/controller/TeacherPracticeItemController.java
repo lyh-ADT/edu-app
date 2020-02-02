@@ -1,7 +1,9 @@
 package com.edu_app.controller;
 
 import android.view.View;
+import android.widget.TextView;
 
+import com.edu_app.R;
 import com.edu_app.model.TeacherPracticeItem;
 
 public class TeacherPracticeItemController {
@@ -23,7 +25,8 @@ public class TeacherPracticeItemController {
     }
 
     private void setValues(){
-
+        TextView title = view.findViewById(R.id.practice_item_title);
+        title.setText(model.getTitle());
     }
 
     private void bindListener(){

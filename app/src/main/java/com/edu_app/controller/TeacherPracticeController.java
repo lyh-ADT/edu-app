@@ -47,7 +47,7 @@ public class TeacherPracticeController {
             @Override
             public void onClick(View v) {
                 // TODO: 添加练习的页面
-                model.addPractice(new TeacherPracticeItem());
+                model.addPractice(new TeacherPracticeItem("练习"));
                 adapter.notifyDataSetChanged();
             }
         });

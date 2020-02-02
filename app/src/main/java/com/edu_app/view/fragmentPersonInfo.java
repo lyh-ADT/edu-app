@@ -1,4 +1,4 @@
-package com.edu_app;
+package com.edu_app.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import android.app.Fragment;
+
+import com.edu_app.R;
 
 public class fragmentPersonInfo extends Fragment {
     @Nullable

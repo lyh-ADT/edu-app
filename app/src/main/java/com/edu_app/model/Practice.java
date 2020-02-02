@@ -9,6 +9,12 @@ public class Practice implements Serializable {
     private String title;
     private List<Question> questions;
 
+    public Practice() {}
+
+    public Practice(String title) {
+        this.title = title;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

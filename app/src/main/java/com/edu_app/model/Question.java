@@ -8,6 +8,14 @@ public class Question implements Serializable {
     private String questionType;
     private String question;
 
+    public Question() {}
+
+    public Question(int orderNumber, String questionType, String question) {
+        this.orderNumber = orderNumber;
+        this.questionType = questionType;
+        this.question = question;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

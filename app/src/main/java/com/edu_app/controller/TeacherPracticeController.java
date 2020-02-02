@@ -21,8 +21,8 @@ public class TeacherPracticeController {
 
     public TeacherPracticeController(Fragment fragment, View view, TeacherInfo teacherInfo){
         this.fragment = fragment;
-        bindListener(view);
         model = new TeacherPractice(teacherInfo);
+        bindListener(view);
     }
 
     public void setPracticeList(List<TeacherPracticeItem> list){
@@ -38,11 +38,17 @@ public class TeacherPracticeController {
     }
 
     private void bindListener(View view){
+        ListView practice_list = (ListView)view.findViewById(R.id.practice_list);
+        final TeacherPracticeListAdapter adapter = new TeacherPracticeListAdapter(fragment.getLayoutInflater(), model);
+        practice_list.setAdapter(adapter);
+
         Button addPractice_btn = (Button)view.findViewById(R.id.add_practice_btn);
         addPractice_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO: 添加练习的页面
+                model.addPractice(new TeacherPracticeItem());
+                adapter.notifyDataSetChanged();
             }
         });
         Button deletePractice_btn = (Button)view.findViewById(R.id.delete_practice_btn);
@@ -50,11 +56,10 @@ public class TeacherPracticeController {
             @Override
             public void onClick(View v) {
                 // TODO: 选择一个练习进行删除
+                model.deletePractice("");
+                adapter.notifyDataSetChanged();
             }
         });
-
-        ListView practice_list = (ListView)view.findViewById(R.id.practice_list);
-        practice_list.setAdapter(new TeacherPracticeListAdapter(fragment.getLayoutInflater()));
     }
 
     private void addPractice(TeacherPracticeItem item){

@@ -6,17 +6,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.edu_app.R;
+import com.edu_app.model.TeacherPractice;
 
 public class TeacherPracticeListAdapter extends BaseAdapter {
+    private final TeacherPractice model;
     private LayoutInflater inflater;
 
-    public TeacherPracticeListAdapter(LayoutInflater inflater){
+    public TeacherPracticeListAdapter(LayoutInflater inflater, TeacherPractice model){
         this.inflater = inflater;
+        this.model = model;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return model.getPracticeItemCount();
     }
 
     @Override
@@ -33,6 +36,7 @@ public class TeacherPracticeListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.fragment_practice, parent, false);
+            new TeacherPracticeItemController(convertView, model.getPracticeItemAt(position));
         }
         return convertView;
     }

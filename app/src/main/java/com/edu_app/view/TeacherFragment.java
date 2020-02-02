@@ -22,9 +22,10 @@ public class TeacherFragment extends Fragment {
     private static final String FRAGMENT_TYPE = "fragment_type";
 
     private String fragmentType;
+    private TeacherInfo teacherInfo;
 
-    public TeacherFragment() {
-        // Required empty public constructor
+    public TeacherFragment(TeacherInfo teacherInfo) {
+        this.teacherInfo = teacherInfo;
     }
 
     /**
@@ -34,8 +35,8 @@ public class TeacherFragment extends Fragment {
      * @param fragmentType Parameter 1.
      * @return A new instance of fragment TeacherFragment.
      */
-    public static TeacherFragment newInstance(String fragmentType) {
-        TeacherFragment fragment = new TeacherFragment();
+    public static TeacherFragment newInstance(String fragmentType, TeacherInfo teacherInfo) {
+        TeacherFragment fragment = new TeacherFragment(teacherInfo);
         Bundle args = new Bundle();
         args.putString(FRAGMENT_TYPE, fragmentType);
         fragment.setArguments(args);
@@ -56,8 +57,7 @@ public class TeacherFragment extends Fragment {
         View view = null;
         if("practice".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_practice_page, container, false);
-            TeacherInfo info = (TeacherInfo) savedInstanceState.getSerializable("teacherInfo");
-            new TeacherPracticeController(this, view, info);
+            new TeacherPracticeController(this, view, teacherInfo);
         }
         return view;
     }

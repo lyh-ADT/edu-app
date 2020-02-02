@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Practice implements Serializable {
     private String id;
+    private String title;
     private List<Question> questions;
 
     @Override
@@ -14,12 +15,13 @@ public class Practice implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Practice practice = (Practice) o;
         return id.equals(practice.id) &&
-                questions.equals(practice.questions);
+                questions.equals(practice.questions) &&
+                title.equals(practice.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, questions);
+        return Objects.hash(id, questions, title);
     }
 
     public String getId() {
@@ -28,6 +30,14 @@ public class Practice implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Question> getQuestions() {

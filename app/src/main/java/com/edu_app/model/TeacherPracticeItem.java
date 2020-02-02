@@ -1,5 +1,5 @@
 package com.edu_app.model;
 
-public class TeacherPracticeItem{
-    private String id;
+public class TeacherPracticeItem extends Practice{
+
 }

@@ -1,23 +1,37 @@
 package com.edu_app.controller.teacher.practice;
 
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.PracticePage;
-import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.view.teacher.Fragment;
 
-import java.util.List;
-
 public class PageController {
+    public Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            switch (msg.what){
+                case 0:
+                    // 练习列表数据改变
+                    practiceListAdapter.notifyDataSetChanged();
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    });
+
     private androidx.fragment.app.Fragment fragment;
     private PracticePage model;
     private PracticeListAdapter practiceListAdapter;
@@ -28,11 +42,6 @@ public class PageController {
         practiceListAdapter = new PracticeListAdapter(fragment.getLayoutInflater(), model);
         bindListener(view);
     }
-
-    public void notifyDataChanged(){
-        practiceListAdapter.notifyDataSetChanged();
-    }
-
 
     public void error(String message){
         Looper.prepare();

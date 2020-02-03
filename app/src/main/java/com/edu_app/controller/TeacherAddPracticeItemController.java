@@ -26,7 +26,7 @@ public class TeacherAddPracticeItemController {
 
     private void setValues(){
         TextView title = view.findViewById(R.id.order_number_text);
-        title.setText("题目"+model.getOrderNumber());
+        title.setText("题目"+model.getOrderNumber()+":"+model.getQuestion());
     }
 
     private void bindListener(){

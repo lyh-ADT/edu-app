@@ -1,9 +1,12 @@
 package com.edu_app.controller;
 
 import android.content.DialogInterface;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -25,7 +28,7 @@ public class TeacherAddPracticeController {
         bindListener(view);
     }
 
-    private void bindListener(View view){
+    private void bindListener(final View view){
         ListView practice_list = view.findViewById(R.id.practice_list);
         final TeacherAddPracticeListAdapter adapter = new TeacherAddPracticeListAdapter(fragment.getLayoutInflater(), model);
         practice_list.setAdapter(adapter);
@@ -34,10 +37,32 @@ public class TeacherAddPracticeController {
         addQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Question question = new Question();
-                question.setOrderNumber(model.getQuestionCount()+1);
-                model.addQuestion(question);
-                adapter.notifyDataSetChanged();
+                LayoutInflater inflater = fragment.getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.dialog_add_question, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.requireContext());
+                builder.setTitle("添加题目")
+                        .setCancelable(true)
+                        .setView(dialogView)
+                        .setPositiveButton("取消", null)
+                        .setNegativeButton("添加", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                TextView question_edit = dialogView.findViewById(R.id.input_question_edit);
+                                String question_string = question_edit.getText().toString();
+                                if(question_string.length() <= 0){
+                                    Toast.makeText(fragment.getContext(), "问题不能为空", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                Question question = new Question();
+                                question.setQuestion(question_string);
+                                question.setOrderNumber(model.getQuestionCount()+1);
+                                model.addQuestion(question);
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

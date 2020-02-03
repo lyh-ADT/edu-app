@@ -18,4 +18,5 @@
     <string name="delete_practice_text">删除练习</string>
     <string name="add_question_text">添加题目</string>
     <string name="exit_text">退出</string>
+    <string name="input_question_text">输入题目</string>
 </resources>

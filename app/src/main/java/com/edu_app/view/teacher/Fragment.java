@@ -60,7 +60,7 @@ public class Fragment extends androidx.fragment.app.Fragment {
             new PageController(this, view, teacherInfo);
         } else if("add_practice".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_add_practice_page, container, false);
-            new AddPracticeController(this, view);
+            new AddPracticeController(this, view, teacherInfo);
         }
         return view;
     }

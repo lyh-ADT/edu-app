@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.model.Question;
+import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.AddPractice;
 import com.edu_app.view.teacher.Fragment;
 
@@ -21,9 +22,9 @@ public class AddPracticeController {
     private androidx.fragment.app.Fragment fragment;
     private AddPractice model;
 
-    public AddPracticeController(androidx.fragment.app.Fragment fragment, View view){
+    public AddPracticeController(androidx.fragment.app.Fragment fragment, View view, TeacherInfo teacherInfo){
         this.fragment = fragment;
-        model = new AddPractice();
+        model = new AddPractice(teacherInfo);
         bindListener(view);
     }
 
@@ -79,7 +80,7 @@ public class AddPracticeController {
                             public void onClick(DialogInterface dialog, int which) {
                                 FragmentManager manager = fragment.requireFragmentManager();
                                 FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", null));
+                                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", model.getTeacherInfo()));
                                 transaction.commit();
                             }
                         });

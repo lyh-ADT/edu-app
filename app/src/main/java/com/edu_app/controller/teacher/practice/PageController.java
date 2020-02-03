@@ -35,9 +35,11 @@ public class PageController {
     private androidx.fragment.app.Fragment fragment;
     private PracticePage model;
     private PracticeListAdapter practiceListAdapter;
+    private TeacherInfo teacherInfo;
 
     public PageController(androidx.fragment.app.Fragment fragment, View view, TeacherInfo teacherInfo){
         this.fragment = fragment;
+        this.teacherInfo = teacherInfo;
         model = new PracticePage(teacherInfo, this);
         practiceListAdapter = new PracticeListAdapter(fragment.getLayoutInflater(), model);
         bindListener(view);
@@ -60,7 +62,7 @@ public class PageController {
             public void onClick(View v) {
                 FragmentManager manager = fragment.requireFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.main_fragment, Fragment.newInstance("add_practice", null));
+                transaction.replace(R.id.main_fragment, Fragment.newInstance("add_practice", teacherInfo));
                 transaction.commit();
             }
         });

@@ -44,10 +44,23 @@ public class PracticePage {
         practiceList.add(item);
     }
 
-    public void deletePractice(PracticeItem item){
-        // TODO: 实现网络请求
-        practiceList.remove(item);
-        pageController.handler.sendEmptyMessage(0);
+    public void deletePractice(final PracticeItem item){
+        new Thread(){
+            @Override
+            public void run(){
+                try {
+                    String response = NetworkUtility.postRequest(Host+"/delete_practice", info.getUID(), item.getId().getBytes());
+                    if("success".equals(response)){
+                        practiceList.remove(item);
+                        pageController.handler.sendEmptyMessage(0);
+                    }else{
+                        pageController.error(response);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     public int getPracticeItemCount(){

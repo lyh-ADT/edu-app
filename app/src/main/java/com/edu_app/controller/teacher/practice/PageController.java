@@ -48,13 +48,10 @@ public class PageController {
         addPractice_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 添加练习的页面
                 FragmentManager manager = fragment.requireFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.main_fragment, Fragment.newInstance("add_practice", null));
                 transaction.commit();
-//                model.addPractice(new TeacherPracticeItem("练习"));
-//                adapter.notifyDataSetChanged();
             }
         });
         Button deletePractice_btn = (Button)view.findViewById(R.id.delete_practice_btn);

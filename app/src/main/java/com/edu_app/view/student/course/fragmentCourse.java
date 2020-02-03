@@ -1,4 +1,4 @@
-package com.edu_app.view;
+package com.edu_app.view.student.course;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

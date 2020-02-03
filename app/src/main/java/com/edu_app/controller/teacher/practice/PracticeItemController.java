@@ -1,23 +1,23 @@
-package com.edu_app.controller;
+package com.edu_app.controller.teacher.practice;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.edu_app.R;
-import com.edu_app.model.Question;
+import com.edu_app.model.teacher.practice.TeacherPracticeItem;
 
-public class TeacherAddPracticeItemController {
+public class PracticeItemController {
+
     private static View.OnClickListener clickItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            // TODO: 进入问题详情
+            // TODO: 进入练习详情
         }
     };
-
-    private Question model;
+    private final TeacherPracticeItem model;
     private View view;
 
-    public TeacherAddPracticeItemController(View view, Question model){
+    public PracticeItemController(View view, TeacherPracticeItem model){
         this.view = view;
         this.model = model;
         setValues();
@@ -25,13 +25,11 @@ public class TeacherAddPracticeItemController {
     }
 
     private void setValues(){
-        TextView title = view.findViewById(R.id.order_number_text);
-        title.setText("题目"+model.getOrderNumber()+":"+model.getQuestion());
+        TextView title = view.findViewById(R.id.practice_item_title);
+        title.setText(model.getTitle());
     }
 
     private void bindListener(){
         view.setOnClickListener(clickItemListener);
     }
-
-
 }

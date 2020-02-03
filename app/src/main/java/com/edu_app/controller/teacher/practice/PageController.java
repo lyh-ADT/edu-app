@@ -1,4 +1,4 @@
-package com.edu_app.controller;
+package com.edu_app.controller.teacher.practice;
 
 import android.os.Looper;
 import android.view.View;
@@ -6,25 +6,24 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
-import com.edu_app.model.TeacherInfo;
-import com.edu_app.model.TeacherPractice;
-import com.edu_app.model.TeacherPracticeItem;
-import com.edu_app.view.TeacherFragment;
+import com.edu_app.model.teacher.TeacherInfo;
+import com.edu_app.model.teacher.practice.PracticePage;
+import com.edu_app.model.teacher.practice.TeacherPracticeItem;
+import com.edu_app.view.teacher.Fragment;
 
 import java.util.List;
 
-public class TeacherPracticeController {
-    private Fragment fragment;
-    private TeacherPractice model;
+public class PageController {
+    private androidx.fragment.app.Fragment fragment;
+    private PracticePage model;
 
-    public TeacherPracticeController(Fragment fragment, View view, TeacherInfo teacherInfo){
+    public PageController(androidx.fragment.app.Fragment fragment, View view, TeacherInfo teacherInfo){
         this.fragment = fragment;
-        model = new TeacherPractice(teacherInfo);
+        model = new PracticePage(teacherInfo);
         bindListener(view);
     }
 
@@ -42,7 +41,7 @@ public class TeacherPracticeController {
 
     private void bindListener(View view){
         ListView practice_list = (ListView)view.findViewById(R.id.practice_list);
-        final TeacherPracticeListAdapter adapter = new TeacherPracticeListAdapter(fragment.getLayoutInflater(), model);
+        final PracticeListAdapter adapter = new PracticeListAdapter(fragment.getLayoutInflater(), model);
         practice_list.setAdapter(adapter);
 
         Button addPractice_btn = (Button)view.findViewById(R.id.add_practice_btn);
@@ -52,7 +51,7 @@ public class TeacherPracticeController {
                 // TODO: 添加练习的页面
                 FragmentManager manager = fragment.requireFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.main_fragment, TeacherFragment.newInstance("add_practice", null));
+                transaction.replace(R.id.main_fragment, Fragment.newInstance("add_practice", null));
                 transaction.commit();
 //                model.addPractice(new TeacherPracticeItem("练习"));
 //                adapter.notifyDataSetChanged();

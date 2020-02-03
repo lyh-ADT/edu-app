@@ -1,31 +1,30 @@
-package com.edu_app.view;
+package com.edu_app.view.teacher;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.edu_app.R;
-import com.edu_app.controller.TeacherAddPracticeController;
-import com.edu_app.controller.TeacherPracticeController;
-import com.edu_app.model.TeacherInfo;
+import com.edu_app.controller.teacher.practice.AddPracticeController;
+import com.edu_app.controller.teacher.practice.PageController;
+import com.edu_app.model.teacher.TeacherInfo;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link TeacherFragment#newInstance} factory method to
+ * A simple {@link androidx.fragment.app.Fragment} subclass.
+ * Use the {@link Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TeacherFragment extends Fragment {
+public class Fragment extends androidx.fragment.app.Fragment {
     private static final String FRAGMENT_TYPE = "fragment_type";
 
     private String fragmentType;
     private TeacherInfo teacherInfo;
 
-    public TeacherFragment(TeacherInfo teacherInfo) {
+    public Fragment(TeacherInfo teacherInfo) {
         this.teacherInfo = teacherInfo;
     }
 
@@ -34,10 +33,10 @@ public class TeacherFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param fragmentType Parameter 1.
-     * @return A new instance of fragment TeacherFragment.
+     * @return A new instance of fragment Fragment.
      */
-    public static TeacherFragment newInstance(String fragmentType, TeacherInfo teacherInfo) {
-        TeacherFragment fragment = new TeacherFragment(teacherInfo);
+    public static Fragment newInstance(String fragmentType, TeacherInfo teacherInfo) {
+        Fragment fragment = new Fragment(teacherInfo);
         Bundle args = new Bundle();
         args.putString(FRAGMENT_TYPE, fragmentType);
         fragment.setArguments(args);
@@ -58,10 +57,10 @@ public class TeacherFragment extends Fragment {
         View view = null;
         if("practice".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
-            new TeacherPracticeController(this, view, teacherInfo);
+            new PageController(this, view, teacherInfo);
         } else if("add_practice".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_add_practice_page, container, false);
-            new TeacherAddPracticeController(this, view);
+            new AddPracticeController(this, view);
         }
         return view;
     }

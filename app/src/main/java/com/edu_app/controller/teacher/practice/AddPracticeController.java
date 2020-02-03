@@ -1,4 +1,4 @@
-package com.edu_app.controller;
+package com.edu_app.controller.teacher.practice;
 
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -9,28 +9,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.model.Question;
-import com.edu_app.model.TeacherAddPractice;
-import com.edu_app.view.TeacherFragment;
+import com.edu_app.model.teacher.practice.AddPractice;
+import com.edu_app.view.teacher.Fragment;
 
-public class TeacherAddPracticeController {
-    private Fragment fragment;
-    private TeacherAddPractice model;
+public class AddPracticeController {
+    private androidx.fragment.app.Fragment fragment;
+    private AddPractice model;
 
-    public TeacherAddPracticeController(Fragment fragment, View view){
+    public AddPracticeController(androidx.fragment.app.Fragment fragment, View view){
         this.fragment = fragment;
-        model = new TeacherAddPractice();
+        model = new AddPractice();
         bindListener(view);
     }
 
     private void bindListener(final View view){
         ListView practice_list = view.findViewById(R.id.practice_list);
-        final TeacherAddPracticeListAdapter adapter = new TeacherAddPracticeListAdapter(fragment.getLayoutInflater(), model);
+        final AddPracticeListAdapter adapter = new AddPracticeListAdapter(fragment.getLayoutInflater(), model);
         practice_list.setAdapter(adapter);
 
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
@@ -80,7 +79,7 @@ public class TeacherAddPracticeController {
                             public void onClick(DialogInterface dialog, int which) {
                                 FragmentManager manager = fragment.requireFragmentManager();
                                 FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.replace(R.id.main_fragment, TeacherFragment.newInstance("practice", null));
+                                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", null));
                                 transaction.commit();
                             }
                         });

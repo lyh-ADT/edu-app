@@ -1,4 +1,4 @@
-package com.edu_app.controller;
+package com.edu_app.controller.teacher.practice;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,20 +6,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.edu_app.R;
-import com.edu_app.model.TeacherPractice;
+import com.edu_app.model.teacher.practice.AddPractice;
 
-public class TeacherPracticeListAdapter extends BaseAdapter {
-    private final TeacherPractice model;
+public class AddPracticeListAdapter extends BaseAdapter {
     private LayoutInflater inflater;
+    private AddPractice model;
 
-    public TeacherPracticeListAdapter(LayoutInflater inflater, TeacherPractice model){
+    public AddPracticeListAdapter(LayoutInflater inflater, AddPractice model){
         this.inflater = inflater;
         this.model = model;
     }
 
     @Override
     public int getCount() {
-        return model.getPracticeItemCount();
+        return model.getQuestionCount();
     }
 
     @Override
@@ -34,9 +34,9 @@ public class TeacherPracticeListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
-            convertView = inflater.inflate(R.layout.fragment_teacher_practice_item, parent, false);
-            new TeacherPracticeItemController(convertView, model.getPracticeItemAt(position));
+        if(position > -1){
+            convertView = inflater.inflate(R.layout.item_question, parent, false);
+            new AddPracticeItemController(convertView, model.getQuestionAt(position));
         }
         return convertView;
     }

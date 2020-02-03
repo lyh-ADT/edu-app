@@ -1,4 +1,4 @@
-package com.edu_app.model;
+package com.edu_app.model.teacher;
 
 import java.io.Serializable;
 

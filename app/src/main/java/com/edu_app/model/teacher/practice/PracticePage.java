@@ -1,14 +1,16 @@
-package com.edu_app.model;
+package com.edu_app.model.teacher.practice;
+
+import com.edu_app.model.teacher.TeacherInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherPractice {
+public class PracticePage {
     private final String Host = "192.168.123.22:2000";// TODO: 修改为服务器地址
     private TeacherInfo info;
     private List<TeacherPracticeItem> practiceList = new ArrayList<>();
 
-    public TeacherPractice(TeacherInfo info){
+    public PracticePage(TeacherInfo info){
         this.info = info;
         getPracticeList();
     }

@@ -1,9 +1,11 @@
-package com.edu_app.model;
+package com.edu_app.model.teacher.practice;
+
+import com.edu_app.model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherAddPractice {
+public class AddPractice {
     private List<Question> questions = new ArrayList<>();
 
     public void addQuestion(Question q){

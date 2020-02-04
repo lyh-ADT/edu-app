@@ -1,4 +1,4 @@
-package com.edu_app.view;
+package com.edu_app.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;

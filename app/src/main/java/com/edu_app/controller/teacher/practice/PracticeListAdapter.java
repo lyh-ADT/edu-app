@@ -1,4 +1,4 @@
-package com.edu_app.controller;
+package com.edu_app.controller.teacher.practice;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.edu_app.R;
-import com.edu_app.model.TeacherPractice;
+import com.edu_app.model.teacher.practice.PracticePage;
 
-public class TeacherPracticeListAdapter extends BaseAdapter {
-    private final TeacherPractice model;
+public class PracticeListAdapter extends BaseAdapter {
+    private final PracticePage model;
     private LayoutInflater inflater;
 
-    public TeacherPracticeListAdapter(LayoutInflater inflater, TeacherPractice model){
+    public PracticeListAdapter(LayoutInflater inflater, PracticePage model){
         this.inflater = inflater;
         this.model = model;
     }
@@ -34,9 +34,9 @@ public class TeacherPracticeListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
+        if(position >= -1){
             convertView = inflater.inflate(R.layout.fragment_teacher_practice_item, parent, false);
-            new TeacherPracticeItemController(convertView, model.getPracticeItemAt(position));
+            new PracticeItemController(convertView, model.getPracticeItemAt(position), model);
         }
         return convertView;
     }

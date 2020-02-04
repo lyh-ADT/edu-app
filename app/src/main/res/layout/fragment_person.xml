@@ -14,6 +14,7 @@
         android:orientation="horizontal">
         <!--头像-->
         <ImageButton
+            android:id="@+id/personPage_bt_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
@@ -28,6 +29,7 @@
             android:orientation="vertical">
             <!--登录-->
             <TextView
+                android:id="@+id/personPage_bt_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,6 +116,7 @@
         android:layout_marginTop="15sp"
         android:orientation="horizontal"
         android:id="@+id/personPage_stuDownload"
+
         >
 
         <ImageView

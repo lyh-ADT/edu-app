@@ -2,15 +2,14 @@ package com.edu_app.controller.teacher.practice;
 
 import android.content.DialogInterface;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.edu_app.R;
+import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.practice.PracticePage;
 import com.edu_app.model.teacher.practice.PracticeItem;
 
-public class PracticeItemController {
+public class PracticeItemController extends Controller {
     static private boolean deleteMode = false;
     private PracticePage pageModel;
     private View.OnClickListener clickItemListener = new View.OnClickListener() {
@@ -39,6 +38,7 @@ public class PracticeItemController {
     private View view;
 
     public PracticeItemController(View view, PracticeItem model, PracticePage pageModel){
+        super(view, model);
         this.view = view;
         this.model = model;
         this.pageModel = pageModel;
@@ -50,12 +50,8 @@ public class PracticeItemController {
         deleteMode = active;
     }
 
-    private void setValues(){
-        TextView title = view.findViewById(R.id.practice_item_title);
-        title.setText(model.getTitle());
-    }
-
-    private void bindListener(){
+    @Override
+    protected void bindListener(){
         view.setOnClickListener(clickItemListener);
     }
 }

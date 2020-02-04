@@ -17,6 +17,7 @@ import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.Question;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.AddPractice;
+import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
 
 public class AddPracticeController extends Controller {
@@ -24,12 +25,14 @@ public class AddPracticeController extends Controller {
     private AddPractice model;
 
     public AddPracticeController(androidx.fragment.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+        super(view, new AddPractice(teacherInfo));
         this.fragment = fragment;
-        model = new AddPractice(teacherInfo);
-        bindListener(view);
+        model = (AddPractice)super.model;
+        bindListener();
     }
 
-    private void bindListener(final View view){
+    @Override
+    protected void bindListener(){
         ListView practice_list = view.findViewById(R.id.practice_list);
         final AddPracticeListAdapter adapter = new AddPracticeListAdapter(fragment.getLayoutInflater(), model);
         practice_list.setAdapter(adapter);
@@ -54,11 +57,11 @@ public class AddPracticeController extends Controller {
                                     Toast.makeText(fragment.getContext(), "问题不能为空", Toast.LENGTH_LONG).show();
                                     return;
                                 }
-                                Question question = new Question();
+                                QuestionItem question = new QuestionItem();
                                 question.setQuestion(question_string);
                                 question.setOrderNumber(model.getQuestionCount()+1);
                                 model.addQuestion(question);
-                                adapter.notifyDataSetChanged();
+                                practiceListAdapter.notifyDataSetChanged();
                             }
                         });
 

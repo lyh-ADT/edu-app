@@ -39,15 +39,18 @@ public class PageController extends Controller {
     private TeacherInfo teacherInfo;
 
     public PageController(androidx.fragment.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+        super(view, new PracticePage(teacherInfo));
         this.fragment = fragment;
         this.teacherInfo = teacherInfo;
-        model = new PracticePage(teacherInfo, this);
+        model = (PracticePage)super.model;
+        model.setController(this);
         practiceListAdapter = new PracticeListAdapter(fragment.getLayoutInflater(), model);
         bindListener(view);
     }
 
     public void error(String message){
         Looper.prepare();
+        // TODO: 加一个判断fragment是否因为被replace而为空的判断
         Toast.makeText(fragment.getContext(), message, Toast.LENGTH_LONG).show();
         Looper.loop();
     }

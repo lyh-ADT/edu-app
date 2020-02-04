@@ -1,20 +1,23 @@
 package com.edu_app.model.teacher.practice;
 
-import com.edu_app.model.Question;
+import androidx.core.util.Pair;
+
+import com.edu_app.controller.teacher.Controller;
+import com.edu_app.model.teacher.Model;
 import com.edu_app.model.teacher.TeacherInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPractice {
-    private List<Question> questions = new ArrayList<>();
+public class AddPractice implements Model {
+    private List<QuestionItem> questions = new ArrayList<>();
     private TeacherInfo teacherInfo;
 
     public AddPractice(TeacherInfo teacherInfo){
         this.teacherInfo = teacherInfo;
     }
 
-    public void addQuestion(Question q){
+    public void addQuestion(QuestionItem q){
         questions.add(q);
     }
 
@@ -22,19 +25,27 @@ public class AddPractice {
         return questions.size();
     }
 
-    public Question getQuestionAt(int i){
+    public QuestionItem getQuestionAt(int i){
         return questions.get(i);
     }
 
-    public List<Question> getQuestions() {
+    public List<QuestionItem> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<QuestionItem> questions) {
         this.questions = questions;
     }
 
     public TeacherInfo getTeacherInfo() {
         return teacherInfo;
     }
+
+    @Override
+    public List<Pair<Integer, Object>> getShowField() {
+        return null;
+    }
+
+    @Override
+    public void setController(Controller controller) {}
 }

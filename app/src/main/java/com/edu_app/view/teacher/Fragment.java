@@ -69,6 +69,9 @@ public class Fragment extends androidx.fragment.app.Fragment {
         } else if("course".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_course, container, false);
             controller = new CoursePageController(this, view, teacherInfo);
+        } else if("live_stream".equals(fragmentType)){
+            view = inflater.inflate(R.layout.fragment_teacher_live_stream, container, false);
+            controller = new StreamPageController(this, view, teacherInfo);
         }
         return view;
     }

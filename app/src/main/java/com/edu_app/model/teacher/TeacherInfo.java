@@ -1,8 +1,8 @@
 package com.edu_app.model.teacher;
 
-import java.io.Serializable;
+import com.edu_app.model.UserInfo;
 
-public class TeacherInfo implements Serializable {
+public class TeacherInfo extends UserInfo {
     public String getUID(){
         return null;
     }

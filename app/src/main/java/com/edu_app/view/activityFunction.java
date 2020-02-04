@@ -11,6 +11,7 @@ import android.app.Fragment;
 
 import com.edu_app.R;
 import com.edu_app.controller.MainController;
+import com.edu_app.view.login.LoginActivity;
 
 
 public class activityFunction extends Activity implements View.OnClickListener {

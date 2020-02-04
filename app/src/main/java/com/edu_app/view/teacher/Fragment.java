@@ -12,8 +12,9 @@ import android.view.ViewGroup;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
+import com.edu_app.controller.teacher.course.CoursePageController;
 import com.edu_app.controller.teacher.practice.AddPracticeController;
-import com.edu_app.controller.teacher.practice.PageController;
+import com.edu_app.controller.teacher.stream.StreamPageController;
 import com.edu_app.model.teacher.TeacherInfo;
 
 /**
@@ -61,10 +62,13 @@ public class Fragment extends androidx.fragment.app.Fragment {
         View view = null;
         if("practice".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
-            controller = new PageController(this, view, teacherInfo);
+            controller = new com.edu_app.controller.teacher.practice.PageController(this, view, teacherInfo);
         } else if("add_practice".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_add_practice_page, container, false);
             controller = new AddPracticeController(this, view, teacherInfo);
+        } else if("course".equals(fragmentType)){
+            view = inflater.inflate(R.layout.fragment_teacher_course, container, false);
+            controller = new CoursePageController(this, view, teacherInfo);
         }
         return view;
     }

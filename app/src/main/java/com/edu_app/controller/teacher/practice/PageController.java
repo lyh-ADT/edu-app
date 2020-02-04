@@ -13,11 +13,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
+import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.PracticePage;
 import com.edu_app.view.teacher.Fragment;
 
-public class PageController {
+public class PageController extends Controller {
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {

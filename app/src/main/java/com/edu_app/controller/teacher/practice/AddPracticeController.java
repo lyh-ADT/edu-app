@@ -13,12 +13,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
+import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.Question;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.AddPractice;
 import com.edu_app.view.teacher.Fragment;
 
-public class AddPracticeController {
+public class AddPracticeController extends Controller {
     private androidx.fragment.app.Fragment fragment;
     private AddPractice model;
 

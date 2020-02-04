@@ -8,21 +8,19 @@ import android.widget.ImageView;
 import android.app.Fragment;
 //import androidx.fragment.app.Fragment;
 //import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
+import com.edu_app.view.student.person.fragmentPerson;
+import com.edu_app.view.student.person.fragmentPersonInfo;
 
-public class activityMain extends Activity implements View.OnClickListener {
+public class activityFuction extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_function);
 //        设置打开页面时的默认界面
         FragmentTransaction ft =  getFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment,new fragmentPersonInfo());
+        ft.replace(R.id.main_fragment,new fragmentPerson());
         ft.commit();
         ImageView img1 = (ImageView) findViewById(R.id.bar_imgPractice);
         ImageView img2 = (ImageView) findViewById(R.id.bar_imgCourse);
@@ -47,7 +45,7 @@ public class activityMain extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.bar_imgPersonInfo:
-                f = new fragmentPersonInfo();
+                f = new fragmentPerson();
                 break;
             default:
                 f=null;

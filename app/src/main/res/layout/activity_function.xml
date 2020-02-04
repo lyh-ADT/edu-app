@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/function_activity">
+
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:name="com.edu_app.fragmentPersonInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/bar_imgPractice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="10sp"
+
+            android:src="@mipmap/ic_bar_practice"></ImageView>
+
+        <ImageView
+            android:id="@+id/bar_imgCourse"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_bar_course"></ImageView>
+
+        <ImageView
+            android:id="@+id/bar_imgPersonInfo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_bar_me"></ImageView>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,4 +1,5 @@
 package com.edu_app.model;
+
 import java.io.Serializable;
 
 // 用户类

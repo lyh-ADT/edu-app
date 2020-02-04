@@ -12,7 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.edu_app.R;
-import com.edu_app.controller.student.person.MainController;
+
+import com.edu_app.controller.student.person.PersonMainController;
 
 public class fragmentPerson extends Fragment {
     @Nullable
@@ -21,10 +22,12 @@ public class fragmentPerson extends Fragment {
         return inflater.inflate(R.layout.fragment_person, container, false);
     }
 // TODO:监听点击选项按钮，实现个人功能页面与其中子选项的页面跳转
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MainController mainController = new MainController(this);
+        PersonMainController mainController = new PersonMainController(this);
 //        TextView textView = (TextView) getActivity().findViewById(R.id.personPage_bt_login);
         LinearLayout linearLayout_1 = (LinearLayout) getActivity().findViewById(R.id.personPage_stuInfo);
         LinearLayout linearLayout_2 = (LinearLayout) getActivity().findViewById(R.id.personPage_stuCourse);

@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/fuction_activity">
+    android:id="@+id/function_activity">
 
     <FrameLayout
-        android:id="@+id/function_fragment"
+        android:id="@+id/main_fragment"
         android:name="com.edu_app.fragmentPersonInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

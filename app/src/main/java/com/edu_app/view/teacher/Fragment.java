@@ -86,4 +86,10 @@ public class Fragment extends android.app.Fragment {
         super.onConfigurationChanged(config);
         controller.onConfigurationChanged(config);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        controller.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }

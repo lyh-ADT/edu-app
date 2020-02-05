@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 
@@ -31,6 +32,8 @@ public class Controller {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {}
 
     public void onConfigurationChanged(Configuration config){}
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {}
 
     protected void bindListener(){}
 

@@ -30,5 +30,6 @@ public class fragmentPractice extends Fragment {
         btenglish.setOnClickListener(mainController);
         btchinese.setOnClickListener(mainController);
 
+
     }
 }

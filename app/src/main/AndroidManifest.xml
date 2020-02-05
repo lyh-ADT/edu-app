@@ -27,6 +27,9 @@
         <activity android:name=".view.student.person.activityHistoryDownload"></activity>
         <activity android:name=".view.student.person.activityPersonInfo"></activity>
         <activity android:name=".view.student.person.activityPersonCourse"></activity>
+        <activity android:name=".view.student.pracitce.activityLookExam"></activity>
+        <activity android:name=".view.student.pracitce.activityDoExam"></activity>
+
     </application>
 
 </manifest>

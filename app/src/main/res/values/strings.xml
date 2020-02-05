@@ -19,4 +19,5 @@
     <string name="stu_practice_subject_math">数学</string>
     <string name="stu_practice_subject_chinese">语文</string>
     <string name="stu_practice_subject_english">英语</string>
+    <string name="practicePage_practice_title">我的练习</string>
 </resources>

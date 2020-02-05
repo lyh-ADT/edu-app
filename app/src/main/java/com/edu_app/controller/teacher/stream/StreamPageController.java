@@ -42,17 +42,19 @@ public class StreamPageController extends Controller {
 
     @Override
     public void onConfigurationChanged(Configuration config) {
-        final LinearLayout.LayoutParams PORTRAIT_PARAMS = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dip2px(200));
-        final LinearLayout.LayoutParams LANDSCAPE_PARAMS = new LinearLayout.LayoutParams(dip2px(200), ViewGroup.LayoutParams.MATCH_PARENT);
+        final LinearLayout.LayoutParams PORTRAIT_PARAMS = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dip2px(0));
+        final LinearLayout.LayoutParams LANDSCAPE_PARAMS = new LinearLayout.LayoutParams(dip2px(0), ViewGroup.LayoutParams.MATCH_PARENT);
+        PORTRAIT_PARAMS.weight = 1;
+        LANDSCAPE_PARAMS.weight = 1;
 
         int orientation = config.orientation;
         if(orientation == Configuration.ORIENTATION_PORTRAIT){
             // 竖屏模式
             LinearLayout page = (LinearLayout)view;
             page.setOrientation(LinearLayout.VERTICAL);
-            page.setLayoutParams(new FrameLayout.LayoutParams(PORTRAIT_PARAMS));
 
             LinearLayout control = page.findViewById(R.id.stream_control_lo);
+            control.setLayoutParams(PORTRAIT_PARAMS);
             control.setOrientation(LinearLayout.HORIZONTAL);
 
             VideoView video = page.findViewById(R.id.video);
@@ -60,15 +62,18 @@ public class StreamPageController extends Controller {
 
             TextView chat_tv = page.findViewById(R.id.chat_tv);
             chat_tv.setText("竖");
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(PORTRAIT_PARAMS);
+            params.weight = 2;
+            chat_tv.setLayoutParams(params);
 
             page.invalidate();
         } else if(orientation == Configuration.ORIENTATION_LANDSCAPE){
             // 横屏模式
             LinearLayout page = (LinearLayout)view;
             page.setOrientation(LinearLayout.HORIZONTAL);
-            page.setLayoutParams(new FrameLayout.LayoutParams(LANDSCAPE_PARAMS));
 
             LinearLayout control = page.findViewById(R.id.stream_control_lo);
+            control.setLayoutParams(LANDSCAPE_PARAMS);
             control.setOrientation(LinearLayout.VERTICAL);
 
             VideoView video = page.findViewById(R.id.video);
@@ -76,6 +81,9 @@ public class StreamPageController extends Controller {
 
             TextView chat_tv = page.findViewById(R.id.chat_tv);
             chat_tv.setText("横");
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LANDSCAPE_PARAMS);
+            params.weight = 2;
+            chat_tv.setLayoutParams(params);
 
             page.invalidate();
         }

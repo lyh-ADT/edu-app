@@ -58,7 +58,7 @@ public class StreamPageController extends Controller {
             control.setLayoutParams(PORTRAIT_PARAMS);
             control.setOrientation(LinearLayout.HORIZONTAL);
 
-            VideoView video = page.findViewById(R.id.video);
+            View video = page.findViewById(R.id.video);
             video.setLayoutParams(LANDSCAPE_PARAMS);
 
             View chat_lo = page.findViewById(R.id.chat_lo);
@@ -76,7 +76,7 @@ public class StreamPageController extends Controller {
             control.setLayoutParams(LANDSCAPE_PARAMS);
             control.setOrientation(LinearLayout.VERTICAL);
 
-            VideoView video = page.findViewById(R.id.video);
+            View video = page.findViewById(R.id.video);
             video.setLayoutParams(PORTRAIT_PARAMS);
 
             View chat_lo = page.findViewById(R.id.chat_lo);

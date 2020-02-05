@@ -3,7 +3,11 @@ package com.edu_app.controller.teacher.stream;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.graphics.Matrix;
+import android.graphics.Point;
+import android.graphics.RectF;
 import android.hardware.Camera;
+import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -20,6 +24,11 @@ import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.stream.LiveStreamPage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 public class StreamPageController extends Controller {
     private Fragment fragment;
@@ -63,6 +72,7 @@ public class StreamPageController extends Controller {
                 try {
                     camera.setPreviewDisplay(holder);
                     setCameraDisplayOrientation(fragment.getActivity(), 0, camera);
+                    setPreviewSize();
                     camera.startPreview();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -140,6 +150,7 @@ public class StreamPageController extends Controller {
         }
         if(camera != null){
             setCameraDisplayOrientation(fragment.getActivity(), 0, camera);
+            setPreviewSize();
         }
     }
 
@@ -165,5 +176,37 @@ public class StreamPageController extends Controller {
             result = (info.orientation - degrees + 360) % 360;
         }
         camera.setDisplayOrientation(result);
+    }
+
+    private void setPreviewSize() {
+        SurfaceView surfaceView = view.findViewById(R.id.video);
+        int w1 = surfaceView.getMeasuredWidth();
+        int h1 = surfaceView.getMeasuredHeight();
+        boolean widthIsMax = w1 > h1;
+
+        Camera.Size size = camera.getParameters().getPreviewSize();
+
+        RectF rectDisplay = new RectF();
+        RectF rectPreview = new RectF();
+
+        rectDisplay.set(0, 0, w1, h1);
+
+        Matrix matrix = new Matrix();
+
+        if (widthIsMax) {
+            rectPreview.set(0, 0, size.width, size.height);
+            matrix.setRectToRect(rectPreview, rectDisplay, Matrix.ScaleToFit.START);
+        } else {
+            rectPreview.set(0, 0, size.height, size.width);
+            matrix.setRectToRect(rectPreview, rectDisplay, Matrix.ScaleToFit.START);
+        }
+
+        matrix.mapRect(rectPreview);
+        int width = (int) (rectPreview.bottom);
+        int height = (int) (rectPreview.right);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
+
+        surfaceView.setLayoutParams(params);
+        surfaceView.invalidate();
     }
 }

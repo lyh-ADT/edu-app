@@ -23,6 +23,11 @@ public class Controller {
         setValues();
     }
 
+    public int dip2px(float dpValue) {
+        final float scale = view.getContext().getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {}
 
     public void onConfigurationChanged(Configuration config){}

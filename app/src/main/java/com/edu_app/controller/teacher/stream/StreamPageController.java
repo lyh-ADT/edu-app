@@ -3,16 +3,22 @@ package com.edu_app.controller.teacher.stream;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.hardware.Camera;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import android.app.Fragment;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.stream.LiveStreamPage;
+
+import java.io.IOException;
 
 public class StreamPageController extends Controller {
     private Fragment fragment;
@@ -24,6 +30,52 @@ public class StreamPageController extends Controller {
         this.info = info;
         setFullScreen();
         onConfigurationChanged(fragment.getResources().getConfiguration());
+        bindListener();
+    }
+
+    @Override
+    protected void bindListener() {
+        View stop_btn = view.findViewById(R.id.stop_btn);
+        stop_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 停止直播的逻辑
+            }
+        });
+
+        View send_btn = view.findViewById(R.id.send_btn);
+        send_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText input_et = StreamPageController.this.view.findViewById(R.id.input_chat_et);
+                input_et.getText();
+                // TODO: 发送弹幕的网络逻辑
+            }
+        });
+
+        SurfaceView video_sv = view.findViewById(R.id.video);
+        video_sv.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                Camera camera = Camera.open();
+                try {
+                    camera.setPreviewDisplay(holder);
+                    camera.startPreview();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+        });
     }
 
     private void setFullScreen(){

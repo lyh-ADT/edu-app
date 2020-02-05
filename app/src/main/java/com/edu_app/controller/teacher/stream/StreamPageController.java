@@ -26,6 +26,7 @@ public class StreamPageController extends Controller {
         this.fragment = fragment;
         this.info = info;
         setFullScreen();
+        onConfigurationChanged(fragment.getResources().getConfiguration());
     }
 
     private void setFullScreen(){

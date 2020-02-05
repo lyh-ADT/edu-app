@@ -7,10 +7,7 @@ import android.view.View;
 
 import android.app.Fragment;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;

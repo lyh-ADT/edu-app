@@ -22,16 +22,13 @@ import com.edu_app.model.teacher.TeacherInfo;
  * Use the {@link Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment extends androidx.fragment.app.Fragment {
+public class Fragment extends android.app.Fragment {
     private static final String FRAGMENT_TYPE = "fragment_type";
+    private static final String TEACHER_INFO = "teacher_info";
 
     private String fragmentType;
     private TeacherInfo teacherInfo;
     private Controller controller;
-
-    public Fragment(TeacherInfo teacherInfo) {
-        this.teacherInfo = teacherInfo;
-    }
 
     /**
      * Use this factory method to create a new instance of
@@ -41,9 +38,10 @@ public class Fragment extends androidx.fragment.app.Fragment {
      * @return A new instance of fragment Fragment.
      */
     public static Fragment newInstance(String fragmentType, TeacherInfo teacherInfo) {
-        Fragment fragment = new Fragment(teacherInfo);
+        Fragment fragment = new Fragment();
         Bundle args = new Bundle();
         args.putString(FRAGMENT_TYPE, fragmentType);
+        args.putSerializable(TEACHER_INFO, teacherInfo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,6 +51,7 @@ public class Fragment extends androidx.fragment.app.Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             fragmentType = getArguments().getString(FRAGMENT_TYPE);
+            teacherInfo = (TeacherInfo) getArguments().getSerializable(TEACHER_INFO);
         }
     }
 

@@ -3,9 +3,9 @@ package com.edu_app.controller.teacher.course;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -29,7 +29,7 @@ public class CoursePageController extends Controller {
         startLiveStream_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager manager = fragment.requireFragmentManager();
+                FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.main_fragment, com.edu_app.view.teacher.Fragment.newInstance("live_stream", info));
                 transaction.commit();

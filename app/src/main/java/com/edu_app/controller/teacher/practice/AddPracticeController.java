@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -28,12 +28,12 @@ import com.edu_app.view.teacher.Fragment;
 
 public class AddPracticeController extends Controller {
     private final int SELECT_PIC = 0;
-    private androidx.fragment.app.Fragment fragment;
+    private android.app.Fragment fragment;
     private AddPractice model;
     private AddPracticeListAdapter practiceListAdapter;
     private Dialog dialog;
 
-    public AddPracticeController(androidx.fragment.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+    public AddPracticeController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
         super(view, new AddPractice(teacherInfo));
         this.fragment = fragment;
         model = (AddPractice)super.model;
@@ -43,14 +43,14 @@ public class AddPracticeController extends Controller {
     @Override
     protected void bindListener(){
         ListView practice_list = view.findViewById(R.id.practice_list);
-        practiceListAdapter = new AddPracticeListAdapter(fragment.getLayoutInflater(), model);
+        practiceListAdapter = new AddPracticeListAdapter(fragment.getActivity().getLayoutInflater(), model);
         practice_list.setAdapter(practiceListAdapter);
 
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
         addQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LayoutInflater inflater = fragment.getLayoutInflater();
+                LayoutInflater inflater = fragment.getActivity().getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.dialog_add_question, null);
                 Button addPicture_btn = dialogView.findViewById(R.id.add_picture_btn);
                 addPicture_btn.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +61,7 @@ public class AddPracticeController extends Controller {
                         fragment.startActivityForResult(intent, SELECT_PIC);
                     }
                 });
-                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.requireContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getView().getContext());
                 builder.setTitle("添加题目")
                         .setCancelable(true)
                         .setView(dialogView)
@@ -72,7 +72,7 @@ public class AddPracticeController extends Controller {
                                 TextView question_edit = dialogView.findViewById(R.id.input_question_edit);
                                 String question_string = question_edit.getText().toString();
                                 if(question_string.length() <= 0){
-                                    Toast.makeText(fragment.getContext(), "问题不能为空", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(fragment.getView().getContext(), "问题不能为空", Toast.LENGTH_LONG).show();
                                     return;
                                 }
                                 QuestionItem question = new QuestionItem();
@@ -92,7 +92,7 @@ public class AddPracticeController extends Controller {
         exit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.requireContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getView().getContext());
                 builder.setMessage("操作不会被保存")
                         .setTitle("确认退出")
                         .setCancelable(true)
@@ -100,7 +100,7 @@ public class AddPracticeController extends Controller {
                         .setNegativeButton("退出", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                FragmentManager manager = fragment.requireFragmentManager();
+                                FragmentManager manager = fragment.getFragmentManager();
                                 FragmentTransaction transaction = manager.beginTransaction();
                                 transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", model.getTeacherInfo()));
                                 transaction.commit();

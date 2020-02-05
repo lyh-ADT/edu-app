@@ -1,6 +1,7 @@
 package com.edu_app.controller.teacher;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -22,12 +23,11 @@ public class Controller {
         setValues();
     }
 
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {}
 
-    }
-    protected void bindListener(){
+    public void onConfigurationChanged(Configuration config){}
 
-    }
+    protected void bindListener(){}
 
     protected void setValues() {
         List<Pair<Integer, Object>> showingFields = model.getShowField();

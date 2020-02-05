@@ -1,6 +1,7 @@
 package com.edu_app.view.teacher;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -78,5 +79,11 @@ public class Fragment extends android.app.Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         controller.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration config){
+        super.onConfigurationChanged(config);
+        controller.onConfigurationChanged(config);
     }
 }

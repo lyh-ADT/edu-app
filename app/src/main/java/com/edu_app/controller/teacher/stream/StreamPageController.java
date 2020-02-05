@@ -60,11 +60,10 @@ public class StreamPageController extends Controller {
             VideoView video = page.findViewById(R.id.video);
             video.setLayoutParams(LANDSCAPE_PARAMS);
 
-            TextView chat_tv = page.findViewById(R.id.chat_tv);
-            chat_tv.setText("竖");
+            View chat_lo = page.findViewById(R.id.chat_lo);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(PORTRAIT_PARAMS);
             params.weight = 2;
-            chat_tv.setLayoutParams(params);
+            chat_lo.setLayoutParams(params);
 
             page.invalidate();
         } else if(orientation == Configuration.ORIENTATION_LANDSCAPE){
@@ -79,11 +78,10 @@ public class StreamPageController extends Controller {
             VideoView video = page.findViewById(R.id.video);
             video.setLayoutParams(PORTRAIT_PARAMS);
 
-            TextView chat_tv = page.findViewById(R.id.chat_tv);
-            chat_tv.setText("横");
+            View chat_lo = page.findViewById(R.id.chat_lo);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LANDSCAPE_PARAMS);
             params.weight = 2;
-            chat_tv.setLayoutParams(params);
+            chat_lo.setLayoutParams(params);
 
             page.invalidate();
         }

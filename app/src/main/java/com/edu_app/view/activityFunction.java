@@ -5,11 +5,16 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.app.Fragment;
 
 import com.edu_app.R;
+import com.edu_app.controller.MainController;
+import com.edu_app.view.student.course.fragmentCourse;
+import com.edu_app.view.student.person.fragmentPerson;
+import com.edu_app.view.student.pracitce.fragmentPractice;
 
 
 public class activityFunction extends Activity implements View.OnClickListener {
@@ -29,7 +34,7 @@ public class activityFunction extends Activity implements View.OnClickListener {
         img1.setOnClickListener(this);
         img2.setOnClickListener(this);
         img3.setOnClickListener(this);
-//        MainController mainController = new MainController(this);
+        MainController mainController = new MainController(this);
 //        如果有效就携带uid，不然就去登录活动
 //        if (mainController.uidIsRight()) {
 //            uidbundle = mainController.getUidBundle();
@@ -45,7 +50,6 @@ public class activityFunction extends Activity implements View.OnClickListener {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment f;
         Intent uidintent;
-        Log.d("Info","pig");
         switch (v.getId()) {
             case R.id.bar_imgPractice:
                 f = new fragmentPractice();

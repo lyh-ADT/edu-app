@@ -22,4 +22,5 @@
     <string name="cancel_text">取消</string>
     <string name="picture">图片</string>
     <string name="start_live_stream_text">开始直播</string>
+    <string name="stop_text">停止</string>
 </resources>

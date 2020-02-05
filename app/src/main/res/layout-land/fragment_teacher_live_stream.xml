@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:shrinkColumns="0">
 
-    <TableRow>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="match_parent">
 
         <VideoView
             android:id="@+id/video"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
 
         <Button
             android:id="@+id/stop_btn"
@@ -17,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="@string/stop_text"/>
 
-    </TableRow>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/chat_tv"
@@ -25,4 +28,4 @@
         android:layout_height="match_parent"/>
 
 
-</TableLayout>
+</LinearLayout>

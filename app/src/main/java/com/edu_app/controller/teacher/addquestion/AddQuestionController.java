@@ -1,4 +1,4 @@
-package com.edu_app.controller.teacher.practice;
+package com.edu_app.controller.teacher.addquestion;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.Question;
-import com.edu_app.model.teacher.practice.QuestionItemFactory;
+import com.edu_app.model.teacher.addquestion.QuestionItemFactory;
 import com.edu_app.view.teacher.AddQuestionInfoFragment;
 
 public class AddQuestionController extends Controller {

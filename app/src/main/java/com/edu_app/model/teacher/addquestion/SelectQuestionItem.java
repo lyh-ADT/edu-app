@@ -1,4 +1,4 @@
-package com.edu_app.model.teacher.practice;
+package com.edu_app.model.teacher.addquestion;
 
 import com.edu_app.model.SelectQuestion;
 

@@ -15,7 +15,7 @@ import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.course.CoursePageController;
 import com.edu_app.controller.teacher.practice.AddPracticeController;
-import com.edu_app.controller.teacher.practice.AddQuestionController;
+import com.edu_app.controller.teacher.addquestion.AddQuestionController;
 import com.edu_app.controller.teacher.stream.StreamPageController;
 import com.edu_app.model.teacher.TeacherInfo;
 

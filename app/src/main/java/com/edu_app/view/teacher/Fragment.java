@@ -15,6 +15,7 @@ import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.course.CoursePageController;
 import com.edu_app.controller.teacher.practice.AddPracticeController;
+import com.edu_app.controller.teacher.practice.AddQuestionController;
 import com.edu_app.controller.teacher.stream.StreamPageController;
 import com.edu_app.model.teacher.TeacherInfo;
 
@@ -72,6 +73,9 @@ public class Fragment extends android.app.Fragment {
         } else if("live_stream".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_live_stream, container, false);
             controller = new StreamPageController(this, view, teacherInfo);
+        } else if("add_question".equals(fragmentType)){
+            view = inflater.inflate(R.layout.fragment_add_question, container, false);
+            controller = new AddQuestionController(view, this);
         }
         return view;
     }

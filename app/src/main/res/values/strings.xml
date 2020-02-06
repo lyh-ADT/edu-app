@@ -25,4 +25,8 @@
     <string name="stop_text">停止</string>
     <string name="send_text">发送</string>
     <string name="start_text">开始</string>
+    <string name="select_text">选择</string>
+    <string name="fill_blank_text">填空</string>
+    <string name="short_answer">简答</string>
+    <string name="add_option_text">添加选项</string>
 </resources>

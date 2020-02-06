@@ -38,6 +38,9 @@ public class Controller {
     protected void bindListener(){}
 
     protected void setValues() {
+        if(model == null){
+            return;
+        }
         List<Pair<Integer, Object>> showingFields = model.getShowField();
         if(showingFields == null){
             return;

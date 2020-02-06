@@ -1,28 +1,43 @@
 package com.edu_app.model;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelectQuestion extends Question {
-    private Map<String, String> selections;
+    private List<String> selections = new ArrayList<>();
 
     public SelectQuestion(){
         super(0, "select", "");
     }
 
-    public boolean addSelection(String order, String answer){
-        if(selections.containsKey(order)){
-            return false;
-        }
-        selections.put(order, answer);
+    public boolean addSelection(String answer){
+        selections.add(answer);
         return true;
     }
 
-    @Override
-    public void setAnswer(String answer) throws IllegalArgumentException{
-        if(selections.containsKey(answer)){
-            super.setAnswer(answer);
-        }else{
-            throw new IllegalArgumentException("答案中没有这个选项:"+answer);
+    public int getSelectionCount(){
+        return selections.size();
+    }
+
+    public String getSelectionAt(int i){
+        return selections.get(i);
+    }
+
+    public String nextOrderString(String s){
+        char[] array = s.toCharArray();
+        boolean finish = false;
+        for(int i=array.length-1; i >= 0; --i){
+            if(array[i] < 'Z'){
+                array[i] += 1;
+                finish = true;
+                break;
+            } else {
+                array[i] = 'A';
+            }
         }
+        if(!finish){
+            return "A"+String.valueOf(array);
+        }
+        return String.valueOf(array);
     }
 }

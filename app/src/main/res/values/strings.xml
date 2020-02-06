@@ -29,4 +29,5 @@
     <string name="fill_blank_text">填空</string>
     <string name="short_answer">简答</string>
     <string name="add_option_text">添加选项</string>
+    <string name="correct_answer_text">正确答案</string>
 </resources>

@@ -31,13 +31,14 @@ import cn.nodemedia.NodePublisherDelegate;
 public class StreamPageController extends Controller implements NodePublisherDelegate {
     private Fragment fragment;
     private TeacherInfo info;
-    private Camera camera;
     private NodePublisher nodePublisher;
+    private LiveStreamPage model;
 
     public StreamPageController(Fragment fragment, View view, TeacherInfo info) {
-        super(view, new LiveStreamPage());
+        super(view, new LiveStreamPage(info));
         this.fragment = fragment;
         this.info = info;
+        this.model = (LiveStreamPage)super.model;
         setFullScreen();
         onConfigurationChanged(fragment.getResources().getConfiguration());
         bindListener();
@@ -81,8 +82,8 @@ public class StreamPageController extends Controller implements NodePublisherDel
             @Override
             public void onClick(View v) {
                 EditText input_et = StreamPageController.this.view.findViewById(R.id.input_chat_et);
-                input_et.getText();
-                // TODO: 发送弹幕的网络逻辑
+                model.sendChatMessage(input_et.getText().toString());
+                input_et.setText("");
             }
         });
     }

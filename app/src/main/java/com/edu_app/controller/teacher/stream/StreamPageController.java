@@ -17,6 +17,7 @@ import android.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -54,27 +55,26 @@ public class StreamPageController extends Controller implements NodePublisherDel
         nodePublisher.setBeautyLevel(0);
         nodePublisher.setAutoReconnectWaitTimeout(-1);
         nodePublisher.startPreview();
-        nodePublisher.switchCamera();
-        new Thread(){
-            @Override
-            public void run(){
-                try{
-                    Thread.sleep(10000);
-                    nodePublisher.start();
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+//        nodePublisher.switchCamera();
     }
 
     @Override
     protected void bindListener() {
         View stop_btn = view.findViewById(R.id.stop_btn);
         stop_btn.setOnClickListener(new View.OnClickListener() {
+            private boolean started = false;
             @Override
             public void onClick(View v) {
-                // TODO: 停止直播的逻辑
+                TextView textView = (TextView)v;
+                if(started){
+                    started = false;
+                    nodePublisher.stop();
+                    textView.setText(R.string.start_text);
+                } else {
+                    started = true;
+                    nodePublisher.start();
+                    textView.setText(R.string.stop_text);
+                }
             }
         });
 

@@ -7,6 +7,7 @@ public class Question implements Serializable {
     private int orderNumber;
     private String questionType;
     private String question;
+    private String answer;
 
     public Question() {}
 
@@ -52,5 +53,13 @@ public class Question implements Serializable {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

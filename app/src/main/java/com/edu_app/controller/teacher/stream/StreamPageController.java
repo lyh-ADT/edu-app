@@ -15,6 +15,7 @@ import android.view.View;
 
 import android.app.Fragment;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -86,6 +87,9 @@ public class StreamPageController extends Controller implements NodePublisherDel
                 input_et.setText("");
             }
         });
+
+        WebView chat_wv = view.findViewById(R.id.chat_wv);
+        chat_wv.loadUrl(model.getChatRoomUrl());
     }
 
     private void setFullScreen(){

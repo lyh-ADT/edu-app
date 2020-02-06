@@ -40,4 +40,8 @@ public class LiveStreamPage implements Model {
             }
         }.start();
     }
+
+    public String getChatRoomUrl(){
+        return HOST+"/chat_room";
+    }
 }

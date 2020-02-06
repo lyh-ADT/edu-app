@@ -1,19 +1,20 @@
 package com.edu_app.controller.student.practice;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.model.Practice;
 import com.edu_app.view.student.pracitce.activityDoExam;
 import com.edu_app.view.student.pracitce.activityLookExam;
 
 public class BrowseExercisesController implements View.OnClickListener {
-    private Activity activity;
+    private AppCompatActivity activity;
     private Practice practice;
-    public BrowseExercisesController(Activity activity) {
+    public BrowseExercisesController(AppCompatActivity activity) {
         this.activity = activity;
     }
 

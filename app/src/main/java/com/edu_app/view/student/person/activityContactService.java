@@ -7,11 +7,12 @@ import android.view.KeyEvent;
 
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.R;
 import com.edu_app.view.activityFunction;
 
-public class activityContactService extends Activity {
+public class activityContactService extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

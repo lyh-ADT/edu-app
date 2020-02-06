@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import android.app.Fragment;
 import android.widget.LinearLayout;
 import com.edu_app.R;
 

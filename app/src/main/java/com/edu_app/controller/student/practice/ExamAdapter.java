@@ -1,18 +1,16 @@
 package com.edu_app.controller.student.practice;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edu_app.R;
 import com.edu_app.model.Practice;
-import com.edu_app.view.student.pracitce.activitySubjectMath;
 
 import java.util.ArrayList;
 

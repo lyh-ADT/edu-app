@@ -1,14 +1,14 @@
 package com.edu_app.view;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.app.Fragment;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 
 import com.edu_app.R;
 import com.edu_app.controller.MainController;
@@ -17,7 +17,7 @@ import com.edu_app.view.student.person.fragmentPerson;
 import com.edu_app.view.student.pracitce.fragmentPractice;
 
 
-public class activityFunction extends Activity implements View.OnClickListener {
+public class activityFunction extends AppCompatActivity implements View.OnClickListener {
     private Bundle uidbundle;
 
     @Override
@@ -25,8 +25,8 @@ public class activityFunction extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function);
 //        设置打开页面时的默认界面
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment, new fragmentPerson());
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main_fragment,new fragmentPerson());
         ft.commit();
         ImageView img1 = (ImageView) findViewById(R.id.bar_imgPractice);
         ImageView img2 = (ImageView) findViewById(R.id.bar_imgCourse);
@@ -46,8 +46,8 @@ public class activityFunction extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        androidx.fragment.app.FragmentTransaction ft =getSupportFragmentManager().beginTransaction();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        androidx.fragment.app.FragmentTransaction ft =getSupportFragmentManager().beginTransaction();
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
         Fragment f;
         Intent uidintent;
         switch (v.getId()) {

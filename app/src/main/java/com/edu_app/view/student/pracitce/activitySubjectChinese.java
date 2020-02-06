@@ -1,7 +1,5 @@
 package com.edu_app.view.student.pracitce;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +8,7 @@ import android.view.View;
 
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +23,7 @@ import com.edu_app.view.student.person.activityPersonInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class activitySubjectChinese extends Activity {
+public class activitySubjectChinese extends AppCompatActivity {
     private RecyclerView chineserecycler;
     private ArrayList<Practice> practicelist;
 

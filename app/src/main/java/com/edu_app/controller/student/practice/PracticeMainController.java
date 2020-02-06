@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import com.edu_app.R;
 import com.edu_app.model.Practice;
 import com.edu_app.view.student.pracitce.activitySubjectChinese;
@@ -13,9 +16,9 @@ import com.edu_app.view.student.pracitce.activitySubjectMath;
 import java.util.ArrayList;
 
 public class PracticeMainController implements View.OnClickListener {
-    private Activity activity;
+    private FragmentActivity activity;
     private ArrayList<Practice> practicelist;
-    public PracticeMainController(Activity activity) {
+    public PracticeMainController(FragmentActivity activity) {
         this.activity = activity;
     }
 

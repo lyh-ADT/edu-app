@@ -1,10 +1,10 @@
 package com.edu_app.controller.student.person;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.edu_app.R;
 import com.edu_app.view.student.person.activityContactService;
@@ -13,9 +13,9 @@ import com.edu_app.view.student.person.activityPersonCourse;
 import com.edu_app.view.student.person.activityPersonInfo;
 
 public class PersonMainController implements View.OnClickListener {
-    private Activity activity;
+    private FragmentActivity activity;
 
-    public PersonMainController(Activity activity) {
+    public PersonMainController(FragmentActivity activity) {
         this.activity = activity;
     }
 

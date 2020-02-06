@@ -20,4 +20,10 @@
     <string name="stu_practice_subject_chinese">语文</string>
     <string name="stu_practice_subject_english">英语</string>
     <string name="practicePage_practice_title">我的练习</string>
+    <string name="coursePage_title">我的课程</string>
+    <string name="coursePage_tab_1">直播课程</string>
+    <string name="coursePage_tab_2">数学课程</string>
+    <string name="coursePage_tab_3">语文课程</string>
+    <string name="coursePage_tab_4">英语课程</string>
+
 </resources>

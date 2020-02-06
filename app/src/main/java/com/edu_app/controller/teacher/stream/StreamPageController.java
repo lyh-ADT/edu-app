@@ -23,17 +23,15 @@ import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.stream.LiveStreamPage;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import cn.nodemedia.NodeCameraView;
+import cn.nodemedia.NodePublisher;
+import cn.nodemedia.NodePublisherDelegate;
 
-public class StreamPageController extends Controller {
+public class StreamPageController extends Controller implements NodePublisherDelegate {
     private Fragment fragment;
     private TeacherInfo info;
     private Camera camera;
+    private NodePublisher nodePublisher;
 
     public StreamPageController(Fragment fragment, View view, TeacherInfo info) {
         super(view, new LiveStreamPage());
@@ -42,6 +40,32 @@ public class StreamPageController extends Controller {
         setFullScreen();
         onConfigurationChanged(fragment.getResources().getConfiguration());
         bindListener();
+//        setPreviewSize();
+        nodePublisher = new NodePublisher(fragment.getActivity().getApplicationContext(),"c0KzkWKg5LoyRg+hR+2wtrnf/k61cQuoAibf2T8ghqFObNhHVuBiWqn28RhSSyAmLhcxuLVOXVLUf0Blk/axig==");
+        nodePublisher.setNodePublisherDelegate(this);
+        nodePublisher.setOutputUrl("rtmp://139.159.176.78:1935/live/test_stream");
+        NodeCameraView nodeCameraView = view.findViewById(R.id.video);
+        nodePublisher.setCameraPreview(nodeCameraView, 0, true);
+        nodePublisher.setVideoParam(1, 15, 500000, 0, false);
+        nodePublisher.setKeyFrameInterval(1);
+        nodePublisher.setAudioParam(32000, 1, 44100);
+        nodePublisher.setDenoiseEnable(true);
+        nodePublisher.setHwEnable(true);
+        nodePublisher.setBeautyLevel(0);
+        nodePublisher.setAutoReconnectWaitTimeout(-1);
+        nodePublisher.startPreview();
+        nodePublisher.switchCamera();
+        new Thread(){
+            @Override
+            public void run(){
+                try{
+                    Thread.sleep(10000);
+                    nodePublisher.start();
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     @Override
@@ -64,31 +88,7 @@ public class StreamPageController extends Controller {
             }
         });
 
-        SurfaceView video_sv = view.findViewById(R.id.video);
-        video_sv.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                camera = Camera.open();
-                try {
-                    camera.setPreviewDisplay(holder);
-                    setCameraDisplayOrientation(fragment.getActivity(), 0, camera);
-                    setPreviewSize();
-                    camera.startPreview();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
 
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-
-            }
-        });
     }
 
     private void setFullScreen(){
@@ -179,7 +179,7 @@ public class StreamPageController extends Controller {
     }
 
     private void setPreviewSize() {
-        SurfaceView surfaceView = view.findViewById(R.id.video);
+        View surfaceView = view.findViewById(R.id.video);
         int w1 = surfaceView.getMeasuredWidth();
         int h1 = surfaceView.getMeasuredHeight();
         boolean widthIsMax = w1 > h1;
@@ -208,5 +208,10 @@ public class StreamPageController extends Controller {
 
         surfaceView.setLayoutParams(params);
         surfaceView.invalidate();
+    }
+
+    @Override
+    public void onEventCallback(NodePublisher streamer, int event, String msg) {
+        Log.i("ADT", msg);
     }
 }

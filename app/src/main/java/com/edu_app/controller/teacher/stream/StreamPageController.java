@@ -41,7 +41,6 @@ public class StreamPageController extends Controller implements NodePublisherDel
         setFullScreen();
         onConfigurationChanged(fragment.getResources().getConfiguration());
         bindListener();
-//        setPreviewSize();
         nodePublisher = new NodePublisher(fragment.getActivity().getApplicationContext(),"c0KzkWKg5LoyRg+hR+2wtrnf/k61cQuoAibf2T8ghqFObNhHVuBiWqn28RhSSyAmLhcxuLVOXVLUf0Blk/axig==");
         nodePublisher.setNodePublisherDelegate(this);
         nodePublisher.setOutputUrl("rtmp://139.159.176.78:1935/live/test_stream");
@@ -55,7 +54,6 @@ public class StreamPageController extends Controller implements NodePublisherDel
         nodePublisher.setBeautyLevel(0);
         nodePublisher.setAutoReconnectWaitTimeout(-1);
         nodePublisher.startPreview();
-//        nodePublisher.switchCamera();
     }
 
     @Override
@@ -87,8 +85,6 @@ public class StreamPageController extends Controller implements NodePublisherDel
                 // TODO: 发送弹幕的网络逻辑
             }
         });
-
-
     }
 
     private void setFullScreen(){
@@ -148,66 +144,6 @@ public class StreamPageController extends Controller implements NodePublisherDel
 
             page.invalidate();
         }
-        if(camera != null){
-            setCameraDisplayOrientation(fragment.getActivity(), 0, camera);
-            setPreviewSize();
-        }
-    }
-
-    public static void setCameraDisplayOrientation(Activity activity,
-                                                   int cameraId, android.hardware.Camera camera) {
-        android.hardware.Camera.CameraInfo info =
-                new android.hardware.Camera.CameraInfo();
-        android.hardware.Camera.getCameraInfo(cameraId, info);
-        int rotation = activity.getWindowManager().getDefaultDisplay()
-                .getRotation();
-        int degrees = 0;
-        switch (rotation) {
-            case Surface.ROTATION_0: degrees = 0; break;
-            case Surface.ROTATION_90: degrees = 90; break;
-            case Surface.ROTATION_180: degrees = 180; break;
-            case Surface.ROTATION_270: degrees = 270; break;
-        }
-        int result;
-        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            result = (info.orientation + degrees) % 360;
-            result = (360 - result) % 360;  // compensate the mirror
-        } else {  // back-facing
-            result = (info.orientation - degrees + 360) % 360;
-        }
-        camera.setDisplayOrientation(result);
-    }
-
-    private void setPreviewSize() {
-        View surfaceView = view.findViewById(R.id.video);
-        int w1 = surfaceView.getMeasuredWidth();
-        int h1 = surfaceView.getMeasuredHeight();
-        boolean widthIsMax = w1 > h1;
-
-        Camera.Size size = camera.getParameters().getPreviewSize();
-
-        RectF rectDisplay = new RectF();
-        RectF rectPreview = new RectF();
-
-        rectDisplay.set(0, 0, w1, h1);
-
-        Matrix matrix = new Matrix();
-
-        if (widthIsMax) {
-            rectPreview.set(0, 0, size.width, size.height);
-            matrix.setRectToRect(rectPreview, rectDisplay, Matrix.ScaleToFit.START);
-        } else {
-            rectPreview.set(0, 0, size.height, size.width);
-            matrix.setRectToRect(rectPreview, rectDisplay, Matrix.ScaleToFit.START);
-        }
-
-        matrix.mapRect(rectPreview);
-        int width = (int) (rectPreview.bottom);
-        int height = (int) (rectPreview.right);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
-
-        surfaceView.setLayoutParams(params);
-        surfaceView.invalidate();
     }
 
     @Override

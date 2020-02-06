@@ -4,10 +4,14 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -48,6 +52,10 @@ public class AddQuestionController extends Controller {
         addQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(question.getAnswer() == null){
+                    Toast.makeText(view.getContext(), "信息不完整", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 fragment.getFragmentManager().popBackStack();
                 unSetFullScreen();
             }
@@ -57,9 +65,22 @@ public class AddQuestionController extends Controller {
         cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                question.setQuestion(null);
-                fragment.getFragmentManager().popBackStack();
-                unSetFullScreen();
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("添加选项")
+                        .setMessage("题目将不会保存")
+                        .setCancelable(true)
+                        .setPositiveButton("取消", null)
+                        .setNegativeButton("不保存", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                question.setQuestion(null);
+                                fragment.getFragmentManager().popBackStack();
+                                unSetFullScreen();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.edu_app.view;
+package com.edu_app.view.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.edu_app.R;
-import com.edu_app.controller.LoginController;
-import com.edu_app.controller.RegisterController;
+import com.edu_app.controller.login.LoginController;
+import com.edu_app.controller.login.RegisterController;
 
 /**
  * A simple {@link Fragment} subclass.

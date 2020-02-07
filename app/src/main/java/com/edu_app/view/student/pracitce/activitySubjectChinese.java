@@ -1,9 +1,6 @@
 package com.edu_app.view.student.pracitce;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 
 
@@ -17,11 +14,8 @@ import com.edu_app.controller.student.practice.BrowseExercisesController;
 import com.edu_app.controller.student.practice.ExamAdapter;
 import com.edu_app.controller.student.practice.OnItemClickListener;
 import com.edu_app.model.Practice;
-import com.edu_app.view.activityFunction;
-import com.edu_app.view.student.person.activityPersonInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class activitySubjectChinese extends AppCompatActivity {
     private RecyclerView chineserecycler;

@@ -1,5 +1,4 @@
-package com.edu_app.view;
-
+package com.edu_app.view.student;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,17 +6,15 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
-import com.edu_app.controller.MainController;
 import com.edu_app.view.student.course.fragmentCourse;
 import com.edu_app.view.student.person.fragmentPerson;
 import com.edu_app.view.student.pracitce.fragmentPractice;
 
-
-public class activityFunction extends AppCompatActivity implements View.OnClickListener {
+public class activityStuFunction extends AppCompatActivity implements View.OnClickListener {
     private Bundle uidbundle;
 
     @Override
@@ -34,14 +31,6 @@ public class activityFunction extends AppCompatActivity implements View.OnClickL
         img1.setOnClickListener(this);
         img2.setOnClickListener(this);
         img3.setOnClickListener(this);
-        MainController mainController = new MainController(this);
-//        如果有效就携带uid，不然就去登录活动
-//        if (mainController.uidIsRight()) {
-//            uidbundle = mainController.getUidBundle();
-//        } else {
-//            Intent intent = new Intent(activityFunction.this, LoginActivity.class);
-//            startActivity(intent);
-//        }
     }
 
     @Override
@@ -53,17 +42,17 @@ public class activityFunction extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.bar_imgPractice:
                 f = new fragmentPractice();
-                uidintent = new Intent(activityFunction.this, fragmentPractice.class);
+                uidintent = new Intent(activityStuFunction.this, fragmentPractice.class);
                 break;
 
             case R.id.bar_imgCourse:
                 f = new fragmentCourse();
-                uidintent = new Intent(activityFunction.this, fragmentPractice.class);
+                uidintent = new Intent(activityStuFunction.this, fragmentPractice.class);
                 break;
 
             case R.id.bar_imgPersonInfo:
                 f = new fragmentPerson();
-                uidintent = new Intent(activityFunction.this, fragmentPractice.class);
+                uidintent = new Intent(activityStuFunction.this, fragmentPractice.class);
                 break;
             default:
                 f = null;
@@ -74,3 +63,4 @@ public class activityFunction extends AppCompatActivity implements View.OnClickL
         ft.commit();
     }
 }
+

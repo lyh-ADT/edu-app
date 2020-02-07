@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.widget.LinearLayout;
 import com.edu_app.R;
-
 import com.edu_app.controller.student.person.PersonMainController;
 
 public class fragmentPerson extends Fragment {

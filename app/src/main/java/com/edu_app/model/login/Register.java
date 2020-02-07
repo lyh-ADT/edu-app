@@ -1,6 +1,6 @@
-package com.edu_app.model;
+package com.edu_app.model.login;
 
-import com.edu_app.controller.LoginController;
+import com.edu_app.controller.login.RegisterController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,14 +9,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Login {
-    private LoginController controller;
+public class Register {
+    private RegisterController controller;
 
-    public Login(LoginController controller){
+    public Register(RegisterController controller){
         this.controller = controller;
     }
 
-    public void sendRequest(final String userName, final String password){
+    public void sendRequest(final String userName, final String password) {
         new Thread(){
             @Override
             public void run(){
@@ -26,7 +26,7 @@ public class Login {
     }
 
     private void post(String userName, String password){
-        final String SERVER_HOST = "http://192.168.123.22:2000/login";// TODO: 修改为服务器地址
+        final String SERVER_HOST = "http://192.168.123.22:2000/register";// TODO: 修改为服务器地址
         URL url;
         try {
             url = new URL(SERVER_HOST);
@@ -65,16 +65,16 @@ public class Login {
             int responseCode = connection.getResponseCode();
             String response = responseBuilder.toString();
             if(responseCode == 200){
-                controller.loginSuccess(response);
+                controller.registerSuccess();
             }else if(responseCode == 201){
-                controller.loginFail(response);
+                controller.registerFail(response);
             }
 
             connection.disconnect();
 
         } catch (IOException e) {
             e.printStackTrace();
-            controller.loginFail("网络连接超时");
+            controller.registerFail("网络连接超时");
         }
     }
 }

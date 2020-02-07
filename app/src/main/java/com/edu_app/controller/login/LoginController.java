@@ -1,4 +1,4 @@
-package com.edu_app.controller;
+package com.edu_app.controller.login;
 
 import android.os.Looper;
 import android.view.View;
@@ -11,8 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
-import com.edu_app.model.Login;
-import com.edu_app.view.LoginAndRegisterFragment;
+import com.edu_app.model.login.Login;
+import com.edu_app.view.login.LoginAndRegisterFragment;
 
 public class LoginController {
     private Fragment fragment;

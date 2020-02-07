@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.R;
-import com.edu_app.view.activityFunction;
+import com.edu_app.view.student.activityStuFunction;
+
 
 public class activityPersonCourse extends AppCompatActivity {
     @Override
@@ -22,7 +22,7 @@ public class activityPersonCourse extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
             Intent intent = new Intent();
-            intent.setClass(activityPersonCourse.this, activityFunction.class);
+            intent.setClass(activityPersonCourse.this, activityStuFunction.class);
             startActivity(intent);
             activityPersonCourse.this.finish();
 

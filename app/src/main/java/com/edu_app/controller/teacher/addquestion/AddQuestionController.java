@@ -52,7 +52,7 @@ public class AddQuestionController extends Controller {
         addQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(question.getAnswer() == null){
+                if(question.getQuestion() == null || question.getAnswer() == null){
                     Toast.makeText(view.getContext(), "信息不完整", Toast.LENGTH_LONG).show();
                     return;
                 }

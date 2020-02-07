@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Practice implements Serializable {
     private String id;
     private String title;
+    private Boolean done;
     private List<Question> questions;
 
     public Practice() {}

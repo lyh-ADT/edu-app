@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<ImageView
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coursePage_course_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:src="@mipmap/ic_launcher"></ImageView>
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/coursePage_course_title"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="@string/coursePage_title"></TextView>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/coursePage_course_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/coursePage_course_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.viewpager.widget.ViewPager>
 </LinearLayout>

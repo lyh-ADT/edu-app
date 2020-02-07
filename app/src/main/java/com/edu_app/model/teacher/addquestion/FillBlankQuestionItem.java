@@ -38,9 +38,4 @@ public class FillBlankQuestionItem extends QuestionItem {
     public String getBlank(int i){
         return question.getBlank(i);
     }
-
-    @Override
-    public List<Pair<Integer, Object>> getShowField() {
-        return null;
-    }
 }

@@ -66,7 +66,11 @@ public class Controller {
             success = setTextView((TextView) v, value);
         }
         if(!success){
-            Log.e("Controller", "未定义setValue: ("+v.getClass()+", "+value.getClass()+")");
+            if(v == null){
+                Log.e("Controller", "视图上没找到对应的组件");
+            }else{
+                Log.e("Controller", "未定义setValue: ("+v.getClass()+", "+value.getClass()+")");
+            }
         }
     }
 

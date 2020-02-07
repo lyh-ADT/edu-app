@@ -19,11 +19,6 @@ public class SelectQuestionItem extends QuestionItem {
         this.question = question;
     }
 
-    @Override
-    public List<Pair<Integer, Object>> getShowField() {
-        return null;
-    }
-
     public String nextOrderString(String s){
         char[] array = s.toCharArray();
         boolean finish = false;

@@ -96,4 +96,8 @@ public class Fragment extends android.app.Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         controller.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    public Controller getController(){
+        return controller;
+    }
 }

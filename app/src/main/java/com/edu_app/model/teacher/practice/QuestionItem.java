@@ -21,7 +21,9 @@ public class QuestionItem implements Model, Serializable {
         this.question = question;
     }
 
-
+    public Question getEntity(){
+        return question;
+    }
 
     @Override
     public List<Pair<Integer, Object>> getShowField() {

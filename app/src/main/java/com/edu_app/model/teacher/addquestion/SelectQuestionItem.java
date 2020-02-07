@@ -41,13 +41,18 @@ public class SelectQuestionItem extends QuestionItem {
         question.addSelection(question_string);
     }
 
-    public int removeSelectionAt(String order) {
+    public int getOrderByText(String order){
         int index = 0;
         int power = 1;
         for(int i=order.length()-1; i >= 0; --i){
             index += (order.charAt(i) - 'A'+1) * power;
             power *= 26;
         }
+        return index;
+    }
+
+    public int removeSelectionAt(String order) {
+        int index = getOrderByText(order);
         question.remove(index-1);
         return index-1;
     }

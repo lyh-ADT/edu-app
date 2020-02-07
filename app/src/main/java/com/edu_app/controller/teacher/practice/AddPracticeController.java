@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -16,7 +19,7 @@ import android.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.controller.teacher.addquestion.AddQuestionController;
+import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.AddPractice;
@@ -27,7 +30,7 @@ public class AddPracticeController extends Controller {
     private final int SELECT_PIC = 0;
     private android.app.Fragment fragment;
     private AddPractice model;
-    private AddPracticeListAdapter practiceListAdapter;
+    private ListAdapter practiceListAdapter;
     private Dialog dialog;
 
     public AddPracticeController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
@@ -40,7 +43,7 @@ public class AddPracticeController extends Controller {
     @Override
     protected void bindListener(){
         ListView practice_list = view.findViewById(R.id.practice_list);
-        practiceListAdapter = new AddPracticeListAdapter(fragment.getActivity().getLayoutInflater(), model);
+        practiceListAdapter = new ListAdapter(fragment.getActivity().getLayoutInflater());
         practice_list.setAdapter(practiceListAdapter);
 
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
@@ -48,7 +51,7 @@ public class AddPracticeController extends Controller {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                Fragment questionFragment = Fragment.newInstance("add_question", model.getTeacherInfo(), new AddQuestionController.Callback() {
+                Fragment questionFragment = Fragment.newInstance("question", model.getTeacherInfo(), new QuestionInfoController.Callback() {
                     @Override
                     public void addQuestion(QuestionItem questionItem) {
                         questionItem.setOrderNumber(model.getQuestionCount()+1);
@@ -61,6 +64,16 @@ public class AddPracticeController extends Controller {
                         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                         transaction.show(fragment);
                         transaction.commit();
+                    }
+
+                    @Override
+                    public boolean editable(){
+                        return true;
+                    }
+
+                    @Override
+                    public QuestionItem getQuestion() {
+                        return null;
                     }
                 });
                 transaction.hide(fragment);
@@ -108,6 +121,38 @@ public class AddPracticeController extends Controller {
             question.setOrderNumber(model.getQuestionCount()+1);
             model.addQuestion(question);
             practiceListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private class ListAdapter extends BaseAdapter {
+        private LayoutInflater inflater;
+
+        ListAdapter(LayoutInflater inflater){
+            this.inflater = inflater;
+        }
+
+        @Override
+        public int getCount() {
+            return model.getQuestionCount();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(position > -1){
+                convertView = inflater.inflate(R.layout.item_question, parent, false);
+                new AddPracticeItemController(convertView, model.getQuestionAt(position), fragment);
+            }
+            return convertView;
         }
     }
 }

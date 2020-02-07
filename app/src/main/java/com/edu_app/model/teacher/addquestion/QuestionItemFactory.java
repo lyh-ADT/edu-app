@@ -10,6 +10,9 @@ import com.edu_app.model.teacher.practice.QuestionItem;
 public class QuestionItemFactory {
     public static QuestionItem newInstance(String type, Question model){
         QuestionItem question=null;
+        if(model == null || !type.equals(model.getQuestionType())){
+            model = null;
+        }
         if("select".equals(type)){
             question = new SelectQuestionItem((SelectQuestion)model);
         } else if("fill_blank".equals(type)){

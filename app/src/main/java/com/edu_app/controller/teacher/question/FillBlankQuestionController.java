@@ -1,11 +1,10 @@
-package com.edu_app.controller.teacher.addquestion;
+package com.edu_app.controller.teacher.question;
 
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +18,13 @@ import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class FillBlankQuestionController extends Controller {
     private FillBlankQuestionItem model;
+    private boolean editable;
 
-    public FillBlankQuestionController(View view, QuestionItem model){
+    public FillBlankQuestionController(View view, QuestionItem model, boolean editable){
         super(view, model);
         this.model = (FillBlankQuestionItem)model;
+        this.editable = editable;
         bindListener();
-
     }
 
     protected void bindListener(){
@@ -33,33 +33,37 @@ public class FillBlankQuestionController extends Controller {
         blank_list.setAdapter(adapter);
 
         Button addBlank = view.findViewById(R.id.add_blank);
-        addBlank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final View dialogView = View.inflate(view.getContext(), R.layout.dialog_add_question, null);
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("添加空位")
-                        .setCancelable(true)
-                        .setView(dialogView)
-                        .setPositiveButton("取消", null)
-                        .setNegativeButton("添加", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                TextView question_edit = dialogView.findViewById(R.id.input_question_edit);
-                                String question_string = question_edit.getText().toString();
-                                if(question_string.length() <= 0){
-                                    Toast.makeText(view.getContext(), "空位不能为空", Toast.LENGTH_LONG).show();
-                                    return;
+        if(editable){
+            addBlank.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final View dialogView = View.inflate(view.getContext(), R.layout.dialog_add_question, null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setTitle("添加空位")
+                            .setCancelable(true)
+                            .setView(dialogView)
+                            .setPositiveButton("取消", null)
+                            .setNegativeButton("添加", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    TextView question_edit = dialogView.findViewById(R.id.input_question_edit);
+                                    String question_string = question_edit.getText().toString();
+                                    if(question_string.length() <= 0){
+                                        Toast.makeText(view.getContext(), "空位不能为空", Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
+                                    model.addBlank(question_string);
+                                    adapter.notifyDataSetChanged();
                                 }
-                                model.addBlank(question_string);
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
+                            });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+        } else {
+            addBlank.setVisibility(View.GONE);
+        }
     }
 
     private class ListAdapter extends BaseAdapter {

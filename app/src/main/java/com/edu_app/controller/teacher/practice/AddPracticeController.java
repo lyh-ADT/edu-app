@@ -16,9 +16,11 @@ import android.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
+import com.edu_app.controller.teacher.addquestion.AddQuestionController;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.AddPractice;
+import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
 
 public class AddPracticeController extends Controller {
@@ -46,8 +48,23 @@ public class AddPracticeController extends Controller {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_fragment, Fragment.newInstance("add_question", model.getTeacherInfo()));
-                transaction.addToBackStack(null);
+                Fragment questionFragment = Fragment.newInstance("add_question", model.getTeacherInfo(), new AddQuestionController.Callback() {
+                    @Override
+                    public void addQuestion(QuestionItem questionItem) {
+                        questionItem.setOrderNumber(model.getQuestionCount()+1);
+                        model.addQuestion(questionItem);
+                        practiceListAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void show() {
+                        FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                        transaction.show(fragment);
+                        transaction.commit();
+                    }
+                });
+                transaction.hide(fragment);
+                transaction.add(R.id.main_fragment, questionFragment);
                 transaction.commit();
             }
         });

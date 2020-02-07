@@ -23,7 +23,10 @@ public class QuestionItem implements Model, Serializable {
     @Override
     public List<Pair<Integer, Object>> getShowField() {
         ArrayList<Pair<Integer, Object>> list = new ArrayList<>();
-        list.add(new Pair<Integer, Object>(R.id.order_number_text, "题目"+question.getOrderNumber()+":"+question.getQuestion()));
+        String type = question.getQuestionType();
+        String typeText = Question.typeText.get(type);
+        String s = String.format("%d(%s): %s", question.getOrderNumber(), typeText, question.getQuestion());
+        list.add(new Pair<Integer, Object>(R.id.order_number_text, s));
         return list;
     }
 

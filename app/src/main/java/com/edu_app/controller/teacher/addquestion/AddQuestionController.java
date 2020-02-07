@@ -32,6 +32,18 @@ public class AddQuestionController extends Controller {
         setFullScreen();
     }
 
+    private Callback callback;
+
+    public interface Callback extends Controller.Callback{
+        void addQuestion(QuestionItem questionItem);
+        void show();
+    }
+
+    @Override
+    public void bindCallback(Controller.Callback c){
+        callback = (Callback) c;
+    }
+
 
     @Override
     protected void bindListener(){
@@ -56,8 +68,12 @@ public class AddQuestionController extends Controller {
                     Toast.makeText(view.getContext(), "信息不完整", Toast.LENGTH_LONG).show();
                     return;
                 }
-                fragment.getFragmentManager().popBackStack();
+                callback.addQuestion(question);
+                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                transaction.remove(fragment);
+                transaction.commit();
                 unSetFullScreen();
+                callback.show();
             }
         });
 
@@ -74,8 +90,11 @@ public class AddQuestionController extends Controller {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 question.setQuestion(null);
-                                fragment.getFragmentManager().popBackStack();
+                                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                                transaction.remove(fragment);
+                                transaction.commit();
                                 unSetFullScreen();
+                                callback.show();
                             }
                         });
 

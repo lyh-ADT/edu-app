@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,6 +36,21 @@ public class SelectQuestionController extends Controller {
 
     @Override
     protected void bindListener(){
+        EditText question_et = view.findViewById(R.id.input_question_edit);
+        question_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                EditText et = (EditText)v;
+                if(!hasFocus){
+                    if(et.getText().length() > 0){
+                        model.setQuestion(et.getText().toString());
+                    } else {
+                        model.setQuestion(null);
+                    }
+                }
+            }
+        });
+
         ListView option_list = view.findViewById(R.id.option_list_lv);
         final ListAdapter adapter = new ListAdapter();
         option_list.setAdapter(adapter);
@@ -71,6 +88,18 @@ public class SelectQuestionController extends Controller {
         ArrayAdapter<String> a = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, optionOrders);
         a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         correct_answer.setAdapter(a);
+        correct_answer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0){
+                    return;
+                }
+                model.setAnswer(optionOrders.get(position+1));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 
     private class ListAdapter extends BaseAdapter{
@@ -134,13 +163,5 @@ public class SelectQuestionController extends Controller {
             }
             return convertView;
         }
-
-        @Override
-        public void notifyDataSetChanged() {
-            super.notifyDataSetChanged();
-            Spinner spinner = view.findViewById(R.id.correct_answer);
-
-        }
-
     }
 }

@@ -82,7 +82,7 @@ public class AddQuestionController extends Controller {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setTitle("添加选项")
+                builder.setTitle("确认退出")
                         .setMessage("题目将不会保存")
                         .setCancelable(true)
                         .setPositiveButton("取消", null)

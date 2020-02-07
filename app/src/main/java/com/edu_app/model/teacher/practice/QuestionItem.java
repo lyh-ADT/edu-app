@@ -15,6 +15,9 @@ public class QuestionItem implements Model, Serializable {
     protected Question question;
 
     public QuestionItem(Question question){
+        if(question == null){
+            question = new Question(0, "short_answer", null);
+        }
         this.question = question;
     }
 

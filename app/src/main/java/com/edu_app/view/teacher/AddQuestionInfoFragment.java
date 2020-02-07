@@ -12,6 +12,7 @@ import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.addquestion.FillBlankQuestionController;
 import com.edu_app.controller.teacher.addquestion.SelectQuestionController;
+import com.edu_app.controller.teacher.addquestion.ShortAnswerQuestionController;
 import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class AddQuestionInfoFragment extends Fragment {
@@ -51,7 +52,8 @@ public class AddQuestionInfoFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_teacher_question_info_fill_blank, container, false);
             controller = new FillBlankQuestionController(view, question);
         } else {
-
+            view = inflater.inflate(R.layout.fragment_teacher_question_info_short_answer, container, false);
+            controller = new ShortAnswerQuestionController(view, question);
         }
         return view;
     }

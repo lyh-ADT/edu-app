@@ -15,7 +15,7 @@ public class QuestionItemFactory {
         } else if("fill_blank".equals(type)){
             question = new FillBlankQuestionItem((FillBlankQuestion)model);
         } else if("short_answer".equals(type)){
-            question = null;
+            question = new QuestionItem(model);
         } else {
             Log.e("QuestionItemFactory", "没有这种类型的问题："+type);
         }

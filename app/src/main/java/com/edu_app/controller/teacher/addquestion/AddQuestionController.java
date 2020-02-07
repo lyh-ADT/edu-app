@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -58,6 +59,21 @@ public class AddQuestionController extends Controller {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        EditText question_et = view.findViewById(R.id.input_question_edit);
+        question_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                EditText et = (EditText)v;
+                if(!hasFocus){
+                    if(et.getText().length() > 0){
+                        question.setQuestion(et.getText().toString());
+                    } else {
+                        question.setQuestion(null);
+                    }
+                }
+            }
         });
 
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);

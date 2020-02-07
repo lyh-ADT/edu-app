@@ -35,21 +35,6 @@ public class SelectQuestionController extends Controller {
 
     @Override
     protected void bindListener(){
-        EditText question_et = view.findViewById(R.id.input_question_edit);
-        question_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                EditText et = (EditText)v;
-                if(!hasFocus){
-                    if(et.getText().length() > 0){
-                        model.setQuestion(et.getText().toString());
-                    } else {
-                        model.setQuestion(null);
-                    }
-                }
-            }
-        });
-
         ListView option_list = view.findViewById(R.id.option_list_lv);
         final ListAdapter adapter = new ListAdapter();
         option_list.setAdapter(adapter);

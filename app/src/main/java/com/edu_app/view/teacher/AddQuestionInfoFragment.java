@@ -11,18 +11,18 @@ import android.view.ViewGroup;
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.addquestion.SelectQuestionController;
-import com.edu_app.model.Question;
+import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class AddQuestionInfoFragment extends Fragment {
     private static final String QUESTION = "question";
 
-    private Question question;
+    private QuestionItem question;
     private Controller controller;
 
 
     public AddQuestionInfoFragment() {}
 
-    public static AddQuestionInfoFragment newInstance(Question question) {
+    public static AddQuestionInfoFragment newInstance(QuestionItem question) {
         AddQuestionInfoFragment fragment = new AddQuestionInfoFragment();
         Bundle args = new Bundle();
         args.putSerializable(QUESTION, question);
@@ -34,7 +34,7 @@ public class AddQuestionInfoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            question = (Question) getArguments().getSerializable(QUESTION);
+            question = (QuestionItem) getArguments().getSerializable(QUESTION);
         }
     }
 

@@ -3,12 +3,14 @@ package com.edu_app.model.teacher.addquestion;
 import android.util.Log;
 
 import com.edu_app.model.Question;
+import com.edu_app.model.SelectQuestion;
+import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class QuestionItemFactory {
-    public static Question newInstance(String type){
-        Question question=null;
+    public static QuestionItem newInstance(String type, Question model){
+        QuestionItem question=null;
         if("select".equals(type)){
-            question = new SelectQuestionItem();
+            question = new SelectQuestionItem((SelectQuestion)model);
         } else if("fill_blank".equals(type)){
             question = null;
         } else if("short_answer".equals(type)){

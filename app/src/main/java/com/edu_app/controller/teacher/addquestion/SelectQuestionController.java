@@ -1,7 +1,6 @@
 package com.edu_app.controller.teacher.addquestion;
 
 import android.content.DialogInterface;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,18 +17,18 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.Question;
-import com.edu_app.model.SelectQuestion;
+import com.edu_app.model.teacher.addquestion.SelectQuestionItem;
+import com.edu_app.model.teacher.practice.QuestionItem;
 
 import java.util.ArrayList;
 
 public class SelectQuestionController extends Controller {
-    private SelectQuestion model;
+    private SelectQuestionItem model;
     private ArrayList<String> optionOrders = new ArrayList<>();
 
-    public SelectQuestionController(View view, Question model) {
+    public SelectQuestionController(View view, QuestionItem model) {
         super(view, null);
-        this.model = (SelectQuestion) model;
+        this.model = (SelectQuestionItem) model;
         optionOrders.add("请选择");
         bindListener();
     }
@@ -94,7 +93,7 @@ public class SelectQuestionController extends Controller {
                 if(position == 0){
                     return;
                 }
-                model.setAnswer(optionOrders.get(position+1));
+                model.setAnswer(optionOrders.get(position));
             }
 
             @Override

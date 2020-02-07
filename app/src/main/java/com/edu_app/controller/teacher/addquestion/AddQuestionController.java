@@ -15,13 +15,13 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.Question;
 import com.edu_app.model.teacher.addquestion.QuestionItemFactory;
+import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.AddQuestionInfoFragment;
 
 public class AddQuestionController extends Controller {
     private int SELECT_PIC = 0;
-    private Question question;
+    private QuestionItem question;
     private Fragment fragment;
     private String questionType;
 
@@ -110,9 +110,9 @@ public class AddQuestionController extends Controller {
     }
 
     private void changeToQuestionType() {
-        question = QuestionItemFactory.newInstance(questionType);
+        question = QuestionItemFactory.newInstance(questionType, null);
         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-        transaction.replace(R.id.question_info, AddQuestionInfoFragment.newInstance(question));
+        transaction.add(R.id.question_info, AddQuestionInfoFragment.newInstance(question));
         transaction.commit();
     }
 }

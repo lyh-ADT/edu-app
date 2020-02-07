@@ -74,6 +74,30 @@ public class SelectQuestionController extends Controller {
     }
 
     private class ListAdapter extends BaseAdapter{
+        private View.OnClickListener removeListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView order_tv = v.findViewById(R.id.order_number_text);
+                final String order = order_tv.getText().toString().substring(0, order_tv.getText().length()-1);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("删除选项")
+                        .setCancelable(true)
+                        .setMessage("删除选项"+order)
+                        .setPositiveButton("取消", null)
+                        .setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int index = model.removeSelectionAt(order);
+                                optionOrders.subList(index+1, optionOrders.size()).clear();
+                                ListAdapter.this.notifyDataSetChanged();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        };
 
         @Override
         public int getCount() {
@@ -106,6 +130,7 @@ public class SelectQuestionController extends Controller {
 
                 ((TextView)convertView.findViewById(R.id.order_number_text)).setText(order+":");
                 ((TextView)convertView.findViewById(R.id.content)).setText(model.getSelectionAt(position));
+                convertView.setOnClickListener(removeListener);
             }
             return convertView;
         }

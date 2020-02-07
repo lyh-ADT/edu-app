@@ -23,6 +23,17 @@ public class SelectQuestion extends Question {
         return selections.get(i);
     }
 
+    public int removeSelectionAt(String order){
+        int index = 0;
+        int power = 1;
+        for(int i=order.length()-1; i >= 0; --i){
+            index += (order.charAt(i) - 'A'+1) * power;
+            power *= 26;
+        }
+        selections.remove(index-1);
+        return index-1;
+    }
+
     public String nextOrderString(String s){
         char[] array = s.toCharArray();
         boolean finish = false;

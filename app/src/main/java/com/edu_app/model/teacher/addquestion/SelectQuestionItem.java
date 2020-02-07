@@ -1,7 +1,11 @@
 package com.edu_app.model.teacher.addquestion;
 
+import androidx.core.util.Pair;
+
 import com.edu_app.model.SelectQuestion;
 import com.edu_app.model.teacher.practice.QuestionItem;
+
+import java.util.List;
 
 public class SelectQuestionItem extends QuestionItem {
     private SelectQuestion question;
@@ -13,6 +17,11 @@ public class SelectQuestionItem extends QuestionItem {
         }
         super.question = question;
         this.question = question;
+    }
+
+    @Override
+    public List<Pair<Integer, Object>> getShowField() {
+        return null;
     }
 
     public String nextOrderString(String s){

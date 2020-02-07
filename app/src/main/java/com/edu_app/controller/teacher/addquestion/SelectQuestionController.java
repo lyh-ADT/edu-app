@@ -27,7 +27,7 @@ public class SelectQuestionController extends Controller {
     private ArrayList<String> optionOrders = new ArrayList<>();
 
     public SelectQuestionController(View view, QuestionItem model) {
-        super(view, null);
+        super(view, model);
         this.model = (SelectQuestionItem) model;
         optionOrders.add("请选择");
         bindListener();

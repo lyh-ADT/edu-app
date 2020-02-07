@@ -1,9 +1,18 @@
 package com.edu_app.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Question implements Serializable {
+    public static final HashMap<String, String> typeText;
+    static {
+        typeText = new HashMap<String, String>();
+        typeText.put("select", "选择");
+        typeText.put("fill_blank", "填空");
+        typeText.put("short_answer", "简答");
+    }
+
     private int orderNumber;
     private String questionType;
     private String question;

@@ -30,4 +30,6 @@
     <string name="short_answer">简答</string>
     <string name="add_option_text">添加选项</string>
     <string name="correct_answer_text">正确答案</string>
+    <string name="mute_text">静音</string>
+    <string name="record_audio_text">录音</string>
 </resources>

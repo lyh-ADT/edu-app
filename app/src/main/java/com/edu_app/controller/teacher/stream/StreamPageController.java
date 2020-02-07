@@ -16,6 +16,7 @@ import android.view.View;
 import android.app.Fragment;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -90,6 +91,23 @@ public class StreamPageController extends Controller implements NodePublisherDel
 
         WebView chat_wv = view.findViewById(R.id.chat_wv);
         chat_wv.loadUrl(model.getChatRoomUrl());
+
+        Button mute_btn = view.findViewById(R.id.mute_btn);
+        mute_btn.setOnClickListener(new View.OnClickListener() {
+            private boolean isMuted = false;
+            @Override
+            public void onClick(View v) {
+                if(isMuted){
+                    isMuted = false;
+                    nodePublisher.setAudioEnable(true);
+                    ((Button)v).setText(R.string.mute_text);
+                } else {
+                    isMuted = true;
+                    nodePublisher.setAudioEnable(false);
+                    ((Button)v).setText(R.string.record_audio_text);
+                }
+            }
+        });
     }
 
     private void setFullScreen(){
@@ -106,6 +124,7 @@ public class StreamPageController extends Controller implements NodePublisherDel
 
     @Override
     public void onConfigurationChanged(Configuration config) {
+        // TODO: 重构 用Fragment分开两个区域
         final LinearLayout.LayoutParams PORTRAIT_PARAMS = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dip2px(0));
         final LinearLayout.LayoutParams LANDSCAPE_PARAMS = new LinearLayout.LayoutParams(dip2px(0), ViewGroup.LayoutParams.MATCH_PARENT);
         PORTRAIT_PARAMS.weight = 1;
@@ -129,6 +148,9 @@ public class StreamPageController extends Controller implements NodePublisherDel
             params.weight = 2;
             chat_lo.setLayoutParams(params);
 
+            LinearLayout button = control.findViewById(R.id.button_lo);
+            button.setOrientation(LinearLayout.VERTICAL);
+
             page.invalidate();
         } else if(orientation == Configuration.ORIENTATION_LANDSCAPE){
             // 横屏模式
@@ -146,6 +168,9 @@ public class StreamPageController extends Controller implements NodePublisherDel
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LANDSCAPE_PARAMS);
             params.weight = 2;
             chat_lo.setLayoutParams(params);
+
+            LinearLayout button = control.findViewById(R.id.button_lo);
+            button.setOrientation(LinearLayout.HORIZONTAL);
 
             page.invalidate();
         }

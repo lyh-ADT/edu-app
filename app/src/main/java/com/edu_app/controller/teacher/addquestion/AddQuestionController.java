@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -61,18 +62,17 @@ public class AddQuestionController extends Controller {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        EditText question_et = view.findViewById(R.id.input_question_edit);
-        question_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        final EditText question_et = view.findViewById(R.id.input_question_edit);
+        question_et.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                EditText et = (EditText)v;
-                if(!hasFocus){
-                    if(et.getText().length() > 0){
-                        question.setQuestion(et.getText().toString());
-                    } else {
-                        question.setQuestion(null);
-                    }
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                String q = ((EditText)v).getText().toString();
+                if(q.length() <= 0){
+                    question.setQuestion(null);
+                }else{
+                    question.setQuestion(q);
                 }
+                return false;
             }
         });
 

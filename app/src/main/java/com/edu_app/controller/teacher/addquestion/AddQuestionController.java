@@ -131,7 +131,7 @@ public class AddQuestionController extends Controller {
     private void changeToQuestionType() {
         question = QuestionItemFactory.newInstance(questionType, null);
         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-        transaction.add(R.id.question_info, AddQuestionInfoFragment.newInstance(question));
+        transaction.replace(R.id.question_info, AddQuestionInfoFragment.newInstance(question));
         transaction.commit();
     }
 }

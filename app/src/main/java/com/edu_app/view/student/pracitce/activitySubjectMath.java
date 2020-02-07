@@ -2,6 +2,7 @@ package com.edu_app.view.student.pracitce;
 
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -53,15 +54,15 @@ public class activitySubjectMath extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            Intent intent = new Intent();
 //            intent.setClass(activitySubjectMath.this, activityFunction.class);
 //            startActivity(intent);
-//            activitySubjectMath.this.finish();
-//
-//        }
-//        return true;
-//    }
+            activitySubjectMath.this.finish();
+
+        }
+        return true;
+    }
 }

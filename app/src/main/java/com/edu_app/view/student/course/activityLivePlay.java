@@ -2,6 +2,7 @@ package com.edu_app.view.student.course;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -24,6 +25,15 @@ public class activityLivePlay extends AppCompatActivity {
         Button bt_start = findViewById(R.id.coursePage_live_bt_start);
         CourseLiveController controller = new CourseLiveController(this);
         bt_start.setOnClickListener(controller);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            activityLivePlay.this.finish();
+        }
+
+        return true;
     }
 
 }

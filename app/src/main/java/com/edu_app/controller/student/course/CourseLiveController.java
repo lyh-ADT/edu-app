@@ -31,10 +31,10 @@ public class CourseLiveController implements View.OnClickListener {
 //        硬件加速
         player.setHWEnable(true);
 //        设置启动缓冲时间
-//        player.setBufferTime();
+        player.setBufferTime(4000);
 //        设置协议
-        player.setRtspTransport(NodePlayer.RTSP_TRANSPORT_HTTP);
-        player.setInputUrl("http://www.huya.com/19739140");
+        player.setRtspTransport(NodePlayer.RTSP_TRANSPORT_UDP_MULTICAST);
+        player.setInputUrl("rtmp://139.159.176.78:1935/live/test_stream");
         player.start();
     }
 }

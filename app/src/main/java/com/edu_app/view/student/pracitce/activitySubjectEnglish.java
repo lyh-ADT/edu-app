@@ -2,8 +2,8 @@ package com.edu_app.view.student.pracitce;
 
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,15 +54,15 @@ public class activitySubjectEnglish extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            Intent intent = new Intent();
 //            intent.setClass(activitySubjectEnglish.this, activityFunction.class);
 //            startActivity(intent);
-//            activitySubjectEnglish.this.finish();
-//
-//        }
-//        return true;
-//    }
+            activitySubjectEnglish.this.finish();
+
+        }
+        return true;
+    }
 }

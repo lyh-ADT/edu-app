@@ -1,6 +1,7 @@
 package com.edu_app.controller;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -45,6 +46,7 @@ public class MainController {
         Intent intent = new Intent();
         intent.setClass(this.context, activityStuFunction.class);
         context.startActivity(intent);
+        ((Activity)context).finish();
     }
 }
 

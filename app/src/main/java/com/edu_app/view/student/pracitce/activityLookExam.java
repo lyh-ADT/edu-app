@@ -1,7 +1,6 @@
 package com.edu_app.view.student.pracitce;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
@@ -23,14 +22,14 @@ public class activityLookExam extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if(keyCode==KeyEvent.KEYCODE_BACK){
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
 //            Intent intent = new Intent();
 //            intent.setClass(activityLookExam.this,activitySubjectMath.class);
 //            startActivity(intent);
-//            activityLookExam.this.finish();
-//        }
-//        return true;
-//    }
+            activityLookExam.this.finish();
+        }
+        return true;
+    }
 }

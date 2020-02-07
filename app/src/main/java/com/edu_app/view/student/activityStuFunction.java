@@ -2,6 +2,7 @@ package com.edu_app.view.student;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -61,6 +62,16 @@ public class activityStuFunction extends AppCompatActivity implements View.OnCli
         }
         ft.replace(R.id.main_fragment, f);
         ft.commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        int count=0;
+        while (keyCode==KeyEvent.KEYCODE_BACK && count<2){
+            count++;
+        }
+        activityStuFunction.this.finish();
+        return true;
     }
 }
 

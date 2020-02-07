@@ -97,8 +97,8 @@ public class SelectQuestionController extends Controller {
                 String order = "A";
                 if(optionOrders.size() == 1 ){
                     optionOrders.add(order);
-                } else if(position < optionOrders.size()){
-                    order = optionOrders.get(position);
+                } else if(position+1 < optionOrders.size()){
+                    order = optionOrders.get(position+1);
                 } else {
                     order = model.nextOrderString(optionOrders.get(optionOrders.size()-1));
                     optionOrders.add(order);

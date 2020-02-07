@@ -27,10 +27,12 @@ import com.edu_app.model.teacher.TeacherInfo;
 public class Fragment extends android.app.Fragment {
     private static final String FRAGMENT_TYPE = "fragment_type";
     private static final String TEACHER_INFO = "teacher_info";
+    private static final String CALLBACK = "callback";
 
     private String fragmentType;
     private TeacherInfo teacherInfo;
     private Controller controller;
+    private Controller.Callback callback;
 
     /**
      * Use this factory method to create a new instance of
@@ -48,12 +50,23 @@ public class Fragment extends android.app.Fragment {
         return fragment;
     }
 
+    public static Fragment newInstance(String fragmentType, TeacherInfo teacherInfo, Controller.Callback callback) {
+        Fragment fragment = new Fragment();
+        Bundle args = new Bundle();
+        args.putString(FRAGMENT_TYPE, fragmentType);
+        args.putSerializable(TEACHER_INFO, teacherInfo);
+        args.putSerializable(CALLBACK, callback);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             fragmentType = getArguments().getString(FRAGMENT_TYPE);
             teacherInfo = (TeacherInfo) getArguments().getSerializable(TEACHER_INFO);
+            callback = (Controller.Callback)getArguments().getSerializable(CALLBACK);
         }
     }
 
@@ -77,6 +90,7 @@ public class Fragment extends android.app.Fragment {
             view = inflater.inflate(R.layout.fragment_add_question, container, false);
             controller = new AddQuestionController(view, this);
         }
+        controller.bindCallback(callback);
         return view;
     }
 

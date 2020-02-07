@@ -12,6 +12,7 @@ import androidx.core.util.Pair;
 
 import com.edu_app.model.teacher.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class Controller {
@@ -34,6 +35,10 @@ public class Controller {
     public void onConfigurationChanged(Configuration config){}
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {}
+
+    public interface Callback extends Serializable {}
+
+    public void bindCallback(Callback callback){}
 
     protected void bindListener(){}
 

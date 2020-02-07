@@ -21,10 +21,14 @@ public class FillBlankQuestionItem extends QuestionItem {
 
     public void addBlank(String answer){
         question.addBlank(answer);
+        question.setAnswer("");
     }
 
     public void removeBlank(int i){
         question.removeBlank(i);
+        if(question.blankCount() <= 0){
+            question.setAnswer(null);
+        }
     }
 
     public int blankCount(){

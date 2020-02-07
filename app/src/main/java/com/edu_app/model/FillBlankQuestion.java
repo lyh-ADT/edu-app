@@ -33,7 +33,11 @@ public class FillBlankQuestion extends Question {
             sb.append(i);
             sb.append(',');
         }
-        sb.deleteCharAt(sb.length()-1);
-        return sb.toString();
+        if(sb.length() > 0){
+            sb.deleteCharAt(sb.length()-1);
+            return sb.toString();
+        } else {
+            return null;
+        }
     }
 }

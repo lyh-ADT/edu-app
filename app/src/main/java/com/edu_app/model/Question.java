@@ -57,7 +57,7 @@ public class Question implements Serializable {
     }
 
     public String getQuestion() {
-        return question == null? "":question;
+        return question;
     }
 
     public void setQuestion(String question) {

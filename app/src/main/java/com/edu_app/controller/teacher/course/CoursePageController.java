@@ -44,6 +44,11 @@ public class CoursePageController extends Controller {
                     ActivityCompat.requestPermissions(fragment.getActivity(), new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION);
                     return;
                 }
+                // 检查录音机权限
+                if(ContextCompat.checkSelfPermission(fragment.getActivity().getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(fragment.getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, CAMERA_PERMISSION);
+                    return;
+                }
                 FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.main_fragment, com.edu_app.view.teacher.Fragment.newInstance("live_stream", info));

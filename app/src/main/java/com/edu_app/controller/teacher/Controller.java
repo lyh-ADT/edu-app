@@ -1,5 +1,7 @@
 package com.edu_app.controller.teacher;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 
+import com.edu_app.R;
 import com.edu_app.model.teacher.Model;
 
 import java.io.Serializable;
@@ -39,6 +42,28 @@ public class Controller {
     public interface Callback extends Serializable {}
 
     public void bindCallback(Callback callback){}
+
+    public void setFullScreen(Activity activity){
+        // 关闭标题栏
+        ActionBar actionBar = activity.getActionBar();
+        if(actionBar != null){
+            actionBar.hide();
+        }
+        // 关闭底部的导航栏
+        View navigation_bar = activity.findViewById(R.id.navigation_bar);
+        navigation_bar.setVisibility(View.GONE);
+    }
+
+    public void unSetFullScreen(Activity activity){
+        // 关闭标题栏
+        ActionBar actionBar = activity.getActionBar();
+        if(actionBar != null){
+            actionBar.show();
+        }
+        // 关闭底部的导航栏
+        View navigation_bar = activity.findViewById(R.id.navigation_bar);
+        navigation_bar.setVisibility(View.VISIBLE);
+    }
 
     protected void bindListener(){}
 

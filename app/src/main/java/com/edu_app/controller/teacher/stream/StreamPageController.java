@@ -41,7 +41,7 @@ public class StreamPageController extends Controller implements NodePublisherDel
         this.fragment = fragment;
         this.info = info;
         this.model = (LiveStreamPage)super.model;
-        setFullScreen();
+        setFullScreen(fragment.getActivity());
         onConfigurationChanged(fragment.getResources().getConfiguration());
         bindListener();
         nodePublisher = new NodePublisher(fragment.getActivity().getApplicationContext(),"c0KzkWKg5LoyRg+hR+2wtrnf/k61cQuoAibf2T8ghqFObNhHVuBiWqn28RhSSyAmLhcxuLVOXVLUf0Blk/axig==");
@@ -108,18 +108,6 @@ public class StreamPageController extends Controller implements NodePublisherDel
                 }
             }
         });
-    }
-
-    private void setFullScreen(){
-        Activity activity = fragment.getActivity();
-        // 关闭标题栏
-        ActionBar actionBar = activity.getActionBar();
-        if(actionBar != null){
-            actionBar.hide();
-        }
-        // 关闭底部的导航栏
-        View navigation_bar = activity.findViewById(R.id.navigation_bar);
-        navigation_bar.setVisibility(View.GONE);
     }
 
     @Override

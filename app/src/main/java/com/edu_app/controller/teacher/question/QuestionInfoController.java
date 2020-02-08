@@ -33,7 +33,7 @@ public class QuestionInfoController extends Controller {
         super(view, null);
         this.fragment = fragment;
         bindListener();
-        setFullScreen();
+        setFullScreen(fragment.getActivity());
     }
 
     private Callback callback;
@@ -94,7 +94,7 @@ public class QuestionInfoController extends Controller {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 transaction.remove(fragment);
                 transaction.commit();
-                unSetFullScreen();
+                unSetFullScreen(fragment.getActivity());
                 callback.show();
             }
         });
@@ -115,7 +115,7 @@ public class QuestionInfoController extends Controller {
                                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                                 transaction.remove(fragment);
                                 transaction.commit();
-                                unSetFullScreen();
+                                unSetFullScreen(fragment.getActivity());
                                 callback.show();
                             }
                         });
@@ -155,35 +155,11 @@ public class QuestionInfoController extends Controller {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 transaction.remove(fragment);
                 transaction.commit();
-                unSetFullScreen();
+                unSetFullScreen(fragment.getActivity());
                 callback.show();
             }
         });
 
-    }
-
-    private void setFullScreen(){
-        Activity activity = fragment.getActivity();
-        // 关闭标题栏
-        ActionBar actionBar = activity.getActionBar();
-        if(actionBar != null){
-            actionBar.hide();
-        }
-        // 关闭底部的导航栏
-        View navigation_bar = activity.findViewById(R.id.navigation_bar);
-        navigation_bar.setVisibility(View.GONE);
-    }
-
-    private void unSetFullScreen(){
-        Activity activity = fragment.getActivity();
-        // 关闭标题栏
-        ActionBar actionBar = activity.getActionBar();
-        if(actionBar != null){
-            actionBar.show();
-        }
-        // 关闭底部的导航栏
-        View navigation_bar = activity.findViewById(R.id.navigation_bar);
-        navigation_bar.setVisibility(View.VISIBLE);
     }
 
     private void changeToQuestionType() {

@@ -72,7 +72,7 @@ public class PageController extends Controller {
             public void onClick(View v) {
                 FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice_info", teacherInfo, new PracticeInfoController.Callback() {
+                transaction.add(R.id.main_fragment, Fragment.newInstance("practice_info", teacherInfo, new PracticeInfoController.Callback() {
                     @Override
                     public PracticeItem getPractice() {
                         return new PracticeItem(new Practice());
@@ -87,7 +87,16 @@ public class PageController extends Controller {
                     public boolean editable() {
                         return true;
                     }
+
+                    @Override
+                    public void show() {
+                        FragmentManager manager = fragment.getFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.show(fragment);
+                        transaction.commit();
+                    }
                 }));
+                transaction.hide(fragment);
                 transaction.commit();
             }
         });

@@ -52,6 +52,7 @@ public class PracticeInfoController extends Controller {
         PracticeItem getPractice();
         void addPractice(PracticeItem practiceItem);
         boolean editable();
+        void show();
     }
 
     @Override
@@ -193,7 +194,8 @@ public class PracticeInfoController extends Controller {
                                     unSetFullScreen(fragment.getActivity());
                                     FragmentManager manager = fragment.getFragmentManager();
                                     FragmentTransaction transaction = manager.beginTransaction();
-                                    transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", teacherInfo));
+                                    transaction.remove(fragment);
+                                    callback.show();
                                     transaction.commit();
                                 }
                             });
@@ -209,7 +211,8 @@ public class PracticeInfoController extends Controller {
                     unSetFullScreen(fragment.getActivity());
                     FragmentManager manager = fragment.getFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", teacherInfo));
+                    transaction.remove(fragment);
+                    callback.show();
                     transaction.commit();
                 }
             });

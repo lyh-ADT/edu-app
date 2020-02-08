@@ -37,7 +37,7 @@ public class PracticeItemController extends Controller {
             } else {
                 FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice_info", null, new PracticeInfoController.Callback() {
+                transaction.add(R.id.main_fragment, Fragment.newInstance("practice_info", null, new PracticeInfoController.Callback() {
                     @Override
                     public PracticeItem getPractice() {
                         return model;
@@ -50,7 +50,16 @@ public class PracticeItemController extends Controller {
                     public boolean editable() {
                         return false;
                     }
+
+                    @Override
+                    public void show() {
+                        FragmentManager manager = fragment.getFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.show(fragment);
+                        transaction.commit();
+                    }
                 }));
+                transaction.hide(fragment);
                 transaction.commit();
             }
         }

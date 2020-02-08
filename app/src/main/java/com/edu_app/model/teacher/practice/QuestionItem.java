@@ -14,6 +14,8 @@ import java.util.List;
 public class QuestionItem implements Model, Serializable {
     protected Question question;
 
+    public QuestionItem(){}
+
     public QuestionItem(Question question){
         if(question == null){
             question = new Question(0, "short_answer", null);
@@ -21,7 +23,7 @@ public class QuestionItem implements Model, Serializable {
         this.question = question;
     }
 
-    public Question getEntity(){
+    public Question getEntity() {
         return question;
     }
 

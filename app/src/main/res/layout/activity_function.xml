@@ -10,13 +10,18 @@
         android:name="com.edu_app.fragmentPersonInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></FrameLayout>
+        android:layout_marginBottom="50dp"
+
+        >
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -24,7 +29,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:layout_marginBottom="10sp"
 
             android:src="@mipmap/ic_bar_practice"></ImageView>
 

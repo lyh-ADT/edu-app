@@ -113,6 +113,10 @@ public class NetworkUtility {
         return read(connection.getInputStream());
     }
 
+    static public <T> String postRequest(String url, String uid, T data) throws IOException{
+        return postRequest(url, uid, toJson(data).getBytes());
+    }
+
     /**
      * 将Json字符串转换成对应的对象
      * @param json json字符串
@@ -141,6 +145,11 @@ public class NetworkUtility {
     static public <T> T parseJson(String json, Type typeOfT){
         Gson gson = new Gson();
         return (T)gson.fromJson(json, typeOfT);
+    }
+
+    static public <T> String toJson(T object){
+        Gson gson = new Gson();
+        return gson.toJson(object);
     }
 
     static private String read(InputStream inputStream) throws IOException {

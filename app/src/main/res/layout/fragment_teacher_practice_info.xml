@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/title"
+    <EditText
+        android:id="@+id/practice_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

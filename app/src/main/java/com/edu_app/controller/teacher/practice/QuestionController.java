@@ -30,6 +30,10 @@ public class QuestionController extends Controller {
         bindListener();
     }
 
+    public static void setDeleteMode(boolean deleteMode){
+        QuestionController.deleteMode = deleteMode;
+    }
+
     public interface Callback extends Controller.Callback{
         void addQuestion(QuestionItem questionItem);
         void deleteQuestion(QuestionItem questionItem);
@@ -37,7 +41,7 @@ public class QuestionController extends Controller {
 
     @Override
     public void bindCallback(Controller.Callback callback){
-        callback = callback;
+        this.callback = (Callback) callback;
     }
 
     @Override

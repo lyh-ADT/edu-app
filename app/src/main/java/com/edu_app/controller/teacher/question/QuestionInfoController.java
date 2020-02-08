@@ -94,7 +94,6 @@ public class QuestionInfoController extends Controller {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 transaction.remove(fragment);
                 transaction.commit();
-                unSetFullScreen(fragment.getActivity());
                 callback.show();
             }
         });
@@ -115,7 +114,6 @@ public class QuestionInfoController extends Controller {
                                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                                 transaction.remove(fragment);
                                 transaction.commit();
-                                unSetFullScreen(fragment.getActivity());
                                 callback.show();
                             }
                         });
@@ -155,7 +153,6 @@ public class QuestionInfoController extends Controller {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 transaction.remove(fragment);
                 transaction.commit();
-                unSetFullScreen(fragment.getActivity());
                 callback.show();
             }
         });

@@ -5,17 +5,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.widget.Toast;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -33,6 +36,7 @@ public class PracticeInfoController extends Controller {
     private ListAdapter practiceListAdapter;
     private Callback callback;
     private TeacherInfo teacherInfo;
+    private boolean editable;
     private Dialog dialog;
 
     public PracticeInfoController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
@@ -41,10 +45,13 @@ public class PracticeInfoController extends Controller {
         model = (PracticeItem)super.model;
         this.teacherInfo = teacherInfo;
         bindListener();
+        setFullScreen(fragment.getActivity());
     }
 
     public interface Callback extends Controller.Callback{
         PracticeItem getPractice();
+        void addPractice(PracticeItem practiceItem);
+        boolean editable();
     }
 
     @Override
@@ -55,73 +62,158 @@ public class PracticeInfoController extends Controller {
         this.callback = (Callback)callback;
         model = this.callback.getPractice();
         super.model = model;
+        editable = ((Callback) callback).editable();
+        setValues();
+        bindListener();
     }
 
     @Override
     protected void bindListener(){
+        EditText title_et = view.findViewById(R.id.practice_item_title);
+        if(editable){
+            title_et.setEnabled(true);
+            title_et.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    String t = ((EditText)v).getText().toString();
+                    if(t.length() <= 0){
+                        model.setTitle(null);
+                    }else{
+                        model.setTitle(t);
+                    }
+                    return false;
+                }
+            });
+        } else {
+            title_et.setEnabled(false);
+        }
+
+
         ListView practice_list = view.findViewById(R.id.practice_list);
         practiceListAdapter = new ListAdapter(fragment.getActivity().getLayoutInflater());
         practice_list.setAdapter(practiceListAdapter);
 
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
-        addQuestion_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                Fragment questionFragment = Fragment.newInstance("question_info", teacherInfo, new QuestionInfoController.Callback() {
-                    @Override
-                    public void addQuestion(QuestionItem questionItem) {
-                        questionItem.setOrderNumber(model.getQuestionCount()+1);
-                        model.addQuestion(questionItem);
-                        practiceListAdapter.notifyDataSetChanged();
-                    }
+        if(editable){
+            addQuestion_btn.setVisibility(View.VISIBLE);
+            addQuestion_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                    Fragment questionFragment = Fragment.newInstance("question_info", teacherInfo, new QuestionInfoController.Callback() {
+                        @Override
+                        public void addQuestion(QuestionItem questionItem) {
+                            questionItem.setOrderNumber(model.getQuestionCount()+1);
+                            model.addQuestion(questionItem);
+                            practiceListAdapter.notifyDataSetChanged();
+                        }
 
-                    @Override
-                    public void show() {
-                        FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                        transaction.show(fragment);
-                        transaction.commit();
-                    }
+                        @Override
+                        public void show() {
+                            FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                            transaction.show(fragment);
+                            transaction.commit();
+                        }
 
-                    @Override
-                    public boolean editable(){
-                        return true;
-                    }
+                        @Override
+                        public boolean editable(){
+                            return true;
+                        }
 
-                    @Override
-                    public QuestionItem getQuestion() {
-                        return null;
+                        @Override
+                        public QuestionItem getQuestion() {
+                            return null;
+                        }
+                    });
+                    transaction.hide(fragment);
+                    transaction.add(R.id.main_fragment, questionFragment);
+                    transaction.commit();
+                }
+            });
+        } else {
+            addQuestion_btn.setVisibility(View.GONE);
+        }
+
+        final Button deleteQuestion_btn = view.findViewById(R.id.delete_question);
+        if(editable){
+            deleteQuestion_btn.setVisibility(View.VISIBLE);
+            deleteQuestion_btn.setOnClickListener(new View.OnClickListener() {
+                private boolean deleteMode = false;
+                @Override
+                public void onClick(View v) {
+                    if(deleteMode){
+                        // 切换回详情
+                        deleteMode = false;
+                        QuestionController.setDeleteMode(false);
+                        deleteQuestion_btn.setText(R.string.delete_question);
+                    } else {
+                        // 进入删除模式
+                        deleteMode = true;
+                        QuestionController.setDeleteMode(true);
+                        deleteQuestion_btn.setText(R.string.cancel_text);
                     }
-                });
-                transaction.hide(fragment);
-                transaction.add(R.id.main_fragment, questionFragment);
-                transaction.commit();
-            }
-        });
+                }
+            });
+        }else{
+            deleteQuestion_btn.setVisibility(View.GONE);
+        }
+
+
+        Button addPractice_btn = view.findViewById(R.id.add_practice_btn);
+        if(editable){
+            addPractice_btn.setVisibility(View.VISIBLE);
+            addPractice_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(model.getTitle() == null || model.getQuestionCount() == 0){
+                        Toast.makeText(fragment.getActivity().getApplicationContext(), "信息不完整", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    callback.addPractice(model);
+                }
+            });
+        } else {
+            addPractice_btn.setVisibility(View.GONE);
+        }
+
 
         Button exit_btn = view.findViewById(R.id.exit_btn);
-        exit_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getView().getContext());
-                builder.setMessage("操作不会被保存")
-                        .setTitle("确认退出")
-                        .setCancelable(true)
-                        .setPositiveButton("取消", null)
-                        .setNegativeButton("退出", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FragmentManager manager = fragment.getFragmentManager();
-                                FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", teacherInfo));
-                                transaction.commit();
-                            }
-                        });
+        if(editable){
+            exit_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getView().getContext());
+                    builder.setMessage("操作不会被保存")
+                            .setTitle("确认退出")
+                            .setCancelable(true)
+                            .setPositiveButton("取消", null)
+                            .setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    unSetFullScreen(fragment.getActivity());
+                                    FragmentManager manager = fragment.getFragmentManager();
+                                    FragmentTransaction transaction = manager.beginTransaction();
+                                    transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", teacherInfo));
+                                    transaction.commit();
+                                }
+                            });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+        } else {
+            exit_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    unSetFullScreen(fragment.getActivity());
+                    FragmentManager manager = fragment.getFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", teacherInfo));
+                    transaction.commit();
+                }
+            });
+        }
     }
 
     @Override
@@ -174,6 +266,7 @@ public class PracticeInfoController extends Controller {
                     @Override
                     public void deleteQuestion(QuestionItem questionItem) {
                         model.deleteQuestion(questionItem);
+                        ListAdapter.this.notifyDataSetChanged();
                     }
                 });
             }

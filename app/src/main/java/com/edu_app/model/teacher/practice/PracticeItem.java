@@ -62,4 +62,8 @@ public class PracticeItem implements Model {
     public Practice getEntity(){
         return practice;
     }
+
+    public void setTitle(String title){
+        practice.setTitle(title);
+    }
 }

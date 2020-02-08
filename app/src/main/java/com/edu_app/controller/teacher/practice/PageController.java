@@ -14,7 +14,9 @@ import android.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
+import com.edu_app.model.Practice;
 import com.edu_app.model.teacher.TeacherInfo;
+import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.PracticePage;
 import com.edu_app.view.teacher.Fragment;
 
@@ -67,7 +69,22 @@ public class PageController extends Controller {
             public void onClick(View v) {
                 FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice_info", teacherInfo));
+                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice_info", teacherInfo, new PracticeInfoController.Callback() {
+                    @Override
+                    public PracticeItem getPractice() {
+                        return new PracticeItem(new Practice());
+                    }
+
+                    @Override
+                    public void addPractice(PracticeItem practiceItem) {
+                        model.addPractice(practiceItem);
+                    }
+
+                    @Override
+                    public boolean editable() {
+                        return true;
+                    }
+                }));
                 transaction.commit();
             }
         });

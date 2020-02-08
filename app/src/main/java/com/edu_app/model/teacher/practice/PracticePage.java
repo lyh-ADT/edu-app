@@ -4,6 +4,7 @@ import androidx.core.util.Pair;
 
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.practice.PageController;
+import com.edu_app.model.Practice;
 import com.edu_app.model.teacher.Model;
 import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.teacher.TeacherInfo;
@@ -16,7 +17,7 @@ import java.util.List;
 public class PracticePage implements Model {
     private final String Host = "http://192.168.123.22:2000";// TODO: 修改为服务器地址
     private TeacherInfo info;
-    private List<PracticeItem> practiceList = new ArrayList<>();
+    private List<Practice> practiceList = new ArrayList<>();
     private PageController pageController;
 
     public PracticePage(TeacherInfo info ){
@@ -29,7 +30,7 @@ public class PracticePage implements Model {
             @Override
             public void run(){
                 try {
-                    practiceList = NetworkUtility.getToJson(Host+"/practice", info.getUID(), new TypeToken<List<PracticeItem>>(){}.getType());
+                    practiceList = NetworkUtility.getToJson(Host+"/practice", info.getUID(), new TypeToken<List<Practice>>(){}.getType());
                     pageController.handler.sendEmptyMessage(0);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -41,7 +42,7 @@ public class PracticePage implements Model {
 
     public void addPractice(PracticeItem item){
         // TODO: 实现网络请求
-        practiceList.add(item);
+        practiceList.add(item.getEntity());
     }
 
     public void deletePractice(final PracticeItem item){
@@ -68,7 +69,7 @@ public class PracticePage implements Model {
     }
 
     public PracticeItem getPracticeItemAt(int i){
-        return practiceList.get(i);
+        return new PracticeItem(practiceList.get(i));
     }
 
     @Override

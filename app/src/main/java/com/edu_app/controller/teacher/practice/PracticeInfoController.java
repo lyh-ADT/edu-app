@@ -22,22 +22,39 @@ import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.TeacherInfo;
-import com.edu_app.model.teacher.practice.AddPractice;
+import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
 
 public class PracticeInfoController extends Controller {
     private final int SELECT_PIC = 0;
     private android.app.Fragment fragment;
-    private AddPractice model;
+    private PracticeItem model;
     private ListAdapter practiceListAdapter;
+    private Callback callback;
+    private TeacherInfo teacherInfo;
     private Dialog dialog;
 
     public PracticeInfoController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
-        super(view, new AddPractice(teacherInfo));
+        super(view, new PracticeItem(null));
         this.fragment = fragment;
-        model = (AddPractice)super.model;
+        model = (PracticeItem)super.model;
+        this.teacherInfo = teacherInfo;
         bindListener();
+    }
+
+    public interface Callback extends Controller.Callback{
+        PracticeItem getPractice();
+    }
+
+    @Override
+    public void bindCallback(Controller.Callback callback){
+        if(callback == null){
+            return;
+        }
+        this.callback = (Callback)callback;
+        model = this.callback.getPractice();
+        super.model = model;
     }
 
     @Override
@@ -51,7 +68,7 @@ public class PracticeInfoController extends Controller {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                Fragment questionFragment = Fragment.newInstance("question_info", model.getTeacherInfo(), new QuestionInfoController.Callback() {
+                Fragment questionFragment = Fragment.newInstance("question_info", teacherInfo, new QuestionInfoController.Callback() {
                     @Override
                     public void addQuestion(QuestionItem questionItem) {
                         questionItem.setOrderNumber(model.getQuestionCount()+1);
@@ -96,7 +113,7 @@ public class PracticeInfoController extends Controller {
                             public void onClick(DialogInterface dialog, int which) {
                                 FragmentManager manager = fragment.getFragmentManager();
                                 FragmentTransaction transaction = manager.beginTransaction();
-                                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", model.getTeacherInfo()));
+                                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice", teacherInfo));
                                 transaction.commit();
                             }
                         });
@@ -150,7 +167,15 @@ public class PracticeInfoController extends Controller {
         public View getView(int position, View convertView, ViewGroup parent) {
             if(position > -1){
                 convertView = inflater.inflate(R.layout.item_question, parent, false);
-                new QuestionController(convertView, model.getQuestionAt(position), fragment);
+                new QuestionController(convertView, model.getQuestionAt(position), fragment).bindCallback(new QuestionController.Callback() {
+                    @Override
+                    public void addQuestion(QuestionItem questionItem) {}
+
+                    @Override
+                    public void deleteQuestion(QuestionItem questionItem) {
+                        model.deleteQuestion(questionItem);
+                    }
+                });
             }
             return convertView;
         }

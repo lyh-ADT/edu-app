@@ -2,10 +2,13 @@ package com.edu_app.controller.teacher.practice;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -14,8 +17,10 @@ import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class QuestionController extends Controller {
+    private static boolean deleteMode = false;
     private QuestionItem model;
     private Fragment fragment;
+    private Callback callback;
 
     public QuestionController(View view, QuestionItem model, Fragment fragment){
         super(view, model);
@@ -25,15 +30,44 @@ public class QuestionController extends Controller {
         bindListener();
     }
 
+    public interface Callback extends Controller.Callback{
+        void addQuestion(QuestionItem questionItem);
+        void deleteQuestion(QuestionItem questionItem);
+    }
+
+    @Override
+    public void bindCallback(Controller.Callback callback){
+        callback = callback;
+    }
+
     @Override
     protected void bindListener(){
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(deleteMode){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage("删除第"+model.getOrderNumber()+"题")
+                            .setTitle("确认删除")
+                            .setCancelable(true)
+                            .setPositiveButton("取消", null)
+                            .setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    callback.deleteQuestion(model);
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return;
+                }
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
                 com.edu_app.view.teacher.Fragment questionFragment = com.edu_app.view.teacher.Fragment.newInstance("question_info", null, new QuestionInfoController.Callback() {
                     @Override
-                    public void addQuestion(QuestionItem questionItem) {}
+                    public void addQuestion(QuestionItem questionItem) {
+                        callback.addQuestion(questionItem);
+                    }
 
                     @Override
                     public void show() {

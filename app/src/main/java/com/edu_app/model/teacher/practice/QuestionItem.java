@@ -40,6 +40,10 @@ public class QuestionItem implements Model, Serializable {
 
     }
 
+    public int getOrderNumber(){
+        return question.getOrderNumber();
+    }
+
     public String getQuestion() {
         return question.getQuestion();
     }

@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import android.app.FragmentManager;
@@ -41,6 +44,16 @@ public class PracticeInfoController extends Controller {
     private Callback callback;
     private TeacherInfo teacherInfo;
     private boolean editable;
+    private Handler handler = new Handler(new Handler.Callback(){
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            if(msg.what == 0){
+                // 添加成功
+                unSetFullScreen(fragment.getActivity());
+            }
+            return true;
+        }
+    });
     private Dialog dialog;
 
     public PracticeInfoController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
@@ -178,9 +191,10 @@ public class PracticeInfoController extends Controller {
                         @Override
                         public void run(){
                             try {
-                                String response = NetworkUtility.postRequest(teacherInfo.getHost()+"/add_practice", teacherInfo.getUID(), model);
+                                String response = NetworkUtility.postRequest(teacherInfo.getHost()+"/add_practice", teacherInfo.getUID(), model.getEntity());
                                 if("success".equals(response)){
-                                    unSetFullScreen(fragment.getActivity());
+                                    dialog.dismiss();
+                                    handler.sendEmptyMessage(0);
                                     FragmentManager manager = fragment.getFragmentManager();
                                     FragmentTransaction transaction = manager.beginTransaction();
                                     transaction.remove(fragment);

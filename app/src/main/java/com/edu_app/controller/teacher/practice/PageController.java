@@ -89,6 +89,7 @@ public class PageController extends Controller {
                         FragmentTransaction transaction = manager.beginTransaction();
                         transaction.show(fragment);
                         transaction.commit();
+                        model.getPracticeList();
                     }
                 }));
                 transaction.hide(fragment);

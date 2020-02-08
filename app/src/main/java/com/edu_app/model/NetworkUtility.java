@@ -113,7 +113,7 @@ public class NetworkUtility {
         return read(connection.getInputStream());
     }
 
-    static public <T> String postRequest(String url, String uid, T data) throws IOException{
+    static public <T> String postRequest(String url, String  uid, T data) throws IOException{
         return postRequest(url, uid, toJson(data).getBytes());
     }
 
@@ -165,6 +165,7 @@ public class NetworkUtility {
     static private HttpURLConnection getUidConnection(String url, String uid, String method) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod(method);
+        connection.setConnectTimeout(5000);
         connection.setRequestProperty("Cookies", "UID="+uid+";");
         return connection;
     }

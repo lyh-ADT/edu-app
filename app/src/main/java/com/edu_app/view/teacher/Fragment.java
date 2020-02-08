@@ -78,7 +78,7 @@ public class Fragment extends android.app.Fragment {
             view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
             controller = new com.edu_app.controller.teacher.practice.PageController(this, view, teacherInfo);
         } else if("practice_info".equals(fragmentType)) {
-            view = inflater.inflate(R.layout.fragment_teacher_add_practice_page, container, false);
+            view = inflater.inflate(R.layout.fragment_teacher_practice_info, container, false);
             controller = new PracticeInfoController(this, view, teacherInfo);
         } else if("course".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_course, container, false);
@@ -87,7 +87,7 @@ public class Fragment extends android.app.Fragment {
             view = inflater.inflate(R.layout.fragment_teacher_live_stream, container, false);
             controller = new StreamPageController(this, view, teacherInfo);
         } else if("question_info".equals(fragmentType)){
-            view = inflater.inflate(R.layout.fragment_add_question, container, false);
+            view = inflater.inflate(R.layout.fragment_teacher_question_info, container, false);
             controller = new QuestionInfoController(view, this);
         }
         controller.bindCallback(callback);

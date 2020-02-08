@@ -3,7 +3,6 @@ package com.edu_app.controller.student.practice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,10 +26,11 @@ public class BrowseExercisesController implements View.OnClickListener {
         bundle.putSerializable("data",practice);
         intent.putExtras(bundle);
         if (true) {
-
-            activity.startActivity(intent.setClass(activity, activityLookExam.class));
-        } else {
             activity.startActivity(intent.setClass(activity, activityDoExam.class));
+
+
+        } else {
+            activity.startActivity(intent.setClass(activity, activityLookExam.class));
         }
     }
     public void setData(Practice practice){

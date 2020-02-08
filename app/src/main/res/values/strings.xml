@@ -30,5 +30,6 @@
     <string name="input_question_text">输入题目</string>
     <string name="cancel_text">取消</string>
     <string name="picture">图片</string>
-    <string name="stu_course_live_play_start"></string>
+    <string name="stu_course_live_play_start">开始播放</string>
+    <string name="practicePage_doexam_submit">提交练习</string>
 </resources>

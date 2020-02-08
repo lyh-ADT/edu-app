@@ -7,7 +7,9 @@ public class Question implements Serializable {
     private int orderNumber;
     private String questionType;
     private String question;
-
+    public   static final String QUESTION_TYPE_CHOICE = "CHOICE";
+    public   static final String QUESTION_TYPE_FILL = "FILL";
+    public   static final String QUESTION_TYPE_SHORT_ANSWER = "SHORT_ANSWER";
     public Question() {}
 
     public Question(int orderNumber, String questionType, String question) {

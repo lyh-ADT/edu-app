@@ -3,7 +3,10 @@ package com.edu_app.controller.teacher.practice;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -106,5 +109,39 @@ public class PageController extends Controller {
                 }
             }
         });
+    }
+
+    private class PracticeListAdapter extends BaseAdapter {
+        private final PracticePage model;
+        private LayoutInflater inflater;
+
+        public PracticeListAdapter(LayoutInflater inflater, PracticePage model){
+            this.inflater = inflater;
+            this.model = model;
+        }
+
+        @Override
+        public int getCount() {
+            return model.getPracticeItemCount();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(position >= -1){
+                convertView = inflater.inflate(R.layout.fragment_teacher_practice_item, parent, false);
+                new PracticeItemController(convertView, model.getPracticeItemAt(position), model, fragment);
+            }
+            return convertView;
+        }
     }
 }

@@ -77,7 +77,7 @@ public class Controller {
         }
         for (Pair<Integer, Object> pair : showingFields) {
             if (pair.first == null || pair.second == null) {
-                Log.e("Controller", "setValues model子类的getShowField方法返回值不能有null");
+                Log.e("Controller", "setValues model子类的getShowField方法返回值不能有null:"+this.getClass());
                 return;
             }
 

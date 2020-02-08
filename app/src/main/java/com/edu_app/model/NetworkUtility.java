@@ -113,6 +113,10 @@ public class NetworkUtility {
         return read(connection.getInputStream());
     }
 
+    static public <T> String postRequest(String url, String  uid, T data) throws IOException{
+        return postRequest(url, uid, toJson(data).getBytes());
+    }
+
     /**
      * 将Json字符串转换成对应的对象
      * @param json json字符串
@@ -143,6 +147,11 @@ public class NetworkUtility {
         return (T)gson.fromJson(json, typeOfT);
     }
 
+    static public <T> String toJson(T object){
+        Gson gson = new Gson();
+        return gson.toJson(object);
+    }
+
     static private String read(InputStream inputStream) throws IOException {
         byte[] buffer = new byte[1024];
         int len;
@@ -156,6 +165,7 @@ public class NetworkUtility {
     static private HttpURLConnection getUidConnection(String url, String uid, String method) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod(method);
+        connection.setConnectTimeout(5000);
         connection.setRequestProperty("Cookies", "UID="+uid+";");
         return connection;
     }

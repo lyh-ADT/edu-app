@@ -1,6 +1,7 @@
 package com.edu_app.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class Practice implements Serializable {
     private String id;
     private String title;
     private Boolean done;
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<>();
 
     public Practice() {}
 

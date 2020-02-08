@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,11 +24,14 @@ import android.widget.Toast;
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
+import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
+
+import java.io.IOException;
 
 public class PracticeInfoController extends Controller {
     private final int SELECT_PIC = 0;
@@ -50,7 +54,6 @@ public class PracticeInfoController extends Controller {
 
     public interface Callback extends Controller.Callback{
         PracticeItem getPractice();
-        void addPractice(PracticeItem practiceItem);
         boolean editable();
         void show();
     }
@@ -170,7 +173,34 @@ public class PracticeInfoController extends Controller {
                         Toast.makeText(fragment.getActivity().getApplicationContext(), "信息不完整", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    callback.addPractice(model);
+                    final android.app.AlertDialog dialog = showProgressBar(v.getContext(), "上传中...");
+                    new Thread(){
+                        @Override
+                        public void run(){
+                            try {
+                                String response = NetworkUtility.postRequest(teacherInfo.getHost()+"/add_practice", teacherInfo.getUID(), model);
+                                if("success".equals(response)){
+                                    unSetFullScreen(fragment.getActivity());
+                                    FragmentManager manager = fragment.getFragmentManager();
+                                    FragmentTransaction transaction = manager.beginTransaction();
+                                    transaction.remove(fragment);
+                                    callback.show();
+                                    transaction.commit();
+                                } else {
+                                    Looper.prepare();
+                                    Toast.makeText(view.getContext(), response, Toast.LENGTH_LONG).show();
+                                    dialog.dismiss();
+                                    Looper.loop();
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                Looper.prepare();
+                                Toast.makeText(view.getContext(), "网络异常, 添加失败", Toast.LENGTH_LONG).show();
+                                dialog.dismiss();
+                                Looper.loop();
+                            }
+                        }
+                    }.start();
                 }
             });
         } else {

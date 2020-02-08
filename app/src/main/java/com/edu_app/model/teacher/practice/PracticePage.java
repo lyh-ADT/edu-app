@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PracticePage implements Model {
-    private final String Host = "http://192.168.123.22:2000";// TODO: 修改为服务器地址
     private TeacherInfo info;
     private List<Practice> practiceList = new ArrayList<>();
     private PageController pageController;
@@ -30,7 +29,7 @@ public class PracticePage implements Model {
             @Override
             public void run(){
                 try {
-                    practiceList = NetworkUtility.getToJson(Host+"/practice", info.getUID(), new TypeToken<List<Practice>>(){}.getType());
+                    practiceList = NetworkUtility.getToJson(info.getHost()+"/practice", info.getUID(), new TypeToken<List<Practice>>(){}.getType());
                     pageController.handler.sendEmptyMessage(0);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -40,17 +39,13 @@ public class PracticePage implements Model {
         }.start();
     }
 
-    public void addPractice(PracticeItem item){
-        // TODO: 实现网络请求
-        practiceList.add(item.getEntity());
-    }
 
     public void deletePractice(final PracticeItem item){
         new Thread(){
             @Override
             public void run(){
                 try {
-                    String response = NetworkUtility.postRequest(Host+"/delete_practice", info.getUID(), item.getId().getBytes());
+                    String response = NetworkUtility.postRequest(info.getHost()+"/delete_practice", info.getUID(), item.getId().getBytes());
                     if("success".equals(response)){
                         practiceList.remove(item);
                         pageController.handler.sendEmptyMessage(0);

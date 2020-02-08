@@ -44,9 +44,6 @@ public class PracticeItemController extends Controller {
                     }
 
                     @Override
-                    public void addPractice(PracticeItem practiceItem) {}
-
-                    @Override
                     public boolean editable() {
                         return false;
                     }

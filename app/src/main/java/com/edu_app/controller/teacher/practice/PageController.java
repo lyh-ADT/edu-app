@@ -79,11 +79,6 @@ public class PageController extends Controller {
                     }
 
                     @Override
-                    public void addPractice(PracticeItem practiceItem) {
-                        model.addPractice(practiceItem);
-                    }
-
-                    @Override
                     public boolean editable() {
                         return true;
                     }

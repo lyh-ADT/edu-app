@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class LiveStreamPage implements Model {
-    private String HOST = "http://192.168.123.22:2000";
     private TeacherInfo info;
 
     public LiveStreamPage(TeacherInfo info){
@@ -33,7 +32,7 @@ public class LiveStreamPage implements Model {
             @Override
             public void run(){
                 try {
-                    NetworkUtility.postRequest(HOST+"/stream_chat", info.getUID(), message.getBytes());
+                    NetworkUtility.postRequest(info.getHost()+"/stream_chat", info.getUID(), message.getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -42,6 +41,6 @@ public class LiveStreamPage implements Model {
     }
 
     public String getChatRoomUrl(){
-        return HOST+"/chat_room";
+        return info.getHost()+"/chat_room";
     }
 }

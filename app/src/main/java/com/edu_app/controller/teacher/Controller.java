@@ -2,10 +2,16 @@ package com.edu_app.controller.teacher;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -63,6 +69,18 @@ public class Controller {
         // 关闭底部的导航栏
         View navigation_bar = activity.findViewById(R.id.navigation_bar);
         navigation_bar.setVisibility(View.VISIBLE);
+    }
+
+    public AlertDialog showProgressBar(Context context, String title){
+        ProgressBar bar = new ProgressBar(context);
+        bar.setIndeterminate(true);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setView(bar)
+                .setCancelable(false);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        return dialog;
     }
 
     protected void bindListener(){}

@@ -26,14 +26,14 @@ import com.edu_app.model.teacher.practice.AddPractice;
 import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
 
-public class AddPracticeController extends Controller {
+public class PracticeInfoController extends Controller {
     private final int SELECT_PIC = 0;
     private android.app.Fragment fragment;
     private AddPractice model;
     private ListAdapter practiceListAdapter;
     private Dialog dialog;
 
-    public AddPracticeController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+    public PracticeInfoController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
         super(view, new AddPractice(teacherInfo));
         this.fragment = fragment;
         model = (AddPractice)super.model;
@@ -51,7 +51,7 @@ public class AddPracticeController extends Controller {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                Fragment questionFragment = Fragment.newInstance("question", model.getTeacherInfo(), new QuestionInfoController.Callback() {
+                Fragment questionFragment = Fragment.newInstance("question_info", model.getTeacherInfo(), new QuestionInfoController.Callback() {
                     @Override
                     public void addQuestion(QuestionItem questionItem) {
                         questionItem.setOrderNumber(model.getQuestionCount()+1);
@@ -111,7 +111,7 @@ public class AddPracticeController extends Controller {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == SELECT_PIC){
             if(data == null){
-                Log.e("AddPracticeController", "onActivityResult获取图片data为空");
+                Log.e("PracticeInfoController", "onActivityResult获取图片data为空");
                 return;
             }
             dialog.dismiss();
@@ -150,7 +150,7 @@ public class AddPracticeController extends Controller {
         public View getView(int position, View convertView, ViewGroup parent) {
             if(position > -1){
                 convertView = inflater.inflate(R.layout.item_question, parent, false);
-                new AddPracticeItemController(convertView, model.getQuestionAt(position), fragment);
+                new QuestionController(convertView, model.getQuestionAt(position), fragment);
             }
             return convertView;
         }

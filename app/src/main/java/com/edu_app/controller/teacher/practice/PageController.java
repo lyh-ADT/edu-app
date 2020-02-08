@@ -45,7 +45,7 @@ public class PageController extends Controller {
         model = (PracticePage)super.model;
         model.setController(this);
         practiceListAdapter = new PracticeListAdapter(fragment.getActivity().getLayoutInflater(), model);
-        bindListener(view);
+        bindListener();
     }
 
     public void error(String message){
@@ -55,22 +55,23 @@ public class PageController extends Controller {
         Looper.loop();
     }
 
-    private void bindListener(View view){
-        ListView practice_list = (ListView)view.findViewById(R.id.practice_list);
+    @Override
+    protected void bindListener(){
+        ListView practice_list = view.findViewById(R.id.practice_list);
 
         practice_list.setAdapter(practiceListAdapter);
 
-        Button addPractice_btn = (Button)view.findViewById(R.id.add_practice_btn);
+        Button addPractice_btn = view.findViewById(R.id.add_practice_btn);
         addPractice_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.main_fragment, Fragment.newInstance("add_practice", teacherInfo));
+                transaction.replace(R.id.main_fragment, Fragment.newInstance("practice_info", teacherInfo));
                 transaction.commit();
             }
         });
-        final Button deletePractice_btn = (Button)view.findViewById(R.id.delete_practice_btn);
+        final Button deletePractice_btn = view.findViewById(R.id.delete_practice_btn);
         deletePractice_btn.setOnClickListener(new View.OnClickListener() {
             private boolean deleteMode = false;
             @Override

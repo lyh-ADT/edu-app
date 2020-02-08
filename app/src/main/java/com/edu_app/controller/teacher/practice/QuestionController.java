@@ -13,11 +13,11 @@ import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 
-public class AddPracticeItemController extends Controller {
+public class QuestionController extends Controller {
     private QuestionItem model;
     private Fragment fragment;
 
-    public AddPracticeItemController(View view, QuestionItem model, Fragment fragment){
+    public QuestionController(View view, QuestionItem model, Fragment fragment){
         super(view, model);
         this.view = view;
         this.model = model;
@@ -31,7 +31,7 @@ public class AddPracticeItemController extends Controller {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-                com.edu_app.view.teacher.Fragment questionFragment = com.edu_app.view.teacher.Fragment.newInstance("question", null, new QuestionInfoController.Callback() {
+                com.edu_app.view.teacher.Fragment questionFragment = com.edu_app.view.teacher.Fragment.newInstance("question_info", null, new QuestionInfoController.Callback() {
                     @Override
                     public void addQuestion(QuestionItem questionItem) {}
 

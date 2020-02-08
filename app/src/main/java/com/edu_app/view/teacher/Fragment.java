@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.course.CoursePageController;
-import com.edu_app.controller.teacher.practice.AddPracticeController;
+import com.edu_app.controller.teacher.practice.PracticeInfoController;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.controller.teacher.stream.StreamPageController;
 import com.edu_app.model.teacher.TeacherInfo;
@@ -77,16 +77,16 @@ public class Fragment extends android.app.Fragment {
         if("practice".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
             controller = new com.edu_app.controller.teacher.practice.PageController(this, view, teacherInfo);
-        } else if("add_practice".equals(fragmentType)) {
+        } else if("practice_info".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_add_practice_page, container, false);
-            controller = new AddPracticeController(this, view, teacherInfo);
+            controller = new PracticeInfoController(this, view, teacherInfo);
         } else if("course".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_course, container, false);
             controller = new CoursePageController(this, view, teacherInfo);
         } else if("live_stream".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_live_stream, container, false);
             controller = new StreamPageController(this, view, teacherInfo);
-        } else if("question".equals(fragmentType)){
+        } else if("question_info".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_add_question, container, false);
             controller = new QuestionInfoController(view, this);
         }

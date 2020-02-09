@@ -48,4 +48,6 @@
     <string name="stu_course_live_play_start">开始播放</string>
     <string name="judge">批改</string>
     <string name="back">返回</string>
+    <string name="score">分数</string>
+    <string name="title">标题</string>
 </resources>

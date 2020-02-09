@@ -1,15 +1,25 @@
 package com.edu_app.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Question implements Serializable {
-    private int orderNumber;
-    private String questionType;
-    private String question;
+    public static final HashMap<String, String> typeText;
+    static {
+        typeText = new HashMap<String, String>();
+        typeText.put("select", "选择");
+        typeText.put("fill_blank", "填空");
+        typeText.put("short_answer", "简答");
+    }
     public   static final String QUESTION_TYPE_CHOICE = "CHOICE";
     public   static final String QUESTION_TYPE_FILL = "FILL";
     public   static final String QUESTION_TYPE_SHORT_ANSWER = "SHORT_ANSWER";
+    private int orderNumber;
+    private String questionType;
+    private String question;
+    private String answer;
+
     public Question() {}
 
     public Question(int orderNumber, String questionType, String question) {
@@ -54,5 +64,13 @@ public class Question implements Serializable {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

@@ -24,7 +24,7 @@ import com.edu_app.model.teacher.TeacherInfo;
  * Use the {@link Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment extends android.app.Fragment {
+public class Fragment extends androidx.fragment.app.Fragment {
     private static final String FRAGMENT_TYPE = "fragment_type";
     private static final String TEACHER_INFO = "teacher_info";
     private static final String CALLBACK = "callback";

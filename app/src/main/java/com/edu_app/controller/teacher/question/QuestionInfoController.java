@@ -1,7 +1,6 @@
 package com.edu_app.controller.teacher.question;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,6 +17,7 @@ import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.question.QuestionItemFactory;
 import com.edu_app.model.teacher.practice.QuestionItem;
+import com.edu_app.view.teacher.Fragment;
 import com.edu_app.view.teacher.QuestionInfoFragment;
 
 import java.util.Arrays;

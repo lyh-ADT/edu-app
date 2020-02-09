@@ -20,8 +20,8 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.edu_app.R;
@@ -38,7 +38,7 @@ import java.io.IOException;
 
 public class PracticeInfoController extends Controller {
     private final int SELECT_PIC = 0;
-    private android.app.Fragment fragment;
+    private Fragment fragment;
     private PracticeItem model;
     private ListAdapter practiceListAdapter;
     private Callback callback;
@@ -56,7 +56,7 @@ public class PracticeInfoController extends Controller {
     });
     private Dialog dialog;
 
-    public PracticeInfoController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+    public PracticeInfoController(Fragment fragment, View view, TeacherInfo teacherInfo){
         super(view, new PracticeItem(null));
         this.fragment = fragment;
         model = (PracticeItem)super.model;

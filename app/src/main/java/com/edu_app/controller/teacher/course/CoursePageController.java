@@ -1,18 +1,15 @@
 package com.edu_app.controller.teacher.course;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.view.View;
 import android.widget.Button;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -20,6 +17,7 @@ import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.course.CoursePage;
+import com.edu_app.view.teacher.Fragment;
 
 public class CoursePageController extends Controller {
     private final int CAMERA_PERMISSION = 0;

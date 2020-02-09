@@ -1,7 +1,6 @@
 package com.edu_app.controller.teacher.practice;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
+import com.edu_app.view.teacher.Fragment;
 
 public class QuestionController extends Controller {
     private static boolean deleteMode = false;

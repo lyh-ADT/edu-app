@@ -1,7 +1,7 @@
 package com.edu_app.controller.teacher.practice;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.view.View;
 
@@ -63,9 +63,9 @@ public class PracticeItemController extends Controller {
     };
     private final PracticeItem model;
     private View view;
-    private android.app.Fragment fragment;
+    private Fragment fragment;
 
-    public PracticeItemController(View view, PracticeItem model, PracticePage pageModel, android.app.Fragment fragment){
+    public PracticeItemController(View view, PracticeItem model, PracticePage pageModel, Fragment fragment){
         super(view, model);
         this.view = view;
         this.model = model;

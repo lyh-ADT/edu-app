@@ -1,12 +1,18 @@
 package com.edu_app.controller.teacher.practice;
 
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -22,6 +28,15 @@ public class StudentListController extends Controller {
     private Callback callback;
     private PracticeItem practiceItem;
     private ListAdapter listAdapter;
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            if(msg.what == 0){
+                listAdapter.notifyDataSetChanged();
+            }
+            return true;
+        }
+    });
 
     public void error(String e) {
         Looper.prepare();
@@ -49,6 +64,7 @@ public class StudentListController extends Controller {
         this.model = (StudentPractice) super.model;
         this.teacherInfo =teacherInfo;
         bindListener();
+        setFullScreen(fragment.requireActivity());
     }
 
     public PracticeItem getPracticeItem(){
@@ -56,13 +72,26 @@ public class StudentListController extends Controller {
     }
 
     public void notifyDataSetChanged(){
-        listAdapter.notifyDataSetChanged();
+        handler.sendEmptyMessage(0);
     }
 
     @Override
     protected void bindListener(){
         ListView list = view.findViewById(R.id.student_list);
-        list.setAdapter(new ListAdapter());
+        listAdapter = new ListAdapter();
+        list.setAdapter(listAdapter);
+
+        Button exit_btn = view.findViewById(R.id.exit_btn);
+        exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                transaction.remove(fragment);
+                transaction.commit();
+                unSetFullScreen(fragment.requireActivity());
+                callback.show();
+            }
+        });
     }
 
     private class ListAdapter extends BaseAdapter{

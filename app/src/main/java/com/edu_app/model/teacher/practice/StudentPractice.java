@@ -34,6 +34,10 @@ public class StudentPractice implements Model {
         return practices.get(i).getAuthorName();
     }
 
+    public StudentPracticeItem getPracticeAt(int i){
+        return practices.get(i);
+    }
+
     @Override
     public List<Pair<Integer, Object>> getShowField() {
         if(controller == null){

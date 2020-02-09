@@ -23,9 +23,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="<"/>
+            android:text="上一道题"/>
 
         <EditText
+            android:id="@+id/score"
             android:hint="@string/score"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -34,7 +35,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text=">"/>
+            android:text="下一道题"/>
     </LinearLayout>
 
 

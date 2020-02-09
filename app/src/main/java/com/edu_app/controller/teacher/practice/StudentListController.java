@@ -19,6 +19,7 @@ import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.StudentPractice;
+import com.edu_app.model.teacher.practice.StudentPracticeItem;
 import com.edu_app.view.teacher.Fragment;
 
 public class StudentListController extends Controller {
@@ -116,6 +117,21 @@ public class StudentListController extends Controller {
             if(position > -1){
                 convertView = new TextView(view.getContext());
                 ((TextView)convertView).setText(model.getAuthorNameAt(position));
+                final StudentPracticeItem p = model.getPracticeAt(position);
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                        transaction.addToBackStack(null);
+                        transaction.replace(R.id.main_fragment, Fragment.newInstance("judge", teacherInfo, new JudgeController.Callback() {
+                            @Override
+                            public StudentPracticeItem getPractice() {
+                                return p;
+                            }
+                        }));
+                        transaction.commit();
+                    }
+                });
             }
             return convertView;
         }

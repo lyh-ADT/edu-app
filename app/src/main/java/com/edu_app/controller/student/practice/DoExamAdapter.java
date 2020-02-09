@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * 做题时，展示所有的题目适配器
+ */
 public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context context;
     private List<Question> questions;
@@ -36,7 +39,6 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.questions = questions;
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView examtext;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -63,8 +65,8 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         Question question = questions.get(position);
         if(holder instanceof DoFillViewHolder){
-            ((DoFillViewHolder) holder).examtext.setText(question.getOrderNumber()+":"+question.getQuestion());
-            ((DoFillViewHolder) holder).answer.addTextChangedListener(new TextWatcher() {
+            ((DoFillViewHolder) holder).getExamtext().setText(question.getOrderNumber()+":"+question.getQuestion());
+            ((DoFillViewHolder) holder).getAnswerEdit().addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -83,8 +85,8 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
             });
         }else if(holder instanceof DoChoiceViewHolder){
-            ((DoChoiceViewHolder) holder).examtext.setText(question.getOrderNumber()+":"+question.getQuestion());
-            ((DoChoiceViewHolder) holder).radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            ((DoChoiceViewHolder) holder).getExamtext().setText(question.getOrderNumber()+":"+question.getQuestion());
+            ((DoChoiceViewHolder) holder).getRadiogroup().setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     String radio =  ((RadioButton)group.findViewById(checkedId)).getText().toString();
@@ -93,8 +95,8 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 }
             });
         }else if(holder instanceof DoShortAnswerViewHolder){
-            ((DoShortAnswerViewHolder) holder).examtext.setText(question.getOrderNumber()+":"+question.getQuestion());
-            ((DoShortAnswerViewHolder) holder).answer.addTextChangedListener(new TextWatcher() {
+            ((DoShortAnswerViewHolder) holder).getExamtext().setText(question.getOrderNumber()+":"+question.getQuestion());
+            ((DoShortAnswerViewHolder) holder).getAnswerEdit().addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

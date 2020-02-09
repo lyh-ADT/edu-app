@@ -10,12 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edu_app.R;
 
 public class DoFillViewHolder extends RecyclerView.ViewHolder {
-    public TextView examtext;
-    public EditText answer;
+    private TextView examtext;
+    private EditText answeredit;
     public DoFillViewHolder(@NonNull View itemView) {
         super(itemView);
         examtext=itemView.findViewById(R.id.practicePage_practice_doExam_fillView);
-        answer =itemView.findViewById(R.id.practicePage_practice_doExam_fillEditText);
+        answeredit =itemView.findViewById(R.id.practicePage_practice_doExam_fillEditText);
 
+    }
+    public TextView getExamtext() {
+        return examtext;
+    }
+
+    public EditText getAnswerEdit() {
+        return answeredit;
     }
 }

@@ -10,11 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edu_app.R;
 
 public class DoShortAnswerViewHolder extends RecyclerView.ViewHolder {
-    public TextView examtext;
-    public EditText answer;
+    private TextView examtext;
+    private EditText answeredit;
     public DoShortAnswerViewHolder(@NonNull View itemView) {
         super(itemView);
         examtext=itemView.findViewById(R.id.practicePage_practice_doExam_shortAnswerView);
-        answer =itemView.findViewById(R.id.practicePage_practice_doExam_shortAnswerEditText);
+        answeredit =itemView.findViewById(R.id.practicePage_practice_doExam_shortAnswerEditText);
+    }
+    public TextView getExamtext() {
+        return examtext;
+    }
+
+    public EditText getAnswerEdit() {
+        return answeredit;
     }
 }

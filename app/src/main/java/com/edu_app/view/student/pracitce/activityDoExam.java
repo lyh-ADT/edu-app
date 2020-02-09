@@ -20,7 +20,7 @@ public class activityDoExam extends AppCompatActivity {
     }
 
     private void initView() {
-        setContentView(R.layout.activity_stu_practice_doexam);
+        setContentView(R.layout.activity_stu_practice_doexam_recycler);
         controller = new DoExamController(this);
         controller.setView();
         controller.setSubmitListener();

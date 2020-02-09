@@ -15,6 +15,11 @@ import com.edu_app.view.student.pracitce.activitySubjectMath;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * 控制跳转到哪个科目练习
+ *
+ */
 public class PracticeMainController implements View.OnClickListener {
     private FragmentActivity activity;
     private ArrayList<Practice> practicelist;

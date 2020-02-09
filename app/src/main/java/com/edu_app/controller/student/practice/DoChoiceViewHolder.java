@@ -10,8 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edu_app.R;
 
 public class DoChoiceViewHolder extends RecyclerView.ViewHolder {
-    public TextView examtext;
-    public RadioGroup radiogroup;
+    private TextView examtext;
+    private RadioGroup radiogroup;
+
+    public TextView getExamtext() {
+        return examtext;
+    }
+
+    public RadioGroup getRadiogroup() {
+        return radiogroup;
+    }
+
     public DoChoiceViewHolder(@NonNull View itemView) {
         super(itemView);
         examtext=itemView.findViewById(R.id.practicePage_practice_doExam_choiceView);

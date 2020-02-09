@@ -1,11 +1,8 @@
 package com.edu_app.view.student.pracitce;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +14,8 @@ import com.edu_app.controller.student.practice.BrowseExercisesController;
 import com.edu_app.controller.student.practice.ExamAdapter;
 import com.edu_app.controller.student.practice.OnItemClickListener;
 import com.edu_app.model.Practice;
-import com.edu_app.view.activityFunction;
-import com.edu_app.view.student.person.activityPersonInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class activitySubjectChinese extends AppCompatActivity {
     private RecyclerView chineserecycler;
@@ -58,15 +52,15 @@ public class activitySubjectChinese extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            Intent intent = new Intent();
 //            intent.setClass(activitySubjectChinese.this, activityFunction.class);
 //            startActivity(intent);
-//            activitySubjectChinese.this.finish();
-//
-//        }
-//        return true;
-//    }
+            activitySubjectChinese.this.finish();
+
+        }
+        return true;
+    }
 }

@@ -3,7 +3,6 @@ package com.edu_app.controller.student.practice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +10,10 @@ import com.edu_app.model.Practice;
 import com.edu_app.view.student.pracitce.activityDoExam;
 import com.edu_app.view.student.pracitce.activityLookExam;
 
+/**
+ *
+ * 控制某个试题是跳转看试题，还是做试题
+ */
 public class BrowseExercisesController implements View.OnClickListener {
     private AppCompatActivity activity;
     private Practice practice;
@@ -27,7 +30,6 @@ public class BrowseExercisesController implements View.OnClickListener {
         bundle.putSerializable("data",practice);
         intent.putExtras(bundle);
         if (true) {
-
             activity.startActivity(intent.setClass(activity, activityLookExam.class));
         } else {
             activity.startActivity(intent.setClass(activity, activityDoExam.class));

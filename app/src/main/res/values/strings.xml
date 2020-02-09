@@ -46,4 +46,5 @@
     <string name="delete_question">删除题目</string>
     <string name="practicePage_doexam_submit">提交练习</string>
     <string name="stu_course_live_play_start">开始播放</string>
+    <string name="judge">批改</string>
 </resources>

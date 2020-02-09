@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -82,5 +83,30 @@ public class PracticeItemController extends Controller {
     @Override
     protected void bindListener(){
         view.setOnClickListener(clickItemListener);
+
+        Button judge_btn = view.findViewById(R.id.judge);
+        judge_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = fragment.getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.add(R.id.main_fragment, Fragment.newInstance("student_practice_info", pageModel.getTeacherInfo(), new StudentListController.Callback() {
+                    @Override
+                    public PracticeItem getPracticeItem() {
+                        return model;
+                    }
+
+                    @Override
+                    public void show(){
+                        FragmentManager manager = fragment.getFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.show(fragment);
+                        transaction.commit();
+                    }
+                }));
+                transaction.hide(fragment);
+                transaction.commit();
+            }
+        });
     }
 }

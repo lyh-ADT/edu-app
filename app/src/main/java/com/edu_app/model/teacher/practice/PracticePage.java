@@ -76,5 +76,9 @@ public class PracticePage implements Model {
     public void setController(Controller controller){
         this.pageController = (PageController)controller;
     }
+
+    public TeacherInfo getTeacherInfo(){
+        return info;
+    }
 }
 

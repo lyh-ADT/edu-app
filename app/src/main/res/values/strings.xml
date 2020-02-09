@@ -25,11 +25,25 @@
     <string name="coursePage_tab_2">数学课程</string>
     <string name="coursePage_tab_3">语文课程</string>
     <string name="coursePage_tab_4">英语课程</string>
-    <string name="add_question_text">添加题目</string>
     <string name="exit_text">退出</string>
     <string name="input_question_text">输入题目</string>
     <string name="cancel_text">取消</string>
     <string name="picture">图片</string>
-    <string name="stu_course_live_play_start">开始播放</string>
+    <string name="add_question_text">添加题目</string>
+    <string name="start_live_stream_text">开始直播</string>
+    <string name="stop_text">停止</string>
+    <string name="send_text">发送</string>
+    <string name="start_text">开始</string>
+    <string name="select_text">选择</string>
+    <string name="fill_blank_text">填空</string>
+    <string name="short_answer">简答</string>
+    <string name="add_option_text">添加选项</string>
+    <string name="correct_answer_text">正确答案</string>
+    <string name="mute_text">静音</string>
+    <string name="record_audio_text">录音</string>
+    <string name="add_blank">添加空位</string>
+    <string name="input_answer_text">输入答案</string>
+    <string name="delete_question">删除题目</string>
     <string name="practicePage_doexam_submit">提交练习</string>
+    <string name="stu_course_live_play_start">开始播放</string>
 </resources>

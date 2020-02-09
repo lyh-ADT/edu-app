@@ -1,9 +1,6 @@
 package com.edu_app.controller.teacher.question;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,14 +8,16 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.teacher.addquestion.QuestionItemFactory;
+import com.edu_app.model.teacher.question.QuestionItemFactory;
 import com.edu_app.model.teacher.practice.QuestionItem;
+import com.edu_app.view.teacher.Fragment;
 import com.edu_app.view.teacher.QuestionInfoFragment;
 
 import java.util.Arrays;
@@ -161,6 +160,11 @@ public class QuestionInfoController extends Controller {
 
     private void changeToQuestionType() {
         question = QuestionItemFactory.newInstance(questionType, question == null? null : question.getEntity());
+        // 补上设置问题，避免切换题目类型导致问题没有设置到对应的QuestionItem
+        String q = ((TextView)view.findViewById(R.id.input_question_edit)).getText().toString();
+        if(q.length() > 0){
+            question.setQuestion(q);
+        }
         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
         transaction.replace(R.id.question_info, QuestionInfoFragment.newInstance(question, callback.editable()));
         transaction.commit();

@@ -12,8 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -38,12 +38,12 @@ public class PageController extends Controller {
         }
     });
 
-    private android.app.Fragment fragment;
+    private Fragment fragment;
     private PracticePage model;
     private PracticeListAdapter practiceListAdapter;
     private TeacherInfo teacherInfo;
 
-    public PageController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+    public PageController(Fragment fragment, View view, TeacherInfo teacherInfo){
         super(view, new PracticePage(teacherInfo));
         this.fragment = fragment;
         this.teacherInfo = teacherInfo;

@@ -1,9 +1,10 @@
 package com.edu_app.controller.teacher.practice;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -63,9 +64,9 @@ public class PracticeItemController extends Controller {
     };
     private final PracticeItem model;
     private View view;
-    private android.app.Fragment fragment;
+    private Fragment fragment;
 
-    public PracticeItemController(View view, PracticeItem model, PracticePage pageModel, android.app.Fragment fragment){
+    public PracticeItemController(View view, PracticeItem model, PracticePage pageModel, Fragment fragment){
         super(view, model);
         this.view = view;
         this.model = model;
@@ -82,5 +83,30 @@ public class PracticeItemController extends Controller {
     @Override
     protected void bindListener(){
         view.setOnClickListener(clickItemListener);
+
+        Button judge_btn = view.findViewById(R.id.judge);
+        judge_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = fragment.getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.add(R.id.main_fragment, Fragment.newInstance("student_practice_info", pageModel.getTeacherInfo(), new StudentListController.Callback() {
+                    @Override
+                    public PracticeItem getPracticeItem() {
+                        return model;
+                    }
+
+                    @Override
+                    public void show(){
+                        FragmentManager manager = fragment.getFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.show(fragment);
+                        transaction.commit();
+                    }
+                }));
+                transaction.hide(fragment);
+                transaction.commit();
+            }
+        });
     }
 }

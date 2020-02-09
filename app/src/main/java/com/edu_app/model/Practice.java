@@ -9,7 +9,7 @@ public class Practice implements Serializable {
     private String id;
     private String title;
     private Boolean done;
-    private List<Question> questions;
+    private List<Question> questions=new ArrayList<>();
 
     public Practice() {}
 

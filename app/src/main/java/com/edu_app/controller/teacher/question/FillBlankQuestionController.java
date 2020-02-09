@@ -13,7 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.teacher.addquestion.FillBlankQuestionItem;
+import com.edu_app.model.teacher.question.FillBlankQuestionItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class FillBlankQuestionController extends Controller {

@@ -14,6 +14,10 @@ import com.edu_app.model.Practice;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * 展示所有的练习题的适配器
+ */
 public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
     private final Context context;
     private ArrayList<Practice> practicelist;

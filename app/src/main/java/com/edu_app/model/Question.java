@@ -12,7 +12,9 @@ public class Question implements Serializable {
         typeText.put("fill_blank", "填空");
         typeText.put("short_answer", "简答");
     }
-
+    public   static final String QUESTION_TYPE_CHOICE = "CHOICE";
+    public   static final String QUESTION_TYPE_FILL = "FILL";
+    public   static final String QUESTION_TYPE_SHORT_ANSWER = "SHORT_ANSWER";
     private int orderNumber;
     private String questionType;
     private String question;

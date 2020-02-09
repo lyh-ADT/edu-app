@@ -1,11 +1,7 @@
-package com.edu_app.model.teacher.addquestion;
-
-import androidx.core.util.Pair;
+package com.edu_app.model.teacher.question;
 
 import com.edu_app.model.SelectQuestion;
 import com.edu_app.model.teacher.practice.QuestionItem;
-
-import java.util.List;
 
 public class SelectQuestionItem extends QuestionItem {
     private SelectQuestion question;

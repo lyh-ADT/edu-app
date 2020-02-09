@@ -1,4 +1,4 @@
-package com.edu_app.model.teacher.addquestion;
+package com.edu_app.model.teacher.question;
 
 import android.util.Log;
 

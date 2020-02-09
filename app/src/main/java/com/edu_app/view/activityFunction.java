@@ -61,7 +61,8 @@ public class activityFunction extends AppCompatActivity implements View.OnClickL
                     break;
 
                 case R.id.bar_imgPersonInfo:
-                    f = com.edu_app.view.teacher.Fragment.newInstance("practice", new TeacherInfo());
+                    f = new fragmentPerson();
+                    uidintent = new Intent(activityFunction.this, fragmentPractice.class);
                     break;
                 default:
                     f = null;

@@ -57,9 +57,7 @@ public class activitySubjectEnglish extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            Intent intent = new Intent();
-//            intent.setClass(activitySubjectEnglish.this, activityFunction.class);
-//            startActivity(intent);
+
             activitySubjectEnglish.this.finish();
 
         }

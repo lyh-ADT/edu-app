@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/navigation_bar">
 
         <ImageView
             android:id="@+id/bar_imgPractice"

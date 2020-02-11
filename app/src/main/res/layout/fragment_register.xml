@@ -1,73 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.login.LoginActivity">
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
     <TextView
-        android:id="@+id/register_title"
+        android:id="@+id/title"
         android:textSize="50sp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/register_title"/>
 
-    <TextView
-        android:id="@+id/username_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/register_title"
-        android:text="@string/username_text"
-        android:textSize="40sp" />
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/labels"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/username_edit"
-        android:layout_width="290dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/register_title"
-        android:layout_toEndOf="@id/username_text"
-        android:inputType="text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/username_text"
+                android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/password_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/username_text"
-        android:text="@string/password_text"
-        android:textSize="40sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/name"
+                android:textSize="30sp"/>
 
-    <EditText
-        android:id="@+id/password_edit"
-        android:layout_width="290dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/username_edit"
-        android:layout_marginStart="40dp"
-        android:layout_toEndOf="@id/password_text"
-        android:inputType="textPassword" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/sex"
+                android:textSize="30sp"/>
 
-    <TextView
-        android:id="@+id/repeat_password_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password_text"
-        android:text="@string/repeat_password_text"
-        android:textSize="30sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/age"
+                android:textSize="30sp"/>
 
-    <EditText
-        android:id="@+id/repeat_password_edit"
-        android:layout_width="290dp"
-        android:layout_height="55dp"
-        android:layout_below="@id/password_edit"
-        android:layout_marginStart="40dp"
-        android:layout_toEndOf="@id/password_text"
-        android:inputType="textPassword" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/birthday"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/phone_number"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/QQ"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/address"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/password_text"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/repeat_password_text"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/user_id"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="text" />
+
+            <RadioGroup
+                android:id="@+id/user_sex"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/male"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/female"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/user_age"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/user_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/user_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/user_qq"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/user_address"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="textPostalAddress" />
+
+            <EditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/repeat_password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="textPassword" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_below="@id/repeat_password_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
+        android:gravity="center">
 
         <Button
             android:id="@+id/back_to_login_btn"
@@ -84,4 +218,5 @@
             android:textSize="30sp"/>
 
     </LinearLayout>
-</RelativeLayout>
+</TableLayout>
+</ScrollView>

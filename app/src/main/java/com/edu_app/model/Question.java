@@ -6,15 +6,15 @@ import java.util.Objects;
 
 public class Question implements Serializable {
     public static final HashMap<String, String> typeText;
-    static {
-        typeText = new HashMap<String, String>();
-        typeText.put("select", "选择");
-        typeText.put("fill_blank", "填空");
-        typeText.put("short_answer", "简答");
-    }
     public   static final String QUESTION_TYPE_CHOICE = "CHOICE";
     public   static final String QUESTION_TYPE_FILL = "FILL";
     public   static final String QUESTION_TYPE_SHORT_ANSWER = "SHORT_ANSWER";
+    static {
+        typeText = new HashMap<String, String>();
+        typeText.put(QUESTION_TYPE_CHOICE, "选择");
+        typeText.put(QUESTION_TYPE_FILL, "填空");
+        typeText.put(QUESTION_TYPE_SHORT_ANSWER, "简答");
+    }
     private int orderNumber;
     private String questionType;
     private String question;

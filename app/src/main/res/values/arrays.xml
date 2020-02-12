@@ -2,12 +2,12 @@
 <resources>
     <string-array name="question_type_text">
         <item>选择</item>
-        <item>填空 </item>
+        <item>填空</item>
         <item>简答</item>
     </string-array>
     <string-array name="question_type">
-        <item>select</item>
-        <item>fill_blank </item>
-        <item>short_answer</item>
+        <item>CHOICE</item>
+        <item>FILL</item>
+        <item>SHORT_ANSWER</item>
     </string-array>
 </resources>

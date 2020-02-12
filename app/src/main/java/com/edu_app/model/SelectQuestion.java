@@ -7,7 +7,7 @@ public class SelectQuestion extends Question {
     private List<String> selections = new ArrayList<>();
 
     public SelectQuestion(){
-        super(0, "select", null);
+        super(0, Question.QUESTION_TYPE_CHOICE, null);
     }
 
     public void addSelection(String answer){

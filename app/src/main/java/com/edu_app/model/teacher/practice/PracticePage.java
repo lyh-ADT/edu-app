@@ -47,8 +47,7 @@ public class PracticePage implements Model {
                 try {
                     String response = NetworkUtility.postRequest(info.getHost()+"/delete_practice", info.getUID(), item.getId().getBytes());
                     if("success".equals(response)){
-                        practiceList.remove(item);
-                        pageController.handler.sendEmptyMessage(0);
+                        getPracticeList();
                     }else{
                         pageController.error(response);
                     }

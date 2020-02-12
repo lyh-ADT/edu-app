@@ -2,8 +2,14 @@ import pymysql
 
 
 class SqlHandler():
-    def __init__(self, Host, User, Password, DBName, Port=3306,
-                 Charset='utf8'):
+    def __init__(self,
+                 Host,
+                 User,
+                 Password,
+                 DBName,
+                 Port=3306,
+                 Charset='utf8',
+                 cursorclass=pymysql.cursors.DictCursor):
         """
         初始化
         @ parm:
@@ -18,6 +24,7 @@ class SqlHandler():
         self.pwd = Password
         self.port = Port
         self.charset = Charset
+        self.cursorclass = cursorclass
         self.connection = None
 
     def getConnection(self):
@@ -30,7 +37,8 @@ class SqlHandler():
                                               passwd=self.pwd,
                                               db=self.db,
                                               port=self.port,
-                                              charset=self.charset)
+                                              charset=self.charset,
+                                              cursorclass=self.cursorclass)
             if self.connection.open:
                 return True
         except Exception as e:

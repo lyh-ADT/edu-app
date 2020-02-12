@@ -11,6 +11,7 @@ class RegisterRequestHandler(tornado.web.RequestHandler):
 
         """
         try:
+            self.sqlhandler = None
             self.stuId = self.get_body_argument("stuId")
             self.pwd = self.get_body_argument("pwd")
             self.stuName = self.get_body_argument("stuName")
@@ -25,13 +26,16 @@ class RegisterRequestHandler(tornado.web.RequestHandler):
                 self.finish()
 
             elif self.register():
-                self.write("用户名重复")
+                self.write("success")
                 self.finish()
-
-        except Exception as e:
-            print(e)
+            else:
+                raise RuntimeError
+        except Exception:
+            self.write("error")
+            self.finish()
         finally:
-            self.sqlhandler.closeMySql()
+            if self.sqlhandler is not None:
+                self.sqlhandler.closeMySql()
             tornado.ioloop.IOLoop.current().stop()
 
     def get(self):

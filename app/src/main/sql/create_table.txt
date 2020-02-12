@@ -1,10 +1,10 @@
 CREATE TABLE StuPersonInfo
 (
 	StuId VARCHAR(20) NOT NULL,
-	StuPassword VARCHAR(100) NOT NULL，
+	StuPassword VARCHAR(100) NOT NULL,
 	stuName VARCHAR(30) NOT NULL,
 	StuSex VARCHAR(1) NOT NULL,
-	StuAge TINYINT NOT NULL,
+	StuAge VARCHAR(2) NOT NULL,
 	StuBirthday DATE,
 	StuPhoneNumber CHAR(11) NOT NULL,
 	StuQQ VARCHAR(11),
@@ -15,10 +15,10 @@ CREATE TABLE StuPersonInfo
 CREATE TABLE TeaPersonInfo
 (
 	TeaId VARCHAR(4) NOT NULL,
-		TeaPassword VARCHAR(100) NOT NULL，
+		TeaPassword VARCHAR(100) NOT NULL,
 	TeaName VARCHAR(30) NOT NULL,
 	TeaSex VARCHAR(1) NOT NULL,
-	TeaAge TINYIN,
+	TeaAge VARCHAR(2) NOT NULL,
 	TeaBirthday DATE,
 	TeaPhoneNumber CHAR(11) NOT NULL,
 	TeaQQ VARCHAR(11),
@@ -30,6 +30,7 @@ CREATE TABLE CLASS(
 	ClassId VARCHAR(20) NOT NULL,
 	CourseName VARCHAR(50) NOT NULL,
 	Teacher VARCHAR(100) NOT NULL,
+	Practice VARCHAR(100),
 	Student VARCHAR(1024),
 	StuNumber VARCHAR(2) NOT NULL
 )
@@ -38,8 +39,7 @@ CREATE TABLE CLASS(
 CREATE TABLE PRACTICE(
 	PracticeId VARCHAR(50) NOT NULL,
 	ExamDetail TEXT NOT NULL,
-	FullScore TINYINT NOT NULL,
-
+	FullScore TINYINT NOT NULL
 )
 CREATE TABLE SCORE(
 	PracticeId VARCHAR(50) NOT NULL,
@@ -49,24 +49,16 @@ CREATE TABLE SCORE(
 )
 -- 添加约束
 ALTER TABLE StuPersonInfo add Constraint PK_StuPersonInfo_StuId primary key(StuId)
--- 电话唯一约束
-ALTER TABLE StuPersonInfo add UNIQUE(StuPhoneNumber)
--- 男女检查约束
-ALTER TABLE StuPersonInfo add Constraint CK_StuPersonInfo_StuSex CHECK(StuSex IN ('男','女'))
--- 学生年龄约束
-ALTER TABLE StuPersonInfo add Constraint CK_StuPersonInfo_StuAge CHECK(StuAge>0 AND StuAge<=20)
+
 
 ALTER TABLE TeaPersonInfo add Constraint PK_TeaPersonInfo_TeaId primary key(TeaId)
-ALTER TABLE TeaPersonInfo add UNIQUE(TeaPhoneNumber)
-ALTER TABLE TeaPersonInfo add Constraint CK_TeaPersonInfo_TeaSex CHECK(TeaSex IN ('男','女'))
+
 
 ALTER TABLE CLASS add Constraint PK_CLASS_ClassId primary key(ClassId)
 
 
--- practice主键
 ALTER TABLE PRACTICE add Constraint PK_PRACTICE_PracticeId primary key(PracticeId)
--- 约束成绩
-ALTER TABLE SCORE add Constraint CK_SCORE_Score CHECK(StuScore>=0)
+
 -- 联合主键
 ALTER TABLE SCORE add Constraint PK_SCORE_PracticeAndStuId primary key(PracticeId,StuId)
 

@@ -4,20 +4,17 @@ import tornado.httpclient
 import SqlHandler
 
 
-class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
-    def post(self):
+class TeaInfoRequestHandler(tornado.web.RequestHandler):
+    def get(self):
         """
-        将老师上传的题目存到数据库
+        从数据库获取老师信息返回给客户端
+
         """
         try:
             self.sqlhandler = None
-            self.stuId = self.get_body_argument("stuId")
-            self.stuScore = self.get_body_argument("stuScore")
-            self.practiceId = self.get_body_argument("practiceId")
-            self.scoreDetail = self.get_body_argument("scoreDetail")
-
-            if self.pushPractice():
-                self.write("success")
+            self.teaId = self.get_argument("teaId")
+            if self.getTeaInfo():
+                self.write(self.teaInfo)
                 self.finish()
             else:
                 raise RuntimeError
@@ -29,9 +26,9 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
                 self.sqlhandler.closeMySql()
             tornado.ioloop.IOLoop.current().stop()
 
-    def pushPractice(self):
+    def getStuInfo(self):
         """
-        将分数成绩存放到数据库
+        从数据库读取学生信息
         """
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
@@ -39,19 +36,18 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
             """
-            插入信息
+            查询该老师的信息
             """
-            sql = """INSERT INTO SCORE(PracticeId,StuId,StuScore,ScoreDetail) VALUES('{0}','{1}','{2}','{3}')""".format(
-                self.practiceId, self.stuId, self.stuScore, self.scoreDetail)
-            if self.sqlhandler.executeOtherSQL(sql):
-                return True
+            # 获取键值对
+            sql = "select * from TeaPersonInfo where StuId='" + self.stuId + "'"
+            self.TeaInfo = self.sqlhandler.executeQuerySQL(sql)
+            return True
         return False
 
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(
-        handlers=[(r"/", TeaCorrectPracticeRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/", TeaInfoRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

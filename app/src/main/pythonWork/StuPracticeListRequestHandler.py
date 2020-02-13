@@ -40,7 +40,7 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
             """
             查询练习题
             """
-            self.practicelist = []
+
             # 获取班级id
             sql = "select StuClass from StuPersonInfo where StuId='" + self.stuId + "'"
             stuClassId = str(

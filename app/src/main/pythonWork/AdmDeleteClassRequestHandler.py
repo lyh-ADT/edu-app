@@ -4,19 +4,16 @@ import tornado.httpclient
 import SqlHandler
 
 
-class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
-    def post(self):
+class AdmDeleteClassRequestHandler(tornado.web.RequestHandler):
+    def get(self):
         """
-        将老师上传的题目存到数据库
+        从数据库删除班级信息
+
         """
         try:
             self.sqlhandler = None
-            self.stuId = self.get_body_argument("stuId")
-            self.stuScore = self.get_body_argument("stuScore")
-            self.practiceId = self.get_body_argument("practiceId")
-            self.scoreDetail = self.get_body_argument("scoreDetail")
-
-            if self.pushPractice():
+            self.classId = self.get_argument("classId")
+            if self.deleteClass():
                 self.write("success")
                 self.finish()
             else:
@@ -29,20 +26,16 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
                 self.sqlhandler.closeMySql()
             tornado.ioloop.IOLoop.current().stop()
 
-    def pushPractice(self):
-        """
-        将分数成绩存放到数据库
-        """
+    def deleteClass(self):
+
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
-            """
-            插入信息
-            """
-            sql = """INSERT INTO SCORE(PracticeId,StuId,StuScore,ScoreDetail) VALUES('{0}','{1}','{2}','{3}')""".format(
-                self.practiceId, self.stuId, self.stuScore, self.scoreDetail)
+
+            sql = "DELETE FROM CLASS where ClassId='{0}'".format(self.classId)
+
             if self.sqlhandler.executeOtherSQL(sql):
                 return True
         return False
@@ -50,8 +43,8 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(
-        handlers=[(r"/", TeaCorrectPracticeRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/",
+                                             AdmDeleteClassRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

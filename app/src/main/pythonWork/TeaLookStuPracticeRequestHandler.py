@@ -4,20 +4,19 @@ import tornado.httpclient
 import SqlHandler
 
 
-class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
-    def post(self):
+class TeaLookStuPracticeRequestHandler(tornado.web.RequestHandler):
+    def get(self):
         """
-        将老师上传的题目存到数据库
+        获取某个学生某个练习题，返回给老师客户端
         """
         try:
             self.sqlhandler = None
+            self.stuScoreExamDetail = dict
+            self.practiceId = self.get_argument("practiceId")
             self.stuId = self.get_body_argument("stuId")
-            self.stuScore = self.get_body_argument("stuScore")
-            self.practiceId = self.get_body_argument("practiceId")
-            self.scoreDetail = self.get_body_argument("scoreDetail")
-
-            if self.pushPractice():
-                self.write("success")
+            if self.getStuPractice():
+                print(self.stuScoreExamDetail)
+                self.write(self.stuScoreExamDetail)
                 self.finish()
             else:
                 raise RuntimeError
@@ -29,29 +28,39 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
                 self.sqlhandler.closeMySql()
             tornado.ioloop.IOLoop.current().stop()
 
-    def pushPractice(self):
+    def getStuPractice(self):
         """
-        将分数成绩存放到数据库
+        返回某个学生某个练习题
         """
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
+
         if self.sqlhandler.getConnection():
             """
-            插入信息
+            查询练习题和成绩
             """
-            sql = """INSERT INTO SCORE(PracticeId,StuId,StuScore,ScoreDetail) VALUES('{0}','{1}','{2}','{3}')""".format(
-                self.practiceId, self.stuId, self.stuScore, self.scoreDetail)
-            if self.sqlhandler.executeOtherSQL(sql):
-                return True
+
+            sql = """select ScoreDetail,FullScore from SCORE where PracticeId='{0}' and StuId='{1}'""".format(
+                self.practiceId, self.stuId)
+            # print(sql)
+            self.stuScore = dict(self.sqlhandler.executeQuerySQL(sql)[0])
+
+            sql = """select ExamDetail from PRACTICE where PracticeId='{0}'""".format(
+                self.practiceId)
+            self.stuExam = dict(self.sqlhandler.executeQuerySQL(sql)[0])
+
+            self.stuScoreExamDetail.update(self.stuScore, self.stuExam)
+        
+            return True
         return False
 
 
 if __name__ == "__main__":
 
     app = tornado.web.Application(
-        handlers=[(r"/", TeaCorrectPracticeRequestHandler)])
+        handlers=[(r"/", TeaLookStuPracticeRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

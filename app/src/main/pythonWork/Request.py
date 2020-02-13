@@ -5,8 +5,8 @@ def request_get():
     try:
         response = requests.get(url="http://localhost:8080",
                                 params={
-                                    "stuId": "李四id",
-                                    "stuClass":"3"
+                                    "teaId": "01"
+                                    # "stuClass":"3"
                                     # "practiceId": "p2"
                                 })
         print("=========RESPONSE.BODY======")

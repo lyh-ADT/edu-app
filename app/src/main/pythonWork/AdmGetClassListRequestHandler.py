@@ -4,20 +4,15 @@ import tornado.httpclient
 import SqlHandler
 
 
-class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
-    def post(self):
+class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
+    def get(self):
         """
-        将老师上传的题目存到数据库
+        从数据库获取班级列表返回给管理员
         """
         try:
             self.sqlhandler = None
-            self.stuId = self.get_body_argument("stuId")
-            self.stuScore = self.get_body_argument("stuScore")
-            self.practiceId = self.get_body_argument("practiceId")
-            self.scoreDetail = self.get_body_argument("scoreDetail")
-
-            if self.pushPractice():
-                self.write("success")
+            if self.getClassList():
+                self.write(self.classList)
                 self.finish()
             else:
                 raise RuntimeError
@@ -29,9 +24,9 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
                 self.sqlhandler.closeMySql()
             tornado.ioloop.IOLoop.current().stop()
 
-    def pushPractice(self):
+    def getClassList(self):
         """
-        将分数成绩存放到数据库
+        从数据库读取班级学生信息
         """
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
@@ -39,19 +34,21 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
             """
-            插入信息
+            查询所有班级
             """
-            sql = """INSERT INTO SCORE(PracticeId,StuId,StuScore,ScoreDetail) VALUES('{0}','{1}','{2}','{3}')""".format(
-                self.practiceId, self.stuId, self.stuScore, self.scoreDetail)
-            if self.sqlhandler.executeOtherSQL(sql):
-                return True
+
+            sql = "select ClassId,CourseName from CLASS"
+
+            self.classList = self.sqlhandler.executeQuerySQL(sql)
+
+            return True
         return False
 
 
 if __name__ == "__main__":
 
     app = tornado.web.Application(
-        handlers=[(r"/", TeaCorrectPracticeRequestHandler)])
+        handlers=[(r"/", AdmGetClassListRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

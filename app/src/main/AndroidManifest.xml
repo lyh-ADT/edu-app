@@ -32,7 +32,7 @@
         <activity android:name=".view.student.person.activityPersonCourse"></activity>
         <activity android:name=".view.student.pracitce.activityLookExam"></activity>
         <activity android:name=".view.student.pracitce.activityDoExam"></activity>
-
+<activity android:name=".view.student.course.activityLivePlay"></activity>
     </application>
 
 </manifest>

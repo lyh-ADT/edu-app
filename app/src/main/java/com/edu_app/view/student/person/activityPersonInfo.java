@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.person.PersonInfoController;
 import com.edu_app.view.student.activityStuFunction;
 
 public class activityPersonInfo extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class activityPersonInfo extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu_person_info);
+        PersonInfoController controller = new PersonInfoController(this);
+        controller.getPersonInfo();
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

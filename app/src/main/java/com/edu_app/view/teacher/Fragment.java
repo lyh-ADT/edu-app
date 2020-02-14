@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.course.CoursePageController;
+import com.edu_app.controller.teacher.practice.JudgeController;
 import com.edu_app.controller.teacher.practice.PracticeInfoController;
+import com.edu_app.controller.teacher.practice.StudentListController;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.controller.teacher.stream.StreamPageController;
 import com.edu_app.model.teacher.TeacherInfo;
@@ -24,7 +26,7 @@ import com.edu_app.model.teacher.TeacherInfo;
  * Use the {@link Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment extends android.app.Fragment {
+public class Fragment extends androidx.fragment.app.Fragment {
     private static final String FRAGMENT_TYPE = "fragment_type";
     private static final String TEACHER_INFO = "teacher_info";
     private static final String CALLBACK = "callback";
@@ -89,6 +91,12 @@ public class Fragment extends android.app.Fragment {
         } else if("question_info".equals(fragmentType)){
             view = inflater.inflate(R.layout.fragment_teacher_question_info, container, false);
             controller = new QuestionInfoController(view, this);
+        } else if("student_practice_info".equals(fragmentType)){
+            view = inflater.inflate(R.layout.fragment_teacher_student_practice_info, container, false);
+            controller = new StudentListController(view, this, teacherInfo);
+        } else if("judge".equals(fragmentType)){
+            view = inflater.inflate(R.layout.fragment_teacher_judge_practice, container, false);
+            controller = new JudgeController(view, this, teacherInfo);
         }
         controller.bindCallback(callback);
         return view;

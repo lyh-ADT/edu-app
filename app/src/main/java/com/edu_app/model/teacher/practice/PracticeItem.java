@@ -7,7 +7,7 @@ import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.Question;
 import com.edu_app.model.teacher.Model;
 import com.edu_app.model.Practice;
-import com.edu_app.model.teacher.addquestion.QuestionItemFactory;
+import com.edu_app.model.teacher.question.QuestionItemFactory;
 
 import java.util.ArrayList;
 import java.util.List;

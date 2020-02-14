@@ -69,4 +69,12 @@ public class QuestionItem implements Model, Serializable {
     public String getQuestionType() {
         return question.getQuestionType();
     }
+
+    public double getScore(){
+        return question.getScore();
+    }
+
+    public void setScore(double score){
+        question.setScore(score);
+    }
 }

@@ -1,19 +1,9 @@
 package com.edu_app.controller.teacher.stream;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.Matrix;
-import android.graphics.Point;
-import android.graphics.RectF;
-import android.hardware.Camera;
 import android.util.Log;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 
-import android.app.Fragment;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -25,6 +15,7 @@ import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.stream.LiveStreamPage;
+import com.edu_app.view.teacher.Fragment;
 
 import cn.nodemedia.NodeCameraView;
 import cn.nodemedia.NodePublisher;

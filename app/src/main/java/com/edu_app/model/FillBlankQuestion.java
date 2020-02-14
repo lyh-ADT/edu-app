@@ -7,7 +7,7 @@ public class FillBlankQuestion extends Question {
     private List<String> answers = new ArrayList<>();
 
     public FillBlankQuestion(){
-        super(0, "fill_blank", null);
+        super(0, Question.QUESTION_TYPE_FILL, null);
     }
 
     public void addBlank(String answer){

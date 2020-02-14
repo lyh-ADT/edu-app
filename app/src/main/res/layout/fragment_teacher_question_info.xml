@@ -32,6 +32,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_question_text"/>
+        <EditText
+            android:id="@+id/score"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:hint="@string/score"/>
         <Button
             android:id="@+id/cancel_btn"
             android:layout_width="wrap_content"

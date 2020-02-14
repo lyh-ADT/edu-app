@@ -9,23 +9,23 @@ CREATE TABLE StuPersonInfo
 	StuPhoneNumber CHAR(11) NOT NULL,
 	StuQQ VARCHAR(11),
 	StuAddress VARCHAR(50),
-	StuClass VARCHAR(30),
-	StuPractice VARCHAR(1024)
+	StuClass VARCHAR(30)
 )
+
 CREATE TABLE TeaPersonInfo
 (
 	TeaId VARCHAR(4) NOT NULL,
 		TeaPassword VARCHAR(100) NOT NULL,
 	TeaName VARCHAR(30) NOT NULL,
-	TeaSex VARCHAR(1) NOT NULL,
-	TeaAge VARCHAR(2) NOT NULL,
+	TeaSex VARCHAR(1),
+	TeaAge VARCHAR(2),
 	TeaBirthday DATE,
-	TeaPhoneNumber CHAR(11) NOT NULL,
+	TeaPhoneNumber CHAR(11),
 	TeaQQ VARCHAR(11),
 	TeaAddress VARCHAR(50),
-	TeaClass VARCHAR(30),
-	TeaPractice VARCHAR(1024)
+	TeaClass VARCHAR(30)
 )
+
 CREATE TABLE CLASS(
 	ClassId VARCHAR(20) NOT NULL,
 	CourseName VARCHAR(50) NOT NULL,
@@ -39,14 +39,19 @@ CREATE TABLE CLASS(
 CREATE TABLE PRACTICE(
 	PracticeId VARCHAR(50) NOT NULL,
 	ExamDetail TEXT NOT NULL,
-	FullScore TINYINT NOT NULL
+	FullScore VARCHAR(3) NOT NULL
 )
 CREATE TABLE SCORE(
 	PracticeId VARCHAR(50) NOT NULL,
 	StuId VARCHAR(20) NOT NULL,
-	StuScore TINYINT NOT NULL,
+	StuScore VARCHAR(3) NOT NULL,
 	ScoreDetail TEXT NOT NULL
 )
+CREATE TABLE AdminAccount(
+ AdminId VARCHAR(30) PRIMARY KEY,
+ AdminPassword VARCHAR(30) NOT NULL
+)
+
 -- 添加约束
 ALTER TABLE StuPersonInfo add Constraint PK_StuPersonInfo_StuId primary key(StuId)
 

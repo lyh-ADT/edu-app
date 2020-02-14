@@ -4,7 +4,7 @@ import tornado.httpclient
 import SqlHandler
 
 
-class TeaStuLoginRequestHandler(tornado.web.RequestHandler):
+class TeaStuLoginRequestHandler():
     def post(self):
         try:
             self.sqlhandler = None

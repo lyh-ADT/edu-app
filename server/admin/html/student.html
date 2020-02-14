@@ -72,7 +72,11 @@
     ];
     var data = null;
     function getTable() {
-      $.get("/admin/studenttable", function (result) {
+      let url = "/admin/studenttable";
+      if(location.search){
+        url = "/admin/classstudenttable?"+location.search;
+      }
+      $.get(url, function (result) {
         if(result == "error"){
           parent.location.assign("/admin-login.html")
           return;

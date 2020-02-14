@@ -87,6 +87,8 @@
           for (let k of tableKeyList) {
             if(editables.indexOf(k) != -1){
               content += "<td class='" + k + "'><input class='form-control' value='" + data[stu][k] + "' readonly></td>";
+            }else if(k == "ClassId"){
+              content += "<td class='" + k + "'><a href='/admin/student.html?classId="+data[stu]["ClassId"]+"' target='_blank'>" + data[stu][k] + "</a></td>";
             }else{
               content += "<td class='" + k + "'>" + data[stu][k] + "</td>";
             }

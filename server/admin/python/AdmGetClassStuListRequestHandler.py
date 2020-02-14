@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import json
 
 
 class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
@@ -15,7 +16,7 @@ class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
             self.classStu = dict()
             self.classId = self.get_argument("classId")
             if self.getClassStuList():
-                self.write(self.classStu)
+                self.write(json.dumps(self.classStu))
                 self.finish()
             else:
                 raise RuntimeError

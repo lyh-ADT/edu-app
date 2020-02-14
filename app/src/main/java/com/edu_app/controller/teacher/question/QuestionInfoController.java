@@ -1,9 +1,6 @@
 package com.edu_app.controller.teacher.question;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,14 +8,16 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.teacher.addquestion.QuestionItemFactory;
+import com.edu_app.model.teacher.question.QuestionItemFactory;
 import com.edu_app.model.teacher.practice.QuestionItem;
+import com.edu_app.view.teacher.Fragment;
 import com.edu_app.view.teacher.QuestionInfoFragment;
 
 import java.util.Arrays;
@@ -82,11 +81,25 @@ public class QuestionInfoController extends Controller {
             }
         });
 
+        final EditText score_et = view.findViewById(R.id.score);
+        score_et.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                String q = ((EditText)v).getText().toString();
+                if(q.length() <= 0){
+                    question.setScore(0);
+                }else{
+                    question.setScore(Double.parseDouble(q));
+                }
+                return false;
+            }
+        });
+
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
         addQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(question.getQuestion() == null || question.getAnswer() == null){
+                if(question.getQuestion() == null || question.getAnswer() == null || question.getScore() == 0){
                     Toast.makeText(view.getContext(), "信息不完整", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -128,11 +141,13 @@ public class QuestionInfoController extends Controller {
         Spinner question_type = view.findViewById(R.id.question_type_sn);
         final EditText question_et = view.findViewById(R.id.input_question_edit);
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
+        final EditText score_et = view.findViewById(R.id.score);
 
         if(editable){
             question_type.setEnabled(true);
             question_et.setEnabled(true);
             addQuestion_btn.setVisibility(View.VISIBLE);
+            score_et.setEnabled(true);
             bindListener();
             return;
         }
@@ -157,10 +172,20 @@ public class QuestionInfoController extends Controller {
             }
         });
 
+        score_et.setText(String.valueOf(question.getScore()));
+        score_et.setEnabled(false);
     }
 
     private void changeToQuestionType() {
         question = QuestionItemFactory.newInstance(questionType, question == null? null : question.getEntity());
+        // 补上设置问题，避免切换题目类型导致问题没有设置到对应的QuestionItem
+        String q = ((TextView)view.findViewById(R.id.input_question_edit)).getText().toString();
+        if(q.length() > 0){
+            question.setQuestion(q);
+        }
+        if(callback.editable()){
+            ((EditText)view.findViewById(R.id.score)).setText(null);
+        }
         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
         transaction.replace(R.id.question_info, QuestionInfoFragment.newInstance(question, callback.editable()));
         transaction.commit();

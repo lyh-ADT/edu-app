@@ -1,4 +1,4 @@
-package com.edu_app.model.teacher.addquestion;
+package com.edu_app.model.teacher.question;
 
 import android.util.Log;
 
@@ -13,11 +13,11 @@ public class QuestionItemFactory {
         if(model == null || !type.equals(model.getQuestionType())){
             model = null;
         }
-        if("select".equals(type)){
+        if(Question.QUESTION_TYPE_CHOICE.equals(type)){
             question = new SelectQuestionItem((SelectQuestion)model);
-        } else if("fill_blank".equals(type)){
+        } else if(Question.QUESTION_TYPE_FILL.equals(type)){
             question = new FillBlankQuestionItem((FillBlankQuestion)model);
-        } else if("short_answer".equals(type)){
+        } else if(Question.QUESTION_TYPE_SHORT_ANSWER.equals(type)){
             question = new QuestionItem(model);
         } else {
             Log.e("QuestionItemFactory", "没有这种类型的问题："+type);

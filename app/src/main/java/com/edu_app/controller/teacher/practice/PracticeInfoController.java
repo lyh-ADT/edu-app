@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.widget.Toast;
 
 import com.edu_app.R;
@@ -38,12 +39,13 @@ import java.io.IOException;
 
 public class PracticeInfoController extends Controller {
     private final int SELECT_PIC = 0;
-    private android.app.Fragment fragment;
+    private Fragment fragment;
     private PracticeItem model;
     private ListAdapter practiceListAdapter;
     private Callback callback;
     private TeacherInfo teacherInfo;
     private boolean editable;
+    private boolean deleteMode = false;
     private Handler handler = new Handler(new Handler.Callback(){
         @Override
         public boolean handleMessage(@NonNull Message msg) {
@@ -56,7 +58,7 @@ public class PracticeInfoController extends Controller {
     });
     private Dialog dialog;
 
-    public PracticeInfoController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+    public PracticeInfoController(Fragment fragment, View view, TeacherInfo teacherInfo){
         super(view, new PracticeItem(null));
         this.fragment = fragment;
         model = (PracticeItem)super.model;
@@ -155,18 +157,15 @@ public class PracticeInfoController extends Controller {
         if(editable){
             deleteQuestion_btn.setVisibility(View.VISIBLE);
             deleteQuestion_btn.setOnClickListener(new View.OnClickListener() {
-                private boolean deleteMode = false;
                 @Override
                 public void onClick(View v) {
                     if(deleteMode){
                         // 切换回详情
                         deleteMode = false;
-                        QuestionController.setDeleteMode(false);
                         deleteQuestion_btn.setText(R.string.delete_question);
                     } else {
                         // 进入删除模式
                         deleteMode = true;
-                        QuestionController.setDeleteMode(true);
                         deleteQuestion_btn.setText(R.string.cancel_text);
                     }
                 }
@@ -306,18 +305,90 @@ public class PracticeInfoController extends Controller {
         public View getView(int position, View convertView, ViewGroup parent) {
             if(position > -1){
                 convertView = inflater.inflate(R.layout.item_question, parent, false);
-                new QuestionController(convertView, model.getQuestionAt(position), fragment).bindCallback(new QuestionController.Callback() {
-                    @Override
-                    public void addQuestion(QuestionItem questionItem) {}
-
-                    @Override
-                    public void deleteQuestion(QuestionItem questionItem) {
-                        model.deleteQuestion(questionItem);
-                        ListAdapter.this.notifyDataSetChanged();
-                    }
-                });
+                new QuestionController(convertView, model.getQuestionAt(position));
             }
             return convertView;
+        }
+    }
+
+    public class QuestionController extends Controller {
+        private QuestionItem model;
+
+        public QuestionController(View view, QuestionItem model){
+            super(view, model);
+            this.view = view;
+            this.model = model;
+            bindListener();
+        }
+
+        @Override
+        protected void bindListener(){
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(deleteMode){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setMessage("删除第"+model.getOrderNumber()+"题")
+                                .setTitle("确认删除")
+                                .setCancelable(true)
+                                .setPositiveButton("取消", null)
+                                .setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        PracticeInfoController.this.model.deleteQuestion(model);
+                                        practiceListAdapter.notifyDataSetChanged();
+                                    }
+                                });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        return;
+                    }
+                    FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                    com.edu_app.view.teacher.Fragment questionFragment = com.edu_app.view.teacher.Fragment.newInstance("question_info", null, new QuestionInfoController.Callback() {
+                        @Override
+                        public void addQuestion(QuestionItem questionItem) {
+                            PracticeInfoController.this.model.addQuestion(questionItem);
+                        }
+
+                        @Override
+                        public void show() {
+                            FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
+                            transaction.show(fragment);
+                            transaction.commit();
+                        }
+
+                        @Override
+                        public boolean editable(){
+                            return false;
+                        }
+
+                        @Override
+                        public QuestionItem getQuestion(){
+                            return model;
+                        }
+                    });
+                    transaction.hide(fragment);
+                    transaction.add(R.id.main_fragment, questionFragment);
+                    transaction.commit();
+                }
+            });
+        }
+
+        @Override
+        protected void setValues(){
+            super.setValues();
+            if(model instanceof PictureQuestionItem){
+                ViewGroup viewGroup = (ViewGroup)view;
+                for(Uri uri : ((PictureQuestionItem) model).getImageUris()){
+                    ImageView iv = new ImageView(view.getContext());
+                    iv.setImageURI(uri);
+                    iv.setAdjustViewBounds(true);
+                    iv.setMaxHeight(100);
+                    iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                    viewGroup.addView(iv);
+                }
+            }
         }
     }
 }

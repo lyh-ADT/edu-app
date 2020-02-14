@@ -1,5 +1,6 @@
 package com.edu_app.controller.teacher.practice;
 
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -12,8 +13,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -38,12 +40,13 @@ public class PageController extends Controller {
         }
     });
 
-    private android.app.Fragment fragment;
+    private Fragment fragment;
     private PracticePage model;
     private PracticeListAdapter practiceListAdapter;
     private TeacherInfo teacherInfo;
+    private boolean deleteMode = false;
 
-    public PageController(android.app.Fragment fragment, View view, TeacherInfo teacherInfo){
+    public PageController(Fragment fragment, View view, TeacherInfo teacherInfo){
         super(view, new PracticePage(teacherInfo));
         this.fragment = fragment;
         this.teacherInfo = teacherInfo;
@@ -98,18 +101,15 @@ public class PageController extends Controller {
         });
         final Button deletePractice_btn = view.findViewById(R.id.delete_practice_btn);
         deletePractice_btn.setOnClickListener(new View.OnClickListener() {
-            private boolean deleteMode = false;
             @Override
             public void onClick(View v) {
                 if(deleteMode){
                     // 切换回详情
                     deleteMode = false;
-                    PracticeItemController.setDeleteMode(false);
                     deletePractice_btn.setText(R.string.delete_practice_text);
                 } else {
                     // 进入删除模式
                     deleteMode = true;
-                    PracticeItemController.setDeleteMode(true);
                     deletePractice_btn.setText(R.string.cancel_text);
                 }
             }
@@ -144,9 +144,99 @@ public class PageController extends Controller {
         public View getView(int position, View convertView, ViewGroup parent) {
             if(position >= -1){
                 convertView = inflater.inflate(R.layout.fragment_teacher_practice_item, parent, false);
-                new PracticeItemController(convertView, model.getPracticeItemAt(position), model, fragment);
+                new ListItemController(convertView, model.getPracticeItemAt(position));
             }
             return convertView;
+        }
+    }
+
+    private class ListItemController extends Controller {
+        private View.OnClickListener clickItemListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(deleteMode){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage("删除"+model.getTitle())
+                            .setTitle("确认删除")
+                            .setCancelable(true)
+                            .setPositiveButton("取消", null)
+                            .setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    PageController.this.model.deletePractice(model);
+                                }
+                            });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                } else {
+                    FragmentManager manager = fragment.getFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.add(R.id.main_fragment, Fragment.newInstance("practice_info", null, new PracticeInfoController.Callback() {
+                        @Override
+                        public PracticeItem getPractice() {
+                            return model;
+                        }
+
+                        @Override
+                        public boolean editable() {
+                            return false;
+                        }
+
+                        @Override
+                        public void show() {
+                            FragmentManager manager = fragment.getFragmentManager();
+                            FragmentTransaction transaction = manager.beginTransaction();
+                            transaction.show(fragment);
+                            transaction.commit();
+                        }
+                    }));
+                    transaction.hide(fragment);
+                    transaction.commit();
+                }
+            }
+        };
+        private final PracticeItem model;
+        private View view;
+
+
+        public ListItemController(View view, PracticeItem model){
+            super(view, model);
+            this.view = view;
+            this.model = model;
+
+            setValues();
+            bindListener();
+        }
+
+        @Override
+        protected void bindListener(){
+            view.setOnClickListener(clickItemListener);
+
+            Button judge_btn = view.findViewById(R.id.judge);
+            judge_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager manager = fragment.getFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.add(R.id.main_fragment, Fragment.newInstance("student_practice_info", teacherInfo, new StudentListController.Callback() {
+                        @Override
+                        public PracticeItem getPracticeItem() {
+                            return model;
+                        }
+
+                        @Override
+                        public void show(){
+                            FragmentManager manager = fragment.getFragmentManager();
+                            FragmentTransaction transaction = manager.beginTransaction();
+                            transaction.show(fragment);
+                            transaction.commit();
+                        }
+                    }));
+                    transaction.hide(fragment);
+                    transaction.commit();
+                }
+            });
         }
     }
 }

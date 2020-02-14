@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.teacher.addquestion.SelectQuestionItem;
+import com.edu_app.model.teacher.question.SelectQuestionItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 
 import java.util.ArrayList;

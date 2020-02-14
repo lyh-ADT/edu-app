@@ -5,18 +5,18 @@ import SqlHandler
 import json
 
 
-class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
+class AdmGetStudentListRequestHandler(tornado.web.RequestHandler):
     def get(self):
         """
-        从数据库获取班级列表返回给管理员
+        从数据库获取学生列表返回给管理员
         """
         try:
             self.sqlhandler = None
             if "UID" not in self.request.cookies.keys():
                 self.write("no uid")
                 return
-            if self.getClassList():
-                self.write(json.dumps(self.classList))
+            if self.getStuList():
+                self.write(json.dumps(self.stuList))
                 self.finish()
             else:
                 raise RuntimeError
@@ -28,9 +28,9 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
 
-    def getClassList(self):
+    def getStuList(self):
         """
-        从数据库读取班级学生信息
+        从数据库读取学生信息
         """
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
@@ -38,12 +38,12 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
             """
-            查询所有班级
+            查询所有学生
             """
 
-            sql = "select ClassId,CourseName from CLASS"
+            sql = "select StuId, stuName, StuSex, StuAge, StuPhoneNumber, StuQQ, StuAddress, StuClass from StuPersonInfo"
 
-            self.classList = self.sqlhandler.executeQuerySQL(sql)
+            self.stuList = self.sqlhandler.executeQuerySQL(sql)
 
             return True
         return False
@@ -52,7 +52,7 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
 if __name__ == "__main__":
 
     app = tornado.web.Application(
-        handlers=[(r"/", AdmGetClassListRequestHandler)])
+        handlers=[(r"/", AdmGetStudentListRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

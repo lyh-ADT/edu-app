@@ -2,21 +2,21 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
-import json
 
 
-class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
+class AdmDeleteStuRequestHandler(tornado.web.RequestHandler):
     def get(self):
         """
-        从数据库获取班级列表返回给管理员
+        从数据库删除学生信息
         """
         try:
             self.sqlhandler = None
-            if "UID" not in self.request.cookies.keys():
-                self.write("no uid")
+            if "UID" not in self.request.cookies:
+                self.write("error")
                 return
-            if self.getClassList():
-                self.write(json.dumps(self.classList))
+            self.stuId = self.get_argument("StuId")
+            if self.deleteStu():
+                self.write("success")
                 self.finish()
             else:
                 raise RuntimeError
@@ -28,31 +28,26 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
 
-    def getClassList(self):
-        """
-        从数据库读取班级学生信息
-        """
+    def deleteStu(self):
+
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
-            """
-            查询所有班级
-            """
 
-            sql = "select ClassId,CourseName from CLASS"
+            sql = "DELETE FROM StuPersonInfo where StuId='{0}'".format(
+                self.stuId)
 
-            self.classList = self.sqlhandler.executeQuerySQL(sql)
-
-            return True
+            if self.sqlhandler.executeOtherSQL(sql):
+                return True
         return False
 
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(
-        handlers=[(r"/", AdmGetClassListRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/",
+                                             AdmDeleteStuRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

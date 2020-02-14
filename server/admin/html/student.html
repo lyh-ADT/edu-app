@@ -108,11 +108,9 @@
       if(!c){
         return;
       }
-      $.post("/admin/deleteclass", {
-        "ClassId": data[index]["ClassId"]
+      $.get("/admin/studenttable", {
+        "StuId": data[index]["StuId"]
       }, function (result) {
-        data = JSON.parse(result);
-        console.log(data)
         location.reload();
       });
     }

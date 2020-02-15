@@ -32,7 +32,7 @@ public class activitySubjectEnglish extends AppCompatActivity {
     private void initView() {
 //        初始化视图
         setContentView(R.layout.activity_stu_practice_subjectenglish);
-        englishrecycler = (RecyclerView) findViewById(R.id.practicePage_practice_english_recycler);
+        englishrecycler = findViewById(R.id.practicePage_practice_english_recycler);
 
 //        初始化数据
         practicelist = (ArrayList<Practice>) getIntent().getSerializableExtra("alldata");
@@ -58,7 +58,7 @@ public class activitySubjectEnglish extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            Intent intent = new Intent();
-//            intent.setClass(activitySubjectEnglish.this, activityFunction.class);
+//            intent.setClass(activitySubjectEnglish.this, activityTeaFunction.class);
 //            startActivity(intent);
             activitySubjectEnglish.this.finish();
 

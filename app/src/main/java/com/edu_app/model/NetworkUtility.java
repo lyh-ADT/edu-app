@@ -76,6 +76,22 @@ public class NetworkUtility {
     }
 
     /**
+     * 向目标链接发起Cookies带UID的POST请求，将返回的json数据转换为cls对应的对象
+     * @param url 链接字符串
+     * @param uid UID
+     * @param cls json数据对应的java对象的类
+     * @param <T> json数据对应的java对象的类型
+     * @return 返回json数据对应的T对象
+     * @throws IOException 网络异常和链接格式错误时抛出
+     *
+     * 这个方法和{@link NetworkUtility#postToJson(String, String, String, Class)}类似，当需要把json转换为List对象的时候使用
+     * @see NetworkUtility#postRequest(String, String, byte[])
+     */
+    static public <T, V> T postToJson(String url, String uid, V data, Type cls) throws IOException {
+        return parseJson(postRequest(url, uid, data), cls);
+    }
+
+    /**
      * 向目标链接发起Cookies带UID的GET请求, 返回响应字符串
      * @param url 目标链接字符串
      * @param uid UID字符串

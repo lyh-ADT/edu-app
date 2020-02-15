@@ -1,13 +1,9 @@
 package com.edu_app.model.login;
 
 import com.edu_app.controller.login.LoginController;
+import com.edu_app.model.NetworkUtility;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class Login {
     private LoginController controller;
@@ -16,65 +12,41 @@ public class Login {
         this.controller = controller;
     }
 
-    public void sendRequest(final String userName, final String password){
+    public void sendRequest(final String userName, final String password, final int flag){
+        final String SERVER_HOST = "http://139.159.176.78:8080/login";// TODO: 修改为服务器地址
         new Thread(){
             @Override
             public void run(){
-                post(userName, password);
+                try {
+                    Response response = NetworkUtility.postToJson(SERVER_HOST, null, new LoginParam(userName, password, flag), Response.class);
+                    if(response.success){
+                        controller.loginSuccess(response.data, flag);
+                    } else {
+                        controller.loginFail(response.data);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    controller.loginFail("网络连接超时");
+                }
             }
         }.start();
     }
 
-    private void post(String userName, String password){
-        final String SERVER_HOST = "http://192.168.123.22:2000/login";// TODO: 修改为服务器地址
-        URL url;
-        try {
-            url = new URL(SERVER_HOST);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return;
+    public static class LoginParam{
+        public static int FLAG_STUDENT = 1;
+        public static int FLAG_TEACHER = 0;
+        private String userId;
+        private String userPassword;
+        private int flag;
+        public LoginParam(String userId, String userPassword, int flag){
+            this.userId = userId;
+            this.userPassword = userPassword;
+            this.flag = flag;
         }
+    }
 
-        try {
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-            String data = "user="+userName+"&password="+password;
-
-            connection.setRequestMethod("POST");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            connection.setUseCaches(false);
-
-            connection.setRequestProperty("Content-Length", String.valueOf(data.length()));
-
-            connection.connect();
-
-            OutputStream outputStream = connection.getOutputStream();
-
-            outputStream.write(data.getBytes());
-
-            outputStream.close();
-
-            InputStream inputStream = connection.getInputStream();
-            StringBuilder responseBuilder = new StringBuilder();
-            byte[] buffer = new byte[1024];
-            int len;
-            while((len = inputStream.read(buffer, 0, buffer.length)) != -1){
-                responseBuilder.append(new String(buffer, 0, len));
-            }
-
-            int responseCode = connection.getResponseCode();
-            String response = responseBuilder.toString();
-            if(responseCode == 200){
-                controller.loginSuccess(response);
-            }else if(responseCode == 201){
-                controller.loginFail(response);
-            }
-
-            connection.disconnect();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            controller.loginFail("网络连接超时");
-        }
+    private class Response{
+        boolean success;
+        String data;
     }
 }

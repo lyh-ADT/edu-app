@@ -32,7 +32,7 @@ public class activitySubjectMath extends AppCompatActivity {
     private void initView() {
 //        初始化视图
         setContentView(R.layout.activity_stu_practice_subjectmath);
-        mathrecycler = (RecyclerView) findViewById(R.id.practicePage_practice_math_recycler);
+        mathrecycler = findViewById(R.id.practicePage_practice_math_recycler);
 
 //        初始化数据
         practicelist = (ArrayList<Practice>) getIntent().getSerializableExtra("alldata");
@@ -58,7 +58,7 @@ public class activitySubjectMath extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            Intent intent = new Intent();
-//            intent.setClass(activitySubjectMath.this, activityFunction.class);
+//            intent.setClass(activitySubjectMath.this, activityTeaFunction.class);
 //            startActivity(intent);
             activitySubjectMath.this.finish();
 

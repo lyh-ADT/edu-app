@@ -34,6 +34,7 @@
         <activity android:name=".view.student.pracitce.activityDoExam"></activity>
 
         <activity android:name=".view.activityMain"/>
+        <activity android:name=".view.teacher.activityTeaFunction"/>
     </application>
 
 </manifest>

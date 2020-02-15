@@ -4,8 +4,10 @@ package com.edu_app.controller;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 import com.edu_app.view.student.activityStuFunction;
+import com.edu_app.view.teacher.activityTeaFunction;
 
 import java.io.File;
 /**
@@ -15,17 +17,15 @@ import java.io.File;
 public class MainController {
     private Context context;
     public String uid;
+    public String accountType = "student";
     public MainController(Context context){
         this.context=context;
+        uidIsValid();
     }
     //  判断本地是否有这个文件
     public Boolean existUidFile(){
         File file = new File("uid");
-        if (file.exists()) {
-            return true;
-        } else {
-            return false;
-        }
+        return file.exists();
     }
     //  判断uid是否有效
     public boolean uidIsValid(){
@@ -33,9 +33,11 @@ public class MainController {
 //                 如果存在则从服务器判断是否过期,过期返回false，否则保存uid并返回true
 //                 如果不存在则返回false
 //        注：保存uid
-//              SharedPreferences pref = context.getSharedPreferences("uid",context.MODE_PRIVATE);
-//              String uid = pref.getString("uid","");
-//              this.uid=uid;
+        SharedPreferences pref = context.getSharedPreferences("uid", Context.MODE_PRIVATE);
+        String uid = pref.getString("uid","");
+        String accountType = pref.getString("accountType", "student");
+        this.accountType = accountType;
+        this.uid=uid;
         return true;
     }
     public void jumpToRightActivity() {
@@ -44,7 +46,12 @@ public class MainController {
 //                          学生：启动activityStuFunction
 //              uid无效，启动登录活动LoginActivity
         Intent intent = new Intent();
-        intent.setClass(this.context, activityStuFunction.class);
+        if("student".equals(accountType)){
+            intent.setClass(this.context, activityStuFunction.class);
+        } else {
+            intent.setClass(this.context, activityTeaFunction.class);
+        }
+
         context.startActivity(intent);
         ((Activity)context).finish();
     }

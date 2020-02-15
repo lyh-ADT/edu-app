@@ -35,6 +35,7 @@
 <activity android:name=".view.student.course.activityLivePlay"></activity>
 
         <activity android:name=".view.activityMain"/>
+        <activity android:name=".view.teacher.activityTeaFunction"/>
     </application>
 
 </manifest>

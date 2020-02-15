@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title>管理系统</title>
+  <style>
+    input:read-only{
+      background-color: white!important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d-flex justify-content-end">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addClass">添加班级</button>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">班级Id</th>
+        <th scope="col">课程名称</th>
+        <th scope="col">教师</th>
+        <th scope="col">练习</th>
+        <th scope="col">学生</th>
+        <th scope="col">学生数量</th>
+        <th scope="col"> </th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+  </table>
+
+
+  <script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const tableKeyList = [
+      "ClassId",
+      "CourseName",
+      "Teacher",
+      "Practice",
+      "Student",
+      "StuNumber",
+    ];
+    const tableTextList = [
+      "班级Id",
+      "课程名称",
+      "教师",
+      "练习",
+      "学生",
+      "学生数量",
+    ];
+    const editables = [
+      "CourseName",
+      "Teacher",
+      "Practice",
+      "Student",
+      "StuNumber"
+    ];
+    var data = null;
+    function getTable() {
+      $.get("/admin/classtable", function (result) {
+        if(result == "error"){
+          parent.location.assign("/admin-login.html")
+          return;
+        }
+        data = JSON.parse(result);
+        console.log(data)
+        let tbody = $("#tableBody");
+        for (let stu in data) {
+          let content = "<tr index='"+stu+"'>";
+          for (let k of tableKeyList) {
+            if(editables.indexOf(k) != -1){
+              content += "<td class='" + k + "'><input class='form-control' value='" + data[stu][k] + "' readonly></td>";
+            }else if(k == "ClassId"){
+              content += "<td class='" + k + "'><a href='/admin/student.html?classId="+data[stu]["ClassId"]+"' target='_blank'>" + data[stu][k] + "</a></td>";
+            }else{
+              content += "<td class='" + k + "'>" + data[stu][k] + "</td>";
+            }
+          }
+          content += `<td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-primary" index="`+ stu + `" onclick="modifyClass(this);">修改</button>
+              <button type="button" class="btn btn-danger" index="`+ stu + `" onclick="deleteClass(this);">删除班级</button>
+            </div>
+            </td>`;
+          content += "</tr>";
+
+          tbody.append(content);
+        }
+      });
+    }
+    getTable();
+
+    
+    function modifyClass(element) {
+      element = $(element);
+      let index = parseInt(element.attr("index"));
+      $("tr[index="+index+"] input").attr("readonly", false);
+      element.removeClass("btn-primary");
+      element.addClass("btn-success")
+      element.text("提交");
+      element.attr("onclick", "commitModifyClass(this);");
+    }
+    function commitModifyClass(element) {
+      element = $(element);
+      let index = parseInt(element.attr("index"));
+      // 保存修改
+      $("tr[index="+index+"] input").attr("readonly", true).each(function(i, elem){
+        data[index][editables[i]] = $(elem).val();
+      });
+
+      element.removeClass("btn-success");
+      element.addClass("btn-primary")
+      element.text("修改");
+      element.attr("onclick", "modifyClass(this);");
+      console.log(data[index])
+
+      let c = confirm("确认提交修改？");
+      if(!c){
+        modifyClass(element);
+        return;
+      }
+      $.post("/admin/modifyclass", {
+        "classId":data[index]["ClassId"],
+        "courseName":data[index]["CourseName"],
+        "teacher":data[index]["Teacher"],
+        "classStuNumber":data[index]["StuNumber"]
+        }, function (result) {
+        data = JSON.parse(result);
+        console.log(data)
+      });
+    }
+
+    function deleteClass(element) {
+      let index = parseInt($(element).attr("index"));
+      let c = confirm("确认删除\n" + data[index]["ClassId"] + "-" + data[index]["CourseName"] + "-" + data[index]["Teacher"]);
+      if(!c){
+        return;
+      }
+      $.post("/admin/deleteclass", {
+        "ClassId": data[index]["ClassId"],
+        "courseName":data[index]["CourseName"],
+        "teacher": data[index]["Teacher"],
+        "classStuNumber":data[index]["StuNumber"]
+      }, function (result) {
+        if(result == "success")
+            location.reload();
+      });
+    }
+
+  </script>
+
+  <!-- 添加班级的对话框 -->
+  <div class="modal fade" id="addClass" tabindex="-1" role="dialog" aria-labelledby="titleAddClass" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="titleAddClass">添加班级</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="className">班级名称</label>
+              <input class="form-control" type="text" id="className" data-container="#addClass" data-toggle="popover"
+                data-placement="top" data-content="信息不完整">
+              <label for="teahcerId">教师Id</label>
+              <input class="form-control" type="text" id="teacherId" data-container="#addClass" data-toggle="popover"
+                data-placement="top" data-content="信息不完整">
+              <label for="stuCount">学生数量</label>
+              <input class="form-control" type="number" id="stuCount" data-container="#addClass" data-toggle="popover"
+                data-placement="top" data-content="大于0的整数">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="addClass();">添加</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function disablePopover(element) {
+      setTimeout(function () {
+        element.popover('hide')
+        element.popover('disable')
+      }, 1500);
+    }
+    function addClass() {
+      let className = $("#className");
+      let teacherId = $("#teacherId");
+      let stuCount = $("#stuCount");
+      let title = $("titleAddClass");
+
+      let className_text = className.val();
+      let teacherId_text = teacherId.val();
+      let stuCount_text = parseInt(stuCount.val());
+
+      if (className_text.length <= 0) {
+        className.popover("enable");
+        className.popover("show");
+        disablePopover(className);
+        return;
+      }
+      if (teacherId_text.length <= 0) {
+        teacherId.popover("enable");
+        teacherId.popover("show");
+        disablePopover(teacherId);
+        return;
+      }
+      if (isNaN(stuCount_text) || stuCount_text <= 0) {
+        stuCount.popover("enable");
+        stuCount.popover("show");
+        disablePopover(stuCount);
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "addclass",
+        data: {
+          "courseName": className_text,
+          "teacherId": teacherId_text,
+          "stuCount": stuCount_text
+        },
+        success: function (result) {
+          title.attr("data-content", "班级添加成功");
+          title.popover("show");
+          disablePopover(title);
+          $("addClass").modal("hide");
+        },
+        error: function () {
+
+        }
+      });
+    }
+  </script>
+
+
+
+</body>
+
+</html>

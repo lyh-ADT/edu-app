@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.login.LoginActivity"></activity>
+        <activity android:name=".view.login.LoginActivity" android:exported="true"></activity>
         <activity android:name=".view.student.activityStuFunction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN">
@@ -34,7 +34,8 @@
         <activity android:name=".view.student.pracitce.activityDoExam"></activity>
 <activity android:name=".view.student.course.activityLivePlay"></activity>
 
-        <activity android:name=".view.TestActivity" android:exported="true"/>
+        <activity android:name=".view.activityMain"/>
+        <activity android:name=".view.teacher.activityTeaFunction"/>
     </application>
 
 </manifest>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>管理员登录</title>
+
+    <script>
+        function disablePopover(element) {
+            setTimeout(function () {
+                element.popover('hide')
+                element.popover('disable')
+            }, 1500);
+        }
+        function login() {
+            let userId = $("#userId");
+            let password = $("#password");
+
+            let userId_text = userId.val();
+            let password_text = password.val();
+            console.log(userId_text.length)
+            if (userId_text.length == 0) {
+                userId.popover('enable')
+                userId.popover("show");
+                disablePopover(userId);
+                return;
+            }
+            if (password_text.length == 0) {
+                password.popover('enable')
+                password.popover("show");
+                disablePopover(password);
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "admin_login",
+                data: {
+                    "userId": userId_text,
+                    "password": password_text
+                },
+                success: function (result) {
+                    location.assign("admin.html")
+                },
+                error: function () {
+
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container shadow p-3 mb-5 bg-white rounded" style="max-width: 500px;">
+        <form class="" style="margin: 30px;" onsubmit="return false;">
+            <div class="form-group">
+                <label for="userId">账号</label>
+                <input type="text" class="form-control" id="userId" data-container="body" data-toggle="popover"
+                    data-placement="top" data-content="账号为空" data-triger="manual">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" class="form-control" id="password" data-container="body" data-toggle="popover"
+                    data-placement="top" data-content="密码为空">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="login();">登录</button>
+        </form>
+    </div>
+
+
+    <script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

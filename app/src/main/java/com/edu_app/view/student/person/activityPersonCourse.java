@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.person.PersonCourseController;
 import com.edu_app.view.student.activityStuFunction;
 
 
@@ -17,6 +18,9 @@ public class activityPersonCourse extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu_person_course);
+        PersonCourseController controller = new PersonCourseController(this);
+        controller.setOnClick();
+
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -10,6 +10,7 @@ from AdmModifyClassRequestHandler import AdmModifyClassRequestHandler
 from AdmGetStudentListRequestHandler import AdmGetStudentListRequestHandler
 from AdmDeleteStuRequestHandler import AdmDeleteStuRequestHandler
 from AdmGetClassStuListRequestHandler import AdmGetClassStuListRequestHandler
+from AdmDeleteClassStuRequestHandler import AdmDeleteClassStuRequestHandler
 
 app = tornado.web.Application(handlers=[
     (r"/admin/login", AdmLoginRequestHandler),
@@ -22,8 +23,9 @@ app = tornado.web.Application(handlers=[
     (r"/admin/addteacher", AdmAddTeaRequestHandler),
     (r"/admin/deleteteacher", AdmDeleteTeaRequestHandler),
     (r"/admin/studenttable", AdmGetStudentListRequestHandler),
-    (r"/admin/deletestudent", AdmDeleteStuRequestHandler)
+    (r"/admin/deletestudent", AdmDeleteStuRequestHandler),
+    (r"/admin/kickstudent", AdmDeleteClassStuRequestHandler),
 ])
 http_server = tornado.httpserver.HTTPServer(app)
-http_server.listen(6123)
+http_server.listen(7000)
 tornado.ioloop.IOLoop.current().start()

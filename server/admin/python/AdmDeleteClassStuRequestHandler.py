@@ -2,16 +2,24 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import utils
 
 
 class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
     def get(self):
         """
-        从数据库删除班级信息
+        从数据库删除班级学生信息
 
         """
         try:
             self.sqlhandler = None
+            if "UID" not in self.request.cookies.keys():
+                self.write("no uid")
+                return
+
+            if not utils.isUIDValid(self):
+                self.write("no uid")
+                return
             self.classId = self.get_argument("classId")
             self.stuId = self.get_argument("stuId")
             if self.deleteClassStu():

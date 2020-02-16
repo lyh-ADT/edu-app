@@ -3,6 +3,7 @@ import tornado.web
 import tornado.httpclient
 import SqlHandler
 import json
+import utils
 
 
 class AdmGetStudentListRequestHandler(tornado.web.RequestHandler):
@@ -15,8 +16,12 @@ class AdmGetStudentListRequestHandler(tornado.web.RequestHandler):
             if "UID" not in self.request.cookies.keys():
                 self.write("no uid")
                 return
+
+            if not utils.isUIDValid(self):
+                self.write("no uid")
+                return
             if self.getStuList():
-                self.write(json.dumps(self.stuList))
+                self.write(json.dumps(self.stuList if self.stuList is not None else {"length":0}))
                 self.finish()
             else:
                 raise RuntimeError

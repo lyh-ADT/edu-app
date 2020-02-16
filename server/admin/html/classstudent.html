@@ -83,6 +83,7 @@
         
         console.log(data)
         let tbody = $("#tableBody");
+        tbody.empty();
         if(data.length == 0){
           tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
           return;
@@ -115,11 +116,15 @@
       if(!c){
         return;
       }
-      $.get("/admin/studenttable", {
+      $.get("/admin/kickstudent", {
         "classId":classId,
         "stuId": data[index]["StuId"]
       }, function (result) {
-        location.reload();
+        if(result == "success"){
+          getTable();
+        }else{
+          alert("踢除失败");
+        }
       });
     }
   </script>

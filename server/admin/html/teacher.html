@@ -77,6 +77,7 @@
         data = JSON.parse(result);
         console.log(data)
         let tbody = $("#tableBody");
+        tbody.empty();
         if(data.length == 0){
           tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
           return;
@@ -133,8 +134,12 @@
         return;
       }
       $.post("/admin/modifyteacher", data[index], function (result) {
-        data = JSON.parse(result);
-        console.log(data)
+        if(result == "success"){
+          getTable();
+        }else{
+          alert("修改失败");
+          modifyTeacher(element);
+        }
       });
     }
 
@@ -147,9 +152,11 @@
       $.get("/admin/deleteteacher", {
         "teaId": data[index]["TeaId"]
       }, function (result) {
-        data = JSON.parse(result);
-        console.log(data)
-        location.reload();
+        if(result == "success"){
+          getTable();
+        }else{
+          alert("删除失败");
+        }
       });
     }
 
@@ -229,17 +236,15 @@
         url: "/admin/addteacher",
         data: {
           "teaId": teacherId_text,
-          "teaName": teacherName,
+          "teaName": teacherName_text,
           "teaPassword": teacherPassword_text
         },
         success: function (result) {
-          title.attr("data-content", "教师添加成功");
-          title.popover("show");
-          disablePopover(title);
-          $("addClass").modal("hide");
+          $("#addTeacher").modal("hide");
+          getTable();
         },
         error: function () {
-
+          alert("添加失败")
         }
       });
     }

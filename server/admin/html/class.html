@@ -79,6 +79,7 @@
         data = JSON.parse(result);
         console.log(data)
         let tbody = $("#tableBody");
+        tbody.empty();
         if(data.length == 0){
           tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
           return;
@@ -143,8 +144,12 @@
         "teacher":data[index]["Teacher"],
         "classStuNumber":data[index]["StuNumber"]
         }, function (result) {
-        data = JSON.parse(result);
-        console.log(data)
+          if(result == "success"){
+            getTable();
+          }else{
+            alert("修改失败");
+            modifyClass(element);
+          }
       });
     }
 
@@ -160,8 +165,11 @@
         "teacher": data[index]["Teacher"],
         "classStuNumber":data[index]["StuNumber"]
       }, function (result) {
-        if(result == "success")
-            location.reload();
+        if(result == "success"){
+            getTable();
+        }else{
+            alert("删除失败");
+        }
       });
     }
 
@@ -244,13 +252,11 @@
           "stuCount": stuCount_text
         },
         success: function (result) {
-          title.attr("data-content", "班级添加成功");
-          title.popover("show");
-          disablePopover(title);
-          $("addClass").modal("hide");
+          $("#addClass").modal("hide");
+          getTable();
         },
         error: function () {
-
+          alert("添加失败");
         }
       });
     }

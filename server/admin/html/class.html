@@ -89,7 +89,7 @@
             if(editables.indexOf(k) != -1){
               content += "<td class='" + k + "'><input class='form-control' value='" + data[stu][k] + "' readonly></td>";
             }else if(k == "ClassId"){
-              content += "<td class='" + k + "'><a href='student.html?classId="+data[stu]["ClassId"]+"' target='_blank'>" + data[stu][k] + "</a></td>";
+              content += "<td class='" + k + "'><a href='classstudent.html?classId="+data[stu]["ClassId"]+"' target='_blank'>" + data[stu][k] + "</a></td>";
             }else{
               content += "<td class='" + k + "'>" + data[stu][k] + "</td>";
             }

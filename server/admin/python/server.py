@@ -25,5 +25,5 @@ app = tornado.web.Application(handlers=[
     (r"/admin/deletestudent", AdmDeleteStuRequestHandler)
 ])
 http_server = tornado.httpserver.HTTPServer(app)
-http_server.listen(6123)
+http_server.listen(7000)
 tornado.ioloop.IOLoop.current().start()

@@ -3,7 +3,7 @@ import tornado.web
 import tornado.httpclient
 import SqlHandler
 import uuid
-
+import utils
 
 class AdmAddClassRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -14,6 +14,10 @@ class AdmAddClassRequestHandler(tornado.web.RequestHandler):
             self.sqlhandler = None
             if "UID" not in self.request.cookies:
                 self.write("error")
+                return
+
+            if not utils.isUIDValid(self):
+                self.write("no uid")
                 return
             self.courseName = self.get_argument("courseName")
             self.teacher = self.get_argument("teacher")

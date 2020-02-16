@@ -3,7 +3,7 @@ import tornado.web
 import tornado.httpclient
 import SqlHandler
 import json
-
+import utils
 
 class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
     def get(self):
@@ -14,6 +14,10 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
             self.sqlhandler = None
             if "UID" not in self.request.cookies:
                 self.write("error")
+                return
+
+            if not utils.isUIDValid(self):
+                self.write("no uid")
                 return
             if self.getTeaList():
                 self.write(json.dumps(self.teaList))

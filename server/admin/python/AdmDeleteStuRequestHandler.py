@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import utils
 
 
 class AdmDeleteStuRequestHandler(tornado.web.RequestHandler):
@@ -13,6 +14,10 @@ class AdmDeleteStuRequestHandler(tornado.web.RequestHandler):
             self.sqlhandler = None
             if "UID" not in self.request.cookies:
                 self.write("error")
+                return
+
+            if not utils.isUIDValid(self):
+                self.write("no uid")
                 return
             self.stuId = self.get_argument("StuId")
             if self.deleteStu():

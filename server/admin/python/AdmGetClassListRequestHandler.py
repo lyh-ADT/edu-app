@@ -3,6 +3,7 @@ import tornado.web
 import tornado.httpclient
 import SqlHandler
 import json
+import utils
 
 
 class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
@@ -13,6 +14,10 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
         try:
             self.sqlhandler = None
             if "UID" not in self.request.cookies.keys():
+                self.write("no uid")
+                return
+
+            if not utils.isUIDValid(self):
                 self.write("no uid")
                 return
             if self.getClassList():

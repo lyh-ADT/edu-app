@@ -38,7 +38,7 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
 
-            sql = "select TeaId,TeaName from TeaPersonInfo"
+            sql = "select TeaId,TeaName,TeaSex,TeaPhoneNumber,TeaClass from TeaPersonInfo"
 
             self.teaList = self.sqlhandler.executeQuerySQL(sql)
 

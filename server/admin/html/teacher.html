@@ -27,11 +27,7 @@
         <th scope="col">教师账号</th>
         <th scope="col">姓名</th>
         <th scope="col">性别</th>
-        <th scope="col">年龄</th>
-        <th scope="col">生日</th>
         <th scope="col">电话号码</th>
-        <th scope="col">QQ</th>
-        <th scope="col">地址</th>
         <th scope="col">班级</th>
         <th scope="col"></th>
       </tr>
@@ -55,32 +51,20 @@
       "TeaId",
       "TeaName",
       "TeaSex",
-      "TeaAge",
-      "TeaBirthday",
       "TeaPhoneNumber",
-      "TeaQQ",
-      "TeaAddress",
       "TeaClass",
     ];
     const tableTextList = [
       "教师账号",
       "姓名",
       "性别",
-      "年龄",
-      "生日",
       "电话号码",
-      "QQ",
-      "地址",
       "班级"
     ];
     const editables = [
       "TeaName",
       "TeaSex",
-      "TeaAge",
-      "TeaBirthday",
       "TeaPhoneNumber",
-      "TeaQQ",
-      "TeaAddress",
       "TeaClass"
     ];
     var data = null;
@@ -105,7 +89,7 @@
           content += `<td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <button type="button" class="btn btn-primary" index="`+ stu + `" onclick="modifyTeacher(this);">修改</button>
-              <button type="button" class="btn btn-danger" index="`+ stu + `" onclick="deleteTeacher(this);">删除班级</button>
+              <button type="button" class="btn btn-danger" index="`+ stu + `" onclick="deleteTeacher(this);">删除教师</button>
             </div>
             </td>`;
           content += "</tr>";

@@ -71,7 +71,7 @@
     function getTable() {
       let url = "/admin/studenttable";
       if(location.search){
-        url = "/admin/classstudenttable?"+location.search;
+        url = "/admin/classstudenttable"+location.search;
       }
       $.get(url, function (result) {
         if(result == "error"){
@@ -79,8 +79,13 @@
           return;
         }
         data = JSON.parse(result);
+        
         console.log(data)
         let tbody = $("#tableBody");
+        if(data.length == 0){
+          tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
+          return;
+        }
         for (let stu in data) {
           let content = "<tr index='" + stu + "'>";
           for (let k of tableKeyList) {

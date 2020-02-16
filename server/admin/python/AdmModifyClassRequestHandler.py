@@ -55,7 +55,7 @@ class AdmModifyClassRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(handlers=[(r"/", AdmAddClassRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/", AdmModifyClassRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

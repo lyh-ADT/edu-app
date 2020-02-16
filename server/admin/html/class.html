@@ -79,13 +79,17 @@
         data = JSON.parse(result);
         console.log(data)
         let tbody = $("#tableBody");
+        if(data.length == 0){
+          tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
+          return;
+        }
         for (let stu in data) {
           let content = "<tr index='"+stu+"'>";
           for (let k of tableKeyList) {
             if(editables.indexOf(k) != -1){
               content += "<td class='" + k + "'><input class='form-control' value='" + data[stu][k] + "' readonly></td>";
             }else if(k == "ClassId"){
-              content += "<td class='" + k + "'><a href='/admin/student.html?classId="+data[stu]["ClassId"]+"' target='_blank'>" + data[stu][k] + "</a></td>";
+              content += "<td class='" + k + "'><a href='student.html?classId="+data[stu]["ClassId"]+"' target='_blank'>" + data[stu][k] + "</a></td>";
             }else{
               content += "<td class='" + k + "'>" + data[stu][k] + "</td>";
             }

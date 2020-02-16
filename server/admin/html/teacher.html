@@ -77,6 +77,10 @@
         data = JSON.parse(result);
         console.log(data)
         let tbody = $("#tableBody");
+        if(data.length == 0){
+          tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
+          return;
+        }
         for (let stu in data) {
           let content = "<tr index='" + stu + "'>";
           for (let k of tableKeyList) {

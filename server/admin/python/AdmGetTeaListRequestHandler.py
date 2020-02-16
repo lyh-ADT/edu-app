@@ -20,7 +20,7 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
                 self.write("no uid")
                 return
             if self.getTeaList():
-                self.write(json.dumps(self.teaList))
+                self.write(json.dumps(self.teaList if self.teaList is not None else {"length":0}))
                 self.finish()
             else:
                 raise RuntimeError

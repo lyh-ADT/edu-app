@@ -27,13 +27,13 @@ class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
+        except Exception as e:
+            print(e.args)
             self.write("error")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
     def getClassStuList(self):
         """
@@ -48,16 +48,17 @@ class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
             查询该用户的信息 id+名字
             """
 
-            sql = "select student from CLASS where ClassId='{0}'".format(
+            sql = "select Student from CLASS where ClassId='{0}'".format(
                 self.classId)
 
-            stuIdList = str(
-                self.sqlhandler.executeQuerySQL(sql)[0]["Student"]).split(",")
-
-            for stuId in stuIdList:
-                sql = "select StuName from StuPersonInfo where StuId='" + stuId + "'"
-                stuName = self.sqlhandler.executeQuerySQL(sql)[0]["StuName"]
-                self.classStu.update({stuId: stuName})
+            stuIdList = self.sqlhandler.executeQuerySQL(sql)[0]["Student"]
+            if stuIdList is None:
+                self.classStu = {"length":0}
+                return True
+            
+            sql = "select StuName from StuPersonInfo where StuId in (" + stuIdList + ");"
+            print(sql)
+            self.classStu = self.sqlhandler.executeQuerySQL(sql)
 
             return True
         return False

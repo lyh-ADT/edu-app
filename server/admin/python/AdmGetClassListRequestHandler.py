@@ -21,7 +21,7 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
                 self.write("no uid")
                 return
             if self.getClassList():
-                self.write(json.dumps(self.classList))
+                self.write(json.dumps(self.classList if self.classList is not None else {"length":0}))
                 self.finish()
             else:
                 raise RuntimeError

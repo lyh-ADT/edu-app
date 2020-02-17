@@ -66,11 +66,12 @@ class TeaStuLoginRequestHandler(tornado.web.RequestHandler):
         if self.sqlhandler.getConnection():
             if (self.flag == 0):
 
-                sql = "update TeaPersonInfo set UID='{0}' where TeaId='{1}'".format(
+                sql = "update TeaPersonInfo set TeaUid='{0}' where TeaId='{1}'".format(
                     self.uid, self.userId)
             elif (self.flag == 1):
-                sql = "update StuPersonInfo set UID='{0}' where TeaId='{1}'".format(
+                sql = "update StuPersonInfo set StuUid='{0}' where StuId='{1}'".format(
                     self.uid, self.userId)
+            self.sqlhandler.executeOtherSQL(sql)
 
 
 if __name__ == "__main__":

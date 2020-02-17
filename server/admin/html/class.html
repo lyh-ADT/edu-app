@@ -155,10 +155,7 @@
         return;
       }
       $.post("/admin/deleteclass", {
-        "ClassId": data[index]["ClassId"],
-        "courseName":data[index]["CourseName"],
-        "teacher": data[index]["Teacher"],
-        "classStuNumber":data[index]["StuNumber"]
+        "classId": data[index]["ClassId"]
       }, function (result) {
         if(result == "success"){
             getTable();

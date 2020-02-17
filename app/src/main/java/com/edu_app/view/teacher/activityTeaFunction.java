@@ -17,7 +17,7 @@ import com.edu_app.view.student.pracitce.fragmentPractice;
 
 
 public class activityTeaFunction extends AppCompatActivity implements View.OnClickListener {
-    private Bundle uidbundle;
+    private TeacherInfo teacherInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class activityTeaFunction extends AppCompatActivity implements View.OnCli
 //            Intent intent = new Intent(activityTeaFunction.this, LoginActivity.class);
 //            startActivity(intent);
 //        }
+        teacherInfo = new TeacherInfo(this);
     }
 
     @Override
@@ -50,11 +51,11 @@ public class activityTeaFunction extends AppCompatActivity implements View.OnCli
 
         switch (v.getId()) {
             case R.id.bar_imgPractice:
-                f = com.edu_app.view.teacher.Fragment.newInstance("practice", new TeacherInfo());
+                f = com.edu_app.view.teacher.Fragment.newInstance("practice", teacherInfo);
                 break;
 
             case R.id.bar_imgCourse:
-                f = com.edu_app.view.teacher.Fragment.newInstance("course", new TeacherInfo());
+                f = com.edu_app.view.teacher.Fragment.newInstance("course", teacherInfo);
                 break;
 
             case R.id.bar_imgPersonInfo:

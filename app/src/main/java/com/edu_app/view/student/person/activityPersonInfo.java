@@ -18,13 +18,13 @@ public class activityPersonInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu_person_info);
         PersonInfoController controller = new PersonInfoController(this);
-        controller.getPersonInfo();
 
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
             Intent intent = new Intent();
+            intent.putExtras(this.getIntent().getExtras());
             intent.setClass(activityPersonInfo.this, activityStuFunction.class);
             startActivity(intent);
             activityPersonInfo.this.finish();

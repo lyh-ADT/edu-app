@@ -240,13 +240,17 @@
 
       $.ajax({
         type: "POST",
-        url: "addclass",
+        url: "/admin/addclass",
         data: {
           "courseName": className_text,
           "teacherId": teacherId_text,
           "stuCount": stuCount_text
         },
         success: function (result) {
+          if(result == "error"){
+            alert("添加失败");
+            return;
+          }
           $("#addClass").modal("hide");
           getTable();
         },

@@ -20,15 +20,16 @@ class AdmAddClassRequestHandler(tornado.web.RequestHandler):
                 self.write("no uid")
                 return
             self.courseName = self.get_argument("courseName")
-            self.teacher = self.get_argument("teacher")
-            self.classStuNumber = self.get_argument("classStuNumber")
+            self.teacher = self.get_argument("teacherId")
+            self.classStuNumber = self.get_argument("stuCount")
             if self.setClass():
                 
                 self.write("success")
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
+        except Exception as e:
+            print(e)
             self.write("error")
             self.finish()
         finally:

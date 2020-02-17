@@ -19,7 +19,7 @@ public class Question implements Serializable {
     private String questionType;
     private String question;
     private String answer;
-    private double score;
+    private int score;
 
     public Question() {}
 
@@ -75,11 +75,11 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 }

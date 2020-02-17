@@ -89,7 +89,11 @@ public class QuestionInfoController extends Controller {
                 if(q.length() <= 0){
                     question.setScore(0);
                 }else{
-                    question.setScore(Double.parseDouble(q));
+                    try{
+                        question.setScore(Integer.parseInt(q));
+                    }catch (NumberFormatException e){
+                        Toast.makeText(v.getContext(), "请输入一个正整数", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return false;
             }

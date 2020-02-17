@@ -2,6 +2,9 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import utils
+import json
+
 
 
 class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
@@ -11,22 +14,38 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
         """
         try:
             self.sqlhandler = None
-            self.practiceId = self.get_body_argument("PracticeId")
-            self.fullScore = self.get_body_argument("FullScore")
-            self.examDetail = self.get_body_argument("ExamDetail")
-            print(self.practiceId)
+            self.args = {}
+            if not utils.isUIDValid(self):
+                self.write("need login")
+                return
+
+            utils.parseJsonRequestBody(self)
+            self.practiceId = self.args["title"]
+            self.fullScore = self.args["fullScore"]
+            questions = self.args["questions"]
+            self.examDetail = []
+            self.answers = []
+            for i in questions:
+                self.answers.append({
+                    "order":i["orderNumber"],
+                    "answer":i.pop("answer")
+                })
+                self.examDetail.append(i)
+            self.examDetail = json.dumps(self.examDetail)
+            self.answers = json.dumps(self.answers)
+
             if self.pushPractice():
                 self.write("success")
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
-            self.write("error")
+        except Exception as e:
+            print(e)
+            self.write("请检查练习标题是否重复")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
     def pushPractice(self):
         """
@@ -40,8 +59,9 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
             """
             插入信息
             """
-            sql = """INSERT INTO PRACTICE(PracticeId,ExamDetail,FullScore) VALUES('{0}','{1}','{2}')""".format(
-                self.practiceId, self.examDetail, self.fullScore)
+            sql = """INSERT INTO PRACTICE(PracticeId,ExamDetail,FullScore, TeaAnswer) VALUES('{0}','{1}','{2}', '{3}')""".format(
+                self.practiceId, self.examDetail, self.fullScore, self.answers)
+            print(sql)
             if self.sqlhandler.executeOtherSQL(sql):
                 return True
         return False

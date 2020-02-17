@@ -4,16 +4,21 @@ import androidx.core.util.Pair;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
+import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.Question;
 import com.edu_app.model.teacher.Model;
 import com.edu_app.model.Practice;
+import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.question.QuestionItemFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PracticeItem implements Model {
     private Practice practice;
+    private final static int FULL_SCORE = 999;
+    private int fullScore = 0;
 
     public PracticeItem(Practice practice){
         if(practice == null){
@@ -34,12 +39,42 @@ public class PracticeItem implements Model {
 
     }
 
+    public interface UploadCallback {
+        void success();
+        void fail(String reason);
+    }
+
+    public void uploadPractice(final TeacherInfo teacherInfo, final UploadCallback callback){
+        new Thread(){
+            @Override
+            public void run(){
+                calcFullScore();
+                String response = null;
+                try {
+                    response = NetworkUtility.postRequest(teacherInfo.getHost()+"/add_practice", teacherInfo.getUID(), practice);
+                    if("success".equals(response)){
+                        callback.success();
+                    } else {
+                        callback.fail(response);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    callback.fail("网络异常, 添加失败");
+                }
+            }
+        }.start();
+    }
+
     public int getQuestionCount(){
         return practice.getQuestions().size();
     }
 
-    public void addQuestion(QuestionItem questionItem){
+    public boolean addQuestion(QuestionItem questionItem){
+        if(fullScore + questionItem.getScore() > FULL_SCORE){
+            return false;
+        }
         practice.getQuestions().add(questionItem.getEntity());
+        return true;
     }
 
     public QuestionItem getQuestionAt(int pos){
@@ -48,6 +83,7 @@ public class PracticeItem implements Model {
     }
 
     public void deleteQuestion(QuestionItem questionItem){
+        fullScore -= questionItem.getScore();
         practice.getQuestions().remove(questionItem.getEntity());
     }
 
@@ -65,5 +101,13 @@ public class PracticeItem implements Model {
 
     public void setTitle(String title){
         practice.setTitle(title);
+    }
+
+    private void calcFullScore(){
+        int fullScore = 0;
+        for(Question q : practice.getQuestions()){
+            fullScore += q.getScore();
+        }
+        practice.setFullScore(fullScore);
     }
 }

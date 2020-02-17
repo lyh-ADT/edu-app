@@ -182,7 +182,7 @@ public class NetworkUtility {
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod(method);
         connection.setConnectTimeout(5000);
-        connection.setRequestProperty("Cookies", "UID="+uid+";");
+        connection.setRequestProperty("Cookie", "UID="+uid+";");
         return connection;
     }
 }

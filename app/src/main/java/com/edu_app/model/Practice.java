@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Practice implements Serializable {
     private String id;
     private String title;
+    private int fullScore;
     private Boolean done;
     private List<Question> questions=new ArrayList<>();
 
@@ -54,5 +55,13 @@ public class Practice implements Serializable {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public int getFullScore() {
+        return fullScore;
+    }
+
+    public void setFullScore(int fullScore) {
+        this.fullScore = fullScore;
     }
 }

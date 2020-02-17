@@ -2,6 +2,8 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import utils
+import json
 
 
 class TeaGetClassListRequestHandler(tornado.web.RequestHandler):
@@ -10,23 +12,24 @@ class TeaGetClassListRequestHandler(tornado.web.RequestHandler):
         获取练习题列表，返回给老师客户端
         """
         try:
-            self.teaClassPractice = dict()
+            self.teaClass = []
             self.sqlhandler = None
+            if not utils.isUIDValid(self):
+                self.write("no uid")
+                return
 
-            self.teaId = self.get_argument("teaId")
-            print(self.teaId)
             if self.getTeaClass():
-                self.write(self.teaClassPractice)
+                self.write(json.dumps(self.teaClass) if len(self.teaClass) != 0 else "[]")
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
+        except Exception as e:
+            print(e)
             self.write("error")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
     def getTeaClass(self):
         """
@@ -42,18 +45,22 @@ class TeaGetClassListRequestHandler(tornado.web.RequestHandler):
             查询班级列表
             """
             # 获取班级id
-            sql = "select TeaClass from TeaPersonInfo where TeaId='" + self.teaId + "'"
-
-            teaClassId = str(
-                self.sqlhandler.executeQuerySQL(sql)[0]['TeaClass']).split(",")
+            sql = "select TeaClass from TeaPersonInfo where TeaUid='" + self.UID + "'"
+            classes = self.sqlhandler.executeQuerySQL(sql)
+            teaClassId = str(classes[0]['TeaClass']).split(",")
+            if teaClassId[0] == 'None':
+                self.teaClass = []
+                return True
 
             for clsId in teaClassId:
                 # 获取班级名称，班级id
                 sql = "select CourseName,Practice from CLASS where ClassId='" + clsId + "'"
                 rs = self.sqlhandler.executeQuerySQL(sql)
-                courseName = rs[0]["CoureseName"]
-                practiceId = str(rs[0]["Practice"]).split(",")
-                self.teaClassPractice.update({courseName: practiceId})
+                self.teaClass.append({
+                    "classId":clsId,
+                    "CourseName":rs[0]["CourseName"]
+                })
+                
 
             return True
         return False

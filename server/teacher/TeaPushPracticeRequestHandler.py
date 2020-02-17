@@ -20,6 +20,7 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
                 return
 
             utils.parseJsonRequestBody(self)
+            self.classId = self.args["classId"]
             self.practiceId = self.args["title"]
             self.fullScore = self.args["fullScore"]
             questions = self.args["questions"]
@@ -63,7 +64,9 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
                 self.practiceId, self.examDetail, self.fullScore, self.answers)
             print(sql)
             if self.sqlhandler.executeOtherSQL(sql):
-                return True
+                sql = "UPDATE CLASS SET Practice=CONCAT_WS(',', Practice, '{0}') WHERE ClassId='{1}';".format(self.practiceId, self.classId)
+                if self.sqlhandler.executeOtherSQL(sql):
+                    return True
         return False
 
 

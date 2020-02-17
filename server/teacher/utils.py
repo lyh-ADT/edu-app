@@ -7,9 +7,10 @@ def isUIDValid(self):
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
+                    
     if self.sqlhandler.getConnection():
-        sql = "select teaId from TeaPersonInfo where TeaUID='{0}'".format(
-            self.get_cookie("UID", "no"))
+        self.UID = self.get_cookie("UID", "no")
+        sql = "select teaId from TeaPersonInfo where TeaUID='{0}'".format(self.UID)
         print(sql)
         result = self.sqlhandler.executeQuerySQL(sql)
         print(result, self.request.full_url())

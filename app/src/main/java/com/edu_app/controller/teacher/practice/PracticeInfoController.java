@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,16 +24,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
+import com.edu_app.model.Class;
 import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
+
+import java.util.ArrayList;
 
 public class PracticeInfoController extends Controller {
     private final int SELECT_PIC = 0;
@@ -43,12 +49,17 @@ public class PracticeInfoController extends Controller {
     private TeacherInfo teacherInfo;
     private boolean editable;
     private boolean deleteMode = false;
+    private ArrayAdapter<String> classListAdapter;
     private Handler handler = new Handler(new Handler.Callback(){
         @Override
         public boolean handleMessage(@NonNull Message msg) {
             if(msg.what == 0){
                 // 添加成功
                 unSetFullScreen(fragment.getActivity());
+            } else if(msg.what == 1){
+                for(Class i : model.getClassList()){
+                    classListAdapter.add(i.CourseName);
+                }
             }
             return true;
         }
@@ -85,6 +96,27 @@ public class PracticeInfoController extends Controller {
 
     @Override
     protected void bindListener(){
+
+        final Spinner class_sp = view.findViewById(R.id.class_sp);
+        ArrayList<String> a = new ArrayList<>();
+        a.add("请选择");
+        classListAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, a);
+        class_sp.setAdapter(classListAdapter);
+        model.getClassesList(teacherInfo, new PracticeItem.UploadCallback() {
+            @Override
+            public void success() {
+                handler.sendEmptyMessage(1);
+            }
+
+            @Override
+            public void fail(String reason) {
+                Looper.prepare();
+                Toast.makeText(fragment.getContext(), reason, Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+        });
+
+
         final EditText title_et = view.findViewById(R.id.practice_item_title);
         if(editable){
             title_et.setEnabled(true);
@@ -179,6 +211,12 @@ public class PracticeInfoController extends Controller {
                 @Override
                 public void onClick(View v) {
                     model.setTitle(title_et.getText().toString());
+                    if(class_sp.getSelectedItemPosition() == 0){
+                        Toast.makeText(fragment.getActivity().getApplicationContext(), "请选择班级", Toast.LENGTH_LONG).show();
+                        return;
+                    } else {
+                        model.setClassId(model.getClassList().get(class_sp.getSelectedItemPosition()-1).classId);
+                    }
                     if(model.getTitle() == null || model.getQuestionCount() == 0){
                          Toast.makeText(fragment.getActivity().getApplicationContext(), "信息不完整", Toast.LENGTH_LONG).show();
                         return;

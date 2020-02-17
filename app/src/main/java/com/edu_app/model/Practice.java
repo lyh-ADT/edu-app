@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class Practice implements Serializable {
     private String id;
+    private String classId;
     private String title;
     private int fullScore;
     private Boolean done;
@@ -63,5 +64,13 @@ public class Practice implements Serializable {
 
     public void setFullScore(int fullScore) {
         this.fullScore = fullScore;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 }

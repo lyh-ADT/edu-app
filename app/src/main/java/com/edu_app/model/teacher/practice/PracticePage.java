@@ -74,12 +74,21 @@ public class PracticePage implements Model {
     }
 
 
+    private class ClassPractice{
+        String classId;
+        String practiceId;
+
+        ClassPractice(String classId, String practiceId) {
+            this.classId = classId;
+            this.practiceId = practiceId;
+        }
+    }
     public void deletePractice(final PracticeItem item){
         new Thread(){
             @Override
             public void run(){
                 try {
-                    String response = NetworkUtility.postRequest(info.getHost()+"/delete_practice", info.getUID(), item.getId().getBytes());
+                    String response = NetworkUtility.postRequest(info.getHost()+"/delete_practice", info.getUID(), new ClassPractice(item.getClassId(), item.getId()));
                     if("success".equals(response)){
                         getPracticeList();
                     }else{

@@ -4,12 +4,17 @@ import androidx.core.util.Pair;
 
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.practice.PageController;
+import com.edu_app.model.FillBlankQuestion;
 import com.edu_app.model.Practice;
+import com.edu_app.model.Question;
+import com.edu_app.model.SelectQuestion;
 import com.edu_app.model.teacher.Model;
 import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.teacher.TeacherInfo;
-import com.google.gson.reflect.TypeToken;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +29,20 @@ public class PracticePage implements Model {
         getPracticeList();
     }
 
+
     public void getPracticeList(){
         new Thread(){
             @Override
             public void run(){
                 try {
-                    practiceList = NetworkUtility.getToJson(info.getHost()+"/practice", info.getUID(), new TypeToken<List<Practice>>(){}.getType());
+                    String response = NetworkUtility.getRequest(info.getHost()+"/practice", info.getUID());
+                    JsonParser parser = new JsonParser();
+                    JsonArray array = parser.parse(response).getAsJsonArray();
+
+                    practiceList = new ArrayList<>();
+                    for(JsonElement i : array){
+                        practiceList.add(parsePractice(i));
+                    }
                     pageController.handler.sendEmptyMessage(0);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -39,13 +52,43 @@ public class PracticePage implements Model {
         }.start();
     }
 
+    private Practice parsePractice(JsonElement element){
+        Gson gson = new Gson();
+        Practice practice = gson.fromJson(element, Practice.class);
+        JsonArray jsonQuestions = element.getAsJsonObject().get("questions").getAsJsonArray();
+        ArrayList<Question> questions = new ArrayList<>();
+        for(JsonElement i : jsonQuestions){
+            String type = i.getAsJsonObject().get("questionType").getAsString();
+            Question q;
+            if(Question.QUESTION_TYPE_CHOICE.equals(type)){
+                q = gson.fromJson(i, SelectQuestion.class);
+            } else if(Question.QUESTION_TYPE_FILL.equals(type)){
+                q = gson.fromJson(i, FillBlankQuestion.class);
+            } else {
+                q = gson.fromJson(i, Question.class);
+            }
+            questions.add(q);
+        }
+        practice.setQuestions(questions);
+        return practice;
+    }
 
+
+    private class ClassPractice{
+        String classId;
+        String practiceId;
+
+        ClassPractice(String classId, String practiceId) {
+            this.classId = classId;
+            this.practiceId = practiceId;
+        }
+    }
     public void deletePractice(final PracticeItem item){
         new Thread(){
             @Override
             public void run(){
                 try {
-                    String response = NetworkUtility.postRequest(info.getHost()+"/delete_practice", info.getUID(), item.getId().getBytes());
+                    String response = NetworkUtility.postRequest(info.getHost()+"/delete_practice", info.getUID(), new ClassPractice(item.getClassId(), item.getId()));
                     if("success".equals(response)){
                         getPracticeList();
                     }else{
@@ -57,6 +100,9 @@ public class PracticePage implements Model {
             }
         }.start();
     }
+
+
+
 
     public int getPracticeItemCount(){
         return practiceList.size();

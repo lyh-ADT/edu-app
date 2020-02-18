@@ -155,10 +155,7 @@
         return;
       }
       $.post("/admin/deleteclass", {
-        "ClassId": data[index]["ClassId"],
-        "courseName":data[index]["CourseName"],
-        "teacher": data[index]["Teacher"],
-        "classStuNumber":data[index]["StuNumber"]
+        "classId": data[index]["ClassId"]
       }, function (result) {
         if(result == "success"){
             getTable();
@@ -240,13 +237,17 @@
 
       $.ajax({
         type: "POST",
-        url: "addclass",
+        url: "/admin/addclass",
         data: {
           "courseName": className_text,
           "teacherId": teacherId_text,
           "stuCount": stuCount_text
         },
         success: function (result) {
+          if(result == "error"){
+            alert("添加失败");
+            return;
+          }
           $("#addClass").modal("hide");
           getTable();
         },

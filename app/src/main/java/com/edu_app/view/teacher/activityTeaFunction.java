@@ -12,12 +12,11 @@ import androidx.fragment.app.Fragment;
 import com.edu_app.R;
 import com.edu_app.controller.MainController;
 import com.edu_app.model.teacher.TeacherInfo;
-import com.edu_app.view.student.person.fragmentPerson;
-import com.edu_app.view.student.pracitce.fragmentPractice;
+import com.edu_app.view.teacher.person.fragmentPerson;
 
 
 public class activityTeaFunction extends AppCompatActivity implements View.OnClickListener {
-    private Bundle uidbundle;
+    private TeacherInfo teacherInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +38,7 @@ public class activityTeaFunction extends AppCompatActivity implements View.OnCli
 //            Intent intent = new Intent(activityTeaFunction.this, LoginActivity.class);
 //            startActivity(intent);
 //        }
+        teacherInfo = new TeacherInfo(this);
     }
 
     @Override
@@ -50,16 +50,15 @@ public class activityTeaFunction extends AppCompatActivity implements View.OnCli
 
         switch (v.getId()) {
             case R.id.bar_imgPractice:
-                f = com.edu_app.view.teacher.Fragment.newInstance("practice", new TeacherInfo());
+                f = com.edu_app.view.teacher.Fragment.newInstance("practice", teacherInfo);
                 break;
 
             case R.id.bar_imgCourse:
-                f = com.edu_app.view.teacher.Fragment.newInstance("course", new TeacherInfo());
+                f = com.edu_app.view.teacher.Fragment.newInstance("course", teacherInfo);
                 break;
 
             case R.id.bar_imgPersonInfo:
                 f = new fragmentPerson();
-                uidintent = new Intent(activityTeaFunction.this, fragmentPractice.class);
                 break;
             default:
                 f = null;

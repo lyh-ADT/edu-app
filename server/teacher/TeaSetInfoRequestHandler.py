@@ -2,67 +2,70 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
-import utils
+import json
 
 
-class StuSetInfoRequestHandler(tornado.web.RequestHandler):
+class TeaSetInfoRequestHandler(tornado.web.RequestHandler):
     def post(self):
         """
         获取修改的数据，写入到数据库
-        不允许修改用户名，不允许修改班级,老师名字
+        不允许修改用户名，不允许修改班级
         """
         try:
+            print("收到修改个人信息请求")
+            body = json.loads(self.request.body)
             self.sqlhandler = None
-            utils.isUIDValid(self)
-            self.teaId = self.get_body_argument("teaId")
-            self.teaPassword = self.get_body_argument("teaPassword")
 
-            self.teaSex = self.get_body_argument("teaSex")
-            self.teaAge = self.get_body_argument("teaAge")
-            self.teaPhoneNumber = self.get_body_argument("teaPhoneNumber")
-            self.teaQQ = self.get_body_argument("teaQQ")
-            self.teaAddress = self.get_body_argument("teaAddress")
+            self.teaUid = body["teaUid"]
+            self.teaPassword = body["teaPassword"]
+            self.teaName = body["teaName"]
+
+            self.teaSex = body["teaSex"]
+            self.teaAge = body["teaAge"]
+            self.teaPhoneNumber = body["teaPhoneNumber"]
+            self.teaQQ = body["teaQQ"]
+            self.teaAddress = body["teaAddress"]
 
             if self.SetTeaInfo():
-                self.write("success")
+
+                self.write({"success": True})
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
-            self.write("error")
+        except Exception as e:
+            print(e)
+            self.write({"success": False})
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
     def SetTeaInfo(self):
         """
-        给老师设置个人信息
+        给学生设置个人信息
         """
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
-            sql = """UPDATE TeaPersonInfo SET
-            TeaSex='{0}',
-            TeaAge='{1}',
-            TeaPassword='{2}',
-            TeaPhoneNumber='{3}',
-            TeaQQ='{4}',
-            TeaAddress='{5}' where TeaId='{6}'""".format(
-                self.teaSex, self.teaAge, self.teaPassword,
-                self.teaPhoneNumber, self.teaQQ, self.teaAddress, self.teaId)
-            # print(sql)
-            if self.sqlhandler.executeOtherSQL(sql):
-                return True
+            sql = """select * from TeaPersonInfo where TeaUid='{0}'""".format(
+                self.teaUid)
+            rs = self.sqlhandler.executeQuerySQL(sql)
+            if len(rs) == 1:
+
+                sql = """UPDATE TeaPersonInfo SET TeaName='{1}',
+                TeaSex='{2}',
+                TeaAge='{3}',
+                TeaPassword='{4}',
+                TeaPhoneNumber='{5}',
+                TeaQQ='{6}',
+                TeaAddress='{7}' where TeaUid='{0}'""".format(
+                    self.teaUid, self.teaName, self.teaSex, self.teaAge,
+                    self.teaPassword, self.teaPhoneNumber, self.teaQQ,
+                    self.teaAddress)
+              
+                if self.sqlhandler.executeOtherSQL(sql):
+                    return True
+
         return False
-
-
-if __name__ == "__main__":
-
-    app = tornado.web.Application(handlers=[(r"/", StuSetInfoRequestHandler)])
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(8080)
-    tornado.ioloop.IOLoop.current().start()

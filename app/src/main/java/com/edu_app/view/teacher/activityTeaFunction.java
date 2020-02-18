@@ -12,8 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.edu_app.R;
 import com.edu_app.controller.MainController;
 import com.edu_app.model.teacher.TeacherInfo;
-import com.edu_app.view.student.person.fragmentPerson;
-import com.edu_app.view.student.pracitce.fragmentPractice;
+import com.edu_app.view.teacher.person.fragmentPerson;
 
 
 public class activityTeaFunction extends AppCompatActivity implements View.OnClickListener {
@@ -60,7 +59,6 @@ public class activityTeaFunction extends AppCompatActivity implements View.OnCli
 
             case R.id.bar_imgPersonInfo:
                 f = new fragmentPerson();
-                uidintent = new Intent(activityTeaFunction.this, fragmentPractice.class);
                 break;
             default:
                 f = null;

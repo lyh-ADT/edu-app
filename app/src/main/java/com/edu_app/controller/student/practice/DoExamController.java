@@ -2,6 +2,7 @@ package com.edu_app.controller.student.practice;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,28 +11,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
+import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.Practice;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DoExamController implements View.OnClickListener {
     private final AppCompatActivity activity;
+    private final String practiceId;
+    private final String uid;
     private Practice practice;
     private RecyclerView recycler;
     private Button bu_sumbmit;
     private DoExamAdapter adapter;
-    private Map<Integer, String> answer;
+    private Map<String, String> answer;
+    private Boolean getSuccess;
+    private JSONArray data;
 
     public DoExamController(AppCompatActivity activity) {
         this.activity = activity;
+        this.uid = this.activity.getIntent().getExtras().get("uid").toString();
+        this.practiceId = this.activity.getIntent().getExtras().get("practiceId").toString();
+        Log.e("error",this.uid+practiceId);
     }
 
     public void setView() {
-        practice = (Practice) activity.getIntent().getSerializableExtra("data");
+        getPractice();
         recycler = activity.findViewById(R.id.practicePage_practice_doexam_recycler);
         recycler.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL, false));
-        adapter = new DoExamAdapter(activity, practice.getQuestions());
+        adapter = new DoExamAdapter(activity, data);
         recycler.setAdapter(adapter);
 
     }
@@ -46,14 +60,6 @@ public class DoExamController implements View.OnClickListener {
 // TODO:获取返回的答案
         answer = adapter.getAnswer();
         setKeyDown();
-//
-//        Set<Map.Entry<Integer, String>> set = answer.entrySet();
-//        Iterator<Map.Entry<Integer, String>> iterator = set.iterator();
-//        while (iterator.hasNext()) {
-//            Map.Entry<Integer, String> entry = iterator.next();
-//            Log.e("error","键是：" + entry.getKey() + "值是：" + entry.getValue());
-//        }
-//        Log.e("error","============================");
     }
 
     public void setKeyDown() {
@@ -63,6 +69,12 @@ public class DoExamController implements View.OnClickListener {
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        postAnswer();
+                    }
+                }).start();
                 activity.finish();
             }
         });
@@ -73,5 +85,46 @@ public class DoExamController implements View.OnClickListener {
             }
         });
         dialog.show();
+    }
+
+    private void postAnswer() {
+        Map data = new HashMap();
+        data.put("stuUid",this.uid);
+        data.put("practiceId",this.practiceId);
+        data.put("stuAnswer",answer);
+        String body = JSON.toJSONString(data);
+        Log.e("error",body);
+        String response = null;
+        try {
+            response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuPostAnswer", body);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONObject jsonObject = JSONObject.parseObject(response);
+        getSuccess = jsonObject.getBoolean("success");
+
+    }
+
+    public void getPractice() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getData();
+            }
+        }).start();
+
+    }
+
+    private void getData() {
+        try {
+            String body = "{\"stuUid\":\"" + this.uid + "\",\"practiceId\":\"" + this.practiceId + "\"}";
+            Log.e("error", body);
+            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetPracticeToDo", body);
+            JSONObject jsonObject = JSONObject.parseObject(response);
+            getSuccess = jsonObject.getBoolean("success");
+            data = jsonObject.getJSONArray("data");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

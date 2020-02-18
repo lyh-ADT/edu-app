@@ -45,7 +45,9 @@ public class MainController {
 //                          老师：启动activityTeaFunction
 //                          学生：启动activityStuFunction
 //              uid无效，启动登录活动LoginActivity
+
         Intent intent = new Intent();
+        intent.putExtra("uid",this.uid);
         if("student".equals(accountType)){
             intent.setClass(this.context, activityStuFunction.class);
         } else {

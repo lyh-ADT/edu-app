@@ -2,31 +2,33 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
-
+import json
 
 class StuPracticeRequestHandler(tornado.web.RequestHandler):
-    def get(self):
+    def post(self):
         """
         从数据库获取学生练习题返回给客户端
 
         """
         try:
+            print("收到获取试题详情的请求")
+            body = json.loads(self.request.body)
             self.sqlhandler = None
-            self.stuId = self.get_argument("stuId")
-            self.practiceId = self.get_argument("practiceId")
+            self.stuUid = body["stuUid"]
+            self.practiceId = body["practiceId"]
             if self.getPractice():
-                print(self.examDetail)
-                self.write(self.examDetail)
+
+                self.write({"success": True, "data": self.examDetail})
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
-            self.write("error")
+        except Exception as e:
+            print(e)
+            self.write({"success": False, "data": "获取试题详情失败"})
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
     def getPractice(self):
         """
@@ -40,17 +42,16 @@ class StuPracticeRequestHandler(tornado.web.RequestHandler):
         if self.sqlhandler.getConnection():
             """
             获取具体习题
+            
             """
-            sql = "select ExamDetail from PRACTICE where PracticeId='{0}'".format(
-                self.practiceId)
-            self.examDetail = self.sqlhandler.executeQuerySQL(sql)[0]['ExamDetail']
+            sql = """select StuId from StuPersonInfo where StuUid='{0}'""".format(
+                self.stuUid)
+            rs = self.sqlhandler.executeQuerySQL(sql)
+            if len(rs) == 1:
+                sql = "select ExamDetail,TeaAnswer,FullScore from PRACTICE where PracticeId='{0}'".format(
+                    self.practiceId)
+                rs = self.sqlhandler.executeQuerySQL(sql)
+                self.examDetail = rs[0]['ExamDetail']
+
             return True
         return False
-
-
-if __name__ == "__main__":
-
-    app = tornado.web.Application(handlers=[(r"/", StuPracticeRequestHandler)])
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(8080)
-    tornado.ioloop.IOLoop.current().start()

@@ -1,7 +1,6 @@
 package com.edu_app.controller.student.practice;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
 
 import java.util.Map;
@@ -18,18 +19,29 @@ import java.util.Map;
  * 查看习题的适配器
  */
 public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHolder> {
+
+    private final JSONArray examDetail;
+    private final JSONArray scoreDetail;
+    private final String fullScore;
+    private final JSONArray teaAnswer;
+    private final JSONArray stuAnswer;
+    private final String stuScore;
     private Context context;
-//    本次测试得分
-    private Integer examscore;
-    /**
+/*
      * 返回的数据包括试卷总体信息，以及详细题目，学生的答案，正确答案，学生每题得分
      * {practiceInfo:{练习id:"",本次总分:""...},everyQuestion:{题号:"1",问题:"question",学生答案:"stu_answer",学生分数:"",此题满分:""...}...}
      */
     private Map<String,Map<String, String>> questionAnswerScore;
 
-    public LookExamAdapter(Context context, Map<String,Map<String, String>> questionAnswerScore) {
+    public LookExamAdapter(Context context, JSONObject data) {
         this.context = context;
-        this.questionAnswerScore = questionAnswerScore;
+
+        this.examDetail = JSONObject.parseArray(data.getString("examDetail"));
+        this.scoreDetail = JSONObject.parseArray(data.getString("scoreDetail"));
+        this.fullScore = data.getString("fullScore");
+        this.teaAnswer = JSONObject.parseArray(data.getString("teaAnswer"));
+        this.stuAnswer = JSONObject.parseArray(data.getString("stuAnswer"));
+        this.stuScore = data.getString("stuScore");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -60,17 +72,16 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull LookExamAdapter.ViewHolder holder, int position) {
-        Log.e("error",questionAnswerScore.keySet().toString());
-        Map<String,String> questionDetail = questionAnswerScore.get(String.valueOf(position+1));
-        holder.questiontext.setText(questionDetail.get("question").toString());
-        holder.stuscore.setText(questionDetail.get("stuscore").toString());
-        holder.fullscore.setText(questionDetail.get("fullscore").toString());
-        holder.stu_answertext.setText(questionDetail.get("stu_answer").toString());
-        holder.right_answertext.setText(questionDetail.get("right_answer").toString());
+
+        holder.questiontext.setText(examDetail.getJSONObject(position).getString("question"));
+        holder.stuscore.setText(scoreDetail.getJSONObject(position).getString("score"));
+        holder.fullscore.setText(examDetail.getJSONObject(position).getString("score"));
+        holder.stu_answertext.setText(stuAnswer.getJSONObject(position).getString("answer"));
+        holder.right_answertext.setText(teaAnswer.getJSONObject(position).getString("answer"));
     }
 
     @Override
     public int getItemCount() {
-        return questionAnswerScore.size();
+        return this.examDetail.size();
     }
 }

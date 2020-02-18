@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.edu_app.R;
 import com.edu_app.model.Question;
 
@@ -30,13 +31,13 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private final static int TYPE_FILL = 1;
 
     private final static int TYPE_SHORTANSWER = 2;
-    private Map<Integer,String> answer;
+    private Map<String,String> answer;
 
 
-    public DoExamAdapter(Context context, List<Question> questions) {
-        this.answer = new HashMap<Integer,String>();
+    public DoExamAdapter(Context context, JSONArray data) {
+        this.answer = new HashMap<String, String>();
         this.context = context;
-        this.questions = questions;
+        this.questions = data.toJavaList(Question.class);
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         public ViewHolder(@NonNull View itemView) {
@@ -81,7 +82,7 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 public void afterTextChanged(Editable s) {
                     String rs = s.toString();
                     answer.remove(position+1);
-                    answer.put(position+1,rs);
+                    answer.put(String.valueOf(position+1),rs);
                 }
             });
         }else if(holder instanceof DoChoiceViewHolder){
@@ -91,7 +92,7 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     String radio =  ((RadioButton)group.findViewById(checkedId)).getText().toString();
                     answer.remove(position+1);
-                    answer.put(position+1,radio);
+                    answer.put(String.valueOf(position+1),radio);
                 }
             });
         }else if(holder instanceof DoShortAnswerViewHolder){
@@ -111,7 +112,7 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 public void afterTextChanged(Editable s) {
                     String rs = s.toString();
                     answer.remove(position+1);
-                    answer.put(position+1,rs);
+                    answer.put(String.valueOf(position+1),rs);
                 }
             });
         }
@@ -136,7 +137,7 @@ public class DoExamAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 //    获取所有的结果,题号+答案
-    public Map<Integer,String> getAnswer(){
+    public Map<String,String> getAnswer(){
         return answer;
     }
 }

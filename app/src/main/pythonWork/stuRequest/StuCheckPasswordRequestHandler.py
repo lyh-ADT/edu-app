@@ -2,31 +2,37 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import json
 
 
-class StuInfoRequestHandler(tornado.web.RequestHandler):
-    def get(self):
+class StuCheckPasswordRequestHandler(tornado.web.RequestHandler):
+    def post(self):
         """
         从数据库获取学生信息返回给客户端
 
         """
         try:
+            print("收到检查密码信息的请求")
             self.sqlhandler = None
-            self.stuId = self.get_argument("stuId")
-            if self.getStuInfo():
-                self.write(self.stuinfo)
+            body = json.loads(self.request.body)
+            self.stuUid = body["stuUid"]
+            self.stuPassword = body["stuPassword"]
+            print(self.stuUid)
+            if self.checkPassword():
+
+                self.write({"success": True})
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
-            self.write("error")
+        except Exception as e:
+            print(e)
+            self.write({"success": False})
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
-    def getStuInfo(self):
+    def checkPassword(self):
         """
         从数据库读取学生信息
         """
@@ -36,18 +42,12 @@ class StuInfoRequestHandler(tornado.web.RequestHandler):
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
             """
-            查询该用户的信息
+            查询该用户的课程信息
             """
-            # 获取键值对
-            sql = "select * from StuPersonInfo where StuId='" + self.stuId + "'"
-            self.stuinfo = self.sqlhandler.executeQuerySQL(sql)
-            return True
+            sql = """select * from StuPersonInfo where StuUid='{0}' and StuPassword='{1}'""".format(
+                self.stuUid, self.stuPassword)
+            rs = self.sqlhandler.executeQuerySQL(sql)
+            print(rs)
+            if len(rs) == 1:
+                return True
         return False
-
-
-if __name__ == "__main__":
-
-    app = tornado.web.Application(handlers=[(r"/", StuInfoRequestHandler)])
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(8080)
-    tornado.ioloop.IOLoop.current().start()

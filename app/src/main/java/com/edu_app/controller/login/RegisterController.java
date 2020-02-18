@@ -91,7 +91,7 @@ public class RegisterController {
         }
 
         RadioGroup sex_rg = view.findViewById(R.id.user_sex);
-        form.sex = sex_rg.getCheckedRadioButtonId() == R.id.male ? "male" : "female";
+        form.sex = sex_rg.getCheckedRadioButtonId() == R.id.male ? "男" : "女";
 
         form.age = getCheckedTextViewContent(R.id.user_age);
         if(form.age == null){

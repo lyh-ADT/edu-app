@@ -48,6 +48,14 @@ public class Practice implements Serializable {
         this.title = title;
     }
 
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
     public List<Question> getQuestions() {
         return questions;
     }

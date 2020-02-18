@@ -19,6 +19,7 @@ import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.Practice;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DoExamController implements View.OnClickListener {
@@ -74,15 +75,6 @@ public class DoExamController implements View.OnClickListener {
                         postAnswer();
                     }
                 }).start();
-                int count = 0;
-                while (getSuccess==null && count<20){
-                    try {
-                        Thread.sleep(100);
-                        count++;
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
                 activity.finish();
             }
         });
@@ -96,8 +88,12 @@ public class DoExamController implements View.OnClickListener {
     }
 
     private void postAnswer() {
-        String data = JSON.toJSONString(this.answer);
-        String body = "{\"stuUid\":\"" + this.uid + "\",\"practiceId\":\"" + this.practiceId+"\",\"stuAnswer\":\"" + data + "\"}";
+        Map data = new HashMap();
+        data.put("stuUid",this.uid);
+        data.put("practiceId",this.practiceId);
+        data.put("stuAnswer",answer);
+        String body = JSON.toJSONString(data);
+        Log.e("error",body);
         String response = null;
         try {
             response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuPostAnswer", body);
@@ -116,11 +112,7 @@ public class DoExamController implements View.OnClickListener {
                 getData();
             }
         }).start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 
     private void getData() {

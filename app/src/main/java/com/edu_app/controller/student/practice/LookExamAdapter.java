@@ -82,6 +82,6 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return questionAnswerScore.size();
+        return this.examDetail.size();
     }
 }

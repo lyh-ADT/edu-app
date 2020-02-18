@@ -79,11 +79,6 @@ public class LookExamController {
                 getData();
             }
         }).start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private void getData() {
@@ -95,6 +90,8 @@ public class LookExamController {
             getSuccess = jsonObject.getBoolean("success");
 
             data = jsonObject.getJSONObject("data");
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

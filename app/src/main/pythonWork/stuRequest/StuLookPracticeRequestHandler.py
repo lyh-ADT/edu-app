@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import json
 
 
 class StuLookPracticeRequestHandler(tornado.web.RequestHandler):
@@ -12,10 +13,10 @@ class StuLookPracticeRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到查看试题详情的请求")
-            body = self.request.body
+            body = json.loads(self.request.body)
             self.sqlhandler = None
-            self.stuUid = body("stuUid")
-            self.practiceId = body("practiceId")
+            self.stuUid = body["stuUid"]
+            self.practiceId = body["practiceId"]
             if self.getPractice():
 
                 self.write({
@@ -67,7 +68,7 @@ class StuLookPracticeRequestHandler(tornado.web.RequestHandler):
                 self.teaAnswer = rs[0]['TeaAnswer']
                 self.fullScore = rs[0]['FullScore']
 
-                sql = "select ScoreDetail,StuScore,StuAnswer from PRACTICE where PracticeId='{0}' and StuId='{1}'".format(
+                sql = "select ScoreDetail,StuScore,StuAnswer from SCORE where PracticeId='{0}' and StuId='{1}'".format(
                     self.practiceId, self.stuId)
                 rs = self.sqlhandler.executeQuerySQL(sql)
                 print(rs)

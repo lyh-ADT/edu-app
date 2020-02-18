@@ -67,11 +67,7 @@ public class PersonCourseController implements View.OnClickListener {
                         getCourseName();
                     }
                 }).start();
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 ((TextView) this.activity.findViewById(R.id.personPage_stuClass_getClassText)).setText(courseName);
                 break;
 

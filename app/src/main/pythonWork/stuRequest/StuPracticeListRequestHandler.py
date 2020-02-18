@@ -64,9 +64,11 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
                     
                     for practiceId in stuPracticeId:
                         # 判断该习题是否被做过
-                        sql = """select * from SCORE where PracticeId='{0}' and StuId='{1}'""".format(
+                        sql = """select StuAnswer from SCORE where PracticeId='{0}' and StuId='{1}'""".format(
                             practiceId, stuId)
-                        if len(self.sqlhandler.executeQuerySQL(sql)) == 1:
+                        rs = self.sqlhandler.executeQuerySQL(sql)
+                        print(rs,len(rs))
+                        if len(rs) == 1 and rs[0]['StuAnswer'] is not None:
                             isDone = True
                         else:
                             isDone = False

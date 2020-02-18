@@ -2,7 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
-
+import json
 
 class StuPracticeRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -12,10 +12,10 @@ class StuPracticeRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到获取试题详情的请求")
-            body = self.request.body
+            body = json.loads(self.request.body)
             self.sqlhandler = None
-            self.stuUid = body("stuUid")
-            self.practiceId = body("practiceId")
+            self.stuUid = body["stuUid"]
+            self.practiceId = body["practiceId"]
             if self.getPractice():
 
                 self.write({"success": True, "data": self.examDetail})

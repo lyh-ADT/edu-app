@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import json
 
 
 class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
@@ -12,11 +13,13 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到提交试题答案的请求")
-            body = self.request.body
             self.sqlhandler = None
-            self.stuUid = body("stuUid")
-            self.practiceId = body("practiceId")
-            self.stuAnswer = body("stuAnswer")
+            body = json.loads(self.request.body)
+            print(body)
+            
+            self.stuUid = body["stuUid"]
+            self.practiceId = body["practiceId"]
+            self.stuAnswer = body["stuAnswer"]
             if self.getPractice():
 
                 self.write({"success": True, "data": "获取试题详情成功"})
@@ -48,10 +51,12 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
             sql = """select StuId from StuPersonInfo where StuUid='{0}'""".format(
                 self.stuUid)
             rs = self.sqlhandler.executeQuerySQL(sql)
+            print(rs)
             if len(rs) == 1:
                 self.stuId = rs[0]['StuId']
-                sql = "update SCORE set StuAnswer='{0}' where StuId='{1}' and PracticeId='{1}'".format(
+                sql = """update SCORE set StuAnswer="{0}" where StuId="{1}" and PracticeId="{2}\"""".format(
                     self.stuAnswer, self.stuId, self.practiceId)
+                print(sql)
                 if self.sqlhandler.executeOtherSQL(sql):
 
                     return True

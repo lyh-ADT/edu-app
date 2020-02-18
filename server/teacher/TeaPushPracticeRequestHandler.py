@@ -28,7 +28,7 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
             self.answers = []
             for i in questions:
                 self.answers.append({
-                    "order":i["orderNumber"],
+                    "orderNumber":i["orderNumber"],
                     "answer":i.pop("answer")
                 })
                 self.examDetail.append(i)
@@ -62,9 +62,9 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
             """
             sql = """INSERT INTO PRACTICE(PracticeId,ExamDetail,FullScore, TeaAnswer) VALUES('{0}','{1}','{2}', '{3}')""".format(
                 self.practiceId, self.examDetail, self.fullScore, self.answers)
-            print(sql)
             if self.sqlhandler.executeOtherSQL(sql):
                 sql = "UPDATE CLASS SET Practice=CONCAT_WS(',', Practice, '{0}') WHERE ClassId='{1}';".format(self.practiceId, self.classId)
+                print(sql)
                 if self.sqlhandler.executeOtherSQL(sql):
                     return True
         return False

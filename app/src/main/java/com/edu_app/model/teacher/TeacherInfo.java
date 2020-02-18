@@ -17,6 +17,6 @@ public class TeacherInfo extends UserInfo {
         return uid;
     }
     public String getHost(){
-        return "http://192.168.123.22:2000";
+        return "http://139.159.176.78:2000";
     }
 }

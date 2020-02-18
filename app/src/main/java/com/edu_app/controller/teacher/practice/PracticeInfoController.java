@@ -99,22 +99,31 @@ public class PracticeInfoController extends Controller {
 
         final Spinner class_sp = view.findViewById(R.id.class_sp);
         ArrayList<String> a = new ArrayList<>();
-        a.add("请选择");
+        if(editable){
+            a.add("请选择");
+            model.getClassesList(teacherInfo, new PracticeItem.UploadCallback() {
+                @Override
+                public void success() {
+                    handler.sendEmptyMessage(1);
+                }
+
+                @Override
+                public void fail(String reason) {
+                    Looper.prepare();
+                    Toast.makeText(fragment.getContext(), reason, Toast.LENGTH_LONG).show();
+                    Looper.loop();
+                }
+            });
+            class_sp.setEnabled(true);
+        } else {
+            String classId = model.getClassId();
+            a.add(classId);
+            class_sp.setEnabled(false);
+        }
         classListAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, a);
         class_sp.setAdapter(classListAdapter);
-        model.getClassesList(teacherInfo, new PracticeItem.UploadCallback() {
-            @Override
-            public void success() {
-                handler.sendEmptyMessage(1);
-            }
 
-            @Override
-            public void fail(String reason) {
-                Looper.prepare();
-                Toast.makeText(fragment.getContext(), reason, Toast.LENGTH_LONG).show();
-                Looper.loop();
-            }
-        });
+
 
 
         final EditText title_et = view.findViewById(R.id.practice_item_title);

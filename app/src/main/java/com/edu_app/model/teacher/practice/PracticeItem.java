@@ -33,7 +33,8 @@ public class PracticeItem implements Model {
     @Override
     public List<Pair<Integer, Object>> getShowField() {
         ArrayList<Pair<Integer, Object>> list = new ArrayList<>();
-        list.add(new Pair<Integer, Object>(R.id.practice_item_title, practice.getTitle()+"-"+practice.getClassId()));
+        list.add(new Pair<Integer, Object>(R.id.practice_item_title, practice.getTitle()));
+        list.add(new Pair<Integer, Object>(R.id.class_text, practice.getClassId()));
         return list;
     }
 
@@ -123,6 +124,10 @@ public class PracticeItem implements Model {
 
     public List<Class> getClassList() {
         return classList;
+    }
+
+    public String getClassId(){
+        return practice.getClassId();
     }
 
     public void setClassId(String id){

@@ -13,32 +13,73 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
+import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.Question;
 import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.Judge;
-import com.edu_app.model.teacher.practice.StudentPracticeItem;
-import com.edu_app.model.teacher.question.QuestionItemFactory;
+import com.edu_app.model.teacher.practice.PracticeItem;
+import com.edu_app.model.teacher.practice.QuestionItem;
+import com.edu_app.model.teacher.practice.StudentPracticeInfo;
 import com.edu_app.view.teacher.Fragment;
 import com.edu_app.view.teacher.QuestionInfoFragment;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class JudgeController extends Controller {
-    private StudentPracticeItem practice;
+    private StudentPracticeInfo stuInfo;
     private int questionIndex = 0;
     private Fragment fragment;
     private Judge model;
     private Callback callback;
+    private PracticeItem practice;
     private int[] scores;
+    private StudentPracticeAnswer answers = new StudentPracticeAnswer();
+
+    class StudentPracticeAnswer{
+        private Map<String, String> answers;
+
+        public StudentPracticeAnswer(){
+
+        }
+
+        private void getAnswers(){
+            new Thread(){
+                @Override
+                public void run(){
+                    try {
+                        answers = NetworkUtility.getToJson(model.getTeacherInfo().getHost()+"/judge_student?stuId="+stuInfo.getStuId()+"&practiceId="+stuInfo.getPracticeId(), model.getTeacherInfo().getUID(),  new TypeToken<Map<String, String>>(){}.getType());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+        }
+
+        public int size(){
+            return answers.size();
+        }
+
+        public String getAnswer(int i){
+            while(answers == null){
+
+            }
+            return answers.get(String.valueOf(i));
+        }
+    }
 
     public interface Callback extends Controller.Callback{
-        StudentPracticeItem getPractice();
+        StudentPracticeInfo getPracticeInfo();
+        PracticeItem getPractice();
     }
     @Override
     public void bindCallback(Controller.Callback callback){
         this.callback = (Callback)callback;
-        practice = this.callback.getPractice();
-        scores = new int[practice.getPractice().getQuestions().size()];
+        stuInfo = this.callback.getPracticeInfo();
+        this.practice = this.callback.getPractice();
+        answers.getAnswers();
+        scores = new int[practice.getQuestionCount()];
         changeToQuestion(questionIndex);
     }
 
@@ -69,13 +110,16 @@ public class JudgeController extends Controller {
         nextQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(questionIndex < practice.getPractice().getQuestions().size()-1){
-                    String s = ((TextView)view.findViewById(R.id.score)).getText().toString();
+                String s = ((TextView)view.findViewById(R.id.score)).getText().toString();
+                if(questionIndex < answers.size()-1){
                     if(setScore(s)) {
                         questionIndex++;
                         changeToQuestion(questionIndex);
                     }
                 }else{
+                    if(!setScore(s)) {
+                        return;
+                    }
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setMessage("确认提交批改？")
                             .setTitle("确认提交")
@@ -89,7 +133,7 @@ public class JudgeController extends Controller {
                                         @Override
                                         public void run(){
                                             try {
-                                                String response = model.sendJudgement(practice.getPractice().getId(), practice.getAuthorId(), scores);
+                                                String response = model.sendJudgement(stuInfo.getPracticeId(), stuInfo.getStuId(), scores);
                                                 if(!"success".equals(response)){
                                                     Looper.prepare();
                                                     loadingDialog.dismiss();
@@ -133,12 +177,13 @@ public class JudgeController extends Controller {
     }
 
     private void changeToQuestion(int index){
-        Question question = practice.getPractice().getQuestions().get(index);
+        Question question = practice.getQuestionAt(index).getEntity();
+        question.setAnswer(answers.getAnswer(index+1));
         TextView question_tv = view.findViewById(R.id.question);
         question_tv.setText(question.getQuestion());
 
         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
-        transaction.replace(R.id.question_info, QuestionInfoFragment.newInstance(QuestionItemFactory.newInstance(question.getQuestionType(), question), false));
+        transaction.replace(R.id.question_info, QuestionInfoFragment.newInstance(new QuestionItem(question), false));
         transaction.commit();
 
         if(question.getScore() > 0){

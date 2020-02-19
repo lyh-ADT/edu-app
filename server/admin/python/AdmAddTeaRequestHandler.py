@@ -2,7 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
-
+import utils
 
 class AdmAddTeaRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -14,6 +14,10 @@ class AdmAddTeaRequestHandler(tornado.web.RequestHandler):
             self.sqlhandler = None
             if "UID" not in self.request.cookies:
                 self.write("error")
+                return
+                
+            if not utils.isUIDValid(self):
+                self.write("no uid")
                 return
             self.teaId = self.get_argument("teaId")
             self.teaName = self.get_argument("teaName")

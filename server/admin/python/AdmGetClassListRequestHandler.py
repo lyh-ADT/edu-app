@@ -3,6 +3,7 @@ import tornado.web
 import tornado.httpclient
 import SqlHandler
 import json
+import utils
 
 
 class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
@@ -15,8 +16,12 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
             if "UID" not in self.request.cookies.keys():
                 self.write("no uid")
                 return
+
+            if not utils.isUIDValid(self):
+                self.write("no uid")
+                return
             if self.getClassList():
-                self.write(json.dumps(self.classList))
+                self.write(json.dumps(self.classList if self.classList is not None else {"length":0}))
                 self.finish()
             else:
                 raise RuntimeError
@@ -41,7 +46,7 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
             查询所有班级
             """
 
-            sql = "select ClassId,CourseName from CLASS"
+            sql = "select ClassId,CourseName,Teacher,StuNumber,InviteCode from CLASS"
 
             self.classList = self.sqlhandler.executeQuerySQL(sql)
 

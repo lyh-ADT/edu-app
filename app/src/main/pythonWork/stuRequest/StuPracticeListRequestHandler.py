@@ -48,7 +48,7 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
             sql = "select StuClass,StuId from StuPersonInfo where StuUid='" + self.stuUid + "'"
             rs = self.sqlhandler.executeQuerySQL(sql)
             if len(rs) == 1:
-                stuClassId = str(rs[0]['StuClass']).split(",")
+                stuClassId = eval(str(rs[0]['StuClass']))
                 stuId = str(rs[0]['StuId'])
                 print(stuClassId)
                 for clsId in stuClassId:
@@ -57,7 +57,7 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
                     rs = self.sqlhandler.executeQuerySQL(sql)
                     if len(rs) == 0:
                         continue
-                    stuPracticeId = str(rs[0]['Practice']).split(',')
+                    stuPracticeId = eval(str(rs[0]['Practice']))
                     stuCourseName = str(rs[0]['CourseName'])
                     if self.subject not in stuCourseName:
                         continue

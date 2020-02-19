@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.httpclient
 import SqlHandler
+import json
 
 
 class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
@@ -11,22 +12,22 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
         """
         try:
             self.sqlhandler = None
-            self.practice = list()
+            self.practicelist = list()
             self.classId = self.get_argument("classId")
-            self.practiceId = self.get_body_argument("practiceId")
+            self.practiceId = self.get_argument("practiceId")
             if self.getStuPractice():
                 print(self.practicelist)
-                self.write({self.practicelist})
+                self.write(json.dumps(self.practicelist) if len(self.practicelist) > 0 else "[]")
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
+        except Exception as e:
+            print(e)
             self.write("error")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
     def getStuPractice(self):
         """
@@ -49,6 +50,8 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
 
 
             for stuId in stuIdList:
+                if stuId == "None":
+                    break
                 # 判断该学生的某次习题是否被改过
                 sql = """select * from SCORE where PracticeId='{0}' and StuId='{1}'""".format(
                     self.practiceId, stuId)
@@ -57,9 +60,10 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
                     isDone = True
                 else:
                     isDone = False
-                sql = """select StuName from StuPersonInfo where StuId='{0}''""".format(stuId)
+                sql = """select StuName from StuPersonInfo where StuId='{0}';""".format(stuId)
                 stuName = self.sqlhandler.executeQuerySQL(sql)[0]['StuName']
                 self.practicelist.append({
+                    "practiceId":self.practiceId,
                     "stuId" : stuId,
                     "stuName":stuName,
                     "isDone": isDone

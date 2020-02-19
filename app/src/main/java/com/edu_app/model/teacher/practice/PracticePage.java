@@ -4,10 +4,8 @@ import androidx.core.util.Pair;
 
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.practice.PageController;
-import com.edu_app.model.FillBlankQuestion;
 import com.edu_app.model.Practice;
 import com.edu_app.model.Question;
-import com.edu_app.model.SelectQuestion;
 import com.edu_app.model.teacher.Model;
 import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.teacher.TeacherInfo;
@@ -15,6 +13,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +35,7 @@ public class PracticePage implements Model {
             @Override
             public void run(){
                 try {
-                    String response = NetworkUtility.getRequest(info.getHost()+"/practice", info.getUID());
-                    JsonParser parser = new JsonParser();
-                    JsonArray array = parser.parse(response).getAsJsonArray();
-
-                    practiceList = new ArrayList<>();
-                    for(JsonElement i : array){
-                        practiceList.add(parsePractice(i));
-                    }
+                    practiceList = NetworkUtility.getToJson(info.getHost()+"/practice", info.getUID(), new TypeToken<List<Practice>>(){}.getType());
                     pageController.handler.sendEmptyMessage(0);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -50,27 +43,6 @@ public class PracticePage implements Model {
                 }
             }
         }.start();
-    }
-
-    private Practice parsePractice(JsonElement element){
-        Gson gson = new Gson();
-        Practice practice = gson.fromJson(element, Practice.class);
-        JsonArray jsonQuestions = element.getAsJsonObject().get("questions").getAsJsonArray();
-        ArrayList<Question> questions = new ArrayList<>();
-        for(JsonElement i : jsonQuestions){
-            String type = i.getAsJsonObject().get("questionType").getAsString();
-            Question q;
-            if(Question.QUESTION_TYPE_CHOICE.equals(type)){
-                q = gson.fromJson(i, SelectQuestion.class);
-            } else if(Question.QUESTION_TYPE_FILL.equals(type)){
-                q = gson.fromJson(i, FillBlankQuestion.class);
-            } else {
-                q = gson.fromJson(i, Question.class);
-            }
-            questions.add(q);
-        }
-        practice.setQuestions(questions);
-        return practice;
     }
 
 

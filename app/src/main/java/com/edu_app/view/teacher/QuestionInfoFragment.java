@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.controller.teacher.question.FillBlankQuestionController;
-import com.edu_app.controller.teacher.question.SelectQuestionController;
 import com.edu_app.controller.teacher.question.ShortAnswerQuestionController;
 import com.edu_app.model.Question;
 import com.edu_app.model.teacher.practice.QuestionItem;
@@ -46,18 +44,9 @@ public class QuestionInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String type = question.getQuestionType();
         View view;
-        if(Question.QUESTION_TYPE_CHOICE.equals(type)){
-            view = inflater.inflate(R.layout.fragment_teacher_question_info_select, container, false);
-            controller = new SelectQuestionController(view, question, editable);
-        } else if(Question.QUESTION_TYPE_FILL.equals(type)){
-            view = inflater.inflate(R.layout.fragment_teacher_question_info_fill_blank, container, false);
-            controller = new FillBlankQuestionController(view, question, editable);
-        } else {
-            view = inflater.inflate(R.layout.fragment_teacher_question_info_short_answer, container, false);
-            controller = new ShortAnswerQuestionController(view, question, editable);
-        }
+        view = inflater.inflate(R.layout.fragment_teacher_question_info_short_answer, container, false);
+        controller = new ShortAnswerQuestionController(view, question, editable);
         return view;
     }
 }

@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
-import com.edu_app.model.teacher.question.QuestionItemFactory;
 import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;
 import com.edu_app.view.teacher.QuestionInfoFragment;
@@ -181,7 +180,8 @@ public class QuestionInfoController extends Controller {
     }
 
     private void changeToQuestionType() {
-        question = QuestionItemFactory.newInstance(questionType, question == null? null : question.getEntity());
+        question = new QuestionItem();
+        question.setQuestionType(questionType);
         // 补上设置问题，避免切换题目类型导致问题没有设置到对应的QuestionItem
         String q = ((TextView)view.findViewById(R.id.input_question_edit)).getText().toString();
         if(q.length() > 0){

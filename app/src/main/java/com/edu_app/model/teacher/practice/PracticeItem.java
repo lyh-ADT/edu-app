@@ -10,7 +10,6 @@ import com.edu_app.model.Question;
 import com.edu_app.model.teacher.Model;
 import com.edu_app.model.Practice;
 import com.edu_app.model.teacher.TeacherInfo;
-import com.edu_app.model.teacher.question.QuestionItemFactory;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -98,7 +97,7 @@ public class PracticeItem implements Model {
 
     public QuestionItem getQuestionAt(int pos){
         Question question = practice.getQuestions().get(pos);
-        return QuestionItemFactory.newInstance(question.getQuestionType(), question);
+        return new QuestionItem(question);
     }
 
     public void deleteQuestion(QuestionItem questionItem){

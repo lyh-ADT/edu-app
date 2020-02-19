@@ -4,53 +4,51 @@ import tornado.httpclient
 import SqlHandler
 import utils
 
-
-class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
+class AdmModifyTeaRequestHandler(tornado.web.RequestHandler):
     def post(self):
         """
-        从数据库删除班级学生信息
-
+        添加班级信息
         """
         try:
             self.sqlhandler = None
-            if "UID" not in self.request.cookies.keys():
-                self.write("no uid")
+            if "UID" not in self.request.cookies:
+                self.write("error")
                 return
 
             if not utils.isUIDValid(self):
                 self.write("no uid")
                 return
-            self.classId = self.get_argument("classId")
-            self.stuId = self.get_argument("stuId")
-            if self.deleteClassStu():
+            self.teaId = self.get_argument("TeaId")
+            self.teaName = self.get_argument("TeaName")
+            self.teaSex = self.get_argument("TeaSex")
+            self.teaPhoneNumber = self.get_argument("TeaPhoneNumber")
+            self.teaClass = self.get_argument("TeaClass")
+            if self.setClass():
+                
                 self.write("success")
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
+        except Exception as e:
+            print(e)
             self.write("error")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
-            tornado.ioloop.IOLoop.current().stop()
 
-    def deleteClassStu(self):
-
+    def setClass(self):
+        """
+        将班级信息写入数据库
+        """
         self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
+
         if self.sqlhandler.getConnection():
-
-            sql = "SELECT Student FROM CLASS where ClassId='{0}'".format(
-                self.classId)
-
-            stuIdList = str(
-                self.sqlhandler.executeOtherSQL(sql)[0]["Student"]).split(",")
-            stuIdList.remove(self.stuId)
-            sql = "UPDATE CLASS SET Student='{0}' where ClassId='{1}'".format(
-                ",".join(stuIdList), self.classId)
+            sql = "UPDATE TeaPersonInfo SET TeaName='{0}', TeaSex='{1}',TeaPhoneNumber='{2}', TeaClass='{3}' WHERE TeaId='{4}';".format(
+                self.teaName, self.teaSex, self.teaPhoneNumber,self.teaClass, self.teaId)
             if self.sqlhandler.executeOtherSQL(sql):
                 return True
         return False
@@ -58,8 +56,7 @@ class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(handlers=[(r"/",
-                                             AdmDeleteClassStuRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/", AdmModifyTeaRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

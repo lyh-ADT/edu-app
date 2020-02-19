@@ -14,7 +14,9 @@ import java.util.List;
 public class QuestionItem implements Model, Serializable {
     protected Question question;
 
-    public QuestionItem(){}
+    public QuestionItem(){
+        question = new Question();
+    }
 
     public QuestionItem(Question question){
         if(question == null){
@@ -55,7 +57,7 @@ public class QuestionItem implements Model, Serializable {
     }
 
     public void setQuestion(String o) {
-        question.setQuestion(o);
+        question.setQuestion(o.replace("\n", "\\n").replace("\r", "\\r"));
     }
 
     public void setAnswer(String s) {
@@ -76,5 +78,9 @@ public class QuestionItem implements Model, Serializable {
 
     public void setScore(int score){
         question.setScore(score);
+    }
+
+    public void setQuestionType(String type){
+        question.setQuestionType(type);
     }
 }

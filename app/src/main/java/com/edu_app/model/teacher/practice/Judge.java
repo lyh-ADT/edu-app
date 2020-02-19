@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class Judge implements Model {
+    public TeacherInfo getTeacherInfo() {
+        return teacherInfo;
+    }
+
     private TeacherInfo teacherInfo;
 
     public Judge(TeacherInfo teacherInfo){
@@ -34,14 +38,23 @@ public class Judge implements Model {
     }
 
     private class Bean{
-        private String studentId;
+        private String stuId;
         private String practiceId;
-        private int[] scores;
+        private int stuScore;
+        private String scoreDetail;
 
         public Bean(String studentId, String practiceId, int[] scores) {
-            this.studentId = studentId;
+            this.stuId = studentId;
             this.practiceId = practiceId;
-            this.scores = scores;
+            StringBuilder sb = new StringBuilder();
+            sb.append("{");
+            for(int i=0; i < scores.length; ++i){
+                sb.append(i+1).append(":").append(scores[i]).append(",");
+                stuScore+=scores[i];
+            }
+            sb.deleteCharAt(sb.length()-1);
+            sb.append("}");
+            this.scoreDetail = sb.toString();
         }
     }
 }

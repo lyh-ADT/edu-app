@@ -4,6 +4,7 @@ import tornado.httpclient
 import SqlHandler
 import utils
 import json
+import traceback
 
 
 class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
@@ -24,8 +25,9 @@ class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
             else:
                 raise RuntimeError
         except Exception as e:
+            traceback.print_exc()
             print(e)
-            self.write("error")
+            self.write("[]")
             self.finish()
         finally:
             if self.sqlhandler is not None:

@@ -12,8 +12,6 @@ class StuRegisterRequestHandler(tornado.web.RequestHandler):
             self.args = json.loads(self.request.body)
 
             if self.register():
-                self.uid = self.userId + str(uuid.uuid4())
-                self.updateUID()
                 self.write("success")
                 self.finish()
             else:

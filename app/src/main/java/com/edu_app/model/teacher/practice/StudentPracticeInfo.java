@@ -8,21 +8,23 @@ import com.edu_app.model.teacher.Model;
 
 import java.util.List;
 
-public class StudentPracticeItem implements Model {
-    private String authorId;
-    private String authorName;
-    private Practice practice;
-
-    public String getAuthorId() {
-        return authorId;
+public class StudentPracticeInfo implements Model {
+    public String getPracticeId() {
+        return practiceId;
     }
 
-    public Practice getPractice() {
-        return practice;
+    private String practiceId;
+    private String stuId;
+    private String stuName;
+    private boolean isDone;
+
+    public String getStuId() {
+        return stuId;
     }
 
-    public String getAuthorName() {
-        return authorName;
+
+    public String getStuName() {
+        return stuName;
     }
 
     @Override

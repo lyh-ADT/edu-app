@@ -54,8 +54,8 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
             print(rs)
             if len(rs) == 1:
                 self.stuId = rs[0]['StuId']
-                sql = """update SCORE set StuAnswer="{0}" where StuId="{1}" and PracticeId="{2}\"""".format(
-                    self.stuAnswer, self.stuId, self.practiceId)
+                sql = """insert into SCORE (StuId,PracticeId,StuAnswer) values('{0}','{1}','{2}')""".format(
+                     self.stuId, self.practiceId,self.stuAnswer)
                 print(sql)
                 if self.sqlhandler.executeOtherSQL(sql):
 

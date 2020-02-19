@@ -61,7 +61,7 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
             插入信息
             """
             sql = """INSERT INTO PRACTICE(PracticeId,ExamDetail,FullScore, TeaAnswer) VALUES('{0}','{1}','{2}', '{3}')""".format(
-                self.practiceId, self.examDetail, self.fullScore, self.answers)
+                self.practiceId, str(self.examDetail).replace("'", "\\'"), self.fullScore, str(self.answers).replace("'", "\\'"))
             if self.sqlhandler.executeOtherSQL(sql):
                 sql = "UPDATE CLASS SET Practice=CONCAT_WS(',', Practice, '{0}') WHERE ClassId='{1}';".format(self.practiceId, self.classId)
                 print(sql)

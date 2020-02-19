@@ -28,7 +28,8 @@ class AdmAddTeaRequestHandler(tornado.web.RequestHandler):
                 self.finish()
             else:
                 raise RuntimeError
-        except Exception:
+        except Exception as e:
+            print(e)
             self.set_status(403)
             self.write("error")
             self.finish()
@@ -48,6 +49,7 @@ class AdmAddTeaRequestHandler(tornado.web.RequestHandler):
         if self.sqlhandler.getConnection():
             sql = "INSERT INTO TeaPersonInfo(TeaId,TeaPassword,TeaName) VALUES('{0}','{1}','{2}')".format(
                 self.teaId, self.teaPassword, self.teaName)
+            print(sql)
             if self.sqlhandler.executeOtherSQL(sql):
                 return True
         return False

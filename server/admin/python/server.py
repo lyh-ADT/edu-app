@@ -11,6 +11,7 @@ from AdmGetStudentListRequestHandler import AdmGetStudentListRequestHandler
 from AdmDeleteStuRequestHandler import AdmDeleteStuRequestHandler
 from AdmGetClassStuListRequestHandler import AdmGetClassStuListRequestHandler
 from AdmDeleteClassStuRequestHandler import AdmDeleteClassStuRequestHandler
+from AdmModifyTeaRequestHandler import AdmModifyTeaRequestHandler
 
 app = tornado.web.Application(handlers=[
     (r"/admin/login", AdmLoginRequestHandler),
@@ -22,6 +23,7 @@ app = tornado.web.Application(handlers=[
     (r"/admin/teachertable", AdmGetTeaListRequestHandler),
     (r"/admin/addteacher", AdmAddTeaRequestHandler),
     (r"/admin/deleteteacher", AdmDeleteTeaRequestHandler),
+    (r"/admin/modifyteacher", AdmModifyTeaRequestHandler),
     (r"/admin/studenttable", AdmGetStudentListRequestHandler),
     (r"/admin/deletestudent", AdmDeleteStuRequestHandler),
     (r"/admin/kickstudent", AdmDeleteClassStuRequestHandler),

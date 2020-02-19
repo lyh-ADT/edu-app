@@ -6,7 +6,7 @@ import utils
 
 
 class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
-    def get(self):
+    def post(self):
         """
         从数据库删除班级学生信息
 

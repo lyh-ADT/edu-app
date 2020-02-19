@@ -22,7 +22,7 @@ import java.util.Map;
 public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHolder> {
 
     private final JSONArray examDetail;
-    private final JSONArray scoreDetail;
+    private final Map scoreDetail;
     private final String fullScore;
     private final JSONArray teaAnswer;
     private final JSONObject stuAnswer;
@@ -38,7 +38,7 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
         this.context = context;
 
         this.examDetail = JSONObject.parseArray(data.getString("examDetail"));
-        this.scoreDetail = JSONObject.parseArray(data.getString("scoreDetail"));
+        this.scoreDetail = JSONObject.parseObject(data.getString("scoreDetail"));
         this.fullScore = data.getString("fullScore");
         this.teaAnswer = JSONObject.parseArray(data.getString("teaAnswer"));
         this.stuAnswer = JSONObject.parseObject(data.getString("stuAnswer"));
@@ -79,7 +79,7 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
             holder.stuscore.setText("未批改");
             holder.stuscore.setTextColor(Color.RED);
         }else {
-            holder.stuscore.setText(scoreDetail.getJSONObject(position).getString("score"));
+            holder.stuscore.setText(scoreDetail.get(position+1).toString());
         }
 
         holder.fullscore.setText(examDetail.getJSONObject(position).getString("score"));

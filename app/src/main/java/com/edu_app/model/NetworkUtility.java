@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.lang.Class;
 public class NetworkUtility {
 
     /**
@@ -191,7 +191,8 @@ public class NetworkUtility {
         connection.setRequestProperty("Cookies", "UID=" + uid + ";");
         return connection;
     }
-//  将uid放到body中发起请求，返回服务器返回的数据
+
+    //  将uid放到body中发起请求，返回服务器返回的数据
     public static String postRequest(String url, String body) throws IOException {
 
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();

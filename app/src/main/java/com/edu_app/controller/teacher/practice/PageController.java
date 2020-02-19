@@ -7,9 +7,11 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,8 @@ import com.edu_app.model.teacher.TeacherInfo;
 import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.PracticePage;
 import com.edu_app.view.teacher.Fragment;
+
+import java.util.ArrayList;
 
 public class PageController extends Controller {
     public Handler handler = new Handler(new Handler.Callback() {
@@ -58,7 +62,9 @@ public class PageController extends Controller {
 
     public void error(String message){
         Looper.prepare();
-        // TODO: 加一个判断fragment是否因为被replace而为空的判断
+        if(fragment == null || fragment.getView() == null){
+            return;
+        }
         Toast.makeText(fragment.getView().getContext(), message, Toast.LENGTH_LONG).show();
         Looper.loop();
     }
@@ -172,7 +178,7 @@ public class PageController extends Controller {
                 } else {
                     FragmentManager manager = fragment.getFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.add(R.id.main_fragment, Fragment.newInstance("practice_info", null, new PracticeInfoController.Callback() {
+                    transaction.add(R.id.main_fragment, Fragment.newInstance("practice_info", teacherInfo, new PracticeInfoController.Callback() {
                         @Override
                         public PracticeItem getPractice() {
                             return model;

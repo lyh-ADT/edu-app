@@ -18,7 +18,6 @@ class StuLookPracticeRequestHandler(tornado.web.RequestHandler):
             self.stuUid = body["stuUid"]
             self.practiceId = body["practiceId"]
             if self.getPractice():
-
                 self.write({
                     "success": True,
                     "data": {

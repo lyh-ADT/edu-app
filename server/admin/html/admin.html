@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+
+    <title>管理系统</title>
+    <style>
+        html, body{
+            height: 100%;
+        }
+        #frame{
+            height: calc(100% - 80px);
+        }
+    </style>
+    <script>
+        function goClass(){
+            $("#frame").attr("src", "/class.html");
+        }
+        function goTeacher(){
+            $("#frame").attr("src", "/teacher.html");
+        }
+        function goStudent(){
+            $("#frame").attr("src", "/student.html");
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">管理系统</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav" id="navbarNav">
+                <a class="nav-item nav-link" href="#" onclick="goClass();">班级<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#" onclick="goTeacher();">教师</a>
+                <a class="nav-item nav-link" href="#" onclick="goStudent();">学生</a>
+            </div>
+        </div>
+    </nav>
+    <iframe id="frame" width="100%" style="border:0;" height="100%"></iframe>
+
+
+
+    <script src="/jquery.min.js"></script>
+    <script src="/popper.min.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script>
+        goClass();
+    </script>
+</body>
+
+</html>

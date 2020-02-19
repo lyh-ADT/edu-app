@@ -1,0 +1,75 @@
+CREATE TABLE StuPersonInfo
+(
+	StuId VARCHAR(20) NOT NULL,
+	StuUid VARCHAR(100),
+	StuPassword VARCHAR(100) NOT NULL,
+	stuName VARCHAR(30) NOT NULL,
+	StuSex VARCHAR(1) NOT NULL,
+	StuAge VARCHAR(2) NOT NULL,
+	StuBirthday DATE,
+	StuPhoneNumber CHAR(11) NOT NULL,
+	StuQQ VARCHAR(11),
+	StuAddress VARCHAR(50),
+	StuClass VARCHAR(30)
+)
+
+CREATE TABLE TeaPersonInfo
+(
+	TeaId VARCHAR(4) NOT NULL,
+	TeaUid VARCHAR(100),
+	TeaPassword VARCHAR(100) NOT NULL,
+	TeaName VARCHAR(30) NOT NULL,
+	TeaSex VARCHAR(1),
+	TeaAge VARCHAR(2),
+	TeaBirthday DATE,
+	TeaPhoneNumber CHAR(11),
+	TeaQQ VARCHAR(11),
+	TeaAddress VARCHAR(50),
+	TeaClass VARCHAR(36)
+)
+
+CREATE TABLE CLASS(
+	ClassId VARCHAR(36) NOT NULL,
+	CourseName VARCHAR(50) NOT NULL,
+	Teacher VARCHAR(100) NOT NULL,
+	Practice TEXT,
+	Student VARCHAR(1024),
+	StuNumber VARCHAR(2) NOT NULL,
+	InviteCode CHAR(6) UNIQUE
+)
+
+
+CREATE TABLE PRACTICE(
+	PracticeId VARCHAR(50) NOT NULL,
+	ExamDetail TEXT NOT NULL,
+	FullScore VARCHAR(3) NOT NULL,
+	TeaAnswer TEXT
+)
+CREATE TABLE SCORE(
+	PracticeId VARCHAR(50) NOT NULL,
+	StuId VARCHAR(20) NOT NULL,
+	StuScore VARCHAR(3) NOT NULL,
+	ScoreDetail TEXT NOT NULL
+)
+CREATE TABLE AdminAccount(
+ AdminId VARCHAR(30) PRIMARY KEY,
+ AdminPassword VARCHAR(30) NOT NULL,
+ UID CHAR(36)
+)
+
+-- 添加约束
+ALTER TABLE StuPersonInfo add Constraint PK_StuPersonInfo_StuId primary key(StuId)
+
+
+ALTER TABLE TeaPersonInfo add Constraint PK_TeaPersonInfo_TeaId primary key(TeaId)
+
+
+ALTER TABLE CLASS add Constraint PK_CLASS_ClassId primary key(ClassId)
+
+
+ALTER TABLE PRACTICE add Constraint PK_PRACTICE_PracticeId primary key(PracticeId)
+
+-- 联合主键
+ALTER TABLE SCORE add Constraint PK_SCORE_PracticeAndStuId primary key(PracticeId,StuId)
+
+

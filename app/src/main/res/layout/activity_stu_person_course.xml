@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/personPage_stuClass_addClassText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></EditText>
+
+    <Button
+        android:id="@+id/personPage_stuClass_addClassBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加班级">
+
+    </Button>
+    <Button
+        android:id="@+id/personPage_stuClass_getClassBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取班级">
+
+    </Button>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/personPage_stuClass_getClassText"></TextView>
+</LinearLayout>

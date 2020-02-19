@@ -1,11 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.edu_app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
     <application
+        android:screenOrientation="portrait"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".view.activityMain"></activity>
+        <activity android:name=".view.student.activityStuFunction"> </activity>
+        <activity android:name=".view.login.LoginActivity" android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN">
+                </action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+<activity android:name=".view.student.pracitce.activitySubjectEnglish"></activity>
+        <activity android:name=".view.student.pracitce.activitySubjectChinese"></activity>
+        <activity android:name=".view.student.pracitce.activitySubjectMath"></activity>
+        <activity android:name=".view.student.person.activityContactService"></activity>
+        <activity android:name=".view.student.person.activityPersonInfo"></activity>
+        <activity android:name=".view.student.person.activityPersonCourse"></activity>
+        <activity android:name=".view.student.pracitce.activityLookExam"></activity>
+        <activity android:name=".view.student.pracitce.activityDoExam"></activity>
+<activity android:name=".view.student.course.activityLivePlay"></activity>
+
+        <activity android:name=".view.teacher.activityTeaFunction"/>
+        <activity android:name=".view.teacher.person.activityContactService"></activity>
+        <activity android:name=".view.teacher.person.activityPersonInfo"></activity>
+        <activity android:name=".view.teacher.person.activityPersonCourse"></activity>
+    </application>
+
 </manifest>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/bootstrap.min.css">
+
+  <title>管理系统</title>
+  <script>
+
+  </script>
+</head>
+
+<body>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">学生账号</th>
+        <th scope="col">姓名</th>
+        <th scope="col">性别</th>
+        <th scope="col">生日</th>
+        <th scope="col">电话号码</th>
+        <th scope="col">QQ</th>
+        <th scope="col">地址</th>
+        <th scope="col">班级</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+  </table>
+
+
+  <script src="/jquery.min.js"></script>
+  <script src="/popper.min.js"></script>
+  <script src="/bootstrap.min.js"></script>
+
+  <script>
+    const tableKeyList = [
+      "StuId",
+      "stuName",
+      "StuSex",
+      "StuAge",
+      "StuPhoneNumber",
+      "StuQQ",
+      "StuAddress",
+      "StuClass",
+    ];
+    const tableTextList = [
+      "学生账号",
+      "姓名",
+      "性别",
+      "年龄",
+      "电话号码",
+      "QQ",
+      "地址",
+      "班级"
+    ];
+    const editables = [
+
+    ];
+    var data = null;
+    function getTable() {
+      $.get("/admin/studenttable", function (result) {
+        if(result == "error"){
+          parent.location.assign("/admin-login.html")
+          return;
+        }
+        data = JSON.parse(result);
+        
+        console.log(data)
+        let tbody = $("#tableBody");
+        tbody.empty();
+        if(data.length == 0){
+          tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
+          return;
+        }
+        for (let stu in data) {
+          let content = "<tr index='" + stu + "'>";
+          for (let k of tableKeyList) {
+            if (editables.indexOf(k) != -1) {
+              content += "<td class='" + k + "'><input class='form-control' value='" + data[stu][k] + "' readonly></td>";
+            } else {
+              content += "<td class='" + k + "'>" + data[stu][k] + "</td>";
+            }
+          }
+          content += `<td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-danger" index="`+ stu + `" onclick="deleteStudent(this);">删除学生</button>
+            </div>
+            </td>`;
+          content += "</tr>";
+
+          tbody.append(content)
+        }
+      });
+    }
+    getTable();
+
+    function deleteStudent(element) {
+      let index = parseInt($(element).attr("index"));
+      let c = confirm("确认删除\n" + data[index]["StuId"] + "-" + data[index]["stuName"]);
+      if(!c){
+        return;
+      }
+      $.get("/admin/deletestudent", {
+        "StuId": data[index]["StuId"]
+      }, function (result) {
+        if(result == "success"){
+          getTable();
+        }else{
+          alert("删除失败");
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

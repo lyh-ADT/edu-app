@@ -43,6 +43,13 @@ public class LookExamController {
     public void setView() {
         activity.setContentView(R.layout.activity_stu_practice_lookexam_recycler);
         getPractice();
+
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
 //        everyQuestionDetail = (HashMap)getAllData().get("everyQuestionDetail");
         recycler = (RecyclerView) activity.findViewById(R.id.practicePage_practice_lookexam_recycler);
         recycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
@@ -90,7 +97,7 @@ public class LookExamController {
             getSuccess = jsonObject.getBoolean("success");
 
             data = jsonObject.getJSONObject("data");
-
+            Log.e("error",data.toJSONString());
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -25,16 +25,6 @@
             android:layout_weight="1"
             android:layout_marginLeft="10sp"
             android:orientation="vertical">
-            <!--登录-->
-            <TextView
-                android:id="@+id/personPage_bt_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/personPage_login"
-                android:textStyle="bold"
-                android:textSize="20sp"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,38 +97,7 @@
             android:layout_weight="0.5"
             android:src="@mipmap/ic_jiantou"></ImageView>
     </android.widget.LinearLayout>
-    <!--我的下载-->
-    <android.widget.LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
-        android:orientation="horizontal"
-        android:id="@+id/personPage_stuDownload"
 
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10sp"
-            android:layout_weight="1"
-            android:src="@mipmap/ic_history"></ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15sp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="@string/personPageOp_3"></TextView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="200sp"
-            android:layout_weight="0.5"
-            android:src="@mipmap/ic_jiantou"></ImageView>
-    </android.widget.LinearLayout>
     <!--联系客服-->
     <android.widget.LinearLayout
         android:id="@+id/personPage_contactCS"

@@ -1,6 +1,7 @@
 package com.edu_app.controller.student.practice;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
     private final JSONArray scoreDetail;
     private final String fullScore;
     private final JSONArray teaAnswer;
-    private final JSONArray stuAnswer;
+    private final JSONObject stuAnswer;
     private final String stuScore;
     private Context context;
 /*
@@ -40,7 +41,7 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
         this.scoreDetail = JSONObject.parseArray(data.getString("scoreDetail"));
         this.fullScore = data.getString("fullScore");
         this.teaAnswer = JSONObject.parseArray(data.getString("teaAnswer"));
-        this.stuAnswer = JSONObject.parseArray(data.getString("stuAnswer"));
+        this.stuAnswer = JSONObject.parseObject(data.getString("stuAnswer"));
         this.stuScore = data.getString("stuScore");
     }
 
@@ -74,9 +75,15 @@ public class LookExamAdapter extends RecyclerView.Adapter<LookExamAdapter.ViewHo
     public void onBindViewHolder(@NonNull LookExamAdapter.ViewHolder holder, int position) {
 
         holder.questiontext.setText(examDetail.getJSONObject(position).getString("question"));
-        holder.stuscore.setText(scoreDetail.getJSONObject(position).getString("score"));
+        if(scoreDetail==null){
+            holder.stuscore.setText("未批改");
+            holder.stuscore.setTextColor(Color.RED);
+        }else {
+            holder.stuscore.setText(scoreDetail.getJSONObject(position).getString("score"));
+        }
+
         holder.fullscore.setText(examDetail.getJSONObject(position).getString("score"));
-        holder.stu_answertext.setText(stuAnswer.getJSONObject(position).getString("answer"));
+        holder.stu_answertext.setText(stuAnswer.getString(String.valueOf(position+1)));
         holder.right_answertext.setText(teaAnswer.getJSONObject(position).getString("answer"));
     }
 

@@ -27,12 +27,10 @@ public class fragmentPerson extends Fragment {
 //        TextView textView = (TextView) getActivity().findViewById(R.id.personPage_bt_login);
         LinearLayout linearLayout_1 = getActivity().findViewById(R.id.personPage_stuInfo);
         LinearLayout linearLayout_2 =getActivity().findViewById(R.id.personPage_stuCourse);
-        LinearLayout linearLayout_3 = getActivity().findViewById(R.id.personPage_stuDownload);
         LinearLayout linearLayout_4 =  getActivity().findViewById(R.id.personPage_contactCS);
 //        textView.setOnClickListener(mainController);
         linearLayout_1.setOnClickListener(mainController);
         linearLayout_2.setOnClickListener(mainController);
-        linearLayout_3.setOnClickListener(mainController);
         linearLayout_4.setOnClickListener(mainController);
 
     }

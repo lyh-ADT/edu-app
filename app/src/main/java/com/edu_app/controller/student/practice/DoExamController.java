@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class DoExamController implements View.OnClickListener {
     private Map<String, String> answer;
     private Boolean getSuccess;
     private JSONArray data;
+    private Boolean setSuccess;
 
     public DoExamController(AppCompatActivity activity) {
         this.activity = activity;
@@ -43,10 +45,22 @@ public class DoExamController implements View.OnClickListener {
 
     public void setView() {
         getPractice();
-        recycler = activity.findViewById(R.id.practicePage_practice_doexam_recycler);
-        recycler.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL, false));
-        adapter = new DoExamAdapter(activity, data);
-        recycler.setAdapter(adapter);
+        while(getSuccess==null){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(getSuccess){
+            recycler = activity.findViewById(R.id.practicePage_practice_doexam_recycler);
+            recycler.setLayoutManager(new LinearLayoutManager(activity,LinearLayoutManager.VERTICAL, false));
+            adapter = new DoExamAdapter(activity, data);
+            recycler.setAdapter(adapter);
+        }else {
+
+            Toast.makeText((Context)this.activity,data.getString(0),Toast.LENGTH_SHORT);
+        }
 
     }
 
@@ -101,7 +115,7 @@ public class DoExamController implements View.OnClickListener {
             e.printStackTrace();
         }
         JSONObject jsonObject = JSONObject.parseObject(response);
-        getSuccess = jsonObject.getBoolean("success");
+        setSuccess = jsonObject.getBoolean("success");
 
     }
 
@@ -123,6 +137,7 @@ public class DoExamController implements View.OnClickListener {
             JSONObject jsonObject = JSONObject.parseObject(response);
             getSuccess = jsonObject.getBoolean("success");
             data = jsonObject.getJSONArray("data");
+            Log.e("error",data.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

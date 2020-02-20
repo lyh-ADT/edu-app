@@ -49,7 +49,7 @@ class StuClassRequestHandler(tornado.web.RequestHandler):
             rs = self.sqlhandler.executeQuerySQL(sql)
 
             if len(rs) == 1:
-                classid = str(rs[0]["StuClass"]).split(",")
+                classid = eval(str(rs[0]["StuClass"]))
 
                 for clsid in classid:
                     sql = "select CourseName from CLASS where ClassId='" + clsid + "'"

@@ -43,8 +43,15 @@ public class LookExamController {
     public void setView() {
         activity.setContentView(R.layout.activity_stu_practice_lookexam_recycler);
         getPractice();
+
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
 //        everyQuestionDetail = (HashMap)getAllData().get("everyQuestionDetail");
-        recycler = (RecyclerView) activity.findViewById(R.id.practicePage_practice_lookexam_recycler);
+        recycler = activity.findViewById(R.id.practicePage_practice_lookexam_recycler);
         recycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         adapter = new LookExamAdapter(activity, data);
         recycler.setAdapter(adapter);
@@ -54,7 +61,7 @@ public class LookExamController {
 
 
     public void setKeyDown() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder((Context) activity);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
         dialog.setTitle("退出提示");
         dialog.setMessage("确认退出查看练习吗？");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -90,7 +97,7 @@ public class LookExamController {
             getSuccess = jsonObject.getBoolean("success");
 
             data = jsonObject.getJSONObject("data");
-
+            Log.e("error",data.toJSONString());
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -16,19 +16,19 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
             self.sqlhandler = None
             body = json.loads(self.request.body)
             print(body)
-            
+
             self.stuUid = body["stuUid"]
             self.practiceId = body["practiceId"]
             self.stuAnswer = body["stuAnswer"]
             if self.getPractice():
 
-                self.write({"success": True, "data": "获取试题详情成功"})
+                self.write({"success": True, "data": "提交答案成功"})
                 self.finish()
             else:
                 raise RuntimeError
         except Exception as e:
             print(e)
-            self.write({"success": False, "data": "获取试题详情失败"})
+            self.write({"success": False, "data": "提交答案失败"})
             self.finish()
         finally:
             if self.sqlhandler is not None:
@@ -54,8 +54,8 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
             print(rs)
             if len(rs) == 1:
                 self.stuId = rs[0]['StuId']
-                sql = """update SCORE set StuAnswer="{0}" where StuId="{1}" and PracticeId="{2}\"""".format(
-                    self.stuAnswer, self.stuId, self.practiceId)
+                sql = """insert into SCORE (PracticeId,StuId,StuAnswer) values("{0}","{1}","{2}")""".format(
+                    self.practiceId, self.stuId, self.stuAnswer)
                 print(sql)
                 if self.sqlhandler.executeOtherSQL(sql):
 

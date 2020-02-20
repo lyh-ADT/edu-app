@@ -36,11 +36,11 @@ public class activitySubjectChinese extends AppCompatActivity {
     private void initView() {
 //        初始化视图
         setContentView(R.layout.activity_stu_practice_subjectchinese);
-        chineserecycler = (RecyclerView) findViewById(R.id.practicePage_practice_chinese_recycler);
+        chineserecycler = findViewById(R.id.practicePage_practice_chinese_recycler);
 //        初始化数据
         uid = getIntent().getExtras().get("uid").toString();
         subject = getIntent().getExtras().get("subject").toString();
-        practicelist = (ArrayList<Practice>) new GetPracticeList(uid,subject).getPracticeList();
+        practicelist = new GetPracticeList(uid,subject).getPracticeList();
 //        设置适配器
         ExamAdapter adapter = new ExamAdapter(activitySubjectChinese.this, practicelist);
         chineserecycler.setAdapter(adapter);

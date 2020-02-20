@@ -19,7 +19,6 @@ import com.edu_app.model.login.Register;
 import com.edu_app.view.login.LoginAndRegisterFragment;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 public class RegisterController {
     private final String HOST = "http://139.159.176.78:2000";

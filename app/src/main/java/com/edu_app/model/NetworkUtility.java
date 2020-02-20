@@ -9,11 +9,11 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.lang.Class;
-
 public class NetworkUtility {
 
     /**
      * 向目标链接发起Cookies带UID的GET请求，将返回的json数据转换为cls对应的对象
+     *
      * @param url 链接字符串
      * @param uid UID
      * @param cls json数据对应的java对象的类
@@ -188,10 +188,11 @@ public class NetworkUtility {
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestMethod(method);
         connection.setConnectTimeout(5000);
-        connection.setRequestProperty("Cookie", "UID="+uid+";");
+        connection.setRequestProperty("Cookie", "UID=" + uid + ";");
         return connection;
     }
-//  将uid放到body中发起请求，返回服务器返回的数据
+
+    //  将uid放到body中发起请求，返回服务器返回的数据
     public static String postRequest(String url, String body) throws IOException {
 
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();

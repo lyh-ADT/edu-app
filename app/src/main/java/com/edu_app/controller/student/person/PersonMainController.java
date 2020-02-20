@@ -20,7 +20,7 @@ public class PersonMainController implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
-        Bundle bundle = (Bundle) this.activity.getIntent().getExtras();
+        Bundle bundle = this.activity.getIntent().getExtras();
         intent.putExtras(bundle);
         switch (v.getId()) {
             case R.id.personPage_stuInfo:

@@ -41,23 +41,34 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
-            sql = """select ClassId from CLASS where InviteCode='{0}'""".format(
+            sql = """select Student,ClassId from CLASS where InviteCode='{0}'""".format(
                 self.inviteCode)
             rs = self.sqlhandler.executeQuerySQL(sql)
             if len(rs) == 1:
                 self.stuClass = rs[0]["ClassId"]
-                sql = """select StuClass from StuPersonInfo where StuUid='{0}'""".format(
+                if rs[0]['Student'] is not None:
+                    self.studentList = eval(str(rs[0]['Student']))
+                else:
+                    self.studentList = list()
+                print(self.studentList)
+                sql = """select StuId,StuClass from StuPersonInfo where StuUid='{0}'""".format(
                     self.stuUid)
                 rs = self.sqlhandler.executeQuerySQL(sql)
                 if len(rs) == 1:
-                    classList = str(rs[0]["StuClass"]).split(",")
+                    if rs[0]["StuClass"] is not None:
+                        classList = eval(str(rs[0]["StuClass"]))
+                    else:
+                        classList = list()
+                    stuId = rs[0]["StuId"]
                     if self.stuClass in classList:
                         return True
                     classList.append(self.stuClass)
-                    self.stuClass = ",".join(classList)
-                    print(self.stuClass)
+                    print(classList)
                     sql = """UPDATE StuPersonInfo SET StuClass='{0}'""".format(
-                        self.stuClass)
-                    if self.sqlhandler.executeOtherSQL(sql):
+                        classList)
+                    updateStudent = self.sqlhandler.executeOtherSQL(sql)
+                    sql = """UPDATE CLASS SET Student='{0}'""".format(self.studentList.append(stuId))
+                    updateClass = self.sqlhandler.executeOtherSQL(sql)
+                    if updateStudent and updateClass:
                         return True
         return False

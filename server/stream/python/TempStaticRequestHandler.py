@@ -12,6 +12,18 @@ class TempStaticRequestHandler(tornado.web.RequestHandler):
             with open("../html/"+path[path.rindex("/")+1:], "rb") as f:
                 self.write(f.read())
                 self.finish()
+        elif t == "css":
+            with open("../css/"+path[path.rindex("/")+1:], "rb") as f:
+                self.set_status(200)
+                self.set_header("Content-Type", "text/css;")
+            
+                self.write(f.read())
+                self.finish()
+        elif t == "js":
+            with open("../js/"+path[path.rindex("/")+1:], "rb") as f:
+                self.set_header("Content-Type", "application/x-javascript")
+                self.write(f.read())
+                self.finish()
         
     def post(self):
         """

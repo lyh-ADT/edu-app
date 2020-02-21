@@ -9,9 +9,8 @@ class LoginHandler(tornado.web.RequestHandler):
     def post(self):
         try:
             self.sqlhandler = None
-            self.args = json.loads(self.request.body)
-            self.userId = self.args["userId"]
-            self.userPassword = self.args["userPassword"]
+            self.userId = self.get_argument("userId")
+            self.userPassword = self.get_argument("userPassword")
 
             if self.checkInfo():
                 self.uid = self.userId + str(uuid.uuid4())

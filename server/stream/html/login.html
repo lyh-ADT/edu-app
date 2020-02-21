@@ -43,7 +43,13 @@
                     "userPassword": password_text
                 },
                 success: function (result) {
-                    location.assign("index.html")
+                    console.log(result)
+                    let info = JSON.parse(result)
+                    if(result.success){
+                        location.assign("index.html")
+                    }else{
+                        alert(result.data)
+                    }
                 },
                 error: function () {
 
@@ -71,9 +77,9 @@
     </div>
 
 
-    <script src="/jquery.min.js"></script>
-    <script src="/popper.min.js"></script>
-    <script src="/bootstrap.min.js"></script>
+    <script src="/teacher-stream/jquery.min.js"></script>
+    <script src="/teacher-stream/popper.min.js"></script>
+    <script src="/teacher-stream/bootstrap.min.js"></script>
 </body>
 
 </html>

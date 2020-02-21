@@ -7,7 +7,7 @@ def isUIDValid(self):
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')
     if self.sqlhandler.getConnection():
-        sql = "select AdminId from AdminAccount where UID='{0}'".format(
+        sql = "select TeaId from StreamTeaAccount where TeaUid='{0}'".format(
             self.get_cookie("UID", "no"))
         result = self.sqlhandler.executeQuerySQL(sql)
         print(result, self.request.full_url())

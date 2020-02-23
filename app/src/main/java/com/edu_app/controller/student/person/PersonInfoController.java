@@ -1,6 +1,5 @@
 package com.edu_app.controller.student.person;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
@@ -61,19 +60,19 @@ public class PersonInfoController implements View.OnClickListener {
         oldPasswordLayout = this.activity.findViewById(R.id.personPage_personInfo_oldPasswordLayout);
         newPasswordLayout = this.activity.findViewById(R.id.personPage_personInfo_newPasswordLayout);
 
-        idEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_id);
-        nameEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_name);
-        sexEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_sex);
+        idEditText = activity.findViewById(R.id.personPage_personInfo_id);
+        nameEditText = activity.findViewById(R.id.personPage_personInfo_name);
+        sexEditText = activity.findViewById(R.id.personPage_personInfo_sex);
 
-        ageEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_age);
+        ageEditText = activity.findViewById(R.id.personPage_personInfo_age);
 
-        qqEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_qq);
+        qqEditText = activity.findViewById(R.id.personPage_personInfo_qq);
 
-        phoneEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_phone);
-        addressEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_address);
-        newPasswordEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_newPassword);
-        oldPasswordEditText = (EditText) activity.findViewById(R.id.personPage_personInfo_oldPassword);
-        changeBt = (Button) activity.findViewById(R.id.personPage_personInfo_changeBt);
+        phoneEditText = activity.findViewById(R.id.personPage_personInfo_phone);
+        addressEditText = activity.findViewById(R.id.personPage_personInfo_address);
+        newPasswordEditText = activity.findViewById(R.id.personPage_personInfo_newPassword);
+        oldPasswordEditText = activity.findViewById(R.id.personPage_personInfo_oldPassword);
+        changeBt = activity.findViewById(R.id.personPage_personInfo_changeBt);
         changeBt.setOnClickListener(this);
 
         idEditText.setEnabled(false);
@@ -145,7 +144,7 @@ public class PersonInfoController implements View.OnClickListener {
     }
 
     private void showDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder((Context) activity);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
         dialog.setTitle("修改资料提示");
         dialog.setMessage("确认修改资料吗？");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
@@ -226,7 +225,7 @@ public class PersonInfoController implements View.OnClickListener {
         this.setSuccess = jsonObject.getBoolean("success");
     }
     private void showPasswordErrorDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder((Context) activity);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
         dialog.setTitle("原始密码错误提示");
         dialog.setMessage("原始密码错误，请重新输入");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {

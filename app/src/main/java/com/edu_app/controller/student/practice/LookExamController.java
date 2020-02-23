@@ -51,7 +51,7 @@ public class LookExamController {
             }
 
 //        everyQuestionDetail = (HashMap)getAllData().get("everyQuestionDetail");
-        recycler = (RecyclerView) activity.findViewById(R.id.practicePage_practice_lookexam_recycler);
+        recycler = activity.findViewById(R.id.practicePage_practice_lookexam_recycler);
         recycler.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         adapter = new LookExamAdapter(activity, data);
         recycler.setAdapter(adapter);
@@ -61,7 +61,7 @@ public class LookExamController {
 
 
     public void setKeyDown() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder((Context) activity);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
         dialog.setTitle("退出提示");
         dialog.setMessage("确认退出查看练习吗？");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {

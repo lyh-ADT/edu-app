@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>教师直播平台</title>
+    <style>
+        body{
+            background-color: cadetblue;
+        }
+        table{
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">教师直播平台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--导航栏内容-->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <button type="button" class="btn btn-primary btn-lg">创建房间</button>
+        </div>
+    </nav>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">教师Id</th>
+                <th scope="col">教师姓名</th>
+                <th scope="col">班级</th>
+                <th scope="col">房间号</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+        
+            </tbody>
+          </table>
+    </div>
+    <script src="/teacher-stream/jquery.min.js"></script>
+    <script src="/teacher-stream/popper.min.js"></script>
+    <script src="/teacher-stream/bootstrap.min.js"></script>
+    <script>
+        const tableKeyList = [
+          "TeaId",
+          "TeaName",
+          "CourseName",
+          "RoomNumber"
+        ];
+
+        var data = null;
+        function getTable() {
+          $.get("/teacher-stream/list", function (result) {
+            if(result == "error"){
+              parent.location.assign("/login.html")
+              return;
+            }
+            
+            console.log(result)
+            data = JSON.parse(result);
+            let tbody = $("#tableBody");
+            tbody.empty();
+            if(data.length == 0){
+              tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
+              return;
+            }
+            for (let stu in data) {
+              let content = "<tr index='"+stu+"'>";
+              for (let k of tableKeyList) {
+                content += "<td>" + data[stu][k] + "</td>";
+              }
+              content += "</tr>";
+    
+              tbody.append(content);
+            }
+          });
+        }
+        getTable();
+      </script>
+</body>
+</html>

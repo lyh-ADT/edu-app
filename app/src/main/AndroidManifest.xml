@@ -38,12 +38,14 @@
             android:name=".view.login.LoginActivity"
             android:exported="true">
 
+
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
+                <action android:name="android.intent.action.MAIN">
+                </action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
-        <activity android:name=".view.student.pracitce.activitySubjectEnglish"></activity>
+<activity android:name=".view.student.pracitce.activitySubjectEnglish"></activity>
         <activity android:name=".view.student.pracitce.activitySubjectChinese"></activity>
         <activity android:name=".view.student.pracitce.activitySubjectMath"></activity>
         <activity android:name=".view.student.person.activityContactService"></activity>
@@ -51,7 +53,7 @@
         <activity android:name=".view.student.person.activityPersonCourse"></activity>
         <activity android:name=".view.student.pracitce.activityLookExam"></activity>
         <activity android:name=".view.student.pracitce.activityDoExam"></activity>
-        <activity android:name=".view.student.course.activityLivePlay"></activity>
+<activity android:name=".view.student.course.activityLivePlay"></activity>
 
         <activity android:name=".view.teacher.activityTeaFunction" />
         <activity android:name=".view.teacher.person.activityContactService"></activity>
@@ -69,6 +71,6 @@
             android:theme="@style/AppTheme.NoActionBar"
            ></activity>
 
-    </application>
+    </application>>
 
 </manifest>

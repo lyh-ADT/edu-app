@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>视频</title>
+    <style>
+        #videos{
+            background-color: black;
+        }
+        .video{
+            width:150px;
+            height: 150px;
+            background-color: yellow;
+            border: 2px solid black;
+        }
+       
+    </style>
+</head>
+<body class="h-100">
+
+    <div id="videos" class="flex-grow-1 d-flex flex-row align-content-center flex-wrap h-100">
+
+
+        
+    </div>
+        
+    <script src="/teacher-stream/jquery.min.js"></script>
+    <script src="/teacher-stream/popper.min.js"></script>
+    <script src="/teacher-stream/bootstrap.min.js"></script>
+    
+    <div id="video_template" class="video flex-fill" style="display: none;">
+        视频
+    </div>
+
+
+    <script>
+        function addPeople(){
+            let videos = $("#videos");
+            let video = $("#video_template").clone();
+            video.css("display", "unset")
+
+            videos.append(video)
+        }
+
+        for(let i=0; i < 20; ++i){
+            addPeople();
+        }
+    </script>
+
+</body>
+</html>

@@ -77,7 +77,7 @@ public class DoExamController implements View.OnClickListener {
     }
 
     public void setKeyDown() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder((Context) activity);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
         dialog.setTitle("提交答案提示");
         dialog.setMessage("确认退出练习并提交答案吗？");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {

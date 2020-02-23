@@ -26,9 +26,9 @@ public class activityStuFunction extends AppCompatActivity implements View.OnCli
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main_fragment, new fragmentPerson());
         ft.commit();
-        ImageView img1 = (ImageView) findViewById(R.id.bar_imgPractice);
-        ImageView img2 = (ImageView) findViewById(R.id.bar_imgCourse);
-        ImageView img3 = (ImageView) findViewById(R.id.bar_imgPersonInfo);
+        ImageView img1 = findViewById(R.id.bar_imgPractice);
+        ImageView img2 = findViewById(R.id.bar_imgCourse);
+        ImageView img3 = findViewById(R.id.bar_imgPersonInfo);
         img1.setOnClickListener(this);
         img2.setOnClickListener(this);
         img3.setOnClickListener(this);

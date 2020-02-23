@@ -40,7 +40,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            examtitle = (TextView) itemView.findViewById(R.id.practicePage_practice_examtitle);
+            examtitle = itemView.findViewById(R.id.practicePage_practice_examtitle);
             itemView.setOnClickListener(this);
         }
 

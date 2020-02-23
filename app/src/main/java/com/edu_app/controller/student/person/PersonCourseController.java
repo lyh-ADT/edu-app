@@ -34,9 +34,9 @@ public class PersonCourseController implements View.OnClickListener {
     }
 
     public void setOnClick() {
-        getBt = (Button) activity.findViewById(R.id.personPage_stuClass_getClassBt);
+        getBt = activity.findViewById(R.id.personPage_stuClass_getClassBt);
         getBt.setOnClickListener(this);
-        addBt = (Button) activity.findViewById(R.id.personPage_stuClass_addClassBt);
+        addBt = activity.findViewById(R.id.personPage_stuClass_addClassBt);
         addBt.setOnClickListener(this);
     }
 

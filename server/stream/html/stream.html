@@ -11,20 +11,24 @@
     <title>直播界面</title>
     <style>
         #videos {
-            width: 75%;
             background-color: black;
             overflow-y: auto;
+            height: 75%;
         }
 
-        .video {
+        #videos video {
             width: 150px;
             height: 150px;
             background-color: yellow;
             border: 2px solid black;
         }
 
+        #controls {
+            height: 25%;
+        }
+
         #message_area {
-            width: 25%;
+            width: 55%;
             height: 500px;
             background-color: white;
         }
@@ -39,40 +43,53 @@
             height: 100px;
             background-color: chocolate;
         }
+
+        #me {
+            /* position: absolute;
+            right: 25%; */
+            border: 2px solid red ;
+            margin: 0;
+            height: 100%;
+        }
+
+        #sendBtn {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            z-index: 1;
+            width: 5%;
+            z-index: 1;
+        }
     </style>
 </head>
 
 <body class="h-100">
     <div class="d-flex flex-row h-100">
-        <div id="videos" class="flex-grow-1 d-flex flex-row align-content-center flex-wrap h-100">
+        <div class="d-flex flex-row  flex-wrap">
+            <div id="controls" class="d-flex flex-row justify-content-between">
+                <video class="" id="me" autoplay></video>
+                <div class="w-100 flex-fill">
+                    <div class="btn-group btn-group-lg" role="group">
+                        <button type="button" class="btn btn-secondary">切换画面</button>
+                    </div>
+                </div>
 
+            </div>
+
+            <div id="videos" class="d-flex flex-row align-content-center flex-wrap w-100">
+
+            </div>
         </div>
 
         <div id="message_area" class="d-flex flex-column h-100">
-            <nav class="navbar" id="opertaion">
+            <div id="message_box" class="w-100 h-75"></div>
+            <textarea class="w-100 h-25" id="message_input"></textarea>
 
-                <button class="btn btn-primary" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent">
-                    操作
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">结束直播</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="d-flex flex-column flex-grow-1 w-100 overflow-auto">
-                <div id="message_box" class="w-100 h-75"></div>
-                <textarea class="w-100 h-25" id="message_input"></textarea>
-            </div>
         </div>
     </div>
-    <script src="/teacher-stream/jquery.min.js"></script>
-    <script src="/teacher-stream/popper.min.js"></script>
-    <script src="/teacher-stream/bootstrap.min.js"></script>
+
+
+    <button id="sendBtn" class="btn btn-secondary">发送</button>
 
     <div id="message_template">
         <div id="sender"></div>
@@ -82,6 +99,14 @@
     <div id="video_template" class="video flex-fill" style="display: none;">
         视频
     </div>
+
+    <script src="/teacher-stream/js/jquery.min.js"></script>
+    <script src="/teacher-stream/js/popper.min.js"></script>
+    <script src="/teacher-stream/js/bootstrap.min.js"></script>
+    <script src="/teacher-stream/js/SkyRTC-client.js"></script>
+    <script src="/teacher-stream/js/conn.js"></script>
+
+
 
     <script>
         function add_meesage() {

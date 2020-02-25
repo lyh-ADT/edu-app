@@ -29,6 +29,14 @@ startBtn.onclick = function (event) {
 function bindListeners() {
     //成功创建WebSocket连接
     rtc.on("connected", function (socket) {
+        // ws心跳保持活动
+        setInterval(function(){
+            rtc.socket.send(JSON.stringify({
+                "eventName": "__heartbeat",
+                "data": {}
+            }));
+        }, 50000);
+        
         //创建本地视频流
         let mode = document.getElementById("screenMode").value;
         if (mode == "cam") {

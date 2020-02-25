@@ -69,8 +69,12 @@
             <div id="controls" class="d-flex flex-row justify-content-between">
                 <video class="" id="me" autoplay></video>
                 <div class="w-100 flex-fill">
+                    <select id="screenMode">
+                        <option value="cam">摄像头</option>
+                        <option value="scr">电脑屏幕</option>
+                    </select>
                     <div class="btn-group btn-group-lg" role="group">
-                        <button type="button" class="btn btn-secondary">切换画面</button>
+                        <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
                     </div>
                 </div>
 

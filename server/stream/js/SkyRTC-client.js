@@ -126,10 +126,12 @@ const SkyRTC = function () {
         };
 
         socket.onclose = function (data) {
-            that.localMediaStream.close();
             var pcs = that.peerConnections;
-            for (i = pcs.length; i--;) {
-                that.closePeerConnection(pcs[i]);
+            // for (i = pcs.length; i--;) {
+            //     that.closePeerConnection(pcs[i]);
+            // }
+            for(let k in pcs){
+                that.closePeerConnection(pcs[k]);
             }
             that.peerConnections = [];
             that.dataChannels = {};
@@ -150,7 +152,7 @@ const SkyRTC = function () {
         this.on("_ice_candidate", function (data) {
             var candidate = new nativeRTCIceCandidate(data);
             var pc = that.peerConnections[data.socketId];
-            if (!pc || !pc.remoteDescription.type) {
+            if (!pc ||!pc.remoteDescription || !pc.remoteDescription.type) {
                 //push candidate onto queue...
                 console.log("remote not set!")
             }
@@ -242,6 +244,27 @@ const SkyRTC = function () {
             gThat.emit("stream_create_error", error);
         }
         console.log(error)
+    }
+
+    skyrtc.prototype.createScreenStream =async function(options){
+        var that = this;
+        gThat = this;
+
+        if (getUserMedia) {
+            this.numStreams++;
+            // 调用用户媒体设备, 访问摄像头
+            let captureStream = null;
+            try{
+                captureStream = await navigator.mediaDevices.getDisplayMedia(options);
+            }catch(err){
+                createStreamError(err);
+                console.error(err);
+                return;
+            }
+            createStreamSuccess(captureStream);
+        } else {
+            that.emit("stream_create_error", new Error('WebRTC is not yet supported in this browser.'));
+        }
     }
 
     skyrtc.prototype.createStream = function (options) {

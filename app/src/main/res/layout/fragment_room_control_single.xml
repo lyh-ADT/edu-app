@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:drawablePadding="5dp"
-        android:drawableTop="@drawable/cancel"
+        android:drawableTop="@drawable/btn_voice_cancel"
         android:gravity="center_horizontal"
         android:text="挂断"
         android:textColor="@android:color/white"

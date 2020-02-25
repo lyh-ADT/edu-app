@@ -60,6 +60,16 @@ public class ChatRoomFragment extends Fragment {
         switch_camera = rootView.findViewById(R.id.mult_switch_camera);
         hand_free = rootView.findViewById(R.id.mult_hand_free);
         open_camera = rootView.findViewById(R.id.mult_open_camera);
+        toggleMic(true);
+        toggleOpenCamera(true);
+        toggleSpeaker(true);
+        Drawable drawable1 = ContextCompat.getDrawable(activity, R.drawable.switch_camera);
+        drawable1.setBounds(0, 0, Utils.dip2px(activity, 60), Utils.dip2px(activity, 60));
+        switch_camera.setCompoundDrawables(null, drawable1, null, null);
+        Drawable drawable2 = ContextCompat.getDrawable(activity, R.drawable.btn_voice_cancel);
+        drawable2.setBounds(0, 0, Utils.dip2px(activity, 60), Utils.dip2px(activity, 60));
+        switch_hang_up.setCompoundDrawables(null, drawable2, null, null);
+
 
     }
 

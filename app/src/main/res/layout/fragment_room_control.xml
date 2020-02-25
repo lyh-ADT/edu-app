@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:drawableTop="@drawable/hands_free"
+        android:drawableTop="@drawable/btn_voice_hand_free"
         android:drawablePadding="5dp"
         android:gravity="center_horizontal"
         android:text="扬声器"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/mult_hand_free"
         android:layout_centerHorizontal="true"
-        android:drawableTop="@drawable/cancel"
+        android:drawableTop="@drawable/btn_voice_cancel"
         android:drawablePadding="5dp"
         android:gravity="center_horizontal"
 

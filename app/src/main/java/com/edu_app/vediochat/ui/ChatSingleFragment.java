@@ -68,6 +68,19 @@ public class ChatSingleFragment extends Fragment {
             single_hand_free.setVisibility(View.VISIBLE);
             single_switch_camera.setVisibility(View.GONE);
         }
+        Drawable drawable1 = ContextCompat.getDrawable(activity, R.drawable.switch_camera);
+        drawable1.setBounds(0, 0, Utils.dip2px(activity, 60), Utils.dip2px(activity, 60));
+        single_switch_camera.setCompoundDrawables(null, drawable1, null, null);
+        Drawable drawable2 = ContextCompat.getDrawable(activity, R.drawable.btn_voice_cancel);
+        drawable2.setBounds(0, 0, Utils.dip2px(activity, 60), Utils.dip2px(activity, 60));
+        single_switch_hang_up.setCompoundDrawables(null, drawable2, null, null);
+        Drawable drawable3 = ContextCompat.getDrawable(activity, R.drawable.btn_voice_mute);
+        drawable3.setBounds(0, 0, Utils.dip2px(activity, 60), Utils.dip2px(activity, 60));
+        single_switch_mute.setCompoundDrawables(null, drawable3, null, null);
+        Drawable drawable4 = ContextCompat.getDrawable(activity, R.drawable.btn_voice_hand_free);
+        drawable4.setBounds(0, 0, Utils.dip2px(activity, 60), Utils.dip2px(activity, 60));
+        single_hand_free.setCompoundDrawables(null, drawable4, null, null);
+
     }
 
     private void initListener() {

@@ -87,6 +87,92 @@ app.get("/list", function(req, res){
     
 });
 
+app.get("/teacherclass", function(req, res){
+    let uid = req.cookies.UID;
+    if(!uid){
+        res.send({
+            success:false,
+            data:"服务器错误"
+        });
+        return;
+    }
+    db.checkUID(uid, function(err, TeaId){
+        if(err || TeaId.length != 1){
+            console.log(err)
+            res.send({
+                success:false,
+                data:"请登录"
+            });
+            return;
+        }
+        let sql = `select ClassId,CourseName from CLASS where ClassId in 
+            (select TeaClass from TeaPersonInfo where TeaId='${TeaId[0].TeaId}');`
+        console.log(sql);
+        db.select(sql, function(err, result){
+            if(err){
+                console.log(err)
+                res.send({
+                    success:false,
+                    data:"服务器错误"
+                });
+                return;
+            }
+            res.send({
+                success:true,
+                data:result
+            });
+        });
+    });
+})
+
+app.post("/createroom", function(req, res){
+    let uid = req.cookies.UID;
+    if(!uid){
+        res.send({
+            success:false,
+            data:"服务器错误"
+        });
+        return;
+    }
+    db.checkUID(uid, function(err, TeaId){
+        if(err || TeaId.length != 1){
+            res.send({
+                success:false,
+                data:"请登录"
+            });
+            return;
+        }
+        const MAX_NUMBER = 1000000;
+        let roomNum = Math.random() * MAX_NUMBER + 1;
+        roomNum = Math.round(roomNum);
+        let sql = `insert into StreamRoom(TeaId, RoomNumber, ClassId) VALUES(?, ?, ?);`
+        db.query(sql, [TeaId[0].TeaId, roomNum, req.body.ClassId], function(err, result){
+            if(err){
+                let r ={
+                    success:false,
+                    data:"服务器错误"
+                }
+                
+                if(err.errno == 1062){
+                    // 插入冲突
+                    if(err.index == 0){
+                        // TeaId冲突
+                        r.data = "你已经在直播了，" + TeaId[0].TeaId;
+                    } else {
+                        r.data = "retry";
+                    }
+                }
+                res.send(r);
+                return;
+            }
+            res.send({
+                success:true,
+                data:roomNum
+            });
+        });
+    });
+});
+
 SkyRTC.rtc.on('new_connect', function (socket) {
     console.log('创建新连接');
 });

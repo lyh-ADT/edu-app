@@ -26,7 +26,7 @@
             <ul class="navbar-nav mr-auto">
 
             </ul>
-            <button type="button" class="btn btn-primary btn-lg">创建房间</button>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalCreateRoom" onclick="getTeacherClassList();">创建房间</button>
         </div>
     </nav>
     <div class="container">
@@ -47,6 +47,29 @@
     <script src="/teacher-stream/js/jquery.min.js"></script>
     <script src="/teacher-stream/js/popper.min.js"></script>
     <script src="/teacher-stream/js/bootstrap.min.js"></script>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalCreateRoom">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">创建房间</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <select id="teacherClassList" onload="getTeacherClassList();">
+
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" onclick="createRoom();">创建</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
         const tableKeyList = [
           "TeaId",
@@ -82,6 +105,42 @@
             }
           });
         }
+
+        function getTeacherClassList(){
+          $.get("/teacher-stream/teacherclass", function (result) {
+            console.log(result);
+            if(result.success){
+              let select = $("#teacherClassList");
+              let data = result.data;
+              for(let i of data){
+                let elem = `<option value='${i.ClassId}'>${i.CourseName}</option>`;
+                select.append(elem);
+              }
+            }else{
+                alert(result.data);
+            }
+          });
+        }
+        
+
+        function createRoom(){
+          let classId = $("#teacherClassList option:selected").val();
+          $.post("/teacher-stream/createroom", {
+            'classId':classId
+          },function (result) {
+            console.log(result);
+            if(result.success){
+                location.assign("/teacher-stream/html/stream.html#"+result.data);
+            }else{
+              if(result.data == "retry"){
+                createRoom();
+              }else{
+                alert(result.data);
+              }
+            }
+          });
+        }
+
         getTable();
       </script>
 </body>

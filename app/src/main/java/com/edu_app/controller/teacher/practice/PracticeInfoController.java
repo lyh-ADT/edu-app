@@ -183,6 +183,7 @@ public class PracticeInfoController extends Controller {
                     });
                     transaction.hide(fragment);
                     transaction.add(R.id.main_fragment, questionFragment);
+                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             });
@@ -360,6 +361,7 @@ public class PracticeInfoController extends Controller {
             this.view = view;
             this.model = model;
             bindListener();
+
         }
 
         @Override
@@ -432,4 +434,5 @@ public class PracticeInfoController extends Controller {
             }
         }
     }
+
 }

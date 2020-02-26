@@ -184,6 +184,7 @@ public class JudgeController extends Controller {
 
         FragmentTransaction transaction = fragment.getFragmentManager().beginTransaction();
         transaction.replace(R.id.question_info, QuestionInfoFragment.newInstance(new QuestionItem(question), false));
+        transaction.addToBackStack(null);
         transaction.commit();
 
         if(question.getScore() > 0){

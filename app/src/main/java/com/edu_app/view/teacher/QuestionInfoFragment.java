@@ -56,4 +56,5 @@ public class QuestionInfoFragment extends Fragment {
         controller = new ShortAnswerQuestionController(view, question, editable);
 
     }
+
 }

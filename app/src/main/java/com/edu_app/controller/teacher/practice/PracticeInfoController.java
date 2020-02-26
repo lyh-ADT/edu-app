@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,15 +27,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.question.QuestionInfoController;
 import com.edu_app.model.Class;
-import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.TeacherInfo;
+import com.edu_app.model.teacher.practice.PictureQuestionItem;
 import com.edu_app.model.teacher.practice.PracticeItem;
 import com.edu_app.model.teacher.practice.QuestionItem;
 import com.edu_app.view.teacher.Fragment;

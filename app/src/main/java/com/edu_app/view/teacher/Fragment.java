@@ -1,8 +1,10 @@
 package com.edu_app.view.teacher;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +69,7 @@ public class Fragment extends androidx.fragment.app.Fragment {
         if (getArguments() != null) {
             fragmentType = getArguments().getString(FRAGMENT_TYPE);
             teacherInfo = (TeacherInfo) getArguments().getSerializable(TEACHER_INFO);
-            callback = (Controller.Callback)getArguments().getSerializable(CALLBACK);
+            callback = (Controller.Callback) getArguments().getSerializable(CALLBACK);
         }
     }
 
@@ -75,25 +77,45 @@ public class Fragment extends androidx.fragment.app.Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = null;
-        if("practice".equals(fragmentType)){
+        if ("practice".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_practice_page, container, false);
             controller = new com.edu_app.controller.teacher.practice.PageController(this, view, teacherInfo);
-        } else if("practice_info".equals(fragmentType)) {
+        } else if ("practice_info".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_practice_info, container, false);
+            view.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                            controller.unSetFullScreen((Activity) getActivity());
+                        }}
+                    return false;
+                }
+            });
             controller = new PracticeInfoController(this, view, teacherInfo);
-        } else if("course".equals(fragmentType)){
+        } else if ("course".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_course, container, false);
             controller = new CoursePageController(this, view, teacherInfo);
-        } else if("live_stream".equals(fragmentType)){
+        } else if ("live_stream".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_live_stream, container, false);
+            view.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        controller.unSetFullScreen((Activity) getActivity());
+                    }}
+                    return false;
+                }
+            });
             controller = new StreamPageController(this, view, teacherInfo);
-        } else if("question_info".equals(fragmentType)){
+        } else if ("question_info".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_question_info, container, false);
             controller = new QuestionInfoController(view, this);
-        } else if("student_practice_info".equals(fragmentType)){
+        } else if ("student_practice_info".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_student_practice_info, container, false);
             controller = new StudentListController(view, this, teacherInfo);
-        } else if("judge".equals(fragmentType)){
+        } else if ("judge".equals(fragmentType)) {
             view = inflater.inflate(R.layout.fragment_teacher_judge_practice, container, false);
             controller = new JudgeController(view, this, teacherInfo);
         }
@@ -107,7 +129,7 @@ public class Fragment extends androidx.fragment.app.Fragment {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration config){
+    public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
         controller.onConfigurationChanged(config);
     }
@@ -118,7 +140,46 @@ public class Fragment extends androidx.fragment.app.Fragment {
         controller.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    public Controller getController(){
+    public Controller getController() {
         return controller;
+    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        view.setFocusableInTouchMode(true);
+//        getView().requestFocus();
+//        getView().setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    controller.unSetFullScreen(getActivity());
+//
+//                }
+//
+//                return false;
+//            }
+//        });
+//    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    if(getController()!=null){
+                        getController().unSetFullScreen(getActivity());
+
+                    }
+
+                }
+
+                return false;
+            }
+        });
     }
 }

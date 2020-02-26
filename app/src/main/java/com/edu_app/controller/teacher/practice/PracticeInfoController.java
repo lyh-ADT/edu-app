@@ -361,7 +361,6 @@ public class PracticeInfoController extends Controller {
             this.view = view;
             this.model = model;
             bindListener();
-
         }
 
         @Override
@@ -434,5 +433,4 @@ public class PracticeInfoController extends Controller {
             }
         }
     }
-
 }

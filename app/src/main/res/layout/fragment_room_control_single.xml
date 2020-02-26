@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:padding="20dp">
+
+    <!--静音-->
+    <TextView
+        android:id="@+id/single_switch_mute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:drawablePadding="5dp"
+        android:drawableTop="@drawable/btn_voice_mute"
+        android:gravity="center_horizontal"
+        android:text="静音"
+        android:textColor="@android:color/white"
+        android:textSize="16dp" />
+
+    <!--挂断-->
+    <TextView
+        android:id="@+id/single_switch_hang_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:drawablePadding="5dp"
+        android:drawableTop="@drawable/btn_voice_cancel"
+        android:gravity="center_horizontal"
+        android:text="挂断"
+        android:textColor="@android:color/white"
+        android:textSize="16dp" />
+
+    <!--切换摄像头-->
+    <TextView
+        android:id="@+id/single_switch_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:drawablePadding="5dp"
+        android:drawableTop="@drawable/switch_camera"
+        android:gravity="center_horizontal"
+        android:text="切换摄像头"
+        android:textColor="@android:color/white"
+        android:textSize="16dp" />
+    <!--扬声器-->
+    <TextView
+        android:id="@+id/single_hand_free"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:drawablePadding="5dp"
+        android:drawableTop="@drawable/btn_voice_hand_free"
+        android:gravity="center_horizontal"
+        android:text="扬声器"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

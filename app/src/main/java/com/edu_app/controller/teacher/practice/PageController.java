@@ -102,6 +102,7 @@ public class PageController extends Controller {
                     }
                 }));
                 transaction.hide(fragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
@@ -198,6 +199,7 @@ public class PageController extends Controller {
                         }
                     }));
                     transaction.hide(fragment);
+                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             }
@@ -218,7 +220,6 @@ public class PageController extends Controller {
         @Override
         protected void bindListener(){
             view.setOnClickListener(clickItemListener);
-
             Button judge_btn = view.findViewById(R.id.judge);
             judge_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -240,6 +241,7 @@ public class PageController extends Controller {
                         }
                     }));
                     transaction.hide(fragment);
+                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             });

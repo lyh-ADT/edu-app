@@ -8,11 +8,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="直播"></TextView>
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="点击进入直播页面"
-    android:id="@+id/coursePage_live_bt_palyStart">
 
-</Button>
+    <Button
+        android:id="@+id/coursePage_live_bt_palyStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击进入直播页面"></Button>
+
+    <Button
+        android:id="@+id/coursePage_singleChat_bt_Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击进入视频页面">
+
+    </Button>
+
 </LinearLayout>

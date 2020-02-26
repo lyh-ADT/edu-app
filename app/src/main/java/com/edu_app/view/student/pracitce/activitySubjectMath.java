@@ -37,12 +37,12 @@ public class activitySubjectMath extends AppCompatActivity {
     private void initView() {
 //        初始化视图
         setContentView(R.layout.activity_stu_practice_subjectmath);
-        mathrecycler = findViewById(R.id.practicePage_practice_math_recycler);
+        mathrecycler = (RecyclerView) findViewById(R.id.practicePage_practice_math_recycler);
 
 //        初始化数据
         uid = getIntent().getExtras().get("uid").toString();
         subject = getIntent().getExtras().get("subject").toString();
-        practicelist = new GetPracticeList(uid,subject).getPracticeList();
+        practicelist = (ArrayList<Practice>) new GetPracticeList(uid,subject).getPracticeList();
 
 //        设置适配器
         ExamAdapter adapter = new ExamAdapter(activitySubjectMath.this, practicelist);

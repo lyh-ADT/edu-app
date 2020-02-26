@@ -27,8 +27,15 @@
             height: 25%;
         }
 
+        .room-number{
+            color: red;
+            font-size: x-large;
+            text-align: center;
+            font-weight: bolder;
+        }
+
         #message_area {
-            width: 55%;
+            width: 25%;
             height: 500px;
             background-color: white;
         }
@@ -45,8 +52,6 @@
         }
 
         #me {
-            /* position: absolute;
-            right: 25%; */
             border: 2px solid red ;
             margin: 0;
             height: 100%;
@@ -65,17 +70,23 @@
 
 <body class="h-100">
     <div class="d-flex flex-row h-100">
-        <div class="d-flex flex-row  flex-wrap">
-            <div id="controls" class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-row  flex-wrap flex-grow-1">
+            <div id="controls" class="d-flex flex-row justify-content-between flex-grow-1">
                 <video class="" id="me" autoplay></video>
-                <div class="w-100 flex-fill">
-                    <select id="screenMode">
-                        <option value="cam">摄像头</option>
-                        <option value="scr">电脑屏幕</option>
-                    </select>
-                    <div class="btn-group btn-group-lg" role="group">
-                        <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
+                <div class="w-100 flex-fill flex-column">
+                    <div class="room-number">
+                        房间号：<script>document.write(window.location.hash.slice(1))</script>
                     </div>
+                    <div>
+                        <select id="screenMode">
+                            <option value="cam">摄像头</option>
+                            <option value="scr">电脑屏幕</option>
+                        </select>
+                        <div class="btn-group btn-group-lg" role="group">
+                            <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
+                        </div>
+                    </div>
+                    
                 </div>
 
             </div>
@@ -137,9 +148,7 @@
             videos.append(video)
         }
 
-        for (let i = 0; i < 20; ++i) {
-            addPeople();
-        }
+
     </script>
 </body>
 

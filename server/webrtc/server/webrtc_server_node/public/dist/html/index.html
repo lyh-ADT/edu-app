@@ -59,12 +59,12 @@
         function getTable() {
           $.get("/teacher-stream/list", function (result) {
             if(result == "error"){
-              parent.location.assign("/login.html")
+              parent.location.assign("/teacher-stream/html/login.html")
               return;
             }
             
             console.log(result)
-            data = JSON.parse(result);
+            data = result;
             let tbody = $("#tableBody");
             tbody.empty();
             if(data.length == 0){

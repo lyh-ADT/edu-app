@@ -157,7 +157,23 @@ app.post("/createroom", function(req, res){
                     // 插入冲突
                     if(err.index == 0){
                         // TeaId冲突
-                        r.data = "你已经在直播了，" + TeaId[0].TeaId;
+                        // r.data = "你已经在直播了，" + TeaId[0].TeaId;
+                        sql = `update StreamRoom set RoomNumber=? where TeaId=?;`;
+                        db.query(sql, [roomNum, TeaId[0].TeaId], function(err, result){
+                            if(err){
+                                console.log(err);
+                                res.send({
+                                    success:false,
+                                    data:"服务器错误"
+                                });
+                                return;
+                            }
+                            res.send({
+                                success:true,
+                                data:roomNum
+                            });
+                        });
+                        return;
                     } else {
                         r.data = "retry";
                     }
@@ -170,6 +186,40 @@ app.post("/createroom", function(req, res){
                 data:roomNum
             });
         });
+    });
+});
+
+app.post("/closeroom", function(req, res){
+    let uid = req.cookies.UID;
+    if(!uid){
+        res.send({
+            success:false,
+            data:"服务器错误"
+        });
+        return;
+    }
+    db.checkUID(uid, function(err, TeaId){
+        if(err || TeaId.length != 1){
+            res.send({
+                success:false,
+                data:"请登录"
+            });
+            return;
+        }
+        let sql = `delete from StreamRoom where TeaId=?;`;
+        db.query(sql, [TeaId[0].TeaId], function(err, result){
+            if(err){
+                res.send({
+                    success:false,
+                    data:"服务器错误"
+                });
+            }
+            res.send({
+                success:true,
+                data:""
+            });
+            return;
+        })
     });
 });
 

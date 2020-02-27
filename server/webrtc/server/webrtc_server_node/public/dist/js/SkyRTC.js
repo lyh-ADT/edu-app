@@ -19,6 +19,11 @@ function SkyRTC() {
 
         console.log("房间里有" + this.sockets.length + "人");
 
+        if(this.sockets.length == 1){
+            // 标记房主
+            socket.isteacher = true;
+        }
+
         let ids = [],
             i, m,
             room = data.room || "__default",
@@ -64,7 +69,7 @@ function SkyRTC() {
                 "data": {
                     "id": data.id,
                     "label": data.label,
-                    "sdpMLineIndex" :data.label,
+                    "sdpMLineIndex": data.label,
                     "candidate": data.candidate,
                     "socketId": socket.id
                 }
@@ -119,6 +124,17 @@ function SkyRTC() {
 }
 
 util.inherits(SkyRTC, events.EventEmitter);
+
+SkyRTC.prototype.closeRoom = function (room) {
+    if (room) {
+        console.log("关闭房间"+room+":"+this.rooms);
+        curRoom = this.rooms[room];
+        if(!curRoom)return;
+        for (let i = curRoom.length; i--;) {
+            curRoom[i].emit('close');       
+        }
+    }
+}
 
 SkyRTC.prototype.addSocket = function (socket) {
     this.sockets.push(socket);
@@ -196,6 +212,7 @@ SkyRTC.prototype.init = function (socket) {
             curRoom;
         if (room) {
             curRoom = that.rooms[room];
+            if(!curRoom)return;
             for (i = curRoom.length; i--;) {
                 if (curRoom[i].id === socket.id) {
                     continue;
@@ -211,6 +228,10 @@ SkyRTC.prototype.init = function (socket) {
 
         that.removeSocket(socket);
         that.emit('remove_peer', socket.id, that);
+        // 如果是教师就关闭房间
+        if(socket.isteacher){
+            that.closeRoom(room);
+        }
     });
     that.emit('new_connect', socket);
 };

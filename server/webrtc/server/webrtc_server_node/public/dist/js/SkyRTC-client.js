@@ -256,6 +256,8 @@ const SkyRTC = function () {
             let captureStream = null;
             try{
                 captureStream = await navigator.mediaDevices.getDisplayMedia(options);
+                mircophone = await navigator.mediaDevices.getUserMedia({audio:true});
+                captureStream.addTrack(mircophone.getTracks()[0]);
             }catch(err){
                 createStreamError(err);
                 console.error(err);

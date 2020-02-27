@@ -2,7 +2,8 @@ var videos = document.getElementById("videos");
 var sendBtn = document.getElementById("sendBtn");
 var msgs = document.getElementById("message_box");
 var sendFileBtn = document.getElementById("sendFileBtn");
-var startBtn = document.getElementById("startBtn")
+var startBtn = document.getElementById("startBtn");
+var stopBtn = document.getElementById("stopBtn")
 var files = document.getElementById("files");
 var rtc = SkyRTC();
 bindListeners();
@@ -18,12 +19,37 @@ sendBtn.onclick = function (event) {
     msgs.appendChild(p);
 };
 var onScreenMode = false;
+var startStream = false;
 startBtn.onclick = function (event) {
+    startStream = true;
     if (rtc.socket) {
         rtc.socket.close();
     } else {
         rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1));
     }
+}
+stopBtn.onclick = function(event){
+    startStream = false;
+    $.post("/teacher-stream/closeroom", function(result){
+        if(result.success){
+            rtc.socket && rtc.socket.close();
+
+            // 关闭流
+            if(rtc.localMediaStream)
+            for(let i of rtc.localMediaStream.getTracks()){
+                i.stop();
+            }
+
+            window.opener = null;
+            window.open('', '_self', '');
+            window.close();
+            open(location, '_self').close();
+            $("#room-number").text("房间号：已注销");
+            alert("房间号已经注销");
+        } else {
+            console.log(result.data);
+        }
+    });
 }
 
 function bindListeners() {
@@ -38,13 +64,13 @@ function bindListeners() {
         }, 50000);
         
         //创建本地视频流
-        let mode = document.getElementById("screenMode").value;
-        if (mode == "cam") {
-            rtc.createStream({
-                "video": true,
-                "audio": true
-            });
-        } else if (mode == "scr") {
+        // let mode = document.getElementById("screenMode").value;
+        // if (mode == "cam") {
+        //     rtc.createStream({
+        //         "video": true,
+        //         "audio": true
+        //     });
+        // } else if (mode == "scr") {
             onScreenMode = true;
             rtc.createScreenStream({
                 video: {
@@ -52,7 +78,7 @@ function bindListeners() {
                 },
                 audio: true
             });
-        }
+        // }
     });
     //创建本地视频流成功
     rtc.on("stream_created", function (stream) {
@@ -92,6 +118,9 @@ function bindListeners() {
     rtc.on("socket_closed", function (scoket) {
         console.log("socket_closed");
         videos.innerHTML = "";
+        if(!startStream){
+            return;
+        }
         rtc = SkyRTC();
         bindListeners();
         rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1));

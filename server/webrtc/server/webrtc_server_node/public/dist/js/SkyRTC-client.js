@@ -106,7 +106,8 @@ const SkyRTC = function () {
             socket.send(JSON.stringify({
                 "eventName": "__join",
                 "data": {
-                    "room": room
+                    "room": room,
+                    "isteacher":true
                 }
             }));
             that.emit("socket_opened", socket);

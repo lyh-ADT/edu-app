@@ -19,6 +19,7 @@ public class activityPersonCourse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu_person_course);
         PersonCourseController controller = new PersonCourseController(this);
+
         controller.setOnClick();
 
     }
@@ -34,4 +35,5 @@ public class activityPersonCourse extends AppCompatActivity {
         }
         return true;
     }
+
 }

@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.percentlayout.widget.PercentRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
    >
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="5%"
-        app:layout_widthPercent="100%"
-
-        android:text="直播界面"></TextView>
 
     <cn.nodemedia.NodePlayerView
         android:id="@+id/coursePage_live_playerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="45%"
-        app:layout_widthPercent="100%"
-        app:layout_marginTopPercent="10%"
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
        >
 
     </cn.nodemedia.NodePlayerView>
 
-    <Button
-        android:id="@+id/coursePage_live_bt_start"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="10%"
-        app:layout_widthPercent="100%"
-        app:layout_marginTopPercent="55%"
-        app:layout_marginLeftPercent="25%"
-        app:layout_marginRightPercent="25%"
-        android:text="开始播放"
-        ></Button>
+    <TextView
+        android:id="@+id/coursePage_live_tv_fullScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="12sp"
+        android:text="横/竖屏"></TextView>
+    <TextView
+        android:id="@+id/coursePage_live_tv_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="12sp"
+        android:text="播放/暂停"></TextView>
 
-</androidx.percentlayout.widget.PercentRelativeLayout>
+</RelativeLayout>

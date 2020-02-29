@@ -13,7 +13,6 @@
         #videos {
             background-color: black;
             overflow-y: auto;
-            height: 75%;
         }
 
         #videos video {
@@ -72,48 +71,38 @@
 </head>
 
 <body class="h-100">
-    <div class="d-flex flex-row h-100">
-        <div class="d-flex flex-row  flex-wrap flex-grow-1">
-            <div id="controls" class="d-flex flex-row justify-content-between flex-grow-1">
-                <video class="" id="me" autoplay></video>
-                <div class="w-100 flex-fill flex-column">
-                    <div id="room-number">
-                        房间号：<script>document.write(window.location.hash.slice(1))</script>
-                    </div>
-                    <div>
-                        <!-- <select id="screenMode">
-                            <option value="cam">摄像头</option>
-                            <option value="scr">电脑屏幕</option>
-                        </select> -->
-                        <div class="btn-group btn-group-lg" role="group">
-                            <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
-                            <button id="stopBtn" class="btn btn-secoundary btn-danger">结束直播</button>
-                        </div>
-                    </div>
-                    
+
+    <div class="d-flex flex-grow-1 h-100 align-items-stretch">
+        
+        <div id="videos" class="d-flex flex-row align-content-center flex-wrap w-100">
+            
+        </div>
+        <div id="controls" class="d-flex flex-column justify-content-between flex-grow-1">
+            <video class="" id="me" autoplay></video>
+            <div class="w-100 flex-fill flex-column">
+                <div id="room-number">
+                    房间号：<script>document.write(window.location.hash.slice(1))</script>
                 </div>
-
+                <div>
+                    <!-- <select id="screenMode">
+                        <option value="cam">摄像头</option>
+                        <option value="scr">电脑屏幕</option>
+                    </select> -->
+                    <div class="btn-group btn-group-lg" role="group">
+                        <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
+                        <button id="stopBtn" class="btn btn-secoundary btn-danger">结束直播</button>
+                    </div>
+                </div>
+                
             </div>
-
-            <div id="videos" class="d-flex flex-row align-content-center flex-wrap w-100">
-
-            </div>
-        </div>
-
-        <div id="message_area" class="d-flex flex-column h-100">
-            <div id="message_box" class="w-100 h-75"></div>
-            <textarea class="w-100 h-25" id="message_input"></textarea>
 
         </div>
     </div>
 
 
-    <button id="sendBtn" class="btn btn-secondary">发送</button>
 
-    <div id="message_template">
-        <div id="sender"></div>
-        <div id="content"></div>
-    </div>
+
+
 
     <div id="video_template" class="video flex-fill" style="display: none;">
         视频
@@ -124,36 +113,6 @@
     <script src="/teacher-stream/js/bootstrap.min.js"></script>
     <script src="/teacher-stream/js/SkyRTC-client.js"></script>
     <script src="/teacher-stream/js/conn.js"></script>
-
-
-
-    <script>
-        function add_meesage() {
-            let msg_box = $("#message_box");
-            let msg = $("#message_template").clone();
-            msg.children("#sender").text("sender_name");
-            msg.children("#content").text("message_content");
-
-            msg_box.append(msg);
-            msg_box.scrollTop(msg_box.outerHeight());
-        }
-
-
-        for (let i = 0; i < 30; ++i) {
-            add_meesage();
-
-        }
-
-        function addPeople() {
-            let videos = $("#videos");
-            let video = $("#video_template").clone();
-            video.css("display", "unset")
-
-            videos.append(video)
-        }
-
-
-    </script>
 </body>
 
 </html>

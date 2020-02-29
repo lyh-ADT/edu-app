@@ -1,6 +1,4 @@
 var videos = document.getElementById("videos");
-var sendBtn = document.getElementById("sendBtn");
-var msgs = document.getElementById("message_box");
 var sendFileBtn = document.getElementById("sendFileBtn");
 var startBtn = document.getElementById("startBtn");
 var stopBtn = document.getElementById("stopBtn")
@@ -8,16 +6,7 @@ var files = document.getElementById("files");
 var rtc = SkyRTC();
 bindListeners();
 /**********************************************************/
-sendBtn.onclick = function (event) {
-    var msgIpt = document.getElementById("msgIpt"),
-        msg = msgIpt.value,
-        p = document.createElement("p");
-    p.innerText = "me: " + msg;
-    //广播消息
-    rtc.broadcast(msg);
-    msgIpt.value = "";
-    msgs.appendChild(p);
-};
+
 var onScreenMode = false;
 var startStream = false;
 startBtn.onclick = function (event) {
@@ -107,12 +96,6 @@ function bindListeners() {
         if (video) {
             video.parentNode.removeChild(video);
         }
-    });
-    //接收到文字信息
-    rtc.on('data_channel_message', function (channel, socketId, message) {
-        var p = document.createElement("p");
-        p.innerText = socketId + ": " + message;
-        msgs.appendChild(p);
     });
 
     rtc.on("socket_closed", function (scoket) {

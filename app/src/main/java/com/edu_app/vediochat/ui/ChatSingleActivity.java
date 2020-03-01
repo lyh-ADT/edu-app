@@ -95,7 +95,7 @@ public class ChatSingleActivity extends AppCompatActivity {
             //远端图像初始化
             remote_view.init(rootEglBase.getEglBaseContext(), null);
             remote_view.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_BALANCED);
-            remote_view.setMirror(true);
+            remote_view.setMirror(false);
             remoteRender = new ProxyVideoSink();
             setSwappedFeeds(true);
 

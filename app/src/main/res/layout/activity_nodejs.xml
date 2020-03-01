@@ -12,13 +12,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <EditText
-                android:id="@+id/et_signal"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="server地址(如ws://192.168.1.123:3000)" />
-
-
+                android:gravity="center"
+                android:text="@string/tv_roomId"></TextView>
             <EditText
                 android:id="@+id/et_room"
                 android:layout_width="match_parent"
@@ -31,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:onClick="JoinRoom"
-                android:text="加入房间"
+                android:text="视频会议"
                 tools:ignore="OnClick" />
 
             <Button
@@ -40,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:onClick="JoinRoomSingleVideo"
-                android:text="一对一视频聊天"
+                android:text="一对一视频辅导"
                 tools:ignore="OnClick" />
 <!--不开放语音聊天-->
 <!--            <Button-->

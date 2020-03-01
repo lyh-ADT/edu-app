@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:configChanges="orientation|keyboardHidden|screenSize"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -33,7 +34,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".view.activityMain"></activity>
-        <activity android:name=".view.student.activityStuFunction"></activity>
+        <activity android:name=".view.student.activityStuFunction" android:screenOrientation="portrait"></activity>
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true">
@@ -45,31 +46,37 @@
                 <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
-<activity android:name=".view.student.pracitce.activitySubjectEnglish"></activity>
-        <activity android:name=".view.student.pracitce.activitySubjectChinese"></activity>
-        <activity android:name=".view.student.pracitce.activitySubjectMath"></activity>
-        <activity android:name=".view.student.person.activityContactService"></activity>
-        <activity android:name=".view.student.person.activityPersonInfo"></activity>
-        <activity android:name=".view.student.person.activityPersonCourse"></activity>
-        <activity android:name=".view.student.pracitce.activityLookExam"></activity>
-        <activity android:name=".view.student.pracitce.activityDoExam"></activity>
-<activity android:name=".view.student.course.activityLivePlay"></activity>
+<activity android:name=".view.student.pracitce.activitySubjectEnglish" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.pracitce.activitySubjectChinese" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.pracitce.activitySubjectMath" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.person.activityContactService" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.person.activityPersonInfo" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.person.activityPersonCourse" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.pracitce.activityLookExam" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.student.pracitce.activityDoExam" android:screenOrientation="portrait"></activity>
+<activity android:name=".view.student.course.activityLivePlay"
+    android:theme="@style/AppTheme.NoActionBar"
+    android:screenOrientation="portrait"
+    ></activity>
 
         <activity android:name=".view.teacher.activityTeaFunction" />
         <activity android:name=".view.teacher.person.activityContactService"></activity>
         <activity android:name=".view.teacher.person.activityPersonInfo"></activity>
-        <activity android:name=".view.teacher.person.activityPersonCourse"></activity>
+        <activity android:name=".view.teacher.person.activityPersonCourse" ></activity>
         <activity
-            android:name=".view.student.course.NodejsActivity"></activity>
+            android:name=".view.student.course.NodejsActivity" android:screenOrientation="portrait"></activity>
 
 
         <activity
             android:name=".vediochat.ui.ChatRoomActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".vediochat.ui.ChatSingleActivity"
             android:theme="@style/AppTheme.NoActionBar"
-           ></activity>
+            android:screenOrientation="landscape"
+            ></activity>
 
     </application>>
 

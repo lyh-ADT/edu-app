@@ -229,6 +229,26 @@ const SkyRTC = function () {
         }
     }
 
+    function mergeAudioTracks(...mediaStreams){
+        // 合并音轨返回合并后的AudioTrack
+        let audioCtx = new AudioContext();
+        let merger = audioCtx.createChannelMerger(mediaStreams.length);
+        let audioTSNodes = [];
+        mediaStreams.forEach(t => {
+            try{
+                let ts = audioCtx.createMediaStreamSource(t);
+            }catch{
+                throw new Error("请勾选选择画面界面的分享音频");
+            }
+            ts.connect(merger);
+            audioTSNodes.push(ts);
+        });
+
+        let dest = audioCtx.createMediaStreamDestination();
+        merger.connect(dest);
+        return dest.stream.getAudioTracks()[0];
+    }
+
     function createStreamSuccess(stream) {
         if (gThat) {
             gThat.localMediaStream = stream;
@@ -257,8 +277,12 @@ const SkyRTC = function () {
             let captureStream = null;
             try{
                 captureStream = await navigator.mediaDevices.getDisplayMedia(options);
-                mircophone = await navigator.mediaDevices.getUserMedia({audio:true});
-                captureStream.addTrack(mircophone.getTracks()[0]);
+                mircophone = await navigator.mediaDevices.getUserMedia({audio:{
+                    noiseSuppression:true,
+                    echoCancellation:true
+                }});
+                let video = captureStream.getVideoTracks()[0];
+                captureStream = new MediaStream([video, mergeAudioTracks(captureStream, mircophone)]);
             }catch(err){
                 createStreamError(err);
                 console.error(err);

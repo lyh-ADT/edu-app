@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.NodeMedia:NodeMediaClient-Android:2.6.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c221f993488541c19873bb1405d1e51f/jetified-NodeMediaClient-Android-2.6.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c221f993488541c19873bb1405d1e51f/jetified-NodeMediaClient-Android-2.6.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.nodemedia/nodemediaclient-android/2.6.0/c02185fe1b70ac9b6a42a7a12b4353d98e139be5/NodeMediaClient-Android-2.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

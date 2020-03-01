@@ -16,6 +16,7 @@ class TempStaticRequestHandler(tornado.web.RequestHandler):
             with open("../css/"+path[path.rindex("/")+1:], "rb") as f:
                 self.set_status(200)
                 self.set_header("Content-Type", "text/css;")
+            
                 self.write(f.read())
                 self.finish()
         elif t == "js":

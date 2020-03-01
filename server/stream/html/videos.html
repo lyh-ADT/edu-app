@@ -8,52 +8,48 @@
 
     <title>视频</title>
     <style>
-        #videos {
+        #videos{
             background-color: black;
         }
-
-        .video {
-            width: 150px;
+        .video{
+            width:150px;
             height: 150px;
             background-color: yellow;
             border: 2px solid black;
         }
+       
     </style>
 </head>
 <body class="h-100">
 
-    <div id="videos" class="flex-grow-1 d-flex flex-row align-content-start flex-wrap h-100 w-75"></div>
-    <button id="btn_exit"></button>
+    <div id="videos" class="flex-grow-1 d-flex flex-row align-content-center flex-wrap h-100">
+
+
+        
+    </div>
+        
     <script src="/teacher-stream/jquery.min.js"></script>
     <script src="/teacher-stream/popper.min.js"></script>
     <script src="/teacher-stream/bootstrap.min.js"></script>
-    <script src="/teacher-stream/SkyRTC-client.js"></script>
-    <script src="/teacher-stream/video.js"></script>
-
-
-    <div id="stu_video_template" class="video flex-fill" style="display: none;">
-        学生视频
-    </div>
-    <div id="tea_video_template" class="video flex-fill" style="display: none;
-            height: 250px;margin-top: 15px;
-            ">
-        老师视频
+    
+    <div id="video_template" class="video flex-fill" style="display: none;">
+        视频
     </div>
 
-    <!--<script>
-        function addPeople(user) {
+
+    <script>
+        function addPeople(){
             let videos = $("#videos");
-            let video = $("#" + user + "_video_template").clone();
+            let video = $("#video_template").clone();
             video.css("display", "unset")
 
             videos.append(video)
         }
 
-        for (let i = 0; i < 25; ++i) {
-            addPeople("stu");
+        for(let i=0; i < 20; ++i){
+            addPeople();
         }
-        addPeople("tea");
-    </script>-->
+    </script>
 
 </body>
 </html>

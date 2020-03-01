@@ -78,6 +78,6 @@
             android:screenOrientation="landscape"
             ></activity>
 
-    </application>>
+    </application>
 
 </manifest>

@@ -59,7 +59,7 @@ public class DoExamController implements View.OnClickListener {
             recycler.setAdapter(adapter);
         }else {
 
-            Toast.makeText(this.activity,data.getString(0),Toast.LENGTH_SHORT);
+            Toast.makeText((Context)this.activity,data.getString(0),Toast.LENGTH_SHORT);
         }
 
     }

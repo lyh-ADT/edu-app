@@ -184,6 +184,7 @@
         <EditText
             android:id="@+id/personPage_personInfo_oldPassword"
             android:layout_width="200dp"
+            android:password="true"
             android:layout_height="match_parent">
 
         </EditText>
@@ -205,6 +206,7 @@
         <EditText
             android:id="@+id/personPage_personInfo_newPassword"
             android:layout_width="200dp"
+            android:password="true"
             android:layout_height="match_parent"></EditText>
     </LinearLayout>
     <Button

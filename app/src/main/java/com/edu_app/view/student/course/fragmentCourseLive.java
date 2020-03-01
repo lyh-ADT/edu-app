@@ -29,5 +29,7 @@ public class fragmentCourseLive extends Fragment {
         CourseMainController controller = new CourseMainController(this);
         Button bt_start = view.findViewById(R.id.coursePage_live_bt_palyStart);
         bt_start.setOnClickListener(controller);
+        Button bt_vedio_chat = view.findViewById(R.id.coursePage_singleChat_bt_Start);
+        bt_vedio_chat.setOnClickListener(controller);
     }
 }

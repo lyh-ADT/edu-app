@@ -1,6 +1,8 @@
 package com.edu_app.controller.teacher.question;
 
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -23,16 +25,26 @@ public class ShortAnswerQuestionController extends Controller {
     protected void bindListener(){
         final EditText answer_et = view.findViewById(R.id.correct_answer);
         if(editable){
-            answer_et.setOnKeyListener(new View.OnKeyListener() {
+            answer_et.addTextChangedListener(new TextWatcher() {
                 @Override
-                public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    String q = ((EditText)v).getText().toString();
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String q = s.toString();
+                    Log.e("error",q);
                     if(q.length() <= 0){
                         model.setAnswer(null);
-                    }else{
-                         model.setAnswer(q);
+                   }else{
+                       model.setAnswer(q);
                     }
-                    return false;
                 }
             });
         }else{

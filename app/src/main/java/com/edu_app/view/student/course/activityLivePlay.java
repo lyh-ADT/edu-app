@@ -3,8 +3,9 @@ package com.edu_app.view.student.course;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -22,7 +23,7 @@ import com.edu_app.controller.student.course.CourseLiveController;
  */
 public class activityLivePlay extends AppCompatActivity {
 
-    private Handler handler;
+    private boolean tvVisible;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class activityLivePlay extends AppCompatActivity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON|WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu_course_live_play);
+        tvVisible = true;
         CourseLiveController controller = new CourseLiveController(this);
 
     }
@@ -67,6 +69,26 @@ public class activityLivePlay extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
 
     }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if(tvVisible){
+                    findViewById(R.id.coursePage_live_tv_fullScreen).setVisibility(View.GONE);
+                    findViewById(R.id.coursePage_live_tv_stop).setVisibility(View.GONE);
+                    tvVisible=false;
+                    return true;
 
+                }else {
+                    findViewById(R.id.coursePage_live_tv_fullScreen).setVisibility(View.VISIBLE);
+                    findViewById(R.id.coursePage_live_tv_stop).setVisibility(View.VISIBLE);
+                    tvVisible = true;
+                    return true;
+
+                }
+
+        }
+        return false;
+    }
 
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
@@ -46,6 +47,7 @@ public class ChatSingleActivity extends AppCompatActivity {
     private boolean isSwappedFeeds;
 
     private EglBase rootEglBase;
+    private boolean fragmentVisible;
 
     public static void openActivity(Activity activity, boolean videoEnable) {
         Intent intent = new Intent(activity, ChatSingleActivity.class);
@@ -78,6 +80,7 @@ public class ChatSingleActivity extends AppCompatActivity {
 
         ChatSingleFragment chatSingleFragment = new ChatSingleFragment();
         replaceFragment(chatSingleFragment, videoEnable);
+        fragmentVisible = true;
         rootEglBase = EglBase.create();
         if (videoEnable) {
             local_view = findViewById(R.id.local_view_render);
@@ -269,5 +272,29 @@ public class ChatSingleActivity extends AppCompatActivity {
         }
         manager.joinRoom(getApplicationContext(), rootEglBase);
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if(fragmentVisible){
+                    findViewById(R.id.single_switch_mute).setVisibility(View.GONE);
+                    findViewById(R.id.single_switch_hang_up).setVisibility(View.GONE);
+                    findViewById(R.id.single_switch_camera).setVisibility(View.GONE);
+                    fragmentVisible=false;
+                    return true;
+
+                }else {
+                    findViewById(R.id.single_switch_mute).setVisibility(View.VISIBLE);
+                    findViewById(R.id.single_switch_hang_up).setVisibility(View.VISIBLE);
+                    findViewById(R.id.single_switch_camera).setVisibility(View.VISIBLE);
+                    fragmentVisible = true;
+                    return true;
+
+                }
+
+        }
+        return false;
     }
 }

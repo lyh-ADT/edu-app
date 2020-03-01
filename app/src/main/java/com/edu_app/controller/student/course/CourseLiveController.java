@@ -60,10 +60,8 @@ public class CourseLiveController implements View.OnClickListener {
     private void initView() {
         this.tvFull = (TextView) this.activity.findViewById(R.id.coursePage_live_tv_fullScreen);
         this.tvFull.setOnClickListener(this);
-        this.tvFull.setAlpha((float)0.2);
         this.tvStop = (TextView) this.activity.findViewById(R.id.coursePage_live_tv_stop);
         this.tvStop.setOnClickListener(this);
-        this.tvStop.setAlpha((float)0.2);
         playerview = activity.findViewById(R.id.coursePage_live_playerView);
 
         player = new NodePlayer(activity.getBaseContext());

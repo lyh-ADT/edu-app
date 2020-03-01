@@ -14,8 +14,8 @@ import com.edu_app.controller.student.course.WebrtcUtil;
  * 聊天活动页面，服务器使用nodejs
  */
 public class NodejsActivity extends AppCompatActivity {
-    private EditText et_signal;
     private EditText et_room;
+    private final String serverUrl = "wss://139.159.176.78:3000/teacher-stream/wss";
 
 
     @Override
@@ -28,32 +28,30 @@ public class NodejsActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        et_signal = findViewById(R.id.et_signal);
         et_room = findViewById(R.id.et_room);
     }
 
     private void initVar() {
-        et_signal.setText("wss://47.93.186.97/wss");
-        et_room.setText("232343");
+        et_room.setText("");
     }
 
     /*-------------------------- nodejs版本服务器测试--------------------------------------------*/
     public void JoinRoomSingleVideo(View view) {
         WebrtcUtil.callSingle(this,
-                et_signal.getText().toString(),
+                serverUrl,
                 et_room.getText().toString().trim(),
                 true);
     }
 
     public void JoinRoomSingleAudio(View view) {
         WebrtcUtil.callSingle(this,
-                et_signal.getText().toString(),
+                serverUrl,
                 et_room.getText().toString().trim(),
                 false);
     }
 
     public void JoinRoom(View view) {
-        WebrtcUtil.call(this, et_signal.getText().toString(), et_room.getText().toString().trim());
+        WebrtcUtil.call(this, serverUrl, et_room.getText().toString().trim());
 
     }
 

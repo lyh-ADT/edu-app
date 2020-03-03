@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -57,6 +59,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
     private int mScreenWidth;
 
     private EglBase rootEglBase;
+    private boolean fragmentVisible;
 
     public static void openActivity(Activity activity) {
         Intent intent = new Intent(activity, ChatRoomActivity.class);
@@ -77,8 +80,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         initVar();
         ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
         replaceFragment(chatRoomFragment);
-
-
+        fragmentVisible = true;
         startCall();
 
     }
@@ -354,5 +356,33 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         manager.joinRoom(getApplicationContext(), rootEglBase);
 
 
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if(fragmentVisible){
+                    findViewById(R.id.mult_switch_mute).setVisibility(View.GONE);
+                    findViewById(R.id.mult_hand_free).setVisibility(View.GONE);
+                    findViewById(R.id.mult_open_camera).setVisibility(View.GONE);
+                    findViewById(R.id.mult_switch_camera).setVisibility(View.GONE);
+                    findViewById(R.id.mult_switch_hang_up).setVisibility(View.GONE);
+
+                    fragmentVisible=false;
+                    return true;
+
+                }else {
+                    findViewById(R.id.mult_switch_mute).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_hand_free).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_open_camera).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_switch_camera).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_switch_hang_up).setVisibility(View.VISIBLE);
+                    fragmentVisible = true;
+                    return true;
+
+                }
+
+        }
+        return false;
     }
 }

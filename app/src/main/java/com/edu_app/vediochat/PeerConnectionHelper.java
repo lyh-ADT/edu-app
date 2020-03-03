@@ -151,6 +151,9 @@ public class PeerConnectionHelper {
 
     public void onRemoteJoinToRoom(String socketId) {
         executor.execute(() -> {
+            if(_factory == null){
+                _factory = createConnectionFactory();
+            }
             if (_localStream == null) {
                 createLocalStream();
             }
@@ -281,6 +284,9 @@ public class PeerConnectionHelper {
     // 为所有连接添加流
     private void addStreams() {
         Log.v(TAG, "为所有连接添加流");
+        if(_factory == null){
+            _factory = createConnectionFactory();
+        }
         for (Map.Entry<String, Peer> entry : _connectionPeerDic.entrySet()) {
             if (_localStream == null) {
                 createLocalStream();

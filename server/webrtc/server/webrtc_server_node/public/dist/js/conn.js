@@ -3,6 +3,9 @@ var sendFileBtn = document.getElementById("sendFileBtn");
 var startBtn = document.getElementById("startBtn");
 var stopBtn = document.getElementById("stopBtn")
 var files = document.getElementById("files");
+
+var observeMode = location.search.search(/observe=true/) == 1;
+
 var rtc = SkyRTC();
 bindListeners();
 /**********************************************************/
@@ -14,10 +17,13 @@ startBtn.onclick = function (event) {
     if (rtc.socket) {
         rtc.socket.close();
     } else {
-        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1));
+        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
     }
 }
 stopBtn.onclick = function(event){
+    if(observeMode){
+        return;
+    }
     startStream = false;
     $.post("/teacher-stream/closeroom", function(result){
         if(result.success){
@@ -54,12 +60,13 @@ function bindListeners() {
         
         //创建本地视频流
         // let mode = document.getElementById("screenMode").value;
-        // if (mode == "cam") {
-        //     rtc.createStream({
-        //         "video": true,
-        //         "audio": true
-        //     });
-        // } else if (mode == "scr") {
+        if (observeMode) {
+            onScreenMode = false;
+            rtc.createStream({
+                "video": true,
+                "audio": true
+            });
+        } else {
             onScreenMode = true;
             rtc.createScreenStream({
                 video: {
@@ -67,7 +74,7 @@ function bindListeners() {
                 },
                 audio: true
             });
-        // }
+        }
     });
     //创建本地视频流成功
     rtc.on("stream_created", function (stream) {
@@ -106,6 +113,6 @@ function bindListeners() {
         }
         rtc = SkyRTC();
         bindListeners();
-        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1));
+        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
     });
 }

@@ -97,7 +97,11 @@
             for (let stu in data) {
               let content = "<tr index='"+stu+"'>";
               for (let k of tableKeyList) {
-                content += "<td>" + data[stu][k] + "</td>";
+                if(k == "RoomNumber"){
+                  content += `<td><a href='/teacher-stream/html/stream.html?observe=true#${data[stu][k]}'>` + data[stu][k] + "</a></td>";
+                }else{
+                  content += "<td>" + data[stu][k] + "</td>";
+                }
               }
               content += "</tr>";
     

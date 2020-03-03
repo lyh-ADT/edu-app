@@ -97,7 +97,7 @@ const SkyRTC = function () {
 
     /*************************服务器连接部分***************************/
 
-    skyrtc.prototype.connect = function (server, room) {
+    skyrtc.prototype.connect = function (server, room, observeMode) {
         var socket,
             that = this;
         room = room || "";
@@ -107,7 +107,7 @@ const SkyRTC = function () {
                 "eventName": "__join",
                 "data": {
                     "room": room,
-                    "isteacher":true
+                    "role":observeMode ? "observer" : "teacher"
                 }
             }));
             that.emit("socket_opened", socket);
@@ -235,8 +235,9 @@ const SkyRTC = function () {
         let merger = audioCtx.createChannelMerger(mediaStreams.length);
         let audioTSNodes = [];
         mediaStreams.forEach(t => {
+            let ts;
             try{
-                let ts = audioCtx.createMediaStreamSource(t);
+                ts = audioCtx.createMediaStreamSource(t);
             }catch{
                 throw new Error("请勾选选择画面界面的分享音频");
             }

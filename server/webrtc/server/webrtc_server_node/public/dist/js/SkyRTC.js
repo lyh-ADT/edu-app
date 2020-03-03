@@ -15,6 +15,7 @@ function SkyRTC() {
     this.sockets = [];
     this.rooms = {};
     this.teachers = {}; //房主 {房间号：socket}
+    this.observers = {} // 管理 {房间号：socket}
 
     // 加入房间
     this.on('__join', function (data, socket) {
@@ -32,11 +33,11 @@ function SkyRTC() {
         curRoom = this.rooms[room] = this.rooms[room] || [];
         console.log(data);
 
-        if(data.isteacher){
+        if(data.role == "teacher"){
             console.log("老师进入房间")
             // 标记房主
             this.teachers[room] = socket;
-            socket.isteacher = true;
+            socket.role = "teacher";
             
             // 通知新来的客户端给原有客户端
             for (i = 0, m = curRoom.length; i < m; i++) {
@@ -60,6 +61,40 @@ function SkyRTC() {
                     "you": socket.id
                 }
             }), errorCb);
+        }else if(data.role == "observer"){
+            console.log("管理进入房间");
+            socket.role = "observer";
+            console.log("房间里有管理员" + (this.observers[room] && this.observers[room].length) + "人");
+
+            socket.id = "DoNotShow" + socket.id.substr(9);
+            this.sockets[(this.sockets.indexOf(socket))].id = socket.id;
+            
+            this.observers[room] = this.observers[room] || [];
+            this.observers[room].push(socket);
+
+            // 通知新来的客户端给原有客户端
+            for (i = 0, m = curRoom.length; i < m; i++) {
+                curSocket = curRoom[i];
+                if (curSocket.id === socket.id) {
+                    continue;
+                }
+                ids.push(curSocket.id);
+                curSocket.send(JSON.stringify({
+                    "eventName": "_new_peer",
+                    "data": {
+                        "socketId": socket.id
+                    }
+                }), errorCb);
+            }
+            // 让新来的客户端连接到原有客户端
+            socket.send(JSON.stringify({
+                "eventName": "_peers",
+                "data": {
+                    "connections": ids,
+                    "you": socket.id
+                }
+            }), errorCb);
+
         }else{
             // 让老师添加学生
             if(!this.teachers[room]){
@@ -73,6 +108,26 @@ function SkyRTC() {
                 }
             }), errorCb);
 
+            // 让observer添加学生
+            if(this.observers[room]){
+                for(let i=0; i < this.observers[room].length; ++i){
+                    curSocket = this.observers[room][i];
+                    
+                    socket.send(JSON.stringify({
+                        "eventName": "_new_peer",
+                        "data": {
+                            "socketId": curSocket.id,
+                            "donottshow":true
+                        }
+                    }), errorCb);
+                    curSocket.send(JSON.stringify({
+                        "eventName": "_new_peer",
+                        "data": {
+                            "socketId": socket.id
+                        }
+                    }), errorCb);
+                }
+            }
             // 学生只需要连接到老师
             socket.send(JSON.stringify({
                 "eventName": "_peers",
@@ -256,8 +311,12 @@ SkyRTC.prototype.init = function (socket) {
         that.removeSocket(socket);
         that.emit('remove_peer', socket.id, that);
         // 如果是教师就关闭房间
-        if(socket.isteacher){
+        if(socket.role == "teacher"){
             that.closeRoom(room);
+        }else if(socket.role == "observer"){
+            that.observers[room] = (that.observers[room] && that.observers[room].filter(function(value, index){
+                return value.id != socket.id;
+            }));
         }
     });
     that.emit('new_connect', socket);

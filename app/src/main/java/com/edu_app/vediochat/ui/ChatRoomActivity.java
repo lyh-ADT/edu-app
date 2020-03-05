@@ -110,17 +110,17 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         }
 
     }
-
-    @Override
-    public void onSetLocalStream(MediaStream stream, String userId) {
-        List<VideoTrack> videoTracks = stream.videoTracks;
-        if (videoTracks.size() > 0) {
-            _localVideoTrack = videoTracks.get(0);
-        }
-        runOnUiThread(() -> {
-            addView(userId, stream);
-        });
-    }
+// 屏蔽本地视频
+//    @Override
+//    public void onSetLocalStream(MediaStream stream, String userId) {
+//        List<VideoTrack> videoTracks = stream.videoTracks;
+//        if (videoTracks.size() > 0) {
+//            _localVideoTrack = videoTracks.get(0);
+//        }
+//        runOnUiThread(() -> {
+//            addView(userId, stream);
+//        });
+//    }
 
     @Override
     public void onAddRemoteStream(MediaStream stream, String userId) {

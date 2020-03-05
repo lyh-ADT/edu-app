@@ -20,20 +20,20 @@ startBtn.onclick = function (event) {
         rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
     }
 }
-stopBtn.onclick = function(event){
-    if(observeMode){
+stopBtn.onclick = function (event) {
+    if (observeMode) {
         return;
     }
     startStream = false;
-    $.post("/teacher-stream/closeroom", function(result){
-        if(result.success){
+    $.post("/teacher-stream/closeroom", function (result) {
+        if (result.success) {
             rtc.socket && rtc.socket.close();
 
             // 关闭流
-            if(rtc.localMediaStream)
-            for(let i of rtc.localMediaStream.getTracks()){
-                i.stop();
-            }
+            if (rtc.localMediaStream)
+                for (let i of rtc.localMediaStream.getTracks()) {
+                    i.stop();
+                }
 
             window.opener = null;
             window.open('', '_self', '');
@@ -47,17 +47,45 @@ stopBtn.onclick = function(event){
     });
 }
 
+window.onclose = function () {
+    if (rtc.localMediaStream)
+    for (let i of rtc.localMediaStream.getTracks()) {
+        i.stop();
+    }
+}
+
+function addVideo(id, stream) {
+    let video = document.getElementById("video_template").cloneNode(true);
+    video.setAttribute("style", "");
+    video.getElementsByTagName("video")[0].setAttribute("autoplay", "autoplay");
+    video.setAttribute("id", id);
+
+    videos.appendChild(video);
+    rtc.attachStream(stream, id);
+}
+
+function changeVolume(img){
+    let video = img.parentElement.getElementsByTagName("video")[0];
+    if(video.volume <= 0){
+        video.volume = 1;
+        img.src = "./voice.png";
+    }else{
+        video.volume = 0;
+        img.src = "./mute.jpg";
+    }
+}
+
 function bindListeners() {
     //成功创建WebSocket连接
     rtc.on("connected", function (socket) {
         // ws心跳保持活动
-        setInterval(function(){
+        setInterval(function () {
             rtc.socket.send(JSON.stringify({
                 "eventName": "__heartbeat",
                 "data": {}
             }));
         }, 50000);
-        
+
         //创建本地视频流
         // let mode = document.getElementById("screenMode").value;
         if (observeMode) {
@@ -89,13 +117,15 @@ function bindListeners() {
     });
     //接收到其他用户的视频流
     rtc.on('pc_add_stream', function (stream, socketId) {
-        var newVideo = document.createElement("video");
+        // var newVideo = document.createElement("video");
         var id = "other-" + socketId;
-        newVideo.setAttribute("class", "other");
-        newVideo.setAttribute("autoplay", "autoplay");
-        newVideo.setAttribute("id", id);
-        videos.appendChild(newVideo);
-        rtc.attachStream(stream, id);
+        // newVideo.setAttribute("class", "other");
+        // newVideo.setAttribute("autoplay", "autoplay");
+        // newVideo.setAttribute("id", id);
+        // newVideo.setAttribute("controls", true);
+        // videos.appendChild(newVideo);
+        // rtc.attachStream(stream, id);
+        addVideo(id, stream);
     });
     //删除其他用户
     rtc.on('remove_peer', function (socketId) {
@@ -108,7 +138,7 @@ function bindListeners() {
     rtc.on("socket_closed", function (scoket) {
         console.log("socket_closed");
         videos.innerHTML = "";
-        if(!startStream){
+        if (!startStream) {
             return;
         }
         rtc = SkyRTC();

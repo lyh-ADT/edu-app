@@ -293,6 +293,7 @@ const SkyRTC = function () {
 
         function timerCallback() {
             if(screenVideo.ended || cameraViedo.ended){
+
                 return;
             }
             setTimeout(function () {
@@ -383,7 +384,7 @@ const SkyRTC = function () {
 
     // 将流绑定到video标签上用于输出
     skyrtc.prototype.attachStream = function (stream, domId) {
-        var element = document.getElementById(domId);
+        var element = document.getElementById(domId).getElementsByTagName("video")[0];
         if (navigator.mediaDevices.getUserMedia) {
             element.srcObject = stream;
         } else {

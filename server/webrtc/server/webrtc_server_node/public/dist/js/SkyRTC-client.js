@@ -112,7 +112,7 @@ const SkyRTC = function () {
                 "eventName": "__join",
                 "data": {
                     "room": room,
-                    "role":observeMode ? "observer" : "teacher"
+                    "role": observeMode ? "observer" : "teacher"
                 }
             }));
             that.emit("socket_opened", socket);
@@ -136,7 +136,7 @@ const SkyRTC = function () {
             // for (i = pcs.length; i--;) {
             //     that.closePeerConnection(pcs[i]);
             // }
-            for(let k in pcs){
+            for (let k in pcs) {
                 that.closePeerConnection(pcs[k]);
             }
             that.peerConnections = [];
@@ -158,7 +158,7 @@ const SkyRTC = function () {
         this.on("_ice_candidate", function (data) {
             var candidate = new nativeRTCIceCandidate(data);
             var pc = that.peerConnections[data.socketId];
-            if (!pc ||!pc.remoteDescription || !pc.remoteDescription.type) {
+            if (!pc || !pc.remoteDescription || !pc.remoteDescription.type) {
                 //push candidate onto queue...
                 console.log("remote not set!")
             }
@@ -234,16 +234,16 @@ const SkyRTC = function () {
         }
     }
 
-    function mergeAudioTracks(...mediaStreams){
+    function mergeAudioTracks(...mediaStreams) {
         // 合并音轨返回合并后的AudioTrack
         let audioCtx = new AudioContext();
         let merger = audioCtx.createChannelMerger(mediaStreams.length);
         let audioTSNodes = [];
         mediaStreams.forEach(t => {
             let ts;
-            try{
+            try {
                 ts = audioCtx.createMediaStreamSource(t);
-            }catch{
+            } catch{
                 throw new Error("请勾选选择画面界面的分享音频");
             }
             ts.connect(merger);
@@ -253,6 +253,56 @@ const SkyRTC = function () {
         let dest = audioCtx.createMediaStreamDestination();
         merger.connect(dest);
         return dest.stream.getAudioTracks()[0];
+    }
+
+    function mergeVideoTracks(screenMediaStream, cameraMediaStream) {
+        const RATIO_WIDTH = 0.1;
+
+        // 将两个视频合并后返回一个MediaStream
+        let screenVideo = document.createElement("video");
+        screenVideo.srcObject = screenMediaStream;
+        screenVideo.play();
+        screenVideo.volume = 0.0
+        let cameraViedo = document.createElement("video");
+        cameraViedo.srcObject = cameraMediaStream;
+        cameraViedo.play();
+        cameraViedo.volume = 0.0;
+        let canvas = document.createElement("canvas");
+
+        let canvasCtx = canvas.getContext('2d');
+
+        function composeFrame() {
+            let width = screenVideo.videoWidth;
+            let height = screenVideo.videoHeight;
+
+            canvas.width = width;
+            canvas.height = height;
+
+            let camWidth = cameraViedo.videoWidth;
+            let camHeight = cameraViedo.videoHeight;
+
+            // 缩放摄像头的画面
+            const ratio = camHeight / camWidth;
+            camWidth = cameraViedo.width =  Math.floor(width * RATIO_WIDTH);
+            camHeight = cameraViedo.height = Math.floor(cameraViedo.width * ratio);
+
+            canvasCtx.drawImage(screenVideo, 0, 0, width, height);
+            canvasCtx.drawImage(cameraViedo, width - camWidth, height - camHeight, camWidth, camHeight);
+            return;
+        }
+
+        function timerCallback() {
+            setTimeout(function () {
+                composeFrame();
+                setTimeout(function () {
+                    timerCallback();
+                }, 0);
+            }, 0);
+        }
+
+        timerCallback();
+
+        return canvas.captureStream();
     }
 
     function createStreamSuccess(stream) {
@@ -273,7 +323,7 @@ const SkyRTC = function () {
         console.log(error)
     }
 
-    skyrtc.prototype.createScreenStream =async function(options){
+    skyrtc.prototype.createScreenStream = async function (options) {
         var that = this;
         gThat = this;
 
@@ -281,15 +331,18 @@ const SkyRTC = function () {
             this.numStreams++;
             // 调用用户媒体设备, 访问摄像头
             let captureStream = null;
-            try{
+            try {
                 captureStream = await navigator.mediaDevices.getDisplayMedia(options);
-                mircophone = await navigator.mediaDevices.getUserMedia({audio:{
-                    noiseSuppression:true,
-                    echoCancellation:true
-                }});
-                let video = captureStream.getVideoTracks()[0];
-                captureStream = new MediaStream([video, mergeAudioTracks(captureStream, mircophone)]);
-            }catch(err){
+                mircophone = await navigator.mediaDevices.getUserMedia({
+                    video:true,
+                    audio: {
+                        noiseSuppression: true,
+                        echoCancellation: true
+                    }
+                });
+                let videoMedia = mergeVideoTracks(captureStream, mircophone);
+                captureStream = new MediaStream([videoMedia.getVideoTracks()[0], mergeAudioTracks(captureStream, mircophone)]);
+            } catch (err) {
                 createStreamError(err);
                 console.error(err);
                 return;

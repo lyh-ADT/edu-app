@@ -292,6 +292,9 @@ const SkyRTC = function () {
         }
 
         function timerCallback() {
+            if(screenVideo.ended || cameraViedo.ended){
+                return;
+            }
             setTimeout(function () {
                 composeFrame();
                 setTimeout(function () {

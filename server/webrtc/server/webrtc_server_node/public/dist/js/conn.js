@@ -84,8 +84,8 @@ function bindListeners() {
         document.getElementById('me').volume = 0.0;
     });
     //创建本地视频流失败
-    rtc.on("stream_create_error", function () {
-        alert("create stream failed!");
+    rtc.on("stream_create_error", function (error) {
+        alert(error.message);
     });
     //接收到其他用户的视频流
     rtc.on('pc_add_stream', function (stream, socketId) {

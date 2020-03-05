@@ -264,9 +264,9 @@ public class PeerConnectionHelper {
         }
 
 
-        if (viewCallback != null) {
-            viewCallback.onSetLocalStream(_localStream, _myId);
-        }
+//        if (viewCallback != null) {
+//            viewCallback.onSetLocalStream(_localStream, _myId);
+//        }
 
     }
 

@@ -154,16 +154,17 @@ public class ChatSingleActivity extends AppCompatActivity {
     private void startCall() {
         manager = WebRTCManager.getInstance();
         manager.setCallback(new IViewCallback() {
-            @Override
-            public void onSetLocalStream(MediaStream stream, String socketId) {
-                if (stream.videoTracks.size() > 0) {
-                    stream.videoTracks.get(0).addSink(localRender);
-                }
-
-                if (videoEnable) {
-                    stream.videoTracks.get(0).setEnabled(true);
-                }
-            }
+//            去掉本地的自己头像
+//            @Override
+//            public void onSetLocalStream(MediaStream stream, String socketId) {
+//                if (stream.videoTracks.size() > 0) {
+//                    stream.videoTracks.get(0).addSink(localRender);
+//                }
+//
+//                if (videoEnable) {
+//                    stream.videoTracks.get(0).setEnabled(true);
+//                }
+//            }
 
             @Override
             public void onAddRemoteStream(MediaStream stream, String socketId) {

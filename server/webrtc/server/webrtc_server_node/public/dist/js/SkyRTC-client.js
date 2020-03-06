@@ -256,8 +256,6 @@ const SkyRTC = function () {
     }
 
     function mergeVideoTracks(screenMediaStream, cameraMediaStream) {
-        const RATIO_WIDTH = 0.1;
-
         // 将两个视频合并后返回一个MediaStream
         let screenVideo = document.createElement("video");
         screenVideo.srcObject = screenMediaStream;
@@ -282,6 +280,7 @@ const SkyRTC = function () {
             let camHeight = cameraViedo.videoHeight;
 
             // 缩放摄像头的画面
+            let RATIO_WIDTH = document.getElementById("camSizeRatio").value / 100;
             const ratio = camHeight / camWidth;
             camWidth = cameraViedo.width =  Math.floor(width * RATIO_WIDTH);
             camHeight = cameraViedo.height = Math.floor(cameraViedo.width * ratio);

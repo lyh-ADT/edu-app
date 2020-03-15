@@ -41,6 +41,8 @@ public class WebRTCManager implements ISignalingEvents {
         return Holder.wrManager;
     }
 
+
+
     private static class Holder {
         private static WebRTCManager wrManager = new WebRTCManager();
     }
@@ -77,7 +79,11 @@ public class WebRTCManager implements ISignalingEvents {
             _peerHelper.setViewCallback(callback);
         }
     }
-
+    public void sendMsg(String msg) {
+        if (_peerHelper != null) {
+            _peerHelper.sendMsg(msg);
+        }
+    }
     //===================================控制功能==============================================
     public void joinRoom(Context context, EglBase eglBase) {
         if (_peerHelper != null) {

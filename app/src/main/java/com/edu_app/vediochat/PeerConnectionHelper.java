@@ -37,6 +37,8 @@ import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -45,6 +47,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.prefs.AbstractPreferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,7 +82,7 @@ public class PeerConnectionHelper {
     public int _mediaType;
 
     private AudioManager mAudioManager;
-
+    private Map<String, DataChannel> _dataChannelDic;
 
 
     enum Role {Caller, Receiver,}
@@ -120,7 +123,21 @@ public class PeerConnectionHelper {
     public void setViewCallback(IViewCallback callback) {
         viewCallback = callback;
     }
+    public void sendMsg(String msg) {
+        Log.v(TAG, "为所有发送消息");
+        if(_factory == null){
+            _factory = createConnectionFactory();
+        }
+        for (Map.Entry<String, DataChannel> entry : _dataChannelDic.entrySet()) {
+            try {
 
+                ByteBuffer bb = ByteBuffer.allocate(msg.getBytes().length);
+                entry.getValue().send(new DataChannel.Buffer(bb.put(msg.getBytes()),false));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     // ===================================webSocket回调信息=======================================
 
     public void initContext(Context context, EglBase eglBase) {
@@ -277,7 +294,9 @@ public class PeerConnectionHelper {
     private void createPeerConnections() {
         for (Object str : _connectionIdArray) {
             Peer peer = new Peer((String) str);
+            DataChannel dc = peer.pc.createDataChannel("sendChat",null);
             _connectionPeerDic.put((String) str, peer);
+            _dataChannelDic.put((String) str, dc);
         }
     }
 

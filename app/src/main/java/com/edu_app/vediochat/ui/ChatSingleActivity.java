@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -56,9 +58,10 @@ public class ChatSingleActivity extends AppCompatActivity {
     private EglBase rootEglBase;
     private boolean fragmentVisible;
 
-    public static void openActivity(Activity activity, boolean videoEnable) {
+    public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
         Intent intent = new Intent(activity, ChatSingleActivity.class);
         intent.putExtra("videoEnable", videoEnable);
+        intent.putExtra("uuid",uuid);
         activity.startActivity(intent);
     }
 
@@ -73,8 +76,8 @@ public class ChatSingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_chat_single);
-        initFragment();
         initVar();
+        initFragment();
         initListener();
     }
 
@@ -91,6 +94,14 @@ public class ChatSingleActivity extends AppCompatActivity {
         RoomChatFragmentAdapter adapter = new RoomChatFragmentAdapter(getSupportFragmentManager(),fragments,tab_titles);
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
+        Button btnSubmit = (Button)findViewById(R.id.coursePage_roomChat_btnMsg);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText ed = (EditText)findViewById(R.id.coursePage_roomChat_etMsg);
+                manager.sendMsg(ed.getText().toString());
+            }
+        });
     }
     private int previewX, previewY;
     private int moveX, moveY;
@@ -214,6 +225,9 @@ public class ChatSingleActivity extends AppCompatActivity {
         if (!PermissionUtil.isNeedRequestPermission(ChatSingleActivity.this)) {
             manager.joinRoom(getApplicationContext(), rootEglBase);
         }
+
+        Intent intent = getIntent();
+        manager.sendMsg(intent.getStringExtra("uuid"));
 
     }
 

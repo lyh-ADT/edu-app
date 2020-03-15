@@ -17,18 +17,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.course.CourserFragmentAdapter;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
 import com.edu_app.vediochat.WebRTCManager;
+import com.edu_app.vediochat.controller.RoomChatController;
+import com.edu_app.vediochat.controller.RoomChatFragmentAdapter;
 import com.edu_app.vediochat.utils.PermissionUtil;
+import com.google.android.material.tabs.TabLayout;
 
 import org.webrtc.EglBase;
 import org.webrtc.MediaStream;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
+
+import java.util.ArrayList;
 
 /**
  * 单聊界面
@@ -66,11 +73,25 @@ public class ChatSingleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_chat_single);
+        initFragment();
         initVar();
         initListener();
     }
 
-
+    private TabLayout tablayout;
+    private ViewPager viewpager;
+    private ArrayList<Fragment> fragments;
+    private ArrayList<String> tab_titles;
+    private void initFragment(){
+        tablayout = findViewById(R.id.coursePage_roomChat_tab);
+        viewpager = findViewById(R.id.coursePage_roomChat_viewpager);
+        RoomChatController controller = new RoomChatController(this);
+        fragments = controller.setAllPageFragment();
+        tab_titles = controller.getTabTitle();
+        RoomChatFragmentAdapter adapter = new RoomChatFragmentAdapter(getSupportFragmentManager(),fragments,tab_titles);
+        viewpager.setAdapter(adapter);
+        tablayout.setupWithViewPager(viewpager);
+    }
     private int previewX, previewY;
     private int moveX, moveY;
 

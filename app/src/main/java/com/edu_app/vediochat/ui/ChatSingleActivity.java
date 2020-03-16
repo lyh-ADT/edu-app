@@ -226,8 +226,8 @@ public class ChatSingleActivity extends AppCompatActivity {
             manager.joinRoom(getApplicationContext(), rootEglBase);
         }
 
-        Intent intent = getIntent();
-        manager.sendMsg(intent.getStringExtra("uuid"));
+//        Intent intent = getIntent();
+//        manager.sendMsg(intent.getStringExtra("uuid"));
 
     }
 

@@ -2,6 +2,7 @@ package com.edu_app.view.student.course;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -40,7 +41,8 @@ public class NodejsActivity extends AppCompatActivity {
     /*-------------------------- nodejs版本服务器测试--------------------------------------------*/
     public void JoinRoomSingleVideo(View view) {
         Intent intent = this.getIntent();
-        uuid = intent.getStringExtra("uuid");
+        uuid = intent.getExtras().get("uid").toString();
+        Log.e("error",uuid+"---uuid");
         WebrtcUtil.callSingle(this,
                 serverUrl,
                 et_room.getText().toString().trim(),

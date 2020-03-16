@@ -11,8 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4357">
-              <caret line="230" selection-start-line="230" selection-end-line="230" />
+            <state relative-caret-position="3767">
+              <caret line="229" column="20" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
               <folding>
                 <element signature="e#9501#9502#0" expanded="true" />
                 <element signature="e#9539#9540#0" expanded="true" />
@@ -54,31 +56,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="64" column="40" lean-forward="true" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1303">
+              <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="83" column="29" lean-forward="true" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="31" />
+            <state relative-caret-position="188">
+              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+            <state relative-caret-position="210">
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
+              <folding>
+                <element signature="e#1223#1224#0" expanded="true" />
+                <element signature="e#1259#1260#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+            <state relative-caret-position="137">
+              <caret line="57" column="81" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -104,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+            <state relative-caret-position="-112">
+              <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
               <folding>
                 <element signature="e#1564#1565#0" expanded="true" />
               </folding>
@@ -161,12 +164,14 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_chat_single.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_room_control_single.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatmsg.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" />
       </list>
     </option>
   </component>
@@ -516,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584266097576</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="# 打开通话界面发送uuid">
+      <created>1584328829065</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1584328829065</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -524,7 +536,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.06081081" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.06081081" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -539,7 +551,7 @@
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3287037" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.3287037" />
-      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.07098766" />
+      <window_info active="true" anchor="bottom" id="Build" order="7" visible="true" weight="0.6080247" />
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -594,7 +606,8 @@
     <MESSAGE value="#" />
     <MESSAGE value="#更改视图 增加聊天和用户视图" />
     <MESSAGE value="#增加发送消息" />
-    <option name="LAST_COMMIT_MESSAGE" value="#增加发送消息" />
+    <MESSAGE value="# 打开通话界面发送uuid" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 打开通话界面发送uuid" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -816,16 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-          <folding>
-            <element signature="e#1564#1565#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1190">
@@ -843,30 +846,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1850">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4357">
-          <caret line="230" selection-start-line="230" selection-end-line="230" />
-          <folding>
-            <element signature="e#9501#9502#0" expanded="true" />
-            <element signature="e#9539#9540#0" expanded="true" />
-            <element signature="e#9683#9684#0" expanded="true" />
-            <element signature="e#9725#9726#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -891,9 +874,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1975">
+          <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
+        <state relative-caret-position="892">
           <caret line="64" column="40" lean-forward="true" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -901,17 +891,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="83" column="29" lean-forward="true" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="31" />
+        <state relative-caret-position="210">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
+          <folding>
+            <element signature="e#1223#1224#0" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+        <state relative-caret-position="188">
+          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1303">
+          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3767">
+          <caret line="229" column="20" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
+          <folding>
+            <element signature="e#9501#9502#0" expanded="true" />
+            <element signature="e#9539#9540#0" expanded="true" />
+            <element signature="e#9683#9684#0" expanded="true" />
+            <element signature="e#9725#9726#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
+          <folding>
+            <element signature="e#1564#1565#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="57" column="81" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="81" />
         </state>
       </provider>
     </entry>

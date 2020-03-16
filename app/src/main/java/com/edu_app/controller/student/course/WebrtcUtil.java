@@ -52,11 +52,11 @@ public class WebrtcUtil {
 
             }
         });
-        WebRTCManager.getInstance().connect(videoEnable ? MediaType.TYPE_VIDEO : MediaType.TYPE_AUDIO, roomId);
+        WebRTCManager.getInstance().connect(videoEnable ? MediaType.TYPE_VIDEO : MediaType.TYPE_AUDIO, roomId,uuid);
     }
 
     // Videoconferencing
-    public static void call(Activity activity, String wss, String roomId) {
+    public static void call(Activity activity, String wss, String roomId,String uuid) {
         if (TextUtils.isEmpty(wss)) {
             wss = WSS;
         }
@@ -71,7 +71,7 @@ public class WebrtcUtil {
 
             }
         });
-        WebRTCManager.getInstance().connect(MediaType.TYPE_MEETING, roomId);
+        WebRTCManager.getInstance().connect(MediaType.TYPE_MEETING, roomId,uuid);
     }
 
 

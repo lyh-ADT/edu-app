@@ -55,7 +55,7 @@ public class NodejsActivity extends AppCompatActivity {
     }
 
     public void JoinRoom(View view) {
-        WebrtcUtil.call(this, serverUrl, et_room.getText().toString().trim());
+        WebrtcUtil.call(this, serverUrl, et_room.getText().toString().trim(),uuid);
 
     }
 

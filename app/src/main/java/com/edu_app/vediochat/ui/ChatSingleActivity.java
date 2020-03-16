@@ -94,14 +94,17 @@ public class ChatSingleActivity extends AppCompatActivity {
         RoomChatFragmentAdapter adapter = new RoomChatFragmentAdapter(getSupportFragmentManager(),fragments,tab_titles);
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
-        Button btnSubmit = (Button)findViewById(R.id.coursePage_roomChat_btnMsg);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText ed = (EditText)findViewById(R.id.coursePage_roomChat_etMsg);
-                manager.sendMsg(ed.getText().toString());
-            }
-        });
+
+        // TODO ：此处会找不到这个按钮
+//        Button btnSubmit = (Button)findViewById(R.id.coursePage_roomChat_btnMsg);
+        Button btnSubmit = (Button)fragments.get(0).getView().findViewById(R.id.coursePage_roomChat_btnMsg);
+//        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//              EditText ed = (EditText)findViewById(R.id.coursePage_roomChat_etMsg);
+//             manager.sendMsg(ed.getText().toString());
+//            }
+//        });
     }
     private int previewX, previewY;
     private int moveX, moveY;

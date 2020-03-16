@@ -1,5 +1,6 @@
 package com.edu_app.view.student.course;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import com.edu_app.controller.student.course.WebrtcUtil;
 public class NodejsActivity extends AppCompatActivity {
     private EditText et_room;
     private final String serverUrl = "wss://139.159.176.78:3000/teacher-stream/wss";
+    private String uuid;
 
 
     @Override
@@ -37,17 +39,19 @@ public class NodejsActivity extends AppCompatActivity {
 
     /*-------------------------- nodejs版本服务器测试--------------------------------------------*/
     public void JoinRoomSingleVideo(View view) {
+        Intent intent = this.getIntent();
+        uuid = intent.getStringExtra("uuid");
         WebrtcUtil.callSingle(this,
                 serverUrl,
                 et_room.getText().toString().trim(),
-                true);
+                true,uuid);
     }
 
     public void JoinRoomSingleAudio(View view) {
         WebrtcUtil.callSingle(this,
                 serverUrl,
                 et_room.getText().toString().trim(),
-                false);
+                false,uuid);
     }
 
     public void JoinRoom(View view) {

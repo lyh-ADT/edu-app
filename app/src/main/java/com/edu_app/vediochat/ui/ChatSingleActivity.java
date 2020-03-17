@@ -24,8 +24,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
 import com.edu_app.controller.student.course.CourserFragmentAdapter;
+import com.edu_app.model.NetworkUtility;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
@@ -41,8 +44,11 @@ import org.webrtc.MediaStream;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 
+import java.io.IOException;
 import java.nio.file.Watchable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 单聊界面
@@ -63,6 +69,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     private EglBase rootEglBase;
     private boolean fragmentVisible;
     private String message=null;
+    private String personName;
 
     public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
         Intent intent = new Intent(activity, ChatSingleActivity.class);
@@ -228,9 +235,14 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         if (!PermissionUtil.isNeedRequestPermission(ChatSingleActivity.this)) {
             manager.joinRoom(getApplicationContext(), rootEglBase);
         }
-
-//        Intent intent = getIntent();
-//        manager.sendMsg(intent.getStringExtra("uuid"));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                personName = getPersonName();
+            }
+        }).start();
+        Intent intent = getIntent();
+        manager.sendMsg(intent.getStringExtra("uuid"));
 
     }
 
@@ -339,11 +351,32 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         }
         return false;
     }
+    public String getPersonName() {
+
+        Intent intent = getIntent();
+        String uuid = intent.getStringExtra("uuid");
+        try {
+            String body = String.format("{\"stuUid\":\"%s\"}", uuid);
+            Log.e("error", body);
+            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetInfo", body);
+            JSONObject jsonObject = JSONObject.parseObject(response);
+            Boolean getSuccess = jsonObject.getBoolean("success");
+            JSONObject data = jsonObject.getJSONObject("data");
+            String userName = data.getString("StuName");
+            Log.e("error",data.toString());
+            return userName;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.coursePage_roomChat_btnMsg){
-                manager.sendMsg(message);
-                Log.e("error",message);
+            Map<String,String> map = new HashMap<String,String>();
+            map.put(personName,message);
+            Log.e("error","发送的信息："+JSON.toJSONString(map));
+            manager.sendMsg(map.toString());
         }
     }
     @Override

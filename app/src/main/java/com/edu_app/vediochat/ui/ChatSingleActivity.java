@@ -374,7 +374,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if(v.getId()==R.id.coursePage_roomChat_btnMsg){
             Map<String,String> map = new HashMap<String,String>();
-            map.put(personName,message);
+            map.put("userId",personName);
+            map.put("content",message);
             Log.e("error","发送的信息："+JSON.toJSONString(map));
             manager.sendMsg(map.toString());
         }

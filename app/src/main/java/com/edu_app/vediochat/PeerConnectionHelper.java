@@ -3,13 +3,25 @@ package com.edu_app.vediochat;
 import android.content.Context;
 import android.media.AudioManager;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.edu_app.R;
+import com.edu_app.controller.student.practice.LookExamAdapter;
+import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;
+import com.edu_app.vediochat.controller.ChatAdapter;
 import com.edu_app.vediochat.ws.IWebSocket;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Enumerator;
@@ -37,8 +49,8 @@ import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,7 +59,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.prefs.AbstractPreferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -300,7 +311,8 @@ public class PeerConnectionHelper {
     private void createPeerConnections() {
         for (Object str : _connectionIdArray) {
             Peer peer = new Peer((String) str);
-            DataChannel dc = peer.pc.createDataChannel("sendChat",null);
+            //创建数据通道
+            DataChannel dc = peer.pc.createDataChannel("sendMsg",new DataChannel.Init());
             _connectionPeerDic.put((String) str, peer);
             _dataChannelDic.put((String) str, dc);
         }
@@ -342,6 +354,7 @@ public class PeerConnectionHelper {
             mPeer.pc.close();
         }
         _connectionPeerDic.remove(connectionId);
+        _dataChannelDic.remove(connectionId);
         _connectionIdArray.remove(connectionId);
         if (viewCallback != null) {
             viewCallback.onCloseWithId(connectionId);
@@ -565,10 +578,50 @@ public class PeerConnectionHelper {
                 viewCallback.onCloseWithId(socketId);
             }
         }
-
+//设置数据通道监视器
         @Override
         public void onDataChannel(DataChannel dataChannel) {
+            dataChannel.registerObserver(new DataChannel.Observer() {
+                @Override
+                public void onBufferedAmountChange(long l) {
 
+                }
+
+                @Override
+                public void onStateChange() {
+                    Log.d(TAG,"onStateChange: dataChannel state:"+dataChannel.state().toString());
+                }
+
+                @Override
+                public void onMessage(DataChannel.Buffer buffer) {
+                    byte[] bytes;
+
+                    if(buffer.data.hasArray()){
+                        bytes = buffer.data.array();
+
+                    }else{
+                        bytes = new byte[buffer.data.remaining()];
+                        buffer.data.get(bytes);
+                    }
+                    String message = new String(bytes, Charset.defaultCharset());
+                    try {
+                        JSONArray jsonArray = new JSONArray(message);
+                        if(_context!=null){
+                            AppCompatActivity activity = (AppCompatActivity) _context;
+                            RecyclerView recycler = activity.findViewById(R.id.coursePage_roomChat_viewpager);
+                            recycler.setLayoutManager(new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false));
+                            ChatAdapter adapter = new ChatAdapter(activity, jsonArray);
+                            recycler.setAdapter(adapter);
+//        添加分割线
+                            recycler.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
         }
 
         @Override

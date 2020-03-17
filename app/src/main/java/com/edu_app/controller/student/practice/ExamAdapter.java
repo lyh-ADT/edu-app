@@ -44,7 +44,7 @@ public class ExamAdapter extends RecyclerView.Adapter<ExamAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
         }
 
-        //      每个Item回调接口，传递数据
+        // 每个Item回调接口，传递数据
         @Override
         public void onClick(View v) {
 

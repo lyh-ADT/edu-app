@@ -376,7 +376,10 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             Map<String,String> map = new HashMap<String,String>();
             map.put("userId",personName);
             map.put("content",message);
-            Log.e("error","发送的信息："+JSON.toJSONString(map));
+            Map<String,Object> map2 = new HashMap<String,Object>();
+            map2.put("type","__msg");
+            map2.put("data",map);
+            Log.e("error","发送的信息："+JSON.toJSONString(map2));
             manager.sendMsg(map.toString());
         }
     }

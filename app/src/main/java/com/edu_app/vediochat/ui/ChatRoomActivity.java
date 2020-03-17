@@ -18,14 +18,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.course.CourserFragmentAdapter;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
 import com.edu_app.vediochat.WebRTCManager;
 import com.edu_app.vediochat.bean.MemberBean;
+import com.edu_app.vediochat.controller.RoomChatController;
 import com.edu_app.vediochat.utils.PermissionUtil;
+import com.google.android.material.tabs.TabLayout;
 
 import org.webrtc.EglBase;
 import org.webrtc.MediaStream;
@@ -44,7 +48,6 @@ import java.util.Map;
 
 /**
  * 群聊界面
- * 支持 9 路同時通信
  */
 public class ChatRoomActivity extends AppCompatActivity implements IViewCallback {
 
@@ -88,16 +91,17 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
 
     private void initView() {
         video_view = findViewById(R.id.mult_video_view);
+
     }
 
     private void initVar() {
         // 设置宽高比例
-        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        if (manager != null) {
-            mScreenWidth = manager.getDefaultDisplay().getWidth();
-        }
-        video_view.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mScreenWidth));
-        rootEglBase = EglBase.create();
+       WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+      if (manager != null) {
+           mScreenWidth = manager.getDefaultDisplay().getWidth();
+       }
+      video_view.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mScreenWidth));
+      rootEglBase = EglBase.create();
 
     }
 

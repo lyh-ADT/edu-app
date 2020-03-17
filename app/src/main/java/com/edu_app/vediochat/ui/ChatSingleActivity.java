@@ -5,37 +5,51 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.course.CourserFragmentAdapter;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
 import com.edu_app.vediochat.WebRTCManager;
+import com.edu_app.vediochat.controller.RoomChatController;
+import com.edu_app.vediochat.controller.RoomChatFragmentAdapter;
 import com.edu_app.vediochat.utils.PermissionUtil;
+import com.google.android.material.tabs.TabLayout;
 
+import org.w3c.dom.Text;
 import org.webrtc.EglBase;
 import org.webrtc.MediaStream;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
+
+import java.nio.file.Watchable;
+import java.util.ArrayList;
 
 /**
  * 单聊界面
  * 1. 一对一视频通话
  * 2. 一对一语音通话
  */
-public class ChatSingleActivity extends AppCompatActivity {
+public class ChatSingleActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
     private SurfaceViewRenderer local_view;
     private SurfaceViewRenderer remote_view;
     private ProxyVideoSink localRender;
@@ -48,10 +62,12 @@ public class ChatSingleActivity extends AppCompatActivity {
 
     private EglBase rootEglBase;
     private boolean fragmentVisible;
+    private String message=null;
 
-    public static void openActivity(Activity activity, boolean videoEnable) {
+    public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
         Intent intent = new Intent(activity, ChatSingleActivity.class);
         intent.putExtra("videoEnable", videoEnable);
+        intent.putExtra("uuid",uuid);
         activity.startActivity(intent);
     }
 
@@ -67,7 +83,26 @@ public class ChatSingleActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_chat_single);
         initVar();
+        initFragment();
         initListener();
+    }
+
+
+    private TabLayout tablayout;
+    private ViewPager viewpager;
+    private ArrayList<Fragment> fragments;
+    private ArrayList<String> tab_titles;
+    private void initFragment(){
+        tablayout = findViewById(R.id.coursePage_roomChat_tab);
+        viewpager = findViewById(R.id.coursePage_roomChat_viewpager);
+        RoomChatController controller = new RoomChatController(this);
+        fragments = controller.setAllPageFragment();
+        tab_titles = controller.getTabTitle();
+        RoomChatFragmentAdapter adapter = new RoomChatFragmentAdapter(getSupportFragmentManager(),fragments,tab_titles);
+        viewpager.setAdapter(adapter);
+        tablayout.setupWithViewPager(viewpager);
+
+
     }
 
 
@@ -168,10 +203,13 @@ public class ChatSingleActivity extends AppCompatActivity {
 
             @Override
             public void onAddRemoteStream(MediaStream stream, String socketId) {
+                if(socketId.startsWith("DoNotShow")){
+                    return;
+                }
                 if (stream.videoTracks.size() > 0) {
                     stream.videoTracks.get(0).addSink(remoteRender);
                 }
-                if (videoEnable) {
+                if (videoEnable && !socketId.startsWith("DoNotShow")) {
                     stream.videoTracks.get(0).setEnabled(true);
 
                     runOnUiThread(() -> setSwappedFeeds(false));
@@ -190,6 +228,9 @@ public class ChatSingleActivity extends AppCompatActivity {
         if (!PermissionUtil.isNeedRequestPermission(ChatSingleActivity.this)) {
             manager.joinRoom(getApplicationContext(), rootEglBase);
         }
+
+//        Intent intent = getIntent();
+//        manager.sendMsg(intent.getStringExtra("uuid"));
 
     }
 
@@ -297,5 +338,27 @@ public class ChatSingleActivity extends AppCompatActivity {
 
         }
         return false;
+    }
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.coursePage_roomChat_btnMsg){
+                manager.sendMsg(message);
+                Log.e("error",message);
+        }
+    }
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        message = s.toString();
     }
 }

@@ -95,7 +95,7 @@ public class PeerConnectionHelper {
 
     private AudioManager mAudioManager;
     private Map<String, DataChannel> _dataLocalChannelDic;
-    private DataChannel _dataRemoteChannel;
+
 
 
     enum Role {Caller, Receiver,}
@@ -143,19 +143,20 @@ public class PeerConnectionHelper {
         if(_factory == null){
             _factory = createConnectionFactory();
         }
-        if(_dataRemoteChannel==null){
+        if(_dataLocalChannelDic==null){
             Log.v(TAG, "发送消息失败");
         }else{
+            for (Map.Entry<String, DataChannel> entry : _dataLocalChannelDic.entrySet()) {
                 try {
                     Log.v(TAG,msg );
 
                     ByteBuffer bb = ByteBuffer.allocate(msg.getBytes().length);
-
-                    _dataRemoteChannel.send(new DataChannel.Buffer(bb.put(msg.getBytes()),false));
+                    entry.getValue().send(new DataChannel.Buffer(bb.put(msg.getBytes()),false));
 
                 } catch (Exception e) {
                     e.printStackTrace();
 
+                }
             }
         }
 
@@ -555,6 +556,7 @@ public class PeerConnectionHelper {
             Log.d(TAG,message);
             try {
                 JSONArray jsonArray = new JSONArray(message);
+                Log.d(TAG,jsonArray.toString());
                 if(_context!=null){
                     AppCompatActivity activity = (AppCompatActivity) _context;
                     RecyclerView recycler = activity.findViewById(R.id.coursePage_roomChat_viewpager);
@@ -635,8 +637,7 @@ public class PeerConnectionHelper {
 //设置数据通道监视器
         @Override
         public void onDataChannel(DataChannel dataChannel) {
-            Log.d(TAG,"dataChannel-----");
-           _dataRemoteChannel = dataChannel;
+
         }
 
         @Override

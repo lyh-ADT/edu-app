@@ -56,6 +56,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -93,7 +94,8 @@ public class PeerConnectionHelper {
     public int _mediaType;
 
     private AudioManager mAudioManager;
-    private Map<String, DataChannel> _dataChannelDic;
+    private Map<String, DataChannel> _dataLocalChannelDic;
+    private DataChannel _dataRemoteChannel;
 
 
     enum Role {Caller, Receiver,}
@@ -113,6 +115,8 @@ public class PeerConnectionHelper {
 
     public PeerConnectionHelper(IWebSocket webSocket, MyIceServer[] iceServers) {
         this._connectionPeerDic = new HashMap<>();
+        this._dataLocalChannelDic = new HashMap<>();
+
         this._connectionIdArray = new ArrayList<>();
         this.ICEServers = new ArrayList<>();
 
@@ -139,18 +143,19 @@ public class PeerConnectionHelper {
         if(_factory == null){
             _factory = createConnectionFactory();
         }
-        if(_dataChannelDic==null){
-            Log.v("error", "未建立连接发送失败");
-
+        if(_dataRemoteChannel==null){
+            Log.v(TAG, "发送消息失败");
         }else{
-            for (Map.Entry<String, DataChannel> entry : _dataChannelDic.entrySet()) {
                 try {
+                    Log.v(TAG,msg );
 
                     ByteBuffer bb = ByteBuffer.allocate(msg.getBytes().length);
-                    entry.getValue().send(new DataChannel.Buffer(bb.put(msg.getBytes()),false));
+
+                    _dataRemoteChannel.send(new DataChannel.Buffer(bb.put(msg.getBytes()),false));
+
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+
             }
         }
 
@@ -313,8 +318,9 @@ public class PeerConnectionHelper {
             Peer peer = new Peer((String) str);
             //创建数据通道
             DataChannel dc = peer.pc.createDataChannel("sendMsg",new DataChannel.Init());
+            dc.registerObserver(new dataChannelObserver(dc));
             _connectionPeerDic.put((String) str, peer);
-            _dataChannelDic.put((String) str, dc);
+            _dataLocalChannelDic.put((String) str, dc);
         }
     }
 
@@ -354,7 +360,8 @@ public class PeerConnectionHelper {
             mPeer.pc.close();
         }
         _connectionPeerDic.remove(connectionId);
-        _dataChannelDic.remove(connectionId);
+        _dataLocalChannelDic.remove(connectionId);
+
         _connectionIdArray.remove(connectionId);
         if (viewCallback != null) {
             viewCallback.onCloseWithId(connectionId);
@@ -517,6 +524,53 @@ public class PeerConnectionHelper {
         mediaConstraints.mandatory.addAll(keyValuePairs);
         return mediaConstraints;
     }
+        /****************发送消息监听器******************/
+    private class dataChannelObserver implements DataChannel.Observer{
+        private DataChannel dataChannel;
+        public dataChannelObserver(DataChannel dataChannel){
+            this.dataChannel = dataChannel;
+        }
+        @Override
+        public void onBufferedAmountChange(long l) {
+
+        }
+
+        @Override
+        public void onStateChange() {
+            Log.d(TAG,"onStateChange: dataChannel state:"+dataChannel.state().toString());
+        }
+
+        @Override
+        public void onMessage(DataChannel.Buffer buffer) {
+            byte[] bytes;
+
+            if(buffer.data.hasArray()){
+                bytes = buffer.data.array();
+
+            }else{
+                bytes = new byte[buffer.data.remaining()];
+                buffer.data.get(bytes);
+            }
+            String message = new String(bytes, Charset.defaultCharset());
+            Log.d(TAG,message);
+            try {
+                JSONArray jsonArray = new JSONArray(message);
+                if(_context!=null){
+                    AppCompatActivity activity = (AppCompatActivity) _context;
+                    RecyclerView recycler = activity.findViewById(R.id.coursePage_roomChat_viewpager);
+                    recycler.setLayoutManager(new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false));
+                    ChatAdapter adapter = new ChatAdapter(activity, jsonArray);
+                    recycler.setAdapter(adapter);
+//        添加分割线
+                    recycler.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
     //**************************************内部类******************************************/
     private class Peer implements SdpObserver, PeerConnection.Observer {
@@ -581,47 +635,8 @@ public class PeerConnectionHelper {
 //设置数据通道监视器
         @Override
         public void onDataChannel(DataChannel dataChannel) {
-            dataChannel.registerObserver(new DataChannel.Observer() {
-                @Override
-                public void onBufferedAmountChange(long l) {
-
-                }
-
-                @Override
-                public void onStateChange() {
-                    Log.d(TAG,"onStateChange: dataChannel state:"+dataChannel.state().toString());
-                }
-
-                @Override
-                public void onMessage(DataChannel.Buffer buffer) {
-                    byte[] bytes;
-
-                    if(buffer.data.hasArray()){
-                        bytes = buffer.data.array();
-
-                    }else{
-                        bytes = new byte[buffer.data.remaining()];
-                        buffer.data.get(bytes);
-                    }
-                    String message = new String(bytes, Charset.defaultCharset());
-                    try {
-                        JSONArray jsonArray = new JSONArray(message);
-                        if(_context!=null){
-                            AppCompatActivity activity = (AppCompatActivity) _context;
-                            RecyclerView recycler = activity.findViewById(R.id.coursePage_roomChat_viewpager);
-                            recycler.setLayoutManager(new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false));
-                            ChatAdapter adapter = new ChatAdapter(activity, jsonArray);
-                            recycler.setAdapter(adapter);
-//        添加分割线
-                            recycler.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
-
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            });
+            Log.d(TAG,"dataChannel-----");
+           _dataRemoteChannel = dataChannel;
         }
 
         @Override
@@ -656,6 +671,7 @@ public class PeerConnectionHelper {
 
 
             pc.setLocalDescription(Peer.this, sdp);
+
         }
 
         @Override

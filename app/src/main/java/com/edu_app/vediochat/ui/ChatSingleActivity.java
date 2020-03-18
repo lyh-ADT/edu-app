@@ -242,6 +242,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             }
         }).start();
         Intent intent = getIntent();
+        Log.e("error",intent.getStringExtra("uuid"));
         manager.sendMsg(intent.getStringExtra("uuid"));
 
     }

@@ -2,6 +2,7 @@ let WebSocketServer = require('ws').Server;
 let UUID = require('node-uuid');
 let events = require('events');
 let util = require('util');
+const db = require('../../../db');
 
 let errorCb = function (rtc) {
     return function (error) {
@@ -20,6 +21,11 @@ function SkyRTC() {
     // 加入房间
     this.on('__join', function (data, socket) {
 
+        // 验证uuid
+        if(!data.uuid){
+            return;
+        }
+
         console.log("房间里有" + this.sockets.length + "人");
         let ids = [],
         i, m,
@@ -34,6 +40,22 @@ function SkyRTC() {
         console.log(data);
 
         if(data.role == "teacher"){
+
+            let sql = "select TeaId from StreamTeaAccount where TeaUid='"+ data.uuid +"';"
+            db.select(sql, function(err, result){
+                if(err || result.length != 1){
+                    console.log(err);
+                    console.log(result);
+                    socket.emit('close');
+                    return;
+                }
+                socket.send(JSON.stringify({
+                    "eventName": "_userId",
+                    "data": {
+                        "id":result[0].TeaId
+                    }
+                }));
+            });
             console.log("老师进入房间")
             // 标记房主
             this.teachers[room] = socket;
@@ -62,6 +84,21 @@ function SkyRTC() {
                 }
             }), errorCb);
         }else if(data.role == "observer"){
+            let sql = "select TeaId from StreamTeaAccount where TeaUid='"+ data.uuid +"';"
+            db.select(sql, function(err, result){
+                if(err || result.length != 1){
+                    console.log(err);
+                    console.log(result);
+                    socket.emit('close');
+                    return;
+                }
+                socket.send(JSON.stringify({
+                    "eventName": "_userId",
+                    "data": {
+                        "id":result[0].TeaId
+                    }
+                }));
+            });
             console.log("管理进入房间");
             socket.role = "observer";
             console.log("房间里有管理员" + (this.observers[room] && this.observers[room].length) + "人");
@@ -96,6 +133,16 @@ function SkyRTC() {
             }), errorCb);
 
         }else{
+
+            let sql = "select StuId from StuPersonInfo where StuUid='"+ data.uuid  +"';"
+            db.select(sql, function(err, result){
+                if(err || result.length != 1){
+                    console.log(err);
+                    console.log(result);
+                    socket.emit('close');
+                    return;
+                }
+            });
             // 让老师添加学生
             if(!this.teachers[room]){
                 // 房间内没有老师，或者老师未开播

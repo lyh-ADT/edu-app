@@ -94,6 +94,8 @@ const SkyRTC = function () {
         this.fileChannels = {};
         //保存所有接受到的文件
         this.receiveFiles = {};
+        // 用户名
+        this.userId = "null";
     }
 
     //继承自事件处理器，提供绑定事件和触发事件的功能
@@ -108,11 +110,14 @@ const SkyRTC = function () {
         room = room || "";
         socket = this.socket = new WebSocket(server);
         socket.onopen = function () {
+            let cookie = /UID=([\w\d-]+)/.exec(document.cookie)[1];
+
             socket.send(JSON.stringify({
                 "eventName": "__join",
                 "data": {
                     "room": room,
-                    "role": observeMode ? "observer" : "teacher"
+                    "role": observeMode ? "observer" : "teacher",
+                    "uuid": cookie
                 }
             }));
             that.emit("socket_opened", socket);
@@ -210,6 +215,10 @@ const SkyRTC = function () {
             that.addStreams();
             that.addDataChannels();
             that.sendOffers();
+        });
+
+        this.on('_userId', function(data){
+            that.userId = data.id;
         });
     };
 
@@ -531,7 +540,7 @@ const SkyRTC = function () {
     skyrtc.prototype.addDataChannels = function () {
         var connection;
         for (connection in this.peerConnections) {
-            this.createDataChannel(connection);
+            this.createDataChannel(connection, "sendMsg");
         }
     };
 
@@ -576,6 +585,7 @@ const SkyRTC = function () {
                 that.parseFilePacket(json, socketId);
             } else {
                 that.emit('data_channel_message', channel, socketId, json.data);
+                that.broadcast(json.data);
             }
         };
 

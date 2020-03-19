@@ -40,8 +40,7 @@
         }
 
         #message_area {
-            width: 25%;
-            height: 500px;
+            height: 605px;
             background-color: white;
         }
 
@@ -49,12 +48,9 @@
             border: 2px solid grey;
             border-radius: 10px;
             overflow-y: scroll;
-            width: 75%;
-            
         }
 
         #message_input {
-            height: 100px;
             border: 2px solid grey;
             border-radius: 10px;
         }
@@ -86,6 +82,10 @@
         .video:hover .video-volume{
             visibility: visible;
             cursor: pointer;
+        }
+
+        .sender{
+            font-weight: bold;
         }
     </style>
 </head>
@@ -121,13 +121,21 @@
                 </div>
             </div>
 
+            <div id="message_area" class="d-flex flex-column w-100">
+                <div id="message_box" class="w-100 h-75"></div>
+                <textarea class="w-100 h-25" id="message_input"></textarea>
+    
+            </div>
         </div>
     </div>
 
+    <button id="sendBtn" class="btn btn-secondary">发送</button>
 
 
-
-
+    <div id="message_template">
+        <div class="sender"></div>
+        <div class="content"></div>
+    </div>
 
     <div id="video_template" class="video" style="display: none;">
         <video></video>

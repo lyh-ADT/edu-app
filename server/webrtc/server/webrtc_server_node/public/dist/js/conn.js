@@ -3,12 +3,37 @@ var sendFileBtn = document.getElementById("sendFileBtn");
 var startBtn = document.getElementById("startBtn");
 var stopBtn = document.getElementById("stopBtn")
 var files = document.getElementById("files");
+var sendBtn = document.getElementById("sendBtn");
+var msgs = document.getElementById("message_box");
 
 var observeMode = location.search.search(/observe=true/) == 1;
 
 var rtc = SkyRTC();
 bindListeners();
 /**********************************************************/
+function add_meesage(message) {
+    let msg_box = $("#message_box");
+    let msg = $("#message_template").clone();
+    msg.find(".sender").text(message.userId);
+    msg.find(".content").text(message.content);
+
+    msg_box.append(msg);
+    msg_box.scrollTop(msg_box.outerHeight());
+}
+
+sendBtn.onclick = function (event) {
+    var msgIpt = document.getElementById("message_input"),
+    msg = msgIpt.value,
+    msg = {
+        'userId':rtc.userId,
+        'content':msg
+    };
+    add_meesage(msg);
+    //广播消息
+    rtc.broadcast(msg);
+    msgIpt.value = "";
+};
+
 
 var onScreenMode = false;
 var startStream = false;
@@ -144,5 +169,10 @@ function bindListeners() {
         rtc = SkyRTC();
         bindListeners();
         rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
+    });
+
+     //接收到文字信息
+     rtc.on('data_channel_message', function (channel, socketId, message) {
+        add_meesage(message)
     });
 }

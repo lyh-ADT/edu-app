@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;
 import com.edu_app.vediochat.ws.IConnectEvent;
@@ -87,6 +89,12 @@ public class WebRTCManager implements ISignalingEvents {
             _peerHelper.sendMsg(msg);
         }
     }
+    public void setActivity(AppCompatActivity activity) {
+        if (_peerHelper != null) {
+            _peerHelper.setActivity(activity);
+        }
+    }
+
     //===================================控制功能==============================================
     public void joinRoom(Context context, EglBase eglBase) {
         if (_peerHelper != null) {

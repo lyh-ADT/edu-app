@@ -22,6 +22,7 @@ import com.edu_app.vediochat.ws.IWebSocket;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Enumerator;
@@ -94,9 +95,11 @@ public class PeerConnectionHelper {
     public int _mediaType;
 
     private AudioManager mAudioManager;
-    private Map<String, DataChannel> _dataLocalChannelDic;
-
-
+    private Map<String, DataChannel> _dataChannelDic;
+    private List<Object> msgList;
+    private AppCompatActivity _activity;
+    private RecyclerView recycler;
+    private ChatAdapter adapter;
 
     enum Role {Caller, Receiver,}
 
@@ -115,7 +118,7 @@ public class PeerConnectionHelper {
 
     public PeerConnectionHelper(IWebSocket webSocket, MyIceServer[] iceServers) {
         this._connectionPeerDic = new HashMap<>();
-        this._dataLocalChannelDic = new HashMap<>();
+        this._dataChannelDic = new HashMap<>();
 
         this._connectionIdArray = new ArrayList<>();
         this.ICEServers = new ArrayList<>();
@@ -132,6 +135,7 @@ public class PeerConnectionHelper {
                 ICEServers.add(iceServer);
             }
         }
+
     }
 
     // 设置界面的回调
@@ -143,15 +147,14 @@ public class PeerConnectionHelper {
         if(_factory == null){
             _factory = createConnectionFactory();
         }
-        if(_dataLocalChannelDic==null){
+        if(_dataChannelDic==null){
             Log.v(TAG, "发送消息失败");
         }else{
-            for (Map.Entry<String, DataChannel> entry : _dataLocalChannelDic.entrySet()) {
+            for (Map.Entry<String, DataChannel> entry : _dataChannelDic.entrySet()) {
                 try {
                     Log.v(TAG,msg );
-
-                    ByteBuffer bb = ByteBuffer.allocate(msg.getBytes().length);
-                    entry.getValue().send(new DataChannel.Buffer(bb.put(msg.getBytes()),false));
+                    ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes(Charset.defaultCharset()));
+                    entry.getValue().send(new DataChannel.Buffer(buffer,false));
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -160,6 +163,17 @@ public class PeerConnectionHelper {
             }
         }
 
+    }
+    public void setActivity(AppCompatActivity activity){
+        if(_activity==null){
+            this._activity = activity;
+            recycler = _activity.findViewById(R.id.coursePage_course_chat_msgRecycler);
+            recycler.setLayoutManager(new LinearLayoutManager( _activity, LinearLayoutManager.VERTICAL, false));
+            adapter = new ChatAdapter(_activity, msgList);
+            recycler.setAdapter(adapter);
+            recycler.addItemDecoration(new DividerItemDecoration(_activity, DividerItemDecoration.VERTICAL));
+
+        }
     }
     // ===================================webSocket回调信息=======================================
 
@@ -321,8 +335,12 @@ public class PeerConnectionHelper {
             DataChannel dc = peer.pc.createDataChannel("sendMsg",new DataChannel.Init());
             dc.registerObserver(new dataChannelObserver(dc));
             _connectionPeerDic.put((String) str, peer);
-            _dataLocalChannelDic.put((String) str, dc);
+            _dataChannelDic.put((String) str, dc);
+            Log.d(TAG,dc.toString());
         }
+        msgList = new ArrayList<>();
+
+
     }
 
     // 为所有连接添加流
@@ -361,7 +379,7 @@ public class PeerConnectionHelper {
             mPeer.pc.close();
         }
         _connectionPeerDic.remove(connectionId);
-        _dataLocalChannelDic.remove(connectionId);
+        _dataChannelDic.remove(connectionId);
 
         _connectionIdArray.remove(connectionId);
         if (viewCallback != null) {
@@ -555,18 +573,14 @@ public class PeerConnectionHelper {
             String message = new String(bytes, Charset.defaultCharset());
             Log.d(TAG,message);
             try {
-                JSONArray jsonArray = new JSONArray(message);
-                Log.d(TAG,jsonArray.toString());
-                if(_context!=null){
-                    AppCompatActivity activity = (AppCompatActivity) _context;
-                    RecyclerView recycler = activity.findViewById(R.id.coursePage_roomChat_viewpager);
-                    recycler.setLayoutManager(new LinearLayoutManager( activity, LinearLayoutManager.VERTICAL, false));
-                    ChatAdapter adapter = new ChatAdapter(activity, jsonArray);
-                    recycler.setAdapter(adapter);
-//        添加分割线
-                    recycler.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
+                JSONObject obj = new JSONObject(message);
+                msgList.add(obj);
+                Log.d(TAG,msgList.toString());
+                adapter.notifyItemInserted(msgList.size());
+                Log.d(TAG,obj.toString());
 
-                }
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

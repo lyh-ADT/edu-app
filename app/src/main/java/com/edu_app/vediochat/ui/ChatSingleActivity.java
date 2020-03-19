@@ -326,7 +326,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             }
         }
         manager.joinRoom(getApplicationContext(), rootEglBase);
-
+        manager.setActivity(this);
     }
 
     @Override
@@ -380,8 +380,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             Map<String,Object> map2 = new HashMap<String,Object>();
             map2.put("type","__msg");
             map2.put("data",map);
-            Log.e("error","发送的信息："+JSON.toJSONString(map2));
-            manager.sendMsg(map.toString());
+            Log.e("error","发送的信息："+JSONObject.toJSONString(map2));
+            manager.sendMsg(JSONObject.toJSONString(map2));
         }
     }
     @Override

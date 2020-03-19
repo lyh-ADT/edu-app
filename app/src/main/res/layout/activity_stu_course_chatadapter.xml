@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.percentlayout.widget.PercentRelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <TextView
-    android:id="@+id/stu_course_chatSingle_userID"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    app:layout_widthPercent="20%"
-    app:layout_heightPercent="100%"
-    android:layout_alignParentLeft="true"></TextView>
-    <TextView
-        android:id="@+id/stu_course_chatSingle_userMsg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_widthPercent="80%"
-        app:layout_heightPercent="100%"
-        android:layout_alignParentRight="true"
-        ></TextView>
-</androidx.percentlayout.widget.PercentRelativeLayout>
+    android:id="@+id/stu_course_chatSingle_chatMsg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></TextView>
+
+</RelativeLayout>

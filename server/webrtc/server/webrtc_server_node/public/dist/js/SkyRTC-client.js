@@ -98,6 +98,8 @@ const SkyRTC = function () {
         this.userId = "null";
         // 课程名称
         this.courseName = null;
+        // 开始直播的时间戳
+        this.startTimeStamp = null;
     }
 
     //继承自事件处理器，提供绑定事件和触发事件的功能
@@ -111,6 +113,7 @@ const SkyRTC = function () {
             that = this;
         room = room || "";
         this.courseName = courseName;
+        this.startTimeStamp = new Date().getTime();
         socket = this.socket = new WebSocket(server);
         socket.onopen = function () {
             let cookie = /UID=([\w\d-]+)/.exec(document.cookie)[1];
@@ -595,6 +598,16 @@ const SkyRTC = function () {
         channel.onerror = function (err) {
             that.emit('data_channel_error', channel, socketId, err);
         };
+
+        // 发送直播间信息
+        channel.send(JSON.stringify({
+            type: "__info",
+            data: {
+                "teacherName":this.userId,
+                "courseName":this.courseName,
+                "startTimeStamp":this.startTimeStamp
+            }
+        }));
 
         this.dataChannels[socketId] = channel;
         return channel;

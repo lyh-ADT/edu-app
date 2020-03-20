@@ -96,6 +96,8 @@ const SkyRTC = function () {
         this.receiveFiles = {};
         // 用户名
         this.userId = "null";
+        // 课程名称
+        this.courseName = null;
     }
 
     //继承自事件处理器，提供绑定事件和触发事件的功能
@@ -104,10 +106,11 @@ const SkyRTC = function () {
 
     /*************************服务器连接部分***************************/
 
-    skyrtc.prototype.connect = function (server, room, observeMode) {
+    skyrtc.prototype.connect = function (server, room, observeMode, courseName) {
         var socket,
             that = this;
         room = room || "";
+        this.courseName = courseName;
         socket = this.socket = new WebSocket(server);
         socket.onopen = function () {
             let cookie = /UID=([\w\d-]+)/.exec(document.cookie)[1];

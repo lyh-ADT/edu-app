@@ -38,11 +38,16 @@ sendBtn.onclick = function (event) {
 var onScreenMode = false;
 var startStream = false;
 startBtn.onclick = function (event) {
+    let courseName = document.getElementById("inputCourseName").value;
+    if(courseName == ""){
+        alert("请输入课程名称");
+        return;
+    }
     startStream = true;
     if (rtc.socket) {
         rtc.socket.close();
     } else {
-        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
+        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode, courseName);
     }
 }
 stopBtn.onclick = function (event) {

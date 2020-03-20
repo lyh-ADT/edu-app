@@ -26,9 +26,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public ChatAdapter(Context context, List<ChatMsg> msgList){
         this.context = context;
         this.msgList =msgList;
-
-        Log.d("webRtcHelper",msgList.get(0).getContent());
-
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView userMsg;
@@ -55,7 +52,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-
+            if(msgList==null){
+                return 0;
+            }
             return msgList.size();
 
 

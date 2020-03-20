@@ -22,6 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.JSON;
@@ -29,10 +32,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
 import com.edu_app.controller.student.course.CourserFragmentAdapter;
 import com.edu_app.model.NetworkUtility;
+import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
 import com.edu_app.vediochat.WebRTCManager;
+import com.edu_app.vediochat.controller.ChatAdapter;
 import com.edu_app.vediochat.controller.RoomChatController;
 import com.edu_app.vediochat.controller.RoomChatFragmentAdapter;
 import com.edu_app.vediochat.utils.PermissionUtil;
@@ -48,6 +53,7 @@ import java.io.IOException;
 import java.nio.file.Watchable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -70,6 +76,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     private boolean fragmentVisible;
     private String message=null;
     private String personName;
+
 
     public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
         Intent intent = new Intent(activity, ChatSingleActivity.class);
@@ -398,7 +405,32 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     public void afterTextChanged(Editable s) {
         message = s.toString();
     }
+
+    private List<ChatMsg> msgList;
+    private ChatAdapter adapter;
+    private RecyclerView recycler;
     public void setActivity(){
         manager.setActivity(this);
+        msgList = new ArrayList<ChatMsg>();
+        recycler = findViewById(R.id.coursePage_course_chat_msgRecycler);
+        adapter = new ChatAdapter(this, msgList);
+
+        recycler.setLayoutManager(new LinearLayoutManager( this,LinearLayoutManager.VERTICAL, false));
+        recycler.setAdapter(adapter);
+        recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
     }
+    public void updateView(ChatMsg msgObj){
+        msgList.add(msgObj);
+        int pos = msgList.size();
+        msgList.add(pos,msgObj);
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyItemInserted(pos);
+            }
+        });
+
+    }
+
 }

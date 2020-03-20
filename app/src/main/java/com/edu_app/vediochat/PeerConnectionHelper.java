@@ -21,6 +21,7 @@ import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;
 import com.edu_app.vediochat.controller.ChatAdapter;
+import com.edu_app.vediochat.ui.ChatSingleActivity;
 import com.edu_app.vediochat.ws.IWebSocket;
 
 import org.json.JSONArray;
@@ -98,10 +99,8 @@ public class PeerConnectionHelper {
 
     private AudioManager mAudioManager;
     private Map<String, DataChannel> _dataChannelDic;
-    private List<ChatMsg> msgList=null;
-    private AppCompatActivity _activity;
-    private RecyclerView recycler;
-    private ChatAdapter adapter;
+
+    private ChatSingleActivity _activity;
 
     enum Role {Caller, Receiver,}
 
@@ -166,11 +165,9 @@ public class PeerConnectionHelper {
         }
 
     }
-    public void setActivity(AppCompatActivity activity){
+    public void setActivity(ChatSingleActivity activity){
         if(_activity==null){
             this._activity = activity;
-            recycler = _activity.findViewById(R.id.coursePage_course_chat_msgRecycler);
-            Log.d(TAG,"recycle:"+recycler.toString());
         }
     }
     // ===================================webSocket回调信息=======================================
@@ -571,26 +568,8 @@ public class PeerConnectionHelper {
             ChatData data = JSONObject.parseObject(message, ChatData.class);
             Log.d(TAG,data.toString());
             if(data.getType().equals("__msg")){
-                if(recycler==null){
-                    Log.d(TAG,"recycler is null");
-                }
                 ChatMsg msgObj = JSONObject.parseObject(data.getData(), ChatMsg.class);
-                if(msgList==null){
-                    msgList = new ArrayList<ChatMsg>();
-                    msgList.add(msgObj);
-                    Log.d(TAG,"msgList "+msgList.toString());
-                  adapter = new ChatAdapter(_activity, msgList);
-                    Log.d(TAG,"adapter "+adapter);
-                    recycler.setLayoutManager(new LinearLayoutManager( _activity,LinearLayoutManager.VERTICAL, false));
-                  recycler.setAdapter(adapter);
-                  recycler.addItemDecoration(new DividerItemDecoration(_activity, DividerItemDecoration.VERTICAL));
-                }else{
-                    Log.d(TAG,msgList.toString());
-                    int pos = msgList.size();
-                    msgList.add(pos,msgObj);
-                adapter.notifyItemInserted(pos);
-//                adapter.notifyItemRangeChanged(1, msgList.size() + 1);
-                }
+               _activity.updateView(msgObj);
             }
 
 

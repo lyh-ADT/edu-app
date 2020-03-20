@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;
+import com.edu_app.vediochat.ui.ChatSingleActivity;
 import com.edu_app.vediochat.ws.IConnectEvent;
 import com.edu_app.vediochat.ws.ISignalingEvents;
 import com.edu_app.vediochat.ws.IWebSocket;
@@ -89,7 +90,7 @@ public class WebRTCManager implements ISignalingEvents {
             _peerHelper.sendMsg(msg);
         }
     }
-    public void setActivity(AppCompatActivity activity) {
+    public void setActivity(ChatSingleActivity activity) {
         if (_peerHelper != null) {
             _peerHelper.setActivity(activity);
         }

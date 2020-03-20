@@ -43,8 +43,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("webRtcHelper",msgList.get(0).getContent()+"================");
-
         holder.userMsg.setText(msgList.get(position).getUserId()+": "+msgList.get(position).getContent());
 
     }
@@ -58,5 +56,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             return msgList.size();
 
 
+    }
+    @Override
+
+    public long getItemId(int position) {
+        return position;
     }
 }

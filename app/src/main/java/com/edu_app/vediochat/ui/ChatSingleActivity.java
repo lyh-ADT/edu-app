@@ -61,7 +61,7 @@ import java.util.Map;
  * 1. 一对一视频通话
  * 2. 一对一语音通话
  */
-public class ChatSingleActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+public class ChatSingleActivity extends AppCompatActivity implements View.OnClickListener {
     private SurfaceViewRenderer local_view;
     private SurfaceViewRenderer remote_view;
     private ProxyVideoSink localRender;
@@ -76,6 +76,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     private boolean fragmentVisible;
     private String message=null;
     private String personName;
+    private EditText editMsg;
 
 
     public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
@@ -382,30 +383,16 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         if(v.getId()==R.id.coursePage_roomChat_btnMsg){
             Map<String,String> map = new HashMap<String,String>();
             map.put("userId",personName);
-            map.put("content",message);
+            map.put("content",editMsg.getText().toString());
             Map<String,Object> map2 = new HashMap<String,Object>();
             map2.put("type","__msg");
             map2.put("data",map);
             Log.e("error","发送的信息："+JSONObject.toJSONString(map2));
             manager.sendMsg(JSONObject.toJSONString(map2));
+            this.editMsg.setText("");
+
         }
     }
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        message = s.toString();
-    }
-
     private List<ChatMsg> msgList;
     private ChatAdapter adapter;
     private RecyclerView recycler;
@@ -428,9 +415,13 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void run() {
                 adapter.notifyItemInserted(pos);
+
             }
         });
 
     }
 
+    public void setEditMsg(EditText ed) {
+        this.editMsg = ed;
+    }
 }

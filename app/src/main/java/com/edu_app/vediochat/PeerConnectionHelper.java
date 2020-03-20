@@ -571,12 +571,6 @@ public class PeerConnectionHelper {
                 ChatMsg msgObj = JSONObject.parseObject(data.getData(), ChatMsg.class);
                _activity.updateView(msgObj);
             }
-
-
-
-
-
-
         }
     }
 

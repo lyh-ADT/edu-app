@@ -3,10 +3,6 @@ package com.edu_app.model.student;
 public class ChatMsg {
     private String userId;
     private String content;
-    public ChatMsg(String userId,String content){
-        this.userId =userId;
-        this.content = content;
-    }
 
     public String getUserId() {
         return userId;

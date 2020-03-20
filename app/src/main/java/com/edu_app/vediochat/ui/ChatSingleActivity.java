@@ -326,7 +326,6 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             }
         }
         manager.joinRoom(getApplicationContext(), rootEglBase);
-        manager.setActivity(this);
     }
 
     @Override
@@ -398,5 +397,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void afterTextChanged(Editable s) {
         message = s.toString();
+    }
+    public void setActivity(){
+        manager.setActivity(this);
     }
 }

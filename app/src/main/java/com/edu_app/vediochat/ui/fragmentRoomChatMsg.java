@@ -41,7 +41,7 @@ public class fragmentRoomChatMsg extends Fragment {
         btnSubmit.setOnClickListener(activity);
         EditText ed = (EditText)getActivity().findViewById(R.id.coursePage_roomChat_etMsg);
         ed.addTextChangedListener(activity);
-
+        activity.setActivity();
         Log.e("error","加载完毕");
     }
 }

@@ -34,7 +34,7 @@
         app:layout_heightPercent="10%"
         android:layout_alignParentRight="true"
         app:tabMode="scrollable"
-        android:background="@android:color/white">
+        android:background="@android:color/black">
     </com.google.android.material.tabs.TabLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/coursePage_roomChat_viewpager"

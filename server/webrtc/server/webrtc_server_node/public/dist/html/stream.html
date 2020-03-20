@@ -130,6 +130,15 @@
     </div>
 
     <button id="sendBtn" class="btn btn-secondary">发送</button>
+    <script>
+        // 绑定回车发送消息事件
+        document.getElementById("message_input").onkeypress=function(event){
+            if(event.key=="Enter"){
+                document.getElementById("sendBtn").click();
+                return false;
+            }
+        }
+    </script>
 
 
     <div id="message_template">

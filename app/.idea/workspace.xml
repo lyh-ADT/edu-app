@@ -14,10 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/ChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/ChatAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +73,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="-597">
               <caret line="572" column="13" selection-start-line="572" selection-start-column="13" selection-end-line="572" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -85,7 +82,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
@@ -99,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="394" column="5" selection-start-line="394" selection-start-column="5" selection-end-line="394" selection-end-column="5" />
+            <state relative-caret-position="263">
+              <caret line="409" selection-start-line="409" selection-end-line="409" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#15174#15175#0" expanded="true" />
@@ -116,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2910">
+            <state relative-caret-position="-3210">
               <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -213,8 +210,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/ChatAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" />
       </list>
     </option>
   </component>
@@ -609,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584689501665</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="# 发送完消息 清除输入框">
+      <created>1584691263527</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1584691263528</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -732,7 +736,8 @@
     <MESSAGE value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java&#10;#&#9;app/src/main/java/com/edu_app/vediochat/controller/RoomChatController.java&#10;#&#9;app/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java&#10;#&#9;app/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java" />
     <MESSAGE value="# 更改监视器" />
     <MESSAGE value="# 完成发送消息的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="# 完成发送消息的功能" />
+    <MESSAGE value="# 发送完消息 清除输入框" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 发送完消息 清除输入框" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -1126,16 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2910">
-          <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -1175,28 +1170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="572" column="13" selection-start-line="572" selection-start-column="13" selection-end-line="572" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="394" column="5" selection-start-line="394" selection-start-column="5" selection-end-line="394" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#15174#15175#0" expanded="true" />
-            <element signature="e#15202#15203#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1205,6 +1178,38 @@
             <element signature="imports" expanded="true" />
             <element signature="e#630#631#0" expanded="true" />
             <element signature="e#678#679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-597">
+          <caret line="572" column="13" selection-start-line="572" selection-start-column="13" selection-end-line="572" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3210">
+          <caret line="92" column="46" selection-start-line="92" selection-start-column="46" selection-end-line="92" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="409" selection-start-line="409" selection-end-line="409" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#15174#15175#0" expanded="true" />
+            <element signature="e#15202#15203#0" expanded="true" />
           </folding>
         </state>
       </provider>

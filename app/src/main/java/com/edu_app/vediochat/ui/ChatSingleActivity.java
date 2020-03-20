@@ -401,14 +401,12 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         msgList = new ArrayList<ChatMsg>();
         recycler = findViewById(R.id.coursePage_course_chat_msgRecycler);
         adapter = new ChatAdapter(this, msgList);
-
         recycler.setLayoutManager(new LinearLayoutManager( this,LinearLayoutManager.VERTICAL, false));
         recycler.setAdapter(adapter);
         recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
     }
     public void updateView(ChatMsg msgObj){
-        msgList.add(msgObj);
         int pos = msgList.size();
         msgList.add(pos,msgObj);
         this.runOnUiThread(new Runnable() {

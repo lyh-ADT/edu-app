@@ -252,7 +252,7 @@ const SkyRTC = function () {
             let ts;
             try {
                 ts = audioCtx.createMediaStreamSource(t);
-            } catch{
+            } catch(e){
                 throw new Error("请勾选选择画面界面的分享音频");
             }
             ts.connect(merger);

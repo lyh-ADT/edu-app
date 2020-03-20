@@ -146,7 +146,7 @@ app.post("/createroom", function(req, res){
         let roomNum = Math.random() * MAX_NUMBER + 1;
         roomNum = Math.round(roomNum);
         let sql = `insert into StreamRoom(TeaId, RoomNumber, ClassId) VALUES(?, ?, ?);`
-        db.query(sql, [TeaId[0].TeaId, roomNum, req.body.ClassId], function(err, result){
+        db.query(sql, [TeaId[0].TeaId, roomNum, req.body.classId], function(err, result){
             if(err){
                 let r ={
                     success:false,
@@ -158,8 +158,8 @@ app.post("/createroom", function(req, res){
                     if(err.index == 0){
                         // TeaId冲突
                         // r.data = "你已经在直播了，" + TeaId[0].TeaId;
-                        sql = `update StreamRoom set RoomNumber=? where TeaId=?;`;
-                        db.query(sql, [roomNum, TeaId[0].TeaId], function(err, result){
+                        sql = `update StreamRoom set RoomNumber=?, ClassId=? where TeaId=?;`;
+                        db.query(sql, [roomNum, req.body.classId, TeaId[0].TeaId], function(err, result){
                             if(err){
                                 console.log(err);
                                 res.send({

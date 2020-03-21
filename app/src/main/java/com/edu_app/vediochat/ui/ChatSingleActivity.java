@@ -2,21 +2,22 @@ package com.edu_app.vediochat.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +28,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
-import com.edu_app.controller.student.course.CourserFragmentAdapter;
 import com.edu_app.model.NetworkUtility;
+import com.edu_app.model.student.ChatCourseInfo;
 import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
@@ -43,14 +43,13 @@ import com.edu_app.vediochat.controller.RoomChatFragmentAdapter;
 import com.edu_app.vediochat.utils.PermissionUtil;
 import com.google.android.material.tabs.TabLayout;
 
-import org.w3c.dom.Text;
 import org.webrtc.EglBase;
 import org.webrtc.MediaStream;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 
 import java.io.IOException;
-import java.nio.file.Watchable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,9 +73,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
 
     private EglBase rootEglBase;
     private boolean fragmentVisible;
-    private String message=null;
     private String personName;
-    private EditText editMsg;
+    private final static String TAG="ChatSingleActivity";
 
 
     public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
@@ -116,6 +114,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         RoomChatFragmentAdapter adapter = new RoomChatFragmentAdapter(getSupportFragmentManager(),fragments,tab_titles);
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
+        tablayout.addTab(tablayout.newTab().setText(tab_titles.get(0)));
+        tablayout.addTab(tablayout.newTab().setText(tab_titles.get(1)));
 
 
     }
@@ -250,7 +250,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             }
         }).start();
         Intent intent = getIntent();
-        Log.e("error",intent.getStringExtra("uuid"));
+        Log.e(TAG,intent.getStringExtra("uuid"));
         manager.sendMsg(intent.getStringExtra("uuid"));
 
     }
@@ -359,19 +359,26 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         }
         return false;
     }
+
+    /**************刷新界面的消息***************/
+    private EditText _editMsg;
+    private TextView _tvTeacher;
+    private TextView _tvStartTime;
+    private TextView _tvTitle;
+    private List<ChatMsg> _msgList;
+    private ChatAdapter _adapter;
+    private RecyclerView _recycler;
     public String getPersonName() {
 
         Intent intent = getIntent();
         String uuid = intent.getStringExtra("uuid");
         try {
             String body = String.format("{\"stuUid\":\"%s\"}", uuid);
-            Log.e("error", body);
             String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetInfo", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             Boolean getSuccess = jsonObject.getBoolean("success");
             JSONObject data = jsonObject.getJSONObject("data");
             String userName = data.getString("StuName");
-            Log.e("error",data.toString());
             return userName;
         } catch (IOException e) {
             e.printStackTrace();
@@ -383,43 +390,78 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         if(v.getId()==R.id.coursePage_roomChat_btnMsg){
             Map<String,String> map = new HashMap<String,String>();
             map.put("userId",personName);
-            map.put("content",editMsg.getText().toString());
+            map.put("content",_editMsg.getText().toString());
             Map<String,Object> map2 = new HashMap<String,Object>();
             map2.put("type","__msg");
             map2.put("data",map);
             Log.e("error","发送的信息："+JSONObject.toJSONString(map2));
             manager.sendMsg(JSONObject.toJSONString(map2));
-            this.editMsg.setText("");
+            this._editMsg.setText("");
 
         }
     }
-    private List<ChatMsg> msgList;
-    private ChatAdapter adapter;
-    private RecyclerView recycler;
+    public void setEditMsg(EditText ed) {
+        this._editMsg = ed;
+    }
+
+
     public void setActivity(){
         manager.setActivity(this);
-        msgList = new ArrayList<ChatMsg>();
-        recycler = findViewById(R.id.coursePage_course_chat_msgRecycler);
-        adapter = new ChatAdapter(this, msgList);
-        recycler.setLayoutManager(new LinearLayoutManager( this,LinearLayoutManager.VERTICAL, false));
-        recycler.setAdapter(adapter);
-        recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        _msgList = new ArrayList<ChatMsg>();
+        _recycler = findViewById(R.id.coursePage_course_chat_msgRecycler);
+        _adapter = new ChatAdapter(this, _msgList);
+        _recycler.setLayoutManager((new WrapContentLinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)));
+        _recycler.setAdapter(_adapter);
+        _recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
     }
-    public void updateView(ChatMsg msgObj){
-        int pos = msgList.size();
-        msgList.add(pos,msgObj);
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                adapter.notifyItemInserted(pos);
+    public void updateViewMsg(ChatMsg msgObj){
+        try{
+            int pos = _msgList.size();
+            _msgList.add(pos,msgObj);
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    _adapter.notifyItemRangeInserted(pos,_msgList.size()-pos);
+                }
+            });
+        }catch (Exception e){
+           e.printStackTrace();
+        }
 
+
+    }
+    public void updateViewInfo(ChatCourseInfo infoObj){
+        try {
+            this._tvTeacher.setText(infoObj.getTeacherName());
+            this._tvTitle.setText(infoObj.getCourseName());
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            Log.e(TAG,sdf.format(infoObj.getStartTimeStamp()));
+            this._tvStartTime.setText(sdf.format(infoObj.getStartTimeStamp()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setCourseInfoView(TextView tvTeacher,TextView tvTitle,TextView tvStartTime) {
+        this._tvTeacher = tvTeacher;
+        this._tvTitle = tvTitle;
+        this._tvStartTime =tvStartTime;
+    }
+    public class WrapContentLinearLayoutManager extends LinearLayoutManager {
+        public WrapContentLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+            super(context, orientation, reverseLayout);
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            // 为了修复刷新消息时系统崩溃
+            try {
+                super.onLayoutChildren(recycler, state);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e(TAG, "meet a IOOBE in RecyclerView");
             }
-        });
-
-    }
-
-    public void setEditMsg(EditText ed) {
-        this.editMsg = ed;
+        }
     }
 }

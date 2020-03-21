@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<TextView
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="用户"></TextView>
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/roomChat_tvTitle"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"></TextView>
+    <TextView
+    android:id="@+id/coursePage_roomChat_tvTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/roomChat_tvTeacher"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"></TextView>
+    <TextView
+        android:id="@+id/coursePage_roomChat_tvTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/roomChat_tvStartTime"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"></TextView>
+    <TextView
+    android:id="@+id/coursePage_roomChat_tvStartTime"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        ></TextView>
 </LinearLayout>

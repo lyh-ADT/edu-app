@@ -34,16 +34,18 @@
         app:layout_heightPercent="10%"
         android:layout_alignParentRight="true"
         app:tabMode="scrollable"
-        android:background="@android:color/black">
+        android:background="@android:color/white">
     </com.google.android.material.tabs.TabLayout>
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/coursePage_roomChat_viewpager"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_widthPercent="20%"
-            app:layout_heightPercent="100%"
-            android:layout_alignParentRight="true"
-               android:background="@android:color/white">
-       </androidx.viewpager.widget.ViewPager>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/coursePage_roomChat_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="1dp"
+        android:background="@android:color/white"
+        app:layout_heightPercent="90%"
+        app:layout_widthPercent="20%"></androidx.viewpager.widget.ViewPager>
 
 </androidx.percentlayout.widget.PercentRelativeLayout>

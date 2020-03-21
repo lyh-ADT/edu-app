@@ -9,6 +9,7 @@ import com.edu_app.R;
 import com.edu_app.vediochat.ui.ChatSingleActivity;
 import com.edu_app.vediochat.ui.fragmentRoomChatMsg;
 import com.edu_app.vediochat.ui.fragmentRoomChatUser;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,9 @@ public class RoomChatController {
     public ArrayList<Fragment> setAllPageFragment() {
         fragments = new ArrayList<Fragment>();
         fragments.add(new fragmentRoomChatMsg(activity));
-        fragments.add(new fragmentRoomChatUser());
+        fragments.add(new fragmentRoomChatUser(activity));
         return fragments;
     }
+
+
 }

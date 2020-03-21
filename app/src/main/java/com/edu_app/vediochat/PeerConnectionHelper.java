@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
 import com.edu_app.controller.student.practice.LookExamAdapter;
+import com.edu_app.model.student.ChatCourseInfo;
 import com.edu_app.model.student.ChatData;
 import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.bean.MediaType;
@@ -535,7 +536,7 @@ public class PeerConnectionHelper {
         mediaConstraints.mandatory.addAll(keyValuePairs);
         return mediaConstraints;
     }
-        /****************发送消息监听器******************/
+        /****************接收消息监听器******************/
     private class dataChannelObserver implements DataChannel.Observer{
         private DataChannel dataChannel;
         public dataChannelObserver(DataChannel dataChannel){
@@ -563,14 +564,19 @@ public class PeerConnectionHelper {
                 buffer.data.get(bytes);
             }
             String message = new String(bytes);
-            Log.d(TAG,message);
-
+            Log.d(TAG,"收到消息："+message);
             ChatData data = JSONObject.parseObject(message, ChatData.class);
-            Log.d(TAG,data.toString());
-            if(data.getType().equals("__msg")){
-                ChatMsg msgObj = JSONObject.parseObject(data.getData(), ChatMsg.class);
-               _activity.updateView(msgObj);
+            switch (data.getType()){
+                case "__msg":
+                    ChatMsg msgObj = JSONObject.parseObject(data.getData(), ChatMsg.class);
+                    _activity.updateViewMsg(msgObj);
+                    break;
+                case "__info":
+                    ChatCourseInfo infoObj = JSONObject.parseObject(data.getData(),ChatCourseInfo.class);
+                    _activity.updateViewInfo(infoObj);
+                    break;
             }
+
         }
     }
 
@@ -634,7 +640,6 @@ public class PeerConnectionHelper {
                 viewCallback.onCloseWithId(socketId);
             }
         }
-//设置数据通道监视器
         @Override
         public void onDataChannel(DataChannel dataChannel) {
 

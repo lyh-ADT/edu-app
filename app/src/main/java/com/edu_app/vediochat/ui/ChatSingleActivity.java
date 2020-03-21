@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.text.Layout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -23,6 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.percentlayout.widget.PercentRelativeLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +44,7 @@ import com.edu_app.vediochat.controller.ChatAdapter;
 import com.edu_app.vediochat.controller.RoomChatController;
 import com.edu_app.vediochat.controller.RoomChatFragmentAdapter;
 import com.edu_app.vediochat.utils.PermissionUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import org.webrtc.EglBase;
@@ -75,6 +79,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     private boolean fragmentVisible;
     private String personName;
     private final static String TAG="ChatSingleActivity";
+    private FloatingActionButton fab;
 
 
     public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
@@ -105,6 +110,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
     private ViewPager viewpager;
     private ArrayList<Fragment> fragments;
     private ArrayList<String> tab_titles;
+    private boolean msgFragmentGone;
+
     private void initFragment(){
         tablayout = findViewById(R.id.coursePage_roomChat_tab);
         viewpager = findViewById(R.id.coursePage_roomChat_viewpager);
@@ -116,7 +123,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         tablayout.setupWithViewPager(viewpager);
         tablayout.addTab(tablayout.newTab().setText(tab_titles.get(0)));
         tablayout.addTab(tablayout.newTab().setText(tab_titles.get(1)));
-
+        msgFragmentGone = false;
 
     }
 
@@ -144,7 +151,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
             localRender = new ProxyVideoSink();
             //远端图像初始化
             remote_view.init(rootEglBase.getEglBaseContext(), null);
-            remote_view.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_BALANCED);
+            remote_view.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
             remote_view.setMirror(false);
             remoteRender = new ProxyVideoSink();
             setSwappedFeeds(true);
@@ -153,7 +160,26 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         }
 
         startCall();
+// 添加悬浮球
+        fab =(FloatingActionButton) findViewById(R.id.chat_coursePage_roomChat_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG,"悬浮被点击");
+                if(!msgFragmentGone){
+                    tablayout.setVisibility(View.GONE);
+                    viewpager.setVisibility(View.GONE);
 
+                }else{
+
+                    tablayout.setVisibility(View.VISIBLE);
+                    viewpager.setVisibility(View.VISIBLE);
+
+
+                }
+                msgFragmentGone = !msgFragmentGone;
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")

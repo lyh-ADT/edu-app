@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;

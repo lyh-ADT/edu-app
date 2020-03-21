@@ -1,8 +1,9 @@
 package com.edu_app.controller.teacher.question;
 
-import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -67,41 +69,62 @@ public class QuestionInfoController extends Controller {
         });
 
         final EditText question_et = view.findViewById(R.id.input_question_edit);
-        question_et.setOnKeyListener(new View.OnKeyListener() {
+        question_et.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String q = ((EditText)v).getText().toString();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String q = s.toString();
                 if(q.length() <= 0){
                     question.setQuestion(null);
                 }else{
                     question.setQuestion(q);
                 }
-                return false;
             }
         });
 
+
         final EditText score_et = view.findViewById(R.id.score);
-        score_et.setOnKeyListener(new View.OnKeyListener() {
+        score_et.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                String q = ((EditText)v).getText().toString();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String q = s.toString();
                 if(q.length() <= 0){
                     question.setScore(0);
                 }else{
                     try{
                         question.setScore(Integer.parseInt(q));
                     }catch (NumberFormatException e){
-                        Toast.makeText(v.getContext(), "请输入一个正整数", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(fragment.getContext(), "请输入一个正整数", Toast.LENGTH_SHORT).show();
                     }
                 }
-                return false;
             }
         });
+
 
         Button addQuestion_btn = view.findViewById(R.id.add_question_btn);
         addQuestion_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("practiceItem",question.getQuestion()+question.getQuestionType()+question.getScore()+question.getAnswer());
                 if(question.getQuestion() == null || question.getAnswer() == null || question.getScore() == 0){
                     Toast.makeText(view.getContext(), "信息不完整", Toast.LENGTH_LONG).show();
                     return;

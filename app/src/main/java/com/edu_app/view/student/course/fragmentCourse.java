@@ -45,7 +45,6 @@ public class fragmentCourse extends Fragment {
         CourseMainController controller = new CourseMainController(this);
         fragments = controller.setAllPageFragment();
         tab_titles = controller.getTabTitle();
-//        controller.setTabTitle(tablayout);
         CourserFragmentAdapter adapter = new CourserFragmentAdapter(getFragmentManager(),fragments,tab_titles);
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);

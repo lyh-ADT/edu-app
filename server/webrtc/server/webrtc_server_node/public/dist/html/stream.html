@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>直播界面</title>
+    <style>
+        #videos {
+            background-color: black;
+            overflow-y: auto;
+        }
+
+        #videos .video{
+            width: 150px;
+            height: 150px;
+        }
+
+        #videos video {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(70, 70, 70, 0.5);
+            border: 2px solid black;
+            z-index: 0;
+        }
+
+        #controls {
+            height: 25%;
+        }
+
+        #room-number{
+            color: red;
+            font-size: x-large;
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        #message_area {
+            height: 605px;
+            background-color: white;
+        }
+
+        #message_box {
+            border: 2px solid grey;
+            border-radius: 10px;
+            overflow-y: scroll;
+        }
+
+        #message_input {
+            border: 2px solid grey;
+            border-radius: 10px;
+        }
+
+        #me {
+            border: 2px solid red ;
+            margin: 0;
+            height: 100%;
+        }
+
+        #sendBtn {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            z-index: 1;
+            width: 5%;
+            z-index: 1;
+        }
+
+        .video-volume{
+            width: 150px; 
+            height: 150px;
+            position: relative; 
+            bottom: 100%; 
+            z-index: 1;
+            visibility: hidden;
+        }
+
+        .video:hover .video-volume{
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        .sender{
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="h-100">
+
+    <div class="d-flex flex-grow-1 h-100 align-items-stretch">
+        
+        <div id="videos" class="d-flex flex-row align-content-center flex-wrap w-100">
+            
+        </div>
+        <div id="controls" class="d-flex flex-column justify-content-between flex-grow-1">
+            <video class="" id="me" autoplay></video>
+            <div class="w-100 flex-fill flex-column">
+                <div id="room-number">
+                    房间号：<script>document.write(window.location.hash.slice(1))</script>
+                </div>
+                <div class="d-flex flex-row justify-content-between">
+                    <!-- <select id="screenMode">
+                        <option value="cam">摄像头</option>
+                        <option value="scr">电脑屏幕</option>
+                    </select> -->
+                    <div class="btn-group btn-group-lg" role="group">
+                        <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
+                        <button id="stopBtn" class="btn btn-secoundary btn-danger">结束直播</button>
+                    </div>
+                    <div class="input-group" style="width: 50%;">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="height:calc(1.5em + .75rem + 2px);">课程名称</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="课程名称" id="inputCourseName">
+                      </div>
+                </div>
+                <div class="input-group mb-3" style="margin-top: 10px;">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">摄像头画面大小</span>
+                    </div>
+                    <input id="camSizeRatio" type="range" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+
+            <div id="message_area" class="d-flex flex-column w-100">
+                <div id="message_box" class="w-100 h-75"></div>
+                <textarea class="w-100 h-25" id="message_input"></textarea>
+    
+            </div>
+        </div>
+    </div>
+
+    <button id="sendBtn" class="btn btn-secondary">发送</button>
+    <script>
+        // 绑定回车发送消息事件
+        document.getElementById("message_input").onkeypress=function(event){
+            if(event.key=="Enter"){
+                document.getElementById("sendBtn").click();
+                return false;
+            }
+        }
+    </script>
+
+
+    <div id="message_template">
+        <div class="sender"></div>
+        <div class="content"></div>
+    </div>
+
+    <div id="video_template" class="video" style="display: none;">
+        <video></video>
+        <img class="video-volume" src="./voice.png" onclick="changeVolume(this);">
+    </div>
+
+    <script src="/teacher-stream/js/jquery.min.js"></script>
+    <script src="/teacher-stream/js/popper.min.js"></script>
+    <script src="/teacher-stream/js/bootstrap.min.js"></script>
+    <script src="/teacher-stream/js/SkyRTC-client.js"></script>
+    <script src="/teacher-stream/js/conn.js"></script>
+</body>
+
+</html>

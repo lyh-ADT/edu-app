@@ -1,6 +1,9 @@
 package com.edu_app.controller.student.course;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,14 +17,51 @@ import cn.nodemedia.NodePlayerView;
  */
 public class CourseLiveController implements View.OnClickListener {
     private final AppCompatActivity activity;
+    private boolean fullFlag;
     private NodePlayerView playerview;
     private NodePlayer player;
+    private TextView tvFull;
+    private int orientation;
+    private TextView tvStop;
+
     public CourseLiveController(AppCompatActivity activity) {
         this.activity = activity;
+        this.initView();
+
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.coursePage_live_tv_fullScreen:
+                orientation = this.activity.getResources().getConfiguration().orientation;
+                if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+                    this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                } else {
+
+                    this.activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }
+                break;
+            case R.id.coursePage_live_tv_stop:
+                if(player.isPlaying()){
+                    player.stop();
+
+                }else {
+                    player.start();
+                }
+
+        }
+
+
+    }
+
+    //    进入直播页面开始观看直播
+    private void initView() {
+        this.tvFull = (TextView) this.activity.findViewById(R.id.coursePage_live_tv_fullScreen);
+        this.tvFull.setOnClickListener(this);
+        this.tvStop = (TextView) this.activity.findViewById(R.id.coursePage_live_tv_stop);
+        this.tvStop.setOnClickListener(this);
         playerview = activity.findViewById(R.id.coursePage_live_playerView);
 
         player = new NodePlayer(activity.getBaseContext());

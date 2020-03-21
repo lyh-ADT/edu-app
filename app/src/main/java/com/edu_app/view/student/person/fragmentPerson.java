@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -25,13 +25,13 @@ public class fragmentPerson extends Fragment {
         super.onActivityCreated(savedInstanceState);
         PersonMainController mainController = new PersonMainController(getActivity());
 //        TextView textView = (TextView) getActivity().findViewById(R.id.personPage_bt_login);
-        LinearLayout linearLayout_1 = getActivity().findViewById(R.id.personPage_stuInfo);
-        LinearLayout linearLayout_2 =getActivity().findViewById(R.id.personPage_stuCourse);
-        LinearLayout linearLayout_4 =  getActivity().findViewById(R.id.personPage_contactCS);
+        RelativeLayout relativeLayout_1 = getActivity().findViewById(R.id.personPage_stuInfo);
+        RelativeLayout relativeLayout_2 =getActivity().findViewById(R.id.personPage_stuCourse);
+        RelativeLayout relativeLayout_4 =  getActivity().findViewById(R.id.personPage_contactCS);
 //        textView.setOnClickListener(mainController);
-        linearLayout_1.setOnClickListener(mainController);
-        linearLayout_2.setOnClickListener(mainController);
-        linearLayout_4.setOnClickListener(mainController);
+        relativeLayout_1.setOnClickListener(mainController);
+        relativeLayout_2.setOnClickListener(mainController);
+        relativeLayout_4.setOnClickListener(mainController);
 
     }
 

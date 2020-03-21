@@ -79,6 +79,7 @@ public class PersonCourseController implements View.OnClickListener {
         try {
             String body = "{\"stuUid\":\"" + this.uid + "\"}";
             String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetClass", body);
+            Log.e("error",body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             courseName = jsonObject.getString("data");
 

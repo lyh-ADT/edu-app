@@ -1,11 +1,14 @@
 package com.edu_app.controller.student.course;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
 import com.edu_app.R;
+import com.edu_app.view.student.course.NodejsActivity;
 import com.edu_app.view.student.course.activityLivePlay;
 import com.edu_app.view.student.course.fragmentCourseChinese;
 import com.edu_app.view.student.course.fragmentCourseEnglish;
@@ -19,6 +22,8 @@ public class CourseMainController  implements View.OnClickListener {
     private ArrayList<Fragment> fragments;
     private ArrayList<String> tab_titles;
     private Fragment fragment;
+
+
     public CourseMainController(Fragment fragment){
         this.fragment=fragment;
     }
@@ -53,7 +58,15 @@ public class CourseMainController  implements View.OnClickListener {
             case R.id.coursePage_live_bt_palyStart:
                 fragment.getActivity().startActivity(new Intent(fragment.getActivity(), activityLivePlay.class));
                 break;
-
+            case R.id.coursePage_singleChat_bt_Start:
+                Log.e("error","点击视频聊天");
+                Intent intent = new Intent();
+                Bundle bundle = fragment.getActivity().getIntent().getExtras();
+                intent.putExtras(bundle);
+                intent.setClass(this.fragment.getActivity(),NodejsActivity.class);
+                this.fragment.getActivity().startActivity(intent);
+                break;
         }
     }
+
 }

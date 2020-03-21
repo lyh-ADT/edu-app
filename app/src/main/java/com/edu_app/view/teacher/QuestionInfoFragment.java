@@ -1,15 +1,16 @@
 package com.edu_app.view.teacher;
 
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
 import com.edu_app.controller.teacher.question.ShortAnswerQuestionController;
-import com.edu_app.model.Question;
 import com.edu_app.model.teacher.practice.QuestionItem;
 
 public class QuestionInfoFragment extends Fragment {
@@ -46,7 +47,14 @@ public class QuestionInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_teacher_question_info_short_answer, container, false);
-        controller = new ShortAnswerQuestionController(view, question, editable);
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        controller = new ShortAnswerQuestionController(view, question, editable);
+
+    }
+
 }

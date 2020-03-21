@@ -4,14 +4,13 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.edu_app.R;
 import com.edu_app.controller.teacher.Controller;
@@ -50,6 +49,7 @@ public class CoursePageController extends Controller {
                 FragmentManager manager = fragment.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.main_fragment, com.edu_app.view.teacher.Fragment.newInstance("live_stream", info));
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

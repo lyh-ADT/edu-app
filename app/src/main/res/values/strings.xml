@@ -25,8 +25,8 @@
     <string name="coursePage_tab_2">数学课程</string>
     <string name="coursePage_tab_3">语文课程</string>
     <string name="coursePage_tab_4">英语课程</string>
-    <string name="roomChat_tab_1">聊天</string>
-    <string name="roomChat_tab_2">用户</string>
+    <string name="roomChat_tab_1">聊天记录</string>
+    <string name="roomChat_tab_2">课程信息</string>
 
     <string name="exit_text">退出</string>
     <string name="input_question_text">输入题目</string>
@@ -74,5 +74,9 @@
     <string name="switch_camera">切换摄像头</string>
     <string name="close_camera">关闭摄像头</string>
     <string name="open_camera">开启摄像头</string>
+    <string name="roomChat_tvTitle">课程名称</string>
+    <string name="roomChat_tvTeacher">授课教师</string>
+    <string name="roomChat_tvStartTime">开始时间</string>
     <string name="tv_roomId">房间号</string>
+
 </resources>

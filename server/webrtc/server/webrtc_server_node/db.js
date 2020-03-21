@@ -20,15 +20,21 @@ db.connection = function(){
 }
 
 db.checkUID = function(uid, callback){
-    db.connection().query("select TeaId from StreamTeaAccount where TeaUid='"+uid+"';", callback);
+    let con = db.connection()
+    con.query("select TeaId from StreamTeaAccount where TeaUid='"+uid+"';", callback);
+    con.end();
 }
 
 db.select = function(sql, callback){
-    db.connection().query(sql, callback);
+    let con = db.connection();
+    con.query(sql, callback);
+    con.end();
 }
 
 db.query = function(sql, param, callback){
-    db.connection().query(sql, param, callback);
+    let con = db.connection();
+    con.query(sql, param, callback);
+    con.end();
 }
 
 module.exports = db;

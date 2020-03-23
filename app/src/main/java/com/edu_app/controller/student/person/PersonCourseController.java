@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
 import com.edu_app.model.NetworkUtility;
@@ -20,10 +21,10 @@ public class PersonCourseController implements View.OnClickListener {
     private final AppCompatActivity activity;
     private Button addBt;
     private Button getBt;
-    private String courseName;
+    private JSONArray courseNames;
     private String uid;
-    private Boolean getSuccess;
-    private Boolean setSuccess;
+    private Boolean getSuccess=false;
+    private Boolean setSuccess=false;
     private String inviteCode;
 
     public PersonCourseController(AppCompatActivity activity) {
@@ -53,7 +54,11 @@ public class PersonCourseController implements View.OnClickListener {
                     }
                 }).start();
                 try {
-                    Thread.sleep(500);
+                    int count=0;
+                    while (!setSuccess && count<20){
+                        Thread.sleep(100);
+                        count++;
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -67,7 +72,20 @@ public class PersonCourseController implements View.OnClickListener {
                         getCourseName();
                     }
                 }).start();
-
+                try {
+                    int count=0;
+                    while (!getSuccess && count<20){
+                        Thread.sleep(100);
+                        count++;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                String courseName = "";
+                for(int i=0,len=courseNames.size();i<len;i++){
+                    courseName += courseNames.get(i);
+                    courseName +="\n";
+                }
                 ((TextView) this.activity.findViewById(R.id.personPage_stuClass_getClassText)).setText(courseName);
                 break;
 
@@ -81,7 +99,7 @@ public class PersonCourseController implements View.OnClickListener {
             String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetClass", body);
             Log.e("error",body);
             JSONObject jsonObject = JSONObject.parseObject(response);
-            courseName = jsonObject.getString("data");
+            courseNames = jsonObject.getJSONArray("data");
 
             getSuccess = jsonObject.getBoolean("success");
 

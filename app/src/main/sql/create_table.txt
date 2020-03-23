@@ -15,7 +15,7 @@ CREATE TABLE StuPersonInfo
 CREATE TABLE TeaPersonInfo
 (
 	TeaId VARCHAR(4) NOT NULL,
-		TeaPassword VARCHAR(100) NOT NULL,
+	TeaPassword VARCHAR(100) NOT NULL,
 	TeaName VARCHAR(30) NOT NULL,
 	TeaSex VARCHAR(1),
 	TeaAge VARCHAR(2),
@@ -51,7 +51,14 @@ CREATE TABLE AdminAccount(
  AdminId VARCHAR(30) PRIMARY KEY,
  AdminPassword VARCHAR(30) NOT NULL
 )
-
+CREATE TABLE RecordVedio(
+ ReCordId int(10) PRIMARY KEY AUTO_INCREMENT,
+ ReCordTitle VARCHAR(50) NOT NULL,
+ ReCordSort VARCHAR(10) NOT NULL,
+ ReCordUrl VARCHAR(100) NOT NULL,
+ PushTeacherId VARCHAR(4) NOT NULL,
+ Constraint FK_RecordVedio_PushTeacherId foreign key(PushTeacherId) references TeaPersonInfo(TeaId)
+)
 -- 添加约束
 ALTER TABLE StuPersonInfo add Constraint PK_StuPersonInfo_StuId primary key(StuId)
 

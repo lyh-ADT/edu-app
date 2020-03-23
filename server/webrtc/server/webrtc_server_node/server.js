@@ -8,10 +8,16 @@ const path = require("path");
 const SkyRTC = require('./public/dist/js/SkyRTC.js').listen(server);
 const port = process.env.PORT || 3001;
 const hostname = "0.0.0.0";
+const fs = require('fs');
+
+const videoUrlPrefix = "https://139.159.176.78:7002/video/";
+const videoStorePath = "./Videos/";
 
 app.use(express.static(path.join(__dirname, 'public', 'dist')), null);
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.bodyParser({uploadDir:videoStorePath}));
+
 
 server.listen(port, hostname, function () {
     console.log(`Server running at http://${hostname}:${port}/`);
@@ -222,6 +228,151 @@ app.post("/closeroom", function(req, res){
         })
     });
 });
+
+
+app.get("/video-list", function(req, res){
+    console.log(req.cookies);
+    let uid = req.cookies.UID;
+    if(!uid){
+        res.send("error");
+        return;
+    }
+    db.checkUID(uid, function(err, TeaId){
+        if(err || TeaId.length != 1){
+            res.send("error");
+            return;
+        }
+        db.select(`select ReCordId,ReCordTitle,ReCordSort from RecordVedio where PushTeacherId='${TeaId[0].TeaId}';`, function(err, result){
+        if(err){
+            console.log(err);
+            return;
+        }
+        console.log(result);
+        res.send(result)
+    });
+    })
+    
+});
+
+app.post("/delete-video", function(req, res){
+    let uid = req.cookies.UID;
+    if(!uid){
+        res.send({
+            success:false,
+            data:"请登录"
+        });
+        return;
+    }
+    db.checkUID(uid, function(err, TeaId){
+        if(err || TeaId.length != 1){
+            res.send({
+                success:false,
+                data:"请登录"
+            });
+            return;
+        }
+        db.query(`select ReCordUrl from RecordVedio where ReCordId=?;`, [req.body.id], function(err, result){
+            if(err){
+                console.log(err);
+                res.send({
+                    success:false,
+                    data:"服务器错误"
+                });
+                return;
+            }
+            let suffix = /\.\w+$/.exec(result[0].ReCordUrl);
+            let sql = `delete from RecordVedio where ReCordId=?;`;
+            db.query(sql, [req.body.id], function(err, result){
+                if(err){
+                    console.log(err);
+                    res.send({
+                        success:false,
+                        data:"服务器错误"
+                    });
+                    return;
+                }
+                fs.unlink(videoStorePath+req.body.id+suffix, function(err){
+                    if(err){
+                        console.log(err);
+                    }
+                })
+                res.send({
+                    success:true,
+                    data:""
+                });
+                return;
+            });
+        });
+    });
+});
+
+app.post("/uploadvideo", function(req, res){
+    let uid = req.cookies.UID;
+    if(!uid){
+        res.send({
+            success:false,
+            data:"服务器错误"
+        });
+        return;
+    }
+    db.checkUID(uid, function(err, TeaId){
+        if(err || TeaId.length != 1){
+            res.send({
+                success:false,
+                data:"请登录"
+            });
+            return;
+        }
+        
+        console.log(req.body);
+        console.log(req.files);
+        //获取详细信息
+        var file = req.files.file;//From the name
+        // console.log('文件类型：%s', file.type);
+        // console.log('原始文件名：%s', file.name);
+        // console.log('文件大小：%s', file.size);
+        // console.log('文件保存路径：%s', file.path);
+
+        // 更新数据库
+        let sql = "insert into RecordVedio(ReCordTitle, ReCordSort, PushTeacherId, ReCordUrl) values(?,?,?, '-1');";
+        db.query(sql, [req.body.title, req.body.type, TeaId[0].TeaId], function(err, result){
+            if(err){
+                console.log(err);
+                res.send({
+                    success:false,
+                    data:"服务器异常"
+                });
+                return;
+            }
+            let sql = "update RecordVedio set ReCordUrl=? where ReCordId=?;";
+            let insertId = result.insertId;
+            let fileName = insertId + /\.\w+$/.exec(file.name)[0];
+            db.query(sql, [videoUrlPrefix + fileName, insertId], function(err, result){
+                if(err){
+                    console.log(err);
+                    res.send({
+                        success:false,
+                        data:"服务器异常"
+                    });
+                    return;
+                }
+                let tmp_path = file.path;
+                let target_path = videoStorePath + fileName;
+                fs.rename(tmp_path, target_path, function(err) {
+                    if (err){
+                        console.log(err);
+                        return;
+                    } 
+                    console.log(`教师${TeaId[0].TeaId}上传了${fileName}`);
+                    res.send({
+                        success:true,
+                        data:""
+                    });
+                });
+            })
+        });
+    });
+})
 
 SkyRTC.rtc.on('new_connect', function (socket) {
     console.log('创建新连接');

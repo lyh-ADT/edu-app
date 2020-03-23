@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>教师直播平台</title>
+    <style>
+        body{
+            background-color: cadetblue;
+        }
+        table{
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">教师直播平台</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--导航栏内容-->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalUploadVideo">上传视频</button>
+        </div>
+    </nav>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">视频编号</th>
+                <th scope="col">视频标题</th>
+                <th scope="col">视频分类</th>
+                <th scope="col">操作</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+        
+            </tbody>
+          </table>
+    </div>
+    <script src="/teacher-stream/js/jquery.min.js"></script>
+    <script src="/teacher-stream/js/popper.min.js"></script>
+    <script src="/teacher-stream/js/bootstrap.min.js"></script>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalUploadVideo">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">上传视频</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="uploadForm" enctype="multipart/form-data">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">视频类型</span>
+                </div>
+                <select id="videoType" class="custom-select" name="type">
+                  <option value="chinese">语文</option>
+                  <option value="math">数学</option>
+                  <option value="english">英语</option>
+                  <option value="other">其它</option>
+                </select>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">标题</span>
+                </div>
+                <input type="text" class="form-control" name="title">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">视频文件</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="file" id="inputGroupFile">
+                  <label class="custom-file-label" for="inputGroupFile">选择文件</label>
+                </div>
+                <script>
+                  $('#inputGroupFile').on('change',function(){
+                      //get the file name
+                      var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+                      //replace the "Choose a file" label
+                      $(this).next('.custom-file-label').html(fileName);
+                  })
+                </script>
+              </div>
+            </form>
+            <div class="d-flex">
+              <div id="upload-progress" class="progress flex-grow-1 align-self-center" style="height: 2rem; visibility: hidden;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <button class="btn btn-primary" onclick="uploadVideo();">上传</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        const tableKeyList = [
+          "ReCordId",
+          "ReCordTitle",
+          "ReCordSort"
+        ];
+        const videoTypes = {
+          "chinese":"语文",
+          "math":"数学",
+          "english":"英语",
+          "other":"其它"
+        };
+
+        var data = null;
+        function getTable() {
+          $.get("/teacher-stream/video-list", function (result) {
+            if(result == "error"){
+              parent.location.assign("/teacher-stream/html/login.html")
+              return;
+            }
+            
+            console.log(result)
+            data = result;
+            let tbody = $("#tableBody");
+            tbody.empty();
+            if(data.length == 0){
+              tbody.append("<tr><td colspan='"+tableKeyList.length+"' style='text-align: center;'>列表为空</td></tr>");
+              return;
+            }
+            for (let stu in data) {
+              let content = "<tr index='"+stu+"'>";
+              for (let k of tableKeyList) {
+                if(k == "ReCordSort"){
+                  data[stu][k] = videoTypes[data[stu][k]];
+                }
+                content += "<td>" + data[stu][k] + "</td>";
+              }
+              content += `<td><button class="btn btn-sm btn-danger" onclick="deleteVideo(${data[stu]["ReCordId"]});">删除</button></td>`
+              content += "</tr>";
+    
+              tbody.append(content);
+            }
+          });
+        }
+        
+        getTable();
+        function uploadVideo(){
+          let formData = new FormData($("#uploadForm")[0]);
+          $.ajax({
+            url: '/teacher-stream/uploadvideo',
+            type: 'post',
+            data:formData,
+            processData: false,
+            contentType: false,
+            xhr: function() {
+                var xhr = new XMLHttpRequest();
+                //使用XMLHttpRequest.upload监听上传过程，注册progress事件，打印回调函数中的event事件
+                xhr.upload.addEventListener('progress', function (e) {
+                    $("#upload-progress").css("visibility", "unset");
+
+                    console.log(e);
+                    //loaded代表上传了多少
+                    //total代表总数为多少
+                    var progressRate = (e.loaded / e.total) * 100 + '%';
+
+                    //通过设置进度条的宽度达到效果
+                    $("#upload-progress div").css('width', progressRate);
+                })
+
+                return xhr;
+            }
+          }).done(function(res){
+            console.log(res)
+            if(!res.success){
+              alert(res.data);
+              return;
+            }
+            alert("上传成功");
+            location.reload();
+          }).fail(function(res){
+            alert("上传失败");
+            console.log(res);
+          });
+        };
+
+        function deleteVideo(videoId){
+          if( confirm("确认删除吗？") == false )return;
+
+          $.ajax({
+            method:"POST",
+            url:"/teacher-stream/delete-video", 
+            data:{
+              id:videoId
+            },
+            success:function (result) {
+              if(result.success){
+                location.reload();
+              }else{
+                alert("删除失败:"+result.data);
+              }
+            }
+          });
+        }
+      </script>
+</body>
+</html>

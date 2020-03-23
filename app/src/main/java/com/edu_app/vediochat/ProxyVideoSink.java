@@ -4,7 +4,7 @@ import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 
 public class ProxyVideoSink implements VideoSink {
-    private static final String TAG = "dds_ProxyVideoSink";
+    private static final String TAG = "edu_app_ProxyVideoSink";
     private VideoSink target;
 
     @Override

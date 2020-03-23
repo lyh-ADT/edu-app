@@ -22,15 +22,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="房间号(123456)" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:onClick="JoinRoom"
-                android:text="视频会议"
-                tools:ignore="OnClick" />
+<!--屏蔽视频会议-->
+<!--            <Button-->
+<!--                android:id="@+id/button"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:onClick="JoinRoom"-->
+<!--                android:text="视频会议"-->
+<!--                tools:ignore="OnClick" />-->
 
             <Button
                 android:id="@+id/button2"

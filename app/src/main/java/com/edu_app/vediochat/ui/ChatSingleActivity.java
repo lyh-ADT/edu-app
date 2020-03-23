@@ -2,40 +2,69 @@ package com.edu_app.vediochat.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import android.text.Layout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.percentlayout.widget.PercentRelativeLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
+import com.edu_app.model.NetworkUtility;
+import com.edu_app.model.student.ChatCourseInfo;
+import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
 import com.edu_app.vediochat.WebRTCManager;
+import com.edu_app.vediochat.controller.ChatAdapter;
+import com.edu_app.vediochat.controller.RoomChatController;
+import com.edu_app.vediochat.controller.RoomChatFragmentAdapter;
 import com.edu_app.vediochat.utils.PermissionUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import org.webrtc.EglBase;
 import org.webrtc.MediaStream;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 单聊界面
  * 1. 一对一视频通话
  * 2. 一对一语音通话
  */
-public class ChatSingleActivity extends AppCompatActivity {
+public class ChatSingleActivity extends AppCompatActivity implements View.OnClickListener {
     private SurfaceViewRenderer local_view;
     private SurfaceViewRenderer remote_view;
     private ProxyVideoSink localRender;
@@ -48,10 +77,15 @@ public class ChatSingleActivity extends AppCompatActivity {
 
     private EglBase rootEglBase;
     private boolean fragmentVisible;
+    private String personName;
+    private final static String TAG="ChatSingleActivity";
+    private FloatingActionButton fab;
 
-    public static void openActivity(Activity activity, boolean videoEnable) {
+
+    public static void openActivity(Activity activity, boolean videoEnable,String uuid) {
         Intent intent = new Intent(activity, ChatSingleActivity.class);
         intent.putExtra("videoEnable", videoEnable);
+        intent.putExtra("uuid",uuid);
         activity.startActivity(intent);
     }
 
@@ -67,7 +101,30 @@ public class ChatSingleActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_chat_single);
         initVar();
+        initFragment();
         initListener();
+    }
+
+
+    private TabLayout tablayout;
+    private ViewPager viewpager;
+    private ArrayList<Fragment> fragments;
+    private ArrayList<String> tab_titles;
+    private boolean msgFragmentGone;
+
+    private void initFragment(){
+        tablayout = findViewById(R.id.coursePage_roomChat_tab);
+        viewpager = findViewById(R.id.coursePage_roomChat_viewpager);
+        RoomChatController controller = new RoomChatController(this);
+        fragments = controller.setAllPageFragment();
+        tab_titles = controller.getTabTitle();
+        RoomChatFragmentAdapter adapter = new RoomChatFragmentAdapter(getSupportFragmentManager(),fragments,tab_titles);
+        viewpager.setAdapter(adapter);
+        tablayout.setupWithViewPager(viewpager);
+        tablayout.addTab(tablayout.newTab().setText(tab_titles.get(0)));
+        tablayout.addTab(tablayout.newTab().setText(tab_titles.get(1)));
+        msgFragmentGone = false;
+
     }
 
 
@@ -94,7 +151,7 @@ public class ChatSingleActivity extends AppCompatActivity {
             localRender = new ProxyVideoSink();
             //远端图像初始化
             remote_view.init(rootEglBase.getEglBaseContext(), null);
-            remote_view.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_BALANCED);
+            remote_view.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
             remote_view.setMirror(false);
             remoteRender = new ProxyVideoSink();
             setSwappedFeeds(true);
@@ -103,7 +160,26 @@ public class ChatSingleActivity extends AppCompatActivity {
         }
 
         startCall();
+// 添加悬浮球
+        fab =(FloatingActionButton) findViewById(R.id.chat_coursePage_roomChat_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG,"悬浮被点击");
+                if(!msgFragmentGone){
+                    tablayout.setVisibility(View.GONE);
+                    viewpager.setVisibility(View.GONE);
 
+                }else{
+
+                    tablayout.setVisibility(View.VISIBLE);
+                    viewpager.setVisibility(View.VISIBLE);
+
+
+                }
+                msgFragmentGone = !msgFragmentGone;
+            }
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -154,16 +230,17 @@ public class ChatSingleActivity extends AppCompatActivity {
     private void startCall() {
         manager = WebRTCManager.getInstance();
         manager.setCallback(new IViewCallback() {
-            @Override
-            public void onSetLocalStream(MediaStream stream, String socketId) {
-                if (stream.videoTracks.size() > 0) {
-                    stream.videoTracks.get(0).addSink(localRender);
-                }
-
-                if (videoEnable) {
-                    stream.videoTracks.get(0).setEnabled(true);
-                }
-            }
+//            去掉本地的自己头像
+//            @Override
+//            public void onSetLocalStream(MediaStream stream, String socketId) {
+//                if (stream.videoTracks.size() > 0) {
+//                    stream.videoTracks.get(0).addSink(localRender);
+//                }
+//
+//                if (videoEnable) {
+//                    stream.videoTracks.get(0).setEnabled(true);
+//                }
+//            }
 
             @Override
             public void onAddRemoteStream(MediaStream stream, String socketId) {
@@ -192,6 +269,15 @@ public class ChatSingleActivity extends AppCompatActivity {
         if (!PermissionUtil.isNeedRequestPermission(ChatSingleActivity.this)) {
             manager.joinRoom(getApplicationContext(), rootEglBase);
         }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                personName = getPersonName();
+            }
+        }).start();
+        Intent intent = getIntent();
+        Log.e(TAG,intent.getStringExtra("uuid"));
+        manager.sendMsg(intent.getStringExtra("uuid"));
 
     }
 
@@ -274,7 +360,6 @@ public class ChatSingleActivity extends AppCompatActivity {
             }
         }
         manager.joinRoom(getApplicationContext(), rootEglBase);
-
     }
 
     @Override
@@ -299,5 +384,110 @@ public class ChatSingleActivity extends AppCompatActivity {
 
         }
         return false;
+    }
+
+    /**************刷新界面的消息***************/
+    private EditText _editMsg;
+    private TextView _tvTeacher;
+    private TextView _tvStartTime;
+    private TextView _tvTitle;
+    private List<ChatMsg> _msgList;
+    private ChatAdapter _adapter;
+    private RecyclerView _recycler;
+    public String getPersonName() {
+
+        Intent intent = getIntent();
+        String uuid = intent.getStringExtra("uuid");
+        try {
+            String body = String.format("{\"stuUid\":\"%s\"}", uuid);
+            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetInfo", body);
+            JSONObject jsonObject = JSONObject.parseObject(response);
+            Boolean getSuccess = jsonObject.getBoolean("success");
+            JSONObject data = jsonObject.getJSONObject("data");
+            String userName = data.getString("StuName");
+            return userName;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.coursePage_roomChat_btnMsg){
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("userId",personName);
+            map.put("content",_editMsg.getText().toString());
+            Map<String,Object> map2 = new HashMap<String,Object>();
+            map2.put("type","__msg");
+            map2.put("data",map);
+            Log.e("error","发送的信息："+JSONObject.toJSONString(map2));
+            manager.sendMsg(JSONObject.toJSONString(map2));
+            this._editMsg.setText("");
+
+        }
+    }
+    public void setEditMsg(EditText ed) {
+        this._editMsg = ed;
+    }
+
+
+    public void setActivity(){
+        manager.setActivity(this);
+        _msgList = new ArrayList<ChatMsg>();
+        _recycler = findViewById(R.id.coursePage_course_chat_msgRecycler);
+        _adapter = new ChatAdapter(this, _msgList);
+        _recycler.setLayoutManager((new WrapContentLinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)));
+        _recycler.setAdapter(_adapter);
+        _recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+    }
+    public void updateViewMsg(ChatMsg msgObj){
+        try{
+            int pos = _msgList.size();
+            _msgList.add(pos,msgObj);
+            this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    _adapter.notifyItemRangeInserted(pos,_msgList.size()-pos);
+                }
+            });
+        }catch (Exception e){
+           e.printStackTrace();
+        }
+
+
+    }
+    public void updateViewInfo(ChatCourseInfo infoObj){
+        try {
+            this._tvTeacher.setText(infoObj.getTeacherName());
+            this._tvTitle.setText(infoObj.getCourseName());
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            Log.e(TAG,sdf.format(infoObj.getStartTimeStamp()));
+            this._tvStartTime.setText(sdf.format(infoObj.getStartTimeStamp()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setCourseInfoView(TextView tvTeacher,TextView tvTitle,TextView tvStartTime) {
+        this._tvTeacher = tvTeacher;
+        this._tvTitle = tvTitle;
+        this._tvStartTime =tvStartTime;
+    }
+    public class WrapContentLinearLayoutManager extends LinearLayoutManager {
+        public WrapContentLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+            super(context, orientation, reverseLayout);
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            // 为了修复刷新消息时系统崩溃
+            try {
+                super.onLayoutChildren(recycler, state);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e(TAG, "meet a IOOBE in RecyclerView");
+            }
+        }
     }
 }

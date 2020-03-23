@@ -127,11 +127,13 @@ public class JavaWebSocket implements IWebSocket {
 
     //============================需要发送的=====================================
     @Override
-    public void joinRoom(String room) {
+    public void joinRoom(String room,String uuid) {
         Map<String, Object> map = new HashMap<>();
         map.put("eventName", "__join");
         Map<String, String> childMap = new HashMap<>();
         childMap.put("room", room);
+        // 发送uuid
+        childMap.put("uuid",uuid);
         map.put("data", childMap);
         JSONObject object = new JSONObject(map);
         final String jsonString = object.toString();

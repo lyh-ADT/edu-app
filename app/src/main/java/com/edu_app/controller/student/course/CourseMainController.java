@@ -1,6 +1,7 @@
 package com.edu_app.controller.student.course;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
@@ -59,7 +60,11 @@ public class CourseMainController  implements View.OnClickListener {
                 break;
             case R.id.coursePage_singleChat_bt_Start:
                 Log.e("error","点击视频聊天");
-                fragment.getActivity().startActivity(new Intent(fragment.getActivity(), NodejsActivity.class));
+                Intent intent = new Intent();
+                Bundle bundle = fragment.getActivity().getIntent().getExtras();
+                intent.putExtras(bundle);
+                intent.setClass(this.fragment.getActivity(),NodejsActivity.class);
+                this.fragment.getActivity().startActivity(intent);
                 break;
         }
     }

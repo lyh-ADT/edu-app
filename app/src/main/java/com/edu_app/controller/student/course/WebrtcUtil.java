@@ -37,14 +37,14 @@ public class WebrtcUtil {
     // private static String WSS = "ws://192.168.1.138:3000";
 
     // one to one
-    public static void callSingle(Activity activity, String wss, String roomId, boolean videoEnable) {
+    public static void callSingle(Activity activity, String wss, String roomId, boolean videoEnable,String uuid) {
         if (TextUtils.isEmpty(wss)) {
             wss = WSS;
         }
         WebRTCManager.getInstance().init(wss, iceServers, new IConnectEvent() {
             @Override
             public void onSuccess() {
-                ChatSingleActivity.openActivity(activity, videoEnable);
+                ChatSingleActivity.openActivity(activity, videoEnable,uuid);
             }
 
             @Override
@@ -52,11 +52,11 @@ public class WebrtcUtil {
 
             }
         });
-        WebRTCManager.getInstance().connect(videoEnable ? MediaType.TYPE_VIDEO : MediaType.TYPE_AUDIO, roomId);
+        WebRTCManager.getInstance().connect(videoEnable ? MediaType.TYPE_VIDEO : MediaType.TYPE_AUDIO, roomId,uuid);
     }
 
     // Videoconferencing
-    public static void call(Activity activity, String wss, String roomId) {
+    public static void call(Activity activity, String wss, String roomId,String uuid) {
         if (TextUtils.isEmpty(wss)) {
             wss = WSS;
         }
@@ -71,7 +71,7 @@ public class WebrtcUtil {
 
             }
         });
-        WebRTCManager.getInstance().connect(MediaType.TYPE_MEETING, roomId);
+        WebRTCManager.getInstance().connect(MediaType.TYPE_MEETING, roomId,uuid);
     }
 
 

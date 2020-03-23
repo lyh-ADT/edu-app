@@ -3,13 +3,30 @@ package com.edu_app.vediochat;
 import android.content.Context;
 import android.media.AudioManager;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.edu_app.R;
+import com.edu_app.controller.student.practice.LookExamAdapter;
+import com.edu_app.model.student.ChatCourseInfo;
+import com.edu_app.model.student.ChatData;
+import com.edu_app.model.student.ChatMsg;
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;
+import com.edu_app.vediochat.controller.ChatAdapter;
+import com.edu_app.vediochat.ui.ChatSingleActivity;
 import com.edu_app.vediochat.ws.IWebSocket;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Enumerator;
@@ -37,11 +54,14 @@ import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -79,8 +99,9 @@ public class PeerConnectionHelper {
     public int _mediaType;
 
     private AudioManager mAudioManager;
+    private Map<String, DataChannel> _dataChannelDic;
 
-
+    private ChatSingleActivity _activity;
 
     enum Role {Caller, Receiver,}
 
@@ -99,6 +120,8 @@ public class PeerConnectionHelper {
 
     public PeerConnectionHelper(IWebSocket webSocket, MyIceServer[] iceServers) {
         this._connectionPeerDic = new HashMap<>();
+        this._dataChannelDic = new HashMap<>();
+
         this._connectionIdArray = new ArrayList<>();
         this.ICEServers = new ArrayList<>();
 
@@ -114,13 +137,40 @@ public class PeerConnectionHelper {
                 ICEServers.add(iceServer);
             }
         }
+
     }
 
     // 设置界面的回调
     public void setViewCallback(IViewCallback callback) {
         viewCallback = callback;
     }
+    public void sendMsg(String msg) {
+        Log.v(TAG, "为所有发送消息");
+        if(_factory == null){
+            _factory = createConnectionFactory();
+        }
+        if(_dataChannelDic==null){
+            Log.v(TAG, "发送消息失败");
+        }else{
+            for (Map.Entry<String, DataChannel> entry : _dataChannelDic.entrySet()) {
+                try {
+                    Log.v(TAG,msg );
+                    ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes(Charset.defaultCharset()));
+                    entry.getValue().send(new DataChannel.Buffer(buffer,false));
 
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }
+
+    }
+    public void setActivity(ChatSingleActivity activity){
+        if(_activity==null){
+            this._activity = activity;
+        }
+    }
     // ===================================webSocket回调信息=======================================
 
     public void initContext(Context context, EglBase eglBase) {
@@ -267,9 +317,9 @@ public class PeerConnectionHelper {
         }
 
 
-        if (viewCallback != null) {
-            viewCallback.onSetLocalStream(_localStream, _myId);
-        }
+//        if (viewCallback != null) {
+//            viewCallback.onSetLocalStream(_localStream, _myId);
+//        }
 
     }
 
@@ -277,7 +327,12 @@ public class PeerConnectionHelper {
     private void createPeerConnections() {
         for (Object str : _connectionIdArray) {
             Peer peer = new Peer((String) str);
+            //创建数据通道
+            DataChannel dc = peer.pc.createDataChannel("sendMsg",new DataChannel.Init());
+            dc.registerObserver(new dataChannelObserver(dc));
             _connectionPeerDic.put((String) str, peer);
+            _dataChannelDic.put((String) str, dc);
+            Log.d(TAG,dc.toString());
         }
     }
 
@@ -317,6 +372,8 @@ public class PeerConnectionHelper {
             mPeer.pc.close();
         }
         _connectionPeerDic.remove(connectionId);
+        _dataChannelDic.remove(connectionId);
+
         _connectionIdArray.remove(connectionId);
         if (viewCallback != null) {
             viewCallback.onCloseWithId(connectionId);
@@ -479,6 +536,49 @@ public class PeerConnectionHelper {
         mediaConstraints.mandatory.addAll(keyValuePairs);
         return mediaConstraints;
     }
+        /****************接收消息监听器******************/
+    private class dataChannelObserver implements DataChannel.Observer{
+        private DataChannel dataChannel;
+        public dataChannelObserver(DataChannel dataChannel){
+            this.dataChannel = dataChannel;
+        }
+        @Override
+        public void onBufferedAmountChange(long l) {
+
+        }
+
+        @Override
+        public void onStateChange() {
+            Log.d(TAG,"onStateChange: dataChannel state:"+dataChannel.state().toString());
+        }
+
+        @Override
+        public void onMessage(DataChannel.Buffer buffer) {
+            byte[] bytes;
+
+            if(buffer.data.hasArray()){
+                bytes = buffer.data.array();
+
+            }else{
+                bytes = new byte[buffer.data.remaining()];
+                buffer.data.get(bytes);
+            }
+            String message = new String(bytes);
+            Log.d(TAG,"收到消息："+message);
+            ChatData data = JSONObject.parseObject(message, ChatData.class);
+            switch (data.getType()){
+                case "__msg":
+                    ChatMsg msgObj = JSONObject.parseObject(data.getData(), ChatMsg.class);
+                    _activity.updateViewMsg(msgObj);
+                    break;
+                case "__info":
+                    ChatCourseInfo infoObj = JSONObject.parseObject(data.getData(),ChatCourseInfo.class);
+                    _activity.updateViewInfo(infoObj);
+                    break;
+            }
+
+        }
+    }
 
     //**************************************内部类******************************************/
     private class Peer implements SdpObserver, PeerConnection.Observer {
@@ -540,7 +640,6 @@ public class PeerConnectionHelper {
                 viewCallback.onCloseWithId(socketId);
             }
         }
-
         @Override
         public void onDataChannel(DataChannel dataChannel) {
 
@@ -578,6 +677,7 @@ public class PeerConnectionHelper {
 
 
             pc.setLocalDescription(Peer.this, sdp);
+
         }
 
         @Override

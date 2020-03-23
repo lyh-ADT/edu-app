@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+
 import com.edu_app.vediochat.bean.MediaType;
 import com.edu_app.vediochat.bean.MyIceServer;
+import com.edu_app.vediochat.ui.ChatSingleActivity;
 import com.edu_app.vediochat.ws.IConnectEvent;
 import com.edu_app.vediochat.ws.ISignalingEvents;
 import com.edu_app.vediochat.ws.IWebSocket;
@@ -30,6 +32,8 @@ public class WebRTCManager implements ISignalingEvents {
     private PeerConnectionHelper _peerHelper;
 
     private String _roomId;
+    private String _uuid;
+
     private int _mediaType;
     private boolean _videoEnable;
 
@@ -40,6 +44,8 @@ public class WebRTCManager implements ISignalingEvents {
     public static WebRTCManager getInstance() {
         return Holder.wrManager;
     }
+
+
 
     private static class Holder {
         private static WebRTCManager wrManager = new WebRTCManager();
@@ -54,11 +60,12 @@ public class WebRTCManager implements ISignalingEvents {
     }
 
     // connect
-    public void connect(int mediaType, String roomId) {
+    public void connect(int mediaType, String roomId,String uuid) {
         if (_webSocket == null) {
             _mediaType = mediaType;
             _videoEnable = mediaType != MediaType.TYPE_AUDIO;
             _roomId = roomId;
+            _uuid = uuid;
             _webSocket = new JavaWebSocket(this);
             _webSocket.connect(_wss);
             _peerHelper = new PeerConnectionHelper(_webSocket, _iceServers);
@@ -77,6 +84,16 @@ public class WebRTCManager implements ISignalingEvents {
             _peerHelper.setViewCallback(callback);
         }
     }
+    public void sendMsg(String msg) {
+        if (_peerHelper != null) {
+            _peerHelper.sendMsg(msg);
+        }
+    }
+    public void setActivity(ChatSingleActivity activity) {
+        if (_peerHelper != null) {
+            _peerHelper.setActivity(activity);
+        }
+    }
 
     //===================================控制功能==============================================
     public void joinRoom(Context context, EglBase eglBase) {
@@ -84,7 +101,8 @@ public class WebRTCManager implements ISignalingEvents {
             _peerHelper.initContext(context, eglBase);
         }
         if (_webSocket != null) {
-            _webSocket.joinRoom(_roomId);
+            _webSocket.joinRoom(_roomId,_uuid);
+
         }
 
     }

@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,14 +18,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.course.CourserFragmentAdapter;
 import com.edu_app.vediochat.IViewCallback;
 import com.edu_app.vediochat.PeerConnectionHelper;
 import com.edu_app.vediochat.ProxyVideoSink;
 import com.edu_app.vediochat.WebRTCManager;
 import com.edu_app.vediochat.bean.MemberBean;
+import com.edu_app.vediochat.controller.RoomChatController;
 import com.edu_app.vediochat.utils.PermissionUtil;
+import com.google.android.material.tabs.TabLayout;
 
 import org.webrtc.EglBase;
 import org.webrtc.MediaStream;
@@ -42,7 +48,6 @@ import java.util.Map;
 
 /**
  * 群聊界面
- * 支持 9 路同時通信
  */
 public class ChatRoomActivity extends AppCompatActivity implements IViewCallback {
 
@@ -57,6 +62,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
     private int mScreenWidth;
 
     private EglBase rootEglBase;
+    private boolean fragmentVisible;
 
     public static void openActivity(Activity activity) {
         Intent intent = new Intent(activity, ChatRoomActivity.class);
@@ -77,8 +83,7 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         initVar();
         ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
         replaceFragment(chatRoomFragment);
-
-
+        fragmentVisible = true;
         startCall();
 
     }
@@ -86,16 +91,17 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
 
     private void initView() {
         video_view = findViewById(R.id.mult_video_view);
+
     }
 
     private void initVar() {
         // 设置宽高比例
-        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        if (manager != null) {
-            mScreenWidth = manager.getDefaultDisplay().getWidth();
-        }
-        video_view.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mScreenWidth));
-        rootEglBase = EglBase.create();
+       WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+      if (manager != null) {
+           mScreenWidth = manager.getDefaultDisplay().getWidth();
+       }
+      video_view.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mScreenWidth));
+      rootEglBase = EglBase.create();
 
     }
 
@@ -108,17 +114,17 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         }
 
     }
-
-    @Override
-    public void onSetLocalStream(MediaStream stream, String userId) {
-        List<VideoTrack> videoTracks = stream.videoTracks;
-        if (videoTracks.size() > 0) {
-            _localVideoTrack = videoTracks.get(0);
-        }
-        runOnUiThread(() -> {
-            addView(userId, stream);
-        });
-    }
+// 屏蔽本地视频
+//    @Override
+//    public void onSetLocalStream(MediaStream stream, String userId) {
+//        List<VideoTrack> videoTracks = stream.videoTracks;
+//        if (videoTracks.size() > 0) {
+//            _localVideoTrack = videoTracks.get(0);
+//        }
+//        runOnUiThread(() -> {
+//            addView(userId, stream);
+//        });
+//    }
 
     @Override
     public void onAddRemoteStream(MediaStream stream, String userId) {
@@ -354,5 +360,33 @@ public class ChatRoomActivity extends AppCompatActivity implements IViewCallback
         manager.joinRoom(getApplicationContext(), rootEglBase);
 
 
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if(fragmentVisible){
+                    findViewById(R.id.mult_switch_mute).setVisibility(View.GONE);
+                    findViewById(R.id.mult_hand_free).setVisibility(View.GONE);
+                    findViewById(R.id.mult_open_camera).setVisibility(View.GONE);
+                    findViewById(R.id.mult_switch_camera).setVisibility(View.GONE);
+                    findViewById(R.id.mult_switch_hang_up).setVisibility(View.GONE);
+
+                    fragmentVisible=false;
+                    return true;
+
+                }else {
+                    findViewById(R.id.mult_switch_mute).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_hand_free).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_open_camera).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_switch_camera).setVisibility(View.VISIBLE);
+                    findViewById(R.id.mult_switch_hang_up).setVisibility(View.VISIBLE);
+                    fragmentVisible = true;
+                    return true;
+
+                }
+
+        }
+        return false;
     }
 }

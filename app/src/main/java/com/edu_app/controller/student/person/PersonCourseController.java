@@ -82,10 +82,16 @@ public class PersonCourseController implements View.OnClickListener {
                     e.printStackTrace();
                 }
                 String courseName = "";
-                for(int i=0,len=courseNames.size();i<len;i++){
-                    courseName += courseNames.get(i);
-                    courseName +="\n";
+
+                if(getSuccess){
+                    for(int i=0,len=courseNames.size();i<len;i++){
+                        courseName += courseNames.get(i);
+                        courseName +="\n";
+                    }
+                }else {
+                    courseName = "获取失败";
                 }
+
                 ((TextView) this.activity.findViewById(R.id.personPage_stuClass_getClassText)).setText(courseName);
                 break;
 
@@ -99,9 +105,11 @@ public class PersonCourseController implements View.OnClickListener {
             String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetClass", body);
             Log.e("error",body);
             JSONObject jsonObject = JSONObject.parseObject(response);
-            courseNames = jsonObject.getJSONArray("data");
 
             getSuccess = jsonObject.getBoolean("success");
+            if(getSuccess){
+                courseNames = jsonObject.getJSONArray("data");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

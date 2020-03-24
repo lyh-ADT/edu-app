@@ -123,16 +123,16 @@ public class TabSelectedListener implements TabLayout.OnTabSelectedListener {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent openVideo = new Intent(Intent.ACTION_VIEW);
-//                openVideo.setDataAndType(Uri.parse(urls.get(i)), "video/*");
-//                activity.startActivity(openVideo);
+                Intent openVideo = new Intent(Intent.ACTION_VIEW);
+                openVideo.setDataAndType(Uri.parse(urls.get(i)), "*/*");
+                activity.startActivity(openVideo);
 /*********播放网页视频********/
-                String url = urls.get(i);
-                String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-                String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-                Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
-                mediaIntent.setDataAndType(Uri.parse(url), mimeType);
-                activity.startActivity(mediaIntent);
+//                String url = urls.get(i);
+//                String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+//                String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+//                Intent mediaIntent = new Intent(Intent.ACTION_VIEW);
+//                mediaIntent.setDataAndType(Uri.parse(url), mimeType);
+//                activity.startActivity(mediaIntent);
 
             }
         });

@@ -1,9 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
-
+import sys
+sys.path.append("..")
+import SqlHandler
 
 class StuInfoRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -35,18 +36,15 @@ class StuInfoRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该用户的信息
             """
-            sql = """select StuId,StuName,StuPassword,StuSex,StuAge,StuQQ,StuPhoneNumber,StuAddress from StuPersonInfo where StuUid='{0}'""".format(
-                self.stuUid)
+            sql = """select StuId,StuName,StuPassword,StuSex,StuAge,StuQQ,StuPhoneNumber,StuAddress from StuPersonInfo where StuUid=%s"""
+
             rs = self.sqlhandler.executeQuerySQL(
-                    sql)
+                    sql,self.stuUid)
             if len(rs)==1:
                 # 获取键值对
                 

@@ -10,6 +10,7 @@ from StuPostAnswerRequestHandler import StuPostAnswerRequestHandler
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
+from StuGetVedioListRequestHandler import StuGetVedioListRequestHandler
 app = tornado.web.Application(handlers=[(
     r"/stuGetClass",
     StuClassRequestHandler), (
@@ -23,7 +24,9 @@ app = tornado.web.Application(handlers=[(
                     ), (r"/stuGetPracticeToLook", StuLookPracticeRequestHandler
                         ), (r"/stuGetPracticeToDo", StuPracticeRequestHandler
                             ), (r"/stuPostAnswer",
-                                StuPostAnswerRequestHandler)])
+                                StuPostAnswerRequestHandler),
+                                        (r"/stuGetVedioList",
+                                         StuGetVedioListRequestHandler)])
 http_server = tornado.httpserver.HTTPServer(app)
 http_server.listen(8081)
 tornado.ioloop.IOLoop.current().start()

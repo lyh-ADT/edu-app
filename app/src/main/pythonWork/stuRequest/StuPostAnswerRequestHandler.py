@@ -1,9 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
-
+import sys
+sys.path.append("..")
+import SqlHandler
 
 class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -38,26 +39,20 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
             """
             设置学生答案
             
             """
-            sql = """select StuId from StuPersonInfo where StuUid='{0}'""".format(
-                self.stuUid)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select StuId from StuPersonInfo where StuUid=%s"""
+
+            rs = self.sqlhandler.executeQuerySQL(sql,self.stuUid)
             print(rs)
             if len(rs) == 1:
                 self.stuId = rs[0]['StuId']
-                sql = """insert into SCORE (PracticeId,StuId,StuAnswer) values("{0}","{1}","{2}")""".format(
-                    self.practiceId, self.stuId, self.stuAnswer)
-                print(sql)
-                if self.sqlhandler.executeOtherSQL(sql):
-
+                sql = """insert into SCORE (PracticeId,StuId,StuAnswer) values(%s,%s,%s)"""
+                if self.sqlhandler.executeOtherSQL(sql,self.practiceId, self.stuId, self.stuAnswer):
                     return True
         return False

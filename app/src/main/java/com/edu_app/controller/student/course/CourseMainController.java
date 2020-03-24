@@ -14,6 +14,7 @@ import com.edu_app.view.student.course.fragmentCourseChinese;
 import com.edu_app.view.student.course.fragmentCourseEnglish;
 import com.edu_app.view.student.course.fragmentCourseLive;
 import com.edu_app.view.student.course.fragmentCourseMath;
+import com.edu_app.view.student.course.fragmentCourseOther;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class CourseMainController  implements View.OnClickListener {
         fragments.add(new fragmentCourseMath());
         fragments.add(new fragmentCourseChinese());
         fragments.add(new fragmentCourseEnglish());
+        fragments.add(new fragmentCourseOther());
+
         return fragments;
     }
     public ArrayList<String> getTabTitle(){
@@ -41,6 +44,8 @@ public class CourseMainController  implements View.OnClickListener {
         tab_titles.add(fragment.getString(R.string.coursePage_tab_2));
         tab_titles.add(fragment.getString(R.string.coursePage_tab_3));
         tab_titles.add(fragment.getString(R.string.coursePage_tab_4));
+        tab_titles.add(fragment.getString(R.string.coursePage_tab_5));
+
         return tab_titles;
 
     }
@@ -49,6 +54,8 @@ public class CourseMainController  implements View.OnClickListener {
         tablayout.addTab(tablayout.newTab().setText(tab_titles.get(1)));
         tablayout.addTab(tablayout.newTab().setText(tab_titles.get(2)));
         tablayout.addTab(tablayout.newTab().setText(tab_titles.get(3)));
+        tablayout.addTab(tablayout.newTab().setText(tab_titles.get(4)));
+
     }
 
     @Override

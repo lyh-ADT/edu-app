@@ -1,9 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
-
+import sys
+sys.path.append("..")
+import SqlHandler
 
 class StuClassRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -36,24 +37,21 @@ class StuClassRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该用户的课程信息
             """
-            sql = """select StuClass from StuPersonInfo where StuUid='{0}'""".format(
-                self.stuUid)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select StuClass from StuPersonInfo where StuUid=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql,self.stuUid)
 
             if len(rs) == 1:
-                classid = eval(str(rs[0]["StuClass"]))
+                print(rs)
+                classid = str(rs[0]["StuClass"]).split(",")
 
                 for clsid in classid:
-                    sql = "select CourseName from CLASS where ClassId='" + clsid + "'"
-                    rs = self.sqlhandler.executeQuerySQL(sql)
+                    sql = "select CourseName from CLASS where ClassId=%s"
+                    rs = self.sqlhandler.executeQuerySQL(sql,clsid)
                     if len(rs) == 1:
                         self.courses.append(rs[0]["CourseName"])
 

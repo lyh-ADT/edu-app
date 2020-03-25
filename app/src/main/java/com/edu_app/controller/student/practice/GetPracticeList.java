@@ -39,7 +39,7 @@ public class GetPracticeList{
             practiceList = new ArrayList<Practice>();
             if(getSuccess){
                 for(int i=0,len=data.size();i<len;i++){
-                    JSONObject jsonObj = data.getJSONObject(0);
+                    JSONObject jsonObj = data.getJSONObject(i);
                     Practice practice = new Practice();
                     practice.setTitle(jsonObj.getString("practiceId"));
                     practice.setId(jsonObj.getString("practiceId"));

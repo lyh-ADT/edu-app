@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class StuSetInfoRequestHandler(tornado.web.RequestHandler):
@@ -44,28 +46,26 @@ class StuSetInfoRequestHandler(tornado.web.RequestHandler):
         """
         给学生设置个人信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
-            sql = """select * from StuPersonInfo where StuUid='{0}'""".format(
-                self.stuUid)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select * from StuPersonInfo where StuUid=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
             if len(rs) == 1:
 
-                sql = """UPDATE StuPersonInfo SET StuName='{1}',
-                StuSex='{2}',
-                StuAge='{3}',
-                StuPassword='{4}',
-                StuPhoneNumber='{5}',
-                StuQQ='{6}',
-                StuAddress='{7}' where StuUid='{0}'""".format(
-                    self.stuUid, self.stuName, self.stuSex, self.stuAge,
-                    self.stuPassword, self.stuPhoneNumber, self.stuQQ,
-                    self.stuAddress)
-              
-                if self.sqlhandler.executeOtherSQL(sql):
+                sql = """UPDATE StuPersonInfo SET StuName=%s,
+                StuSex=%s,
+                StuAge=%s,
+                StuPassword=%s,
+                StuPhoneNumber=%s,
+                StuQQ=%s,
+                StuAddress=%s where StuUid=%s"""
+
+                if self.sqlhandler.executeOtherSQL(sql, self.stuName,
+                                                   self.stuSex, self.stuAge,
+                                                   self.stuPassword,
+                                                   self.stuPhoneNumber,
+                                                   self.stuQQ, self.stuAddress,
+                                                   self.stuUid):
                     return True
 
         return False

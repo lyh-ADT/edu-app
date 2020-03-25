@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class StuSetClassRequestHandler(tornado.web.RequestHandler):
@@ -36,14 +38,11 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
         """
         给学生设置班级邀请码
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
-            sql = """select Student,ClassId from CLASS where InviteCode='{0}'""".format(
-                self.inviteCode)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select Student,ClassId from CLASS where InviteCode=%s"""
+
+            rs = self.sqlhandler.executeQuerySQL(sql, self.inviteCode)
             if len(rs) == 1:
                 self.stuClass = rs[0]["ClassId"]
                 if rs[0]['Student'] is not None:
@@ -51,9 +50,9 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
                 else:
                     self.studentList = list()
                 print(self.studentList)
-                sql = """select StuId,StuClass from StuPersonInfo where StuUid='{0}'""".format(
-                    self.stuUid)
-                rs = self.sqlhandler.executeQuerySQL(sql)
+                sql = """select StuId,StuClass from StuPersonInfo where StuUid=%s"""
+
+                rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
                 if len(rs) == 1:
                     if rs[0]["StuClass"] is not None:
                         classList = eval(str(rs[0]["StuClass"]))
@@ -64,11 +63,13 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
                         return True
                     classList.append(self.stuClass)
                     print(classList)
-                    sql = """UPDATE StuPersonInfo SET StuClass='{0}'""".format(
-                        classList)
-                    updateStudent = self.sqlhandler.executeOtherSQL(sql)
-                    sql = """UPDATE CLASS SET Student='{0}'""".format(self.studentList.append(stuId))
-                    updateClass = self.sqlhandler.executeOtherSQL(sql)
+                    sql = """UPDATE StuPersonInfo SET StuClass=%s"""
+
+                    updateStudent = self.sqlhandler.executeOtherSQL(
+                        sql, classList)
+                    sql = """UPDATE CLASS SET Student=%s"""
+                    updateClass = self.sqlhandler.executeOtherSQL(
+                        sql, self.studentList.append(stuId))
                     if updateStudent and updateClass:
                         return True
         return False

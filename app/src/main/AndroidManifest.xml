@@ -62,7 +62,6 @@
         <activity android:name=".view.teacher.activityTeaFunction" />
         <activity android:name=".view.teacher.person.activityContactService"></activity>
         <activity android:name=".view.teacher.person.activityPersonInfo"></activity>
-        <activity android:name=".view.teacher.person.activityPersonCourse" ></activity>
         <activity
             android:name=".view.student.course.NodejsActivity" android:screenOrientation="portrait"></activity>
 

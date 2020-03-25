@@ -1,40 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="start"
     android:orientation="vertical">
 
-    <android.widget.LinearLayout
+    <LinearLayout
         android:id="@+id/personPage_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
         <!--头像-->
         <ImageButton
             android:id="@+id/personPage_bt_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"></ImageButton>
+            android:src="@mipmap/ic_head"></ImageButton>
 
-        <android.widget.LinearLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_marginLeft="10sp"
             android:orientation="vertical">
-            <!--登录-->
-            <TextView
-                android:id="@+id/personPage_bt_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/personPage_login"
-                android:textStyle="bold"
-                android:textSize="20sp"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,68 +34,66 @@
                 android:gravity="center"
                 android:text="@string/personPage_word"
                 android:textSize="15sp"></TextView>
-        </android.widget.LinearLayout>
-    </android.widget.LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
     <!--个人信息-->
-    <android.widget.LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
-        android:orientation="horizontal"
+    <RelativeLayout
         android:id="@+id/personPage_stuInfo"
-        >
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10sp"
-            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
             android:src="@mipmap/ic_personinfo"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15sp"
-            android:layout_weight="3"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="@string/personPageOp_1"></TextView>
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="200sp"
-            android:layout_weight="0.5"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:src="@mipmap/ic_jiantou"></ImageView>
-    </android.widget.LinearLayout>
-
+    </RelativeLayout>
     <!--联系客服-->
-    <android.widget.LinearLayout
+    <RelativeLayout
         android:id="@+id/personPage_contactCS"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="50dp"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10sp"
-            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+
             android:src="@mipmap/ic_contact"></ImageView>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15sp"
-            android:layout_weight="3"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
+
             android:text="@string/personPageOp_4"></TextView>
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="200sp"
-            android:layout_weight="0.5"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:src="@mipmap/ic_jiantou"></ImageView>
-    </android.widget.LinearLayout>
-</android.widget.LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -11,102 +11,11 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="">
+    <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/login/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/login/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/GetPracticeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/GetPracticeList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/login/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/login/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/JDBCUtils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/RegisterRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/SqlHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmAddTeaRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmDeleteClassRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmDeleteClassStuRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmDeleteTeaRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmGetClassListRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmGetClassStuListRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmGetClassTeaRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmGetTeaListRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmLoginRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/adm/AdmSetClassRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/db.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/login/LoginRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/login/TeaStuLoginRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuCheckPasswordRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuClassRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuGetVedioListRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuInfoRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuLookPracticeRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuPostAnswerRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuPracticeListRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuPracticeRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuSetClassRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/stuRequest/StuSetInfoRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaCorrectPracticeRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaGetClassListRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaGetPracticeRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaInfoRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaLookStuPracticeRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaPushPracticeRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/tea/TeaSetInfoRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/sql/create_table.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/sql/sqlReadme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/admin/html/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/html/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/admin/html/class.html" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/html/class.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmGetTeaListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/python/AdmGetTeaListRequestHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/admin/python/SqlHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/python/SqlHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/admin/python/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/python/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/login/SqlHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/login/StuRegisterRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/login/TeaStuLoginRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/login/TeaStuLoginRequestHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/login/server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../server/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/sql/create_table.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../server/sql/create_table.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/.vs/VSWorkspaceState.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/.vs/config/applicationhost.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/.vs/slnx.sqlite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/.vs/stream/v15/.suo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/html/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/html/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/html/stream.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/html/videos.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/js/SkyRTC-client.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/js/popper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/js/video.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/python/LoginHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/python/RoomListHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/python/SqlHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/python/TempStaticRequestHandler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/python/server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/stream/python/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/html/stream.html" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/html/stream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/webrtc/server/webrtc_server_node/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/Request.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/postRequest.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +69,105 @@
     <favorites_list name="edu-app" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2875">
+              <caret line="172" column="22" selection-start-line="172" selection-start-column="22" selection-end-line="172" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/bean/MediaType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_chat_single.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/bean/MemberBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/bean/MyIceServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/VideoProfile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14000">
+              <caret line="632" column="40" selection-start-line="632" selection-start-column="40" selection-end-line="632" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/IViewCallback.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/utils/PermissionUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -255,11 +262,10 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -281,20 +287,153 @@
             <path>
               <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="pythonWork" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="python" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="teacher" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
@@ -304,30 +443,64 @@
         <subPane>
           <expand>
             <path>
-              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
               <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
               <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
               <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
               <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="stu" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
               <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="teacher" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -601,6 +774,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
       <window_info id="Structure" order="1" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
@@ -610,14 +784,14 @@
       <window_info id="Designer" order="5" />
       <window_info id="Resources Explorer" order="6" sideWeight="0.49408284" weight="0.31770834" />
       <window_info id="Capture Tool" order="7" />
-      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.50591713" side_tool="true" visible="true" weight="0.3391892" />
+      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.50591713" side_tool="true" visible="true" weight="0.27702704" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49932432" weight="0.94135803" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.94135803" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44753087" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3287037" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006757" side_tool="true" weight="0.6080247" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="6" sideWeight="0.49932432" visible="true" weight="0.6080247" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006757" side_tool="true" weight="0.60493827" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="6" visible="true" weight="0.3287037" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932432" weight="0.47685185" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32988167" />

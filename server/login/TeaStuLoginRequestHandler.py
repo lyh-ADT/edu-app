@@ -1,82 +1,67 @@
-import tornado.ioloop
-import tornado.web
-import tornado.httpclient
+import sys
+sys.path.append("..")
 import SqlHandler
-import json
 import uuid
+import tornado.web
+import json
+
 
 class TeaStuLoginRequestHandler(tornado.web.RequestHandler):
     def post(self):
+        print("接收到登录请求")
         try:
             self.sqlhandler = None
-            self.args = json.loads(self.request.body)
-            self.userId = self.args["userId"]
-            self.userPassword = self.args["userPassword"]
-            print(self.args)
-            self.flag = self.args["flag"]
+            body = json.loads(self.request.body)
+            self.userId = body["userId"]
+            self.userPassword = body["userPassword"]
+            print(self.userId, self.userPassword)
+            # self.flag = self.get_body_agrument("flag")
+            self.flag = 1
             if self.checkInfo():
-                self.uid = self.userId + str(uuid.uuid4())
-                self.updateUID()
-                self.write({
-                    "success":True,
-                    "data":self.uid
-                })
-                self.finish()
+
+                uid = str(self.userId) + str(uuid.uuid4())
+                if self.flag == 0:
+                    sql = """UPDATE TeaPersonInfo SET TeaUid=%s where TeaId=%s"""
+                elif self.flag == 1:
+                    sql = """UPDATE StuPersonInfo SET StuUid=%s where StuId=%s"""
+                if self.sqlhandler.executeOtherSQL(sql, uid, self.userId):
+                    self.write({"success": True, "data": uid})
+                    self.finish()
+                else:
+                    print("更新uid数据失败")
+                    self.write({"success": False, "data": "登录失败"})
+                    self.finish()
+
             else:
-                raise RuntimeError
+                self.write({"success": False, "data": "登录失败"})
+                self.finish()
         except Exception as e:
             print(e)
-            self.write({
-                "success":False,
-                "data": "账号信息不正确"
-            })
+            self.write({"success": False, "data": "登录失败"})
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
 
     def checkInfo(self):
-
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
-            查询该老师的信息 id+pwd
+            查询该老师的信息 id+pwd flag=0
+            """
+            """
+            查询该学生的信息 id+pwd flag=1
             """
             if (self.flag == 0):
 
-                sql = "select * from TeaPersonInfo where TeaId='{0}' and TeaPassword='{1}'".format(
-                    self.userId, self.userPassword)
-            elif (self.flag == 1):
-                sql = "select * from StuPersonInfo where StuId='{0}' and StuPassword='{1}'".format(
-                    self.userId, self.userPassword)
+                sql = "select * from TeaPersonInfo where TeaId=%s and TeaPassword=%s"
 
-            if len(self.sqlhandler.executeQuerySQL(sql)) == 1:
+            elif (self.flag == 1):
+                sql = "select * from StuPersonInfo where StuId=%s and StuPassword=%s"
+
+            if len(
+                    self.sqlhandler.executeQuerySQL(sql, self.userId,
+                                                    self.userPassword)) == 1:
 
                 return True
         return False
-
-    def updateUID(self):
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
-        if self.sqlhandler.getConnection():
-            if (self.flag == 0):
-
-                sql = "update TeaPersonInfo set TeaUid='{0}' where TeaId='{1}'".format(
-                    self.uid, self.userId)
-            elif (self.flag == 1):
-                sql = "update StuPersonInfo set StuUid='{0}' where StuId='{1}'".format(
-                    self.uid, self.userId)
-            self.sqlhandler.executeOtherSQL(sql)
-
-
-if __name__ == "__main__":
-
-    app = tornado.web.Application(handlers=[(r"/login", TeaStuLoginRequestHandler)])
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(8080)
-    tornado.ioloop.IOLoop.current().start()

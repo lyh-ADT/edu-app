@@ -1,6 +1,7 @@
 package com.edu_app.model.login;
 
 import com.edu_app.controller.login.LoginController;
+import com.edu_app.model.MD5;
 import com.edu_app.model.NetworkUtility;
 
 import java.io.IOException;
@@ -17,8 +18,11 @@ public class Login {
         new Thread(){
             @Override
             public void run(){
+
+                String md5_password = MD5.md5(password);
+
                 try {
-                    Response response = NetworkUtility.postToJson(SERVER_HOST, null, new LoginParam(userName, password, flag), Response.class);
+                    Response response = NetworkUtility.postToJson(SERVER_HOST, null, new LoginParam(userName, md5_password, flag), Response.class);
                     if(response.success){
                         controller.loginSuccess(response.data, flag);
                     } else {

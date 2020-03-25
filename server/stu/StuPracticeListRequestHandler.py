@@ -5,6 +5,7 @@ import json
 import sys
 sys.path.append("..")
 import SqlHandler
+import traceback
 
 
 class StuPracticeListRequestHandler(tornado.web.RequestHandler):
@@ -20,11 +21,13 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
             self.stuUid = body["stuUid"]
             self.subject = body["subject"]
             if self.getStuPractice():
+                print(self.practicelist)
                 self.write({"success": True, "data": self.practicelist})
                 self.finish()
             else:
                 raise RuntimeError
         except Exception as e:
+            print(traceback.format_exc())
             print(e)
             self.write({"success": False, "data": "获取练习列表失败"})
             self.finish()
@@ -47,7 +50,7 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
             sql = "select StuClass,StuId from StuPersonInfo where StuUid=%s"
             rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
             if len(rs) == 1:
-                stuClassId = eval(str(rs[0]['StuClass']))
+                stuClassId = str(rs[0]['StuClass']).split(",")
                 stuId = str(rs[0]['StuId'])
                 print(stuClassId)
                 for clsId in stuClassId:
@@ -56,12 +59,14 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
                     rs = self.sqlhandler.executeQuerySQL(sql, clsId)
                     if len(rs) == 0:
                         continue
-                    stuPracticeId = eval(str(rs[0]['Practice']))
+                    stuPracticeId = str(rs[0]['Practice']).split(",")
                     stuCourseName = str(rs[0]['CourseName'])
                     if self.subject not in stuCourseName:
                         continue
 
                     for practiceId in stuPracticeId:
+                        if practiceId == '':
+                            continue
                         # 判断该习题是否被做过
                         sql = """select StuAnswer from SCORE where PracticeId=%s and StuId=%s"""
 

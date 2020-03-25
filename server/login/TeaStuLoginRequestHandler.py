@@ -14,9 +14,8 @@ class TeaStuLoginRequestHandler(tornado.web.RequestHandler):
             body = json.loads(self.request.body)
             self.userId = body["userId"]
             self.userPassword = body["userPassword"]
+            self.flag = body["flag"]
             print(self.userId, self.userPassword)
-            # self.flag = self.get_body_agrument("flag")
-            self.flag = 1
             if self.checkInfo():
 
                 uid = str(self.userId) + str(uuid.uuid4())

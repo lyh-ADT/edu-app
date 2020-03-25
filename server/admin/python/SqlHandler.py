@@ -80,3 +80,22 @@ class SqlHandler():
             return False
         finally:
             cursor.close()
+
+    def update(self, sql):
+        """
+        执行数据库操作,返回影响的行数
+        @ parm：
+            sql:需要执行的sql语句
+        """
+
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute(sql)
+            self.connection.commit()
+            return cursor.rowcount
+        except Exception as e:
+            self.connection.rollback()
+            print(e)
+            return cursor.rowcount
+        finally:
+            cursor.close()

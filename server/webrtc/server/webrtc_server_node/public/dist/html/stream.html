@@ -15,11 +15,17 @@
             overflow-y: auto;
         }
 
+        #videos .video{
+            width: 150px;
+            height: 150px;
+        }
+
         #videos video {
             width: 150px;
             height: 150px;
             background-color: rgba(70, 70, 70, 0.5);
             border: 2px solid black;
+            z-index: 0;
         }
 
         #controls {
@@ -34,8 +40,7 @@
         }
 
         #message_area {
-            width: 25%;
-            height: 500px;
+            height: 605px;
             background-color: white;
         }
 
@@ -43,12 +48,9 @@
             border: 2px solid grey;
             border-radius: 10px;
             overflow-y: scroll;
-            width: 75%;
-            
         }
 
         #message_input {
-            height: 100px;
             border: 2px solid grey;
             border-radius: 10px;
         }
@@ -67,6 +69,24 @@
             width: 5%;
             z-index: 1;
         }
+
+        .video-volume{
+            width: 150px; 
+            height: 150px;
+            position: relative; 
+            bottom: 100%; 
+            z-index: 1;
+            visibility: hidden;
+        }
+
+        .video:hover .video-volume{
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        .sender{
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -83,7 +103,7 @@
                 <div id="room-number">
                     房间号：<script>document.write(window.location.hash.slice(1))</script>
                 </div>
-                <div>
+                <div class="d-flex flex-row justify-content-between">
                     <!-- <select id="screenMode">
                         <option value="cam">摄像头</option>
                         <option value="scr">电脑屏幕</option>
@@ -92,20 +112,49 @@
                         <button id="startBtn" type="button" class="btn btn-secondary">开始直播</button>
                         <button id="stopBtn" class="btn btn-secoundary btn-danger">结束直播</button>
                     </div>
+                    <div class="input-group" style="width: 50%;">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" style="height:calc(1.5em + .75rem + 2px);">课程名称</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="课程名称" id="inputCourseName">
+                      </div>
                 </div>
-                
+                <div class="input-group mb-3" style="margin-top: 10px;">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">摄像头画面大小</span>
+                    </div>
+                    <input id="camSizeRatio" type="range" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
             </div>
 
+            <div id="message_area" class="d-flex flex-column w-100">
+                <div id="message_box" class="w-100 h-75"></div>
+                <textarea class="w-100 h-25" id="message_input"></textarea>
+    
+            </div>
         </div>
     </div>
 
+    <button id="sendBtn" class="btn btn-secondary">发送</button>
+    <script>
+        // 绑定回车发送消息事件
+        document.getElementById("message_input").onkeypress=function(event){
+            if(event.key=="Enter"){
+                document.getElementById("sendBtn").click();
+                return false;
+            }
+        }
+    </script>
 
 
+    <div id="message_template">
+        <div class="sender"></div>
+        <div class="content"></div>
+    </div>
 
-
-
-    <div id="video_template" class="video flex-fill" style="display: none;">
-        视频
+    <div id="video_template" class="video" style="display: none;">
+        <video></video>
+        <img class="video-volume" src="./voice.png" onclick="changeVolume(this);">
     </div>
 
     <script src="/teacher-stream/js/jquery.min.js"></script>

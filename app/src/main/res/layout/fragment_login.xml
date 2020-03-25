@@ -12,43 +12,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/login_title"
-        android:textSize="30sp" />
+        android:textColor="@android:color/black"
+        android:textSize="50sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/username_text"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/username_text"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/type"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/account_type"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/password_text"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/password_text"
-                android:textSize="20sp" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -60,15 +32,28 @@
                 android:id="@+id/username_edit"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:inputType="text" />
+                android:background="@drawable/bg_round_grey"
+                android:inputType="text"
+                android:textSize="50sp" />
 
+            <EditText
+                android:id="@+id/password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_round_grey"
+                android:inputType="textPassword"
+                android:textSize="50sp" />
 
             <RadioGroup
                 android:id="@+id/type_rg"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:layout_margin="20dp"
                 android:orientation="horizontal">
                 <Space
                     android:layout_width="0dp"
@@ -98,14 +83,6 @@
                     android:layout_height="match_parent"/>
 
             </RadioGroup>
-
-
-            <EditText
-                android:id="@+id/password_edit"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:inputType="textPassword" />
         </LinearLayout>
 
     </LinearLayout>
@@ -114,21 +91,36 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
         android:gravity="center">
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+
+            android:shadowColor="@android:color/transparent"
+            android:shadowRadius="0"
             android:text="@string/login_text"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0" />
 
         <Button
             android:id="@+id/register_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="0"
+            android:singleLine="false"
             android:text="@string/register_text"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 

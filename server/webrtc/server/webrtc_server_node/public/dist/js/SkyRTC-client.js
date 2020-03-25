@@ -21,12 +21,17 @@ const SkyRTC = function () {
                 "url": "stun:stun.l.google.com:19302"
             },
             {
-                "url": "stun:global.stun.twilio.com:3478"
+                "url": "stun:47.93.186.97:3478?transport=udp"
             },
             {
-                "url": "turn:global.stun.twilio.com:3478",
-                "username": "79fdd6b3c57147c5cc44944344c69d85624b63ec30624b8674ddc67b145e3f3c",
-                "credential": "xjfTOLkVmDtvFDrDKvpacXU7YofAwPg6P6TXKiztVGw"
+                "url": "turn:47.93.186.97:3478?transport=udp",
+                "username": "ddssingsong",
+                "credential": "123456"
+            },
+            {
+                "url": "turn:47.93.186.97:3478?transport=tcp",
+                "username": "ddssingsong",
+                "credential": "123456"
             }
         ]
     };
@@ -89,6 +94,12 @@ const SkyRTC = function () {
         this.fileChannels = {};
         //保存所有接受到的文件
         this.receiveFiles = {};
+        // 用户名
+        this.userId = "null";
+        // 课程名称
+        this.courseName = null;
+        // 开始直播的时间戳
+        this.startTimeStamp = null;
     }
 
     //继承自事件处理器，提供绑定事件和触发事件的功能
@@ -97,17 +108,22 @@ const SkyRTC = function () {
 
     /*************************服务器连接部分***************************/
 
-    skyrtc.prototype.connect = function (server, room, observeMode) {
+    skyrtc.prototype.connect = function (server, room, observeMode, courseName) {
         var socket,
             that = this;
         room = room || "";
+        this.courseName = courseName;
+        this.startTimeStamp = new Date().getTime();
         socket = this.socket = new WebSocket(server);
         socket.onopen = function () {
+            let cookie = /UID=([\w\d-]+)/.exec(document.cookie)[1];
+
             socket.send(JSON.stringify({
                 "eventName": "__join",
                 "data": {
                     "room": room,
-                    "role":observeMode ? "observer" : "teacher"
+                    "role": observeMode ? "observer" : "teacher",
+                    "uuid": cookie
                 }
             }));
             that.emit("socket_opened", socket);
@@ -131,7 +147,7 @@ const SkyRTC = function () {
             // for (i = pcs.length; i--;) {
             //     that.closePeerConnection(pcs[i]);
             // }
-            for(let k in pcs){
+            for (let k in pcs) {
                 that.closePeerConnection(pcs[k]);
             }
             that.peerConnections = [];
@@ -153,7 +169,7 @@ const SkyRTC = function () {
         this.on("_ice_candidate", function (data) {
             var candidate = new nativeRTCIceCandidate(data);
             var pc = that.peerConnections[data.socketId];
-            if (!pc ||!pc.remoteDescription || !pc.remoteDescription.type) {
+            if (!pc || !pc.remoteDescription || !pc.remoteDescription.type) {
                 //push candidate onto queue...
                 console.log("remote not set!")
             }
@@ -206,6 +222,10 @@ const SkyRTC = function () {
             that.addDataChannels();
             that.sendOffers();
         });
+
+        this.on('_userId', function(data){
+            that.userId = data.id;
+        });
     };
 
 
@@ -229,16 +249,16 @@ const SkyRTC = function () {
         }
     }
 
-    function mergeAudioTracks(...mediaStreams){
+    function mergeAudioTracks(...mediaStreams) {
         // 合并音轨返回合并后的AudioTrack
         let audioCtx = new AudioContext();
         let merger = audioCtx.createChannelMerger(mediaStreams.length);
         let audioTSNodes = [];
         mediaStreams.forEach(t => {
             let ts;
-            try{
+            try {
                 ts = audioCtx.createMediaStreamSource(t);
-            }catch{
+            } catch(e){
                 throw new Error("请勾选选择画面界面的分享音频");
             }
             ts.connect(merger);
@@ -248,6 +268,59 @@ const SkyRTC = function () {
         let dest = audioCtx.createMediaStreamDestination();
         merger.connect(dest);
         return dest.stream.getAudioTracks()[0];
+    }
+
+    function mergeVideoTracks(screenMediaStream, cameraMediaStream) {
+        // 将两个视频合并后返回一个MediaStream
+        let screenVideo = document.createElement("video");
+        screenVideo.srcObject = screenMediaStream;
+        screenVideo.play();
+        screenVideo.volume = 0.0
+        let cameraViedo = document.createElement("video");
+        cameraViedo.srcObject = cameraMediaStream;
+        cameraViedo.play();
+        cameraViedo.volume = 0.0;
+        let canvas = document.createElement("canvas");
+
+        let canvasCtx = canvas.getContext('2d');
+
+        function composeFrame() {
+            let width = screenVideo.videoWidth;
+            let height = screenVideo.videoHeight;
+
+            canvas.width = width;
+            canvas.height = height;
+
+            let camWidth = cameraViedo.videoWidth;
+            let camHeight = cameraViedo.videoHeight;
+
+            // 缩放摄像头的画面
+            let RATIO_WIDTH = document.getElementById("camSizeRatio").value / 100;
+            const ratio = camHeight / camWidth;
+            camWidth = cameraViedo.width =  Math.floor(width * RATIO_WIDTH);
+            camHeight = cameraViedo.height = Math.floor(cameraViedo.width * ratio);
+
+            canvasCtx.drawImage(screenVideo, 0, 0, width, height);
+            canvasCtx.drawImage(cameraViedo, width - camWidth, height - camHeight, camWidth, camHeight);
+            return;
+        }
+
+        function timerCallback() {
+            if(screenVideo.ended || cameraViedo.ended){
+
+                return;
+            }
+            setTimeout(function () {
+                composeFrame();
+                setTimeout(function () {
+                    timerCallback();
+                }, 0);
+            }, 0);
+        }
+
+        timerCallback();
+
+        return canvas.captureStream();
     }
 
     function createStreamSuccess(stream) {
@@ -268,7 +341,7 @@ const SkyRTC = function () {
         console.log(error)
     }
 
-    skyrtc.prototype.createScreenStream =async function(options){
+    skyrtc.prototype.createScreenStream = async function (options) {
         var that = this;
         gThat = this;
 
@@ -276,15 +349,18 @@ const SkyRTC = function () {
             this.numStreams++;
             // 调用用户媒体设备, 访问摄像头
             let captureStream = null;
-            try{
+            try {
                 captureStream = await navigator.mediaDevices.getDisplayMedia(options);
-                mircophone = await navigator.mediaDevices.getUserMedia({audio:{
-                    noiseSuppression:true,
-                    echoCancellation:true
-                }});
-                let video = captureStream.getVideoTracks()[0];
-                captureStream = new MediaStream([video, mergeAudioTracks(captureStream, mircophone)]);
-            }catch(err){
+                mircophone = await navigator.mediaDevices.getUserMedia({
+                    video:true,
+                    audio: {
+                        noiseSuppression: true,
+                        echoCancellation: true
+                    }
+                });
+                let videoMedia = mergeVideoTracks(captureStream, mircophone);
+                captureStream = new MediaStream([videoMedia.getVideoTracks()[0], mergeAudioTracks(captureStream, mircophone)]);
+            } catch (err) {
                 createStreamError(err);
                 console.error(err);
                 return;
@@ -322,7 +398,7 @@ const SkyRTC = function () {
 
     // 将流绑定到video标签上用于输出
     skyrtc.prototype.attachStream = function (stream, domId) {
-        var element = document.getElementById(domId);
+        var element = document.getElementById(domId).getElementsByTagName("video")[0];
         if (navigator.mediaDevices.getUserMedia) {
             element.srcObject = stream;
         } else {
@@ -470,7 +546,7 @@ const SkyRTC = function () {
     skyrtc.prototype.addDataChannels = function () {
         var connection;
         for (connection in this.peerConnections) {
-            this.createDataChannel(connection);
+            this.createDataChannel(connection, "sendMsg");
         }
     };
 
@@ -515,12 +591,23 @@ const SkyRTC = function () {
                 that.parseFilePacket(json, socketId);
             } else {
                 that.emit('data_channel_message', channel, socketId, json.data);
+                that.broadcast(json.data);
             }
         };
 
         channel.onerror = function (err) {
             that.emit('data_channel_error', channel, socketId, err);
         };
+
+        // 发送直播间信息
+        channel.send(JSON.stringify({
+            type: "__info",
+            data: {
+                "teacherName":this.userId,
+                "courseName":this.courseName,
+                "startTimeStamp":this.startTimeStamp
+            }
+        }));
 
         this.dataChannels[socketId] = channel;
         return channel;

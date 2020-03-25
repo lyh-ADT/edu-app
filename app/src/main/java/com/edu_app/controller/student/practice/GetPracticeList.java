@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class GetPracticeList{
     private String uid;
     private String subject;
-    private Boolean getSuccess;
+    private Boolean getSuccess=null;
     private JSONArray data;
     private ArrayList<Practice> practiceList;
 
@@ -36,15 +36,23 @@ public class GetPracticeList{
                     e.printStackTrace();
                 }
             }
-        practiceList = new ArrayList<Practice>();
-            for(int i=0,len=data.size();i<len;i++){
-                JSONObject jsonObj = data.getJSONObject(0);
-                Practice practice = new Practice();
-                practice.setTitle(jsonObj.getString("practiceId"));
-                practice.setId(jsonObj.getString("practiceId"));
-                practice.setDone(jsonObj.getBoolean("isDone"));
-                practiceList.add(practice);
+            practiceList = new ArrayList<Practice>();
+            if(getSuccess){
+                for(int i=0,len=data.size();i<len;i++){
+                    JSONObject jsonObj = data.getJSONObject(0);
+                    Practice practice = new Practice();
+                    practice.setTitle(jsonObj.getString("practiceId"));
+                    practice.setId(jsonObj.getString("practiceId"));
+                    practice.setDone(jsonObj.getBoolean("isDone"));
+                    practiceList.add(practice);
 
+                }
+            }else {
+                Practice practice = new Practice();
+                practice.setTitle("获取失败");
+                practice.setId(null);
+                practice.setDone(null);
+                practiceList.add(practice);
             }
             return practiceList;
     }
@@ -55,7 +63,9 @@ public class GetPracticeList{
             String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetPracticeList", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             getSuccess = jsonObject.getBoolean("success");
-            data = jsonObject.getJSONArray("data");
+            if(getSuccess){
+                data = jsonObject.getJSONArray("data");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

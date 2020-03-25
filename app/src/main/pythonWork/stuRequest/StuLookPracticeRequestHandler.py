@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class StuLookPracticeRequestHandler(tornado.web.RequestHandler):
@@ -44,32 +46,30 @@ class StuLookPracticeRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
             """
             获取具体习题和老师答案,学生答案,学生成绩
             """
-            sql = """select StuId from StuPersonInfo where StuUid='{0}'""".format(
-                self.stuUid)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select StuId from StuPersonInfo where StuUid=%s"""
+
+            rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
             print(rs)
             if len(rs) == 1:
                 self.stuId = rs[0]["StuId"]
-                sql = "select ExamDetail,TeaAnswer,FullScore from PRACTICE where PracticeId='{0}'".format(
-                    self.practiceId)
-                rs = self.sqlhandler.executeQuerySQL(sql)
+                sql = "select ExamDetail,TeaAnswer,FullScore from PRACTICE where PracticeId=%s"
+
+                rs = self.sqlhandler.executeQuerySQL(sql, self.practiceId)
                 print(rs)
                 self.examDetail = rs[0]['ExamDetail']
                 self.teaAnswer = rs[0]['TeaAnswer']
                 self.fullScore = rs[0]['FullScore']
 
-                sql = "select ScoreDetail,StuScore,StuAnswer from SCORE where PracticeId='{0}' and StuId='{1}'".format(
-                    self.practiceId, self.stuId)
-                rs = self.sqlhandler.executeQuerySQL(sql)
+                sql = "select ScoreDetail,StuScore,StuAnswer from SCORE where PracticeId=%s and StuId=%s"
+
+                rs = self.sqlhandler.executeQuerySQL(sql, self.practiceId,
+                                                     self.stuId)
                 print(rs)
                 self.scoreDetail = rs[0]['ScoreDetail']
                 self.stuAnswer = rs[0]['StuAnswer']

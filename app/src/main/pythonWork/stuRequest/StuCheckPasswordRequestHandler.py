@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class StuCheckPasswordRequestHandler(tornado.web.RequestHandler):
@@ -36,17 +38,13 @@ class StuCheckPasswordRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该用户的课程信息
             """
-            sql = """select * from StuPersonInfo where StuUid='{0}' and StuPassword='{1}'""".format(
-                self.stuUid, self.stuPassword)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select * from StuPersonInfo where StuUid=%s and StuPassword=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql,self.stuUid, self.stuPassword)
             print(rs)
             if len(rs) == 1:
                 return True

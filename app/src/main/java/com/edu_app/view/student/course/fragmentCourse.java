@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
@@ -17,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.edu_app.R;
 import com.edu_app.controller.student.course.CourseMainController;
 import com.edu_app.controller.student.course.CourserFragmentAdapter;
+import com.edu_app.controller.student.course.TabSelectedListener;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class fragmentCourse extends Fragment {
         CourserFragmentAdapter adapter = new CourserFragmentAdapter(getFragmentManager(),fragments,tab_titles);
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
+        tablayout.addOnTabSelectedListener(new TabSelectedListener((AppCompatActivity) getActivity()));
     }
 
 

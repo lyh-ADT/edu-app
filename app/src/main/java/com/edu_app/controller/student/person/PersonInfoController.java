@@ -51,7 +51,16 @@ public class PersonInfoController implements View.OnClickListener {
                 getPersonInfo();
             }
         }).start();
-
+        while (this.getSuccess==null){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(!getSuccess){
+            showGetErrorDialog();
+        }
 
 
     }
@@ -110,10 +119,7 @@ public class PersonInfoController implements View.OnClickListener {
     private void showGetErrorDialog() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this.activity);
         dialog.setTitle("获取个人信息提示");
-        if (getSuccess.equals(false)) {
-            dialog.setMessage("获取个人信息失败");
-
-        }
+        dialog.setMessage("获取个人信息失败");
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -128,10 +134,8 @@ public class PersonInfoController implements View.OnClickListener {
         dialog.setTitle("设置个人信息提示");
         if (this.setSuccess.equals(true)) {
             dialog.setMessage("设置个人信息成功");
-
         } else {
             dialog.setMessage("设置个人信息失败");
-
         }
         dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
@@ -264,23 +268,26 @@ public class PersonInfoController implements View.OnClickListener {
             String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetInfo", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             this.getSuccess = jsonObject.getBoolean("success");
-            this.data = jsonObject.getJSONObject("data");
-            String userName = data.getString("StuName");
-            String userSex = data.getString("StuSex");
+            if(getSuccess){
+                this.data = jsonObject.getJSONObject("data");
+                String userName = data.getString("StuName");
+                String userSex = data.getString("StuSex");
 
-            String userAge = data.getString("StuAge");
-            String userAddress = data.getString("StuAddress");
-            String userQQ = data.getString("StuQQ");
-            String userPhone = data.getString("StuPhoneNumber");
-            String userId = data.getString("StuId");
-            Log.e("error",data.toString());
-            this.idEditText.setText(userId);
-            this.nameEditText.setText(userName);
-            this.ageEditText.setText(userAge);
-            this.addressEditText.setText(userAddress);
-            this.sexEditText.setText(userSex);
-            this.phoneEditText.setText(userPhone);
-            this.qqEditText.setText(userQQ);
+                String userAge = data.getString("StuAge");
+                String userAddress = data.getString("StuAddress");
+                String userQQ = data.getString("StuQQ");
+                String userPhone = data.getString("StuPhoneNumber");
+                String userId = data.getString("StuId");
+                Log.e("error",data.toString());
+                this.idEditText.setText(userId);
+                this.nameEditText.setText(userName);
+                this.ageEditText.setText(userAge);
+                this.addressEditText.setText(userAddress);
+                this.sexEditText.setText(userSex);
+                this.phoneEditText.setText(userPhone);
+                this.qqEditText.setText(userQQ);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

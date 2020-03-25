@@ -25,6 +25,8 @@
     <string name="coursePage_tab_2">数学课程</string>
     <string name="coursePage_tab_3">语文课程</string>
     <string name="coursePage_tab_4">英语课程</string>
+    <string name="coursePage_tab_5">其他课程</string>
+
     <string name="roomChat_tab_1">聊天记录</string>
     <string name="roomChat_tab_2">课程信息</string>
 

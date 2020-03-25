@@ -1,8 +1,11 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
+
 
 class StuPracticeRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -34,23 +37,20 @@ class StuPracticeRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
             """
             获取具体习题
             
             """
-            sql = """select StuId from StuPersonInfo where StuUid='{0}'""".format(
-                self.stuUid)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select StuId from StuPersonInfo where StuUid=%s"""
+
+            rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
             if len(rs) == 1:
-                sql = "select ExamDetail,TeaAnswer,FullScore from PRACTICE where PracticeId='{0}'".format(
-                    self.practiceId)
-                rs = self.sqlhandler.executeQuerySQL(sql)
+                sql = "select ExamDetail,TeaAnswer,FullScore from PRACTICE where PracticeId=%s"
+
+                rs = self.sqlhandler.executeQuerySQL(sql, self.practiceId)
                 self.examDetail = rs[0]['ExamDetail']
 
             return True

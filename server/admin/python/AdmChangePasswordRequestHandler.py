@@ -4,9 +4,10 @@ import tornado.httpclient
 import SqlHandler
 import json
 import utils
+import traceback
 
-class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
-    def get(self):
+class AdmChangePasswordRequestHandler(tornado.web.RequestHandler):
+    def post(self):
         """
         从数据库获取老师列表返回给管理员
         """
@@ -19,20 +20,23 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
             if not utils.isUIDValid(self):
                 self.write("no uid")
                 return
-            if self.getTeaList():
-                self.write(json.dumps(self.teaList if self.teaList is not None else {"length":0}))
+            self.old_psd = self.get_argument("comfirm")
+            self.new_psd = self.get_argument("newpsd")
+
+            if self.changePassword():
+                self.write("success")
                 self.finish()
             else:
                 raise RuntimeError
         except Exception as e:
-            print(e)
+            print(traceback.format_exc())
             self.write("error")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
 
-    def getTeaList(self):
+    def changePassword(self):
         """
         从数据库读取老师列表
         """
@@ -42,11 +46,9 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
                                                 DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
 
-            sql = "select TeaId,TeaName,TeaSex,TeaPhoneNumber,CLASS.CourseName as TeaClass from TeaPersonInfo, CLASS where TeaPersonInfo.TeaClass=CLASS.ClassId"
-
-            self.teaList = self.sqlhandler.executeQuerySQL(sql)
-
-            return True
+            sql = "update AdminAccount set AdminPassword='"+self.new_psd+"' where AdminPassword='"+self.old_psd+"' and UID='"+self.get_cookie("UID", "no")+"';"
+            print(sql)
+            return 1 == self.sqlhandler.update(sql)
         return False
 
 

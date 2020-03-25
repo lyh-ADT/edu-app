@@ -1,5 +1,6 @@
 import tornado
 from AdmLoginRequestHandler import AdmLoginRequestHandler
+from AdmChangePasswordRequestHandler import AdmChangePasswordRequestHandler
 from AdmGetClassListRequestHandler import AdmGetClassListRequestHandler
 from AdmDeleteClassRequestHandler import AdmDeleteClassRequestHandler
 from AdmAddTeaRequestHandler import AdmAddTeaRequestHandler
@@ -15,6 +16,7 @@ from AdmModifyTeaRequestHandler import AdmModifyTeaRequestHandler
 
 app = tornado.web.Application(handlers=[
     (r"/admin/login", AdmLoginRequestHandler),
+    (r"/admin/change-password", AdmChangePasswordRequestHandler),
     (r"/admin/classtable",AdmGetClassListRequestHandler),
     (r"/admin/deleteclass", AdmDeleteClassRequestHandler),
     (r"/admin/addclass", AdmAddClassRequestHandler),

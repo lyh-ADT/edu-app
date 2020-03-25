@@ -41,6 +41,7 @@
                 <a class="nav-item nav-link" href="#" onclick="goStudent();">学生</a>
             </div>
         </div>
+        <button class="btn btn-primary" onclick="changePassoword();">修改密码</button>
     </nav>
     <iframe id="frame" width="100%" style="border:0;" height="100%"></iframe>
 
@@ -51,6 +52,27 @@
     <script src="/bootstrap.min.js"></script>
     <script>
         goClass();
+
+        function changePassoword(){
+            $.ajax({
+                url:"/admin/change-password",
+                method:"POST",
+                data:{
+                    "comfirm":prompt("输入旧密码", ""),
+                    "newpsd":prompt("输入新密码", "")
+                },
+                success:function(data){
+                    if(data=="success"){
+                        alert("修改成功");
+                    }else{
+                        alert(data);
+                    }
+                },
+                error:function(){
+                    alert("网络异常，修改失败");
+                }
+            })
+        }
     </script>
 </body>
 

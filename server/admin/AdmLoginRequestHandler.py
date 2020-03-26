@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import uuid
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class AdmLoginRequestHandler(tornado.web.RequestHandler):
@@ -33,25 +35,20 @@ class AdmLoginRequestHandler(tornado.web.RequestHandler):
 
     def checkInfo(self):
 
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
-            sql = "select * from AdminAccount where AdminId='{0}' and AdminPassword='{1}'".format(
-                self.userId, self.userPassword)
-            if len(self.sqlhandler.executeQuerySQL(sql)) == 1:
+            sql = "select * from AdminAccount where AdminId=%s and AdminPassword=%s"
+            if len(
+                    self.sqlhandler.executeQuerySQL(sql, self.userId,
+                                                    self.userPassword)) == 1:
                 return True
         return False
 
     def saveUid(self, uid):
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
-            sql = "update AdminAccount set UID='{0}' WHERE AdminId='{1}';".format(uid, self.userId)
-            self.sqlhandler.executeOtherSQL(sql)
+            sql = "update AdminAccount set UID=%s WHERE AdminId=%s;"
+            self.sqlhandler.executeOtherSQL(sql, uid, self.userId)
 
 
 if __name__ == "__main__":

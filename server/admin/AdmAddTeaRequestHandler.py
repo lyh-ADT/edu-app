@@ -1,13 +1,16 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import utils
+import sys
+sys.path.append("..")
+import SqlHandler
 
-class AdmDeleteClassRequestHandler(tornado.web.RequestHandler):
-    def get(self):
+
+class AdmAddTeaRequestHandler(tornado.web.RequestHandler):
+    def post(self):
         """
-        从数据库删除班级信息
+        增加老师
 
         """
         try:
@@ -19,39 +22,42 @@ class AdmDeleteClassRequestHandler(tornado.web.RequestHandler):
             if not utils.isUIDValid(self):
                 self.write("no uid")
                 return
-            self.classId = self.get_argument("classId")
-            if self.deleteClass():
+            self.teaId = self.get_argument("teaId")
+            self.teaName = self.get_argument("teaName")
+            self.teaPassword = self.get_argument("teaPassword")
+            if self.AddTea():
+                self.set_status(200)
                 self.write("success")
                 self.finish()
             else:
                 raise RuntimeError
         except Exception as e:
             print(e)
+            self.set_status(403)
             self.write("error")
             self.finish()
         finally:
             if self.sqlhandler is not None:
                 self.sqlhandler.closeMySql()
 
-    def deleteClass(self):
+    def AddTea(self):
+        """
+        将老师信息写入数据库
+        """
+        self.sqlhandler = SqlHandler.SqlHandler()
 
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
         if self.sqlhandler.getConnection():
-
-            sql = "DELETE FROM CLASS where ClassId='{0}'".format(self.classId)
-
-            if self.sqlhandler.executeOtherSQL(sql):
+            sql = "INSERT INTO TeaPersonInfo(TeaId,TeaPassword,TeaName) VALUES(%s,%s,%s)"
+            print(sql)
+            if self.sqlhandler.executeOtherSQL(sql, self.teaId,
+                                               self.teaPassword, self.teaName):
                 return True
         return False
 
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(handlers=[(r"/",
-                                             AdmDeleteClassRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/", AdmAddTeaRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

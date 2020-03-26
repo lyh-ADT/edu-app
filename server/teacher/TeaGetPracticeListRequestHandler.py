@@ -1,10 +1,12 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import utils
 import json
 import traceback
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
@@ -20,7 +22,9 @@ class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
                 return
             if self.getTeaClass():
                 print(self.teaClassPractice)
-                self.write(json.dumps(self.teaClassPractice) if self.teaClassPractice is not None else "[]")
+                self.write(
+                    json.dumps(self.teaClassPractice)
+                    if self.teaClassPractice is not None else "[]")
                 self.finish()
             else:
                 raise RuntimeError
@@ -37,28 +41,28 @@ class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
         """
         返回老师的习题列表
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
             """
             查询班级列表
             """
             # 获取班级id
-            sql = "select * from (select ClassId,CourseName,Practice from CLASS where Teacher=(select TeaId from TeaPersonInfo where TeaUid='"+ self.UID +"')) as a inner join PRACTICE where FIND_IN_SET(PracticeId, a.Practice);"
-            classes = self.sqlhandler.executeQuerySQL(sql)
+            sql = "select * from (select ClassId,CourseName,Practice from CLASS where Teacher=(select TeaId from TeaPersonInfo where TeaUid=%s)) as a inner join PRACTICE where FIND_IN_SET(PracticeId, a.Practice);"
+            classes = self.sqlhandler.executeQuerySQL(sql, self.UID)
             print(classes)
             for rs in classes:
-                courseName = rs["CourseName"]
-                practiceId = str(rs["Practice"]).split(",")
                 self.teaClassPractice.append({
-                        "id":rs["PracticeId"],
-                        "classId":rs["ClassId"],
-                        "title":rs["PracticeId"],
-                        "fullScore":rs["FullScore"],
-                        "questions":json.loads(rs["ExamDetail"])
+                    "id":
+                    rs["PracticeId"],
+                    "classId":
+                    rs["ClassId"],
+                    "title":
+                    rs["PracticeId"],
+                    "fullScore":
+                    rs["FullScore"],
+                    "questions":
+                    json.loads(rs["ExamDetail"])
                 })
             print(self.teaClassPractice)
             return True
@@ -67,8 +71,8 @@ class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(handlers=[(r"/",
-                                             TeaGetPracticeListRequestHandler)])
+    app = tornado.web.Application(
+        handlers=[(r"/", TeaGetPracticeListRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

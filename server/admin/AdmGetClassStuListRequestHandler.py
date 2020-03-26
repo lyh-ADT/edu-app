@@ -1,10 +1,11 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
 import utils
-
+import sys
+sys.path.append("..")
+import SqlHandler
 class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
     def get(self):
         """
@@ -39,19 +40,15 @@ class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取班级学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该用户的信息 id+名字
             """
 
-            sql = "select Student from CLASS where ClassId='{0}'".format(
-                self.classId)
+            sql = "select Student from CLASS where ClassId=%s"
 
-            stuIdList = self.sqlhandler.executeQuerySQL(sql)[0]["Student"]
+            stuIdList = self.sqlhandler.executeQuerySQL(sql,self.classId)[0]["Student"]
             if stuIdList is None:
                 self.classStu = {"length":0}
                 return True

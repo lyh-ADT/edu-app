@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaCheckPasswordRequestHandler(tornado.web.RequestHandler):
@@ -36,17 +38,14 @@ class TeaCheckPasswordRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该用户的课程信息
             """
-            sql = """select * from TeaPersonInfo where TeaUid='{0}' and TeaPassword='{1}'""".format(
-                self.teaUid, self.teaPassword)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select * from TeaPersonInfo where TeaUid=%s and TeaPassword=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql, self.teaUid,
+                                                 self.teaPassword)
             print(rs)
             if len(rs) == 1:
                 return True

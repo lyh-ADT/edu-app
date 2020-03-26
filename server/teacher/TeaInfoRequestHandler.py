@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaInfoRequestHandler(tornado.web.RequestHandler):
@@ -15,9 +17,9 @@ class TeaInfoRequestHandler(tornado.web.RequestHandler):
             print("收到获取教师信息的请求")
             self.sqlhandler = None
 
-            body = json.loads(self.request.body)          
+            body = json.loads(self.request.body)
             self.TeaUid = body["teaUid"]
-           
+
             if self.getTeaInfo():
                 self.write({"success": True, "data": self.TeaInfo})
                 self.finish()
@@ -35,23 +37,17 @@ class TeaInfoRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取教师信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该用户的信息
             """
-            sql = """select TeaId,TeaName,TeaPassword,TeaSex,TeaAge,TeaQQ,TeaPhoneNumber,TeaAddress from TeaPersonInfo where TeaUid='{0}'""".format(
-                self.TeaUid)
-            rs = self.sqlhandler.executeQuerySQL(
-                    sql)
-            if len(rs)==1:
+            sql = """select TeaId,TeaName,TeaPassword,TeaSex,TeaAge,TeaQQ,TeaPhoneNumber,TeaAddress from TeaPersonInfo where TeaUid=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql, self.TeaUid)
+            if len(rs) == 1:
                 # 获取键值对
-                
+
                 self.TeaInfo = rs[0]
                 return True
         return False
-
 

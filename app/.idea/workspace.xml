@@ -12,26 +12,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/addcourse.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/bg_gradient_blue.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/bg_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/admin/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/teacher/person/PersonMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/teacher/person/PersonMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/activityStuFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/activityStuFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/view/teacher/person/activityContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/view/teacher/person/activityContactService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/view/teacher/person/activityPersonCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/view/teacher/person/fragmentPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/view/teacher/person/fragmentPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_function.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_function.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_contactservice.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_contactservice.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_person.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_person.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_live.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_live.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_teacher_person.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_teacher_person.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmAddClassRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmAddClassRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmAddTeaRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmAddTeaRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmChangePasswordRequestHandler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmDeleteClassRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmDeleteClassRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmDeleteClassStuRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmDeleteClassStuRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmDeleteStuRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmDeleteStuRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmDeleteTeaRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmDeleteTeaRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmGetClassListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmGetClassListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmGetClassStuListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmGetClassStuListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmGetClassTeaRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmGetClassTeaRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmGetStudentListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmGetStudentListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmGetTeaListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmGetTeaListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmLoginRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmLoginRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmModifyClassRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmModifyClassRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/AdmModifyTeaRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/AdmModifyTeaRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/SqlHandler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/TODO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/admin/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/admin/python/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/SqlHandler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaCheckPasswordRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaCheckPasswordRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaCorrectPracticeRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaCorrectPracticeRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaDeletePracticeRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaDeletePracticeRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaGetClassListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaGetClassListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaGetPracticeListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaGetPracticeListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaGetPracticeRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaGetPracticeRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaGetStuPracticeAnswerListRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaGetStuPracticeAnswerListRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaInfoRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaInfoRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaLookStuPracticeRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaLookStuPracticeRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaPushPracticeRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaPushPracticeRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/TeaSetInfoRequestHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/TeaSetInfoRequestHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/teacher/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/teacher/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +85,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="ac41226d" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -87,40 +131,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_register.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_info.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6225">
-              <caret line="249" column="57" selection-start-line="249" selection-start-column="6" selection-end-line="249" selection-end-column="57" />
+            <state relative-caret-position="1305">
+              <caret line="218" column="57" selection-start-line="218" selection-start-column="57" selection-end-line="218" selection-end-column="57" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="43" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/addcourse.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_course.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_course_code.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_live.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="100">
+              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_gradient_blue.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" selection-start-line="1" selection-end-line="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -129,8 +188,39 @@
         <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_login.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1250">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="750">
+              <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+              <folding>
+                <element signature="e#1077#1098#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/pracitce/fragmentPractice.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/pracitce/activitySubjectMath.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="65" column="47" lean-forward="true" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -140,9 +230,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -182,19 +272,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_nodejs.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/IViewCallback.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioChatController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/fragmentCourse.java" />
-        <option value="$PROJECT_DIR$/src/main/res/font/fragment_stu_course_roomchatmsg.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatFragmentAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatRoomActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_chat_room.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_room_control_single.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/ExamAdapter.java" />
@@ -209,7 +286,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatController.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatuser.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ProxyVideoSink.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" />
@@ -231,6 +307,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/bg_gradient_blue.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/bg_main.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_teacher_person.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_info.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_contactservice.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_person.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_function.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_login.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/activityStuFunction.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/addcourse_click.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/addcourse.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_live.xml" />
       </list>
     </option>
   </component>
@@ -277,6 +369,92 @@
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu_app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu_app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="controller" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu_app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="controller" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="student" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu_app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="view" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu_app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="view" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="student" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="com" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="edu_app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="view" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="student" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="pracitce" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -296,6 +474,42 @@
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="layout" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="mipmap" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="mipmap-anydpi-v26" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="mipmap-hdpi" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="res" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="mipmap-mdpi" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -717,7 +931,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585145091646</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml&#10;#&#9;app/src/main/res/mipmap-hdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-mdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xhdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xxhdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xxxhdpi/ic_launcher.png&#10;#&#9;server/admin/AdmChangePasswordRequestHandler.py&#10;#&#9;server/admin/AdmGetClassTeaRequestHandler.py&#10;#&#9;server/admin/python/SqlHandler.py">
+      <created>1585218163101</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1585218163101</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView">
@@ -731,6 +952,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
       <window_info id="Structure" order="1" sideWeight="0.508046" side_tool="true" weight="0.31770834" />
@@ -740,16 +962,16 @@
       <window_info id="Designer" order="5" />
       <window_info id="Resources Explorer" order="6" sideWeight="0.49408284" weight="0.31770834" />
       <window_info id="Capture Tool" order="7" />
-      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.5015432" side_tool="true" visible="true" weight="0.2747396" />
+      <window_info active="true" content_ui="combo" id="Project" order="8" sideWeight="0.5015432" side_tool="true" visible="true" weight="0.2747396" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49932432" weight="0.94135803" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49932432" weight="0.94135803" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44753087" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3287037" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006757" side_tool="true" weight="0.94135803" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="6" sideWeight="0.49932432" visible="true" weight="0.53846157" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49932432" weight="0.53846157" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932432" weight="0.47685185" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.7191358" />
       <window_info anchor="right" id="Device File Explorer" order="0" sideWeight="0.5015432" side_tool="true" weight="0.32972974" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -844,7 +1066,8 @@
     <MESSAGE value="# 修复一条消息显示两次" />
     <MESSAGE value="# 增加显示课程信息&#10;# 修复tabTitle不显示&#10;# 修复显示消息崩溃" />
     <MESSAGE value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" />
+    <MESSAGE value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml&#10;#&#9;app/src/main/res/mipmap-hdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-mdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xhdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xxhdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xxxhdpi/ic_launcher.png&#10;#&#9;server/admin/AdmChangePasswordRequestHandler.py&#10;#&#9;server/admin/AdmGetClassTeaRequestHandler.py&#10;#&#9;server/admin/python/SqlHandler.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml&#10;#&#9;app/src/main/res/mipmap-hdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-mdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xhdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xxhdpi/ic_launcher.png&#10;#&#9;app/src/main/res/mipmap-xxxhdpi/ic_launcher.png&#10;#&#9;server/admin/AdmChangePasswordRequestHandler.py&#10;#&#9;server/admin/AdmGetClassTeaRequestHandler.py&#10;#&#9;server/admin/python/SqlHandler.py" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -854,210 +1077,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_chinese.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatuser.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/792464df520ade0cf7ae13a7404b45a7/jetified-google-webrtc-1.0.28262/jars/classes.jar!/org/webrtc/RendererCommon.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatFragmentAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/792464df520ade0cf7ae13a7404b45a7/jetified-google-webrtc-1.0.28262/jars/classes.jar!/org/webrtc/VideoSink.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/AsyncPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3312">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/792464df520ade0cf7ae13a7404b45a7/jetified-google-webrtc-1.0.28262/jars/classes.jar!/org/webrtc/SurfaceViewRenderer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="40" column="22" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/792464df520ade0cf7ae13a7404b45a7/jetified-google-webrtc-1.0.28262/jars/classes.jar!/org/webrtc/EglBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="97" column="20" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ProxyVideoSink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2875">
-          <caret line="172" column="22" selection-start-line="172" selection-start-column="22" selection-end-line="172" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/bean/MediaType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/bean/MemberBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/bean/MyIceServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/VideoProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14000">
-          <caret line="632" column="40" selection-start-line="632" selection-start-column="40" selection-end-line="632" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/IViewCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/utils/PermissionUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_chat_single.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/teacher/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourserFragmentAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1224,6 +1243,188 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_register.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="242" column="35" lean-forward="true" selection-start-line="242" selection-start-column="35" selection-end-line="242" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap/ic_head.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/ic_launcher-web.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-anydpi-v26/ic_launcher.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher_round.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-hdpi/ic_launcher_foreground.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/mipmap-mdpi/ic_launcher_foreground.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_course_code.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_contactservice.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_function.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_person.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="20" column="78" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="20" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_teacher_person.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/activityStuFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="71" column="46" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+          <folding>
+            <element signature="e#1077#1098#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_info.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="218" column="57" selection-start-line="218" selection-start-column="57" selection-end-line="218" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_gradient_blue.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" selection-start-line="1" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/btn_voice_mute.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/addcourse_click.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/addcourse.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="43" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_course.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/pracitce/activitySubjectMath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="65" column="47" lean-forward="true" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/pracitce/fragmentPractice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_live.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
         </state>
       </provider>
     </entry>

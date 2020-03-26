@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import utils
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
@@ -15,7 +17,7 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
             if not utils.isUIDValid(self):
                 self.write("no uid")
                 return
-                
+
             utils.parseJsonRequestBody(self)
             self.stuId = self.args["stuId"]
             self.stuScore = self.args["stuScore"]
@@ -38,17 +40,15 @@ class TeaCorrectPracticeRequestHandler(tornado.web.RequestHandler):
         """
         将分数成绩存放到数据库
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             插入信息
             """
-            sql = """UPDATE SCORE SET StuScore='{2}', ScoreDetail='{3}' WHERE PracticeId='{0}' AND StuId='{1}';""".format(
-                self.practiceId, self.stuId, self.stuScore, self.scoreDetail)
-            if self.sqlhandler.executeOtherSQL(sql):
+            sql = """UPDATE SCORE SET StuScore=%s, ScoreDetail=%s WHERE PracticeId=%s AND StuId=%s;"""
+            if self.sqlhandler.executeOtherSQL(sql, self.stuScore,
+                                               self.scoreDetail,
+                                               self.practiceId, self.stuId):
                 return True
         return False
 

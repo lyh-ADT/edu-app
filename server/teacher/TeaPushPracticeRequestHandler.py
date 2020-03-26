@@ -1,10 +1,11 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import utils
 import json
-
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):

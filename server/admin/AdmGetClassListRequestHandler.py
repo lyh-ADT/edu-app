@@ -1,9 +1,11 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
 import utils
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
@@ -37,10 +39,7 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取班级学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询所有班级

@@ -1,6 +1,8 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
+import sys
+sys.path.append("..")
 import SqlHandler
 
 
@@ -31,24 +33,21 @@ class AdmGetClassTeaRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取班级老师信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             查询该老师的信息 id+名字
             """
 
-            sql = "select Teacher from CLASS where ClassId='{0}'".format(
-                self.classId)
-
+            sql = "select Teacher from CLASS where ClassId=%s"
             teaIdList = str(
-                self.sqlhandler.executeQuerySQL(sql)[0]["Teacher"]).split(",")
+                self.sqlhandler.executeQuerySQL(
+                    sql, self.classId)[0]["Teacher"]).split(",")
 
             for teaId in teaIdList:
-                sql = "select TeaName from TeaPersonInfo where TeaId='" + teaId + "'"
-                teaName = self.sqlhandler.executeQuerySQL(sql)[0]["TeaName"]
+                sql = "select TeaName from TeaPersonInfo where TeaId=%s"
+                teaName = self.sqlhandler.executeQuerySQL(sql,
+                                                          teaId)[0]["TeaName"]
                 self.classStu.update({teaId: teaName})
 
             return True

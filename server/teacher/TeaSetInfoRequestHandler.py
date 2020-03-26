@@ -1,9 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
-
+import sys
+sys.path.append("..")
+import SqlHandler
 
 class TeaSetInfoRequestHandler(tornado.web.RequestHandler):
     def post(self):
@@ -44,28 +45,26 @@ class TeaSetInfoRequestHandler(tornado.web.RequestHandler):
         """
         给学生设置个人信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
-            sql = """select * from TeaPersonInfo where TeaUid='{0}'""".format(
-                self.teaUid)
-            rs = self.sqlhandler.executeQuerySQL(sql)
+            sql = """select * from TeaPersonInfo where TeaUid=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql, self.teaUid)
             if len(rs) == 1:
 
-                sql = """UPDATE TeaPersonInfo SET TeaName='{1}',
-                TeaSex='{2}',
-                TeaAge='{3}',
-                TeaPassword='{4}',
-                TeaPhoneNumber='{5}',
-                TeaQQ='{6}',
-                TeaAddress='{7}' where TeaUid='{0}'""".format(
-                    self.teaUid, self.teaName, self.teaSex, self.teaAge,
-                    self.teaPassword, self.teaPhoneNumber, self.teaQQ,
-                    self.teaAddress)
-              
-                if self.sqlhandler.executeOtherSQL(sql):
+                sql = """UPDATE TeaPersonInfo SET TeaName=%s,
+                TeaSex=%s,
+                TeaAge=%s,
+                TeaPassword=%s,
+                TeaPhoneNumber=%s,
+                TeaQQ=%s,
+                TeaAddress=%s where TeaUid=%s"""
+
+                if self.sqlhandler.executeOtherSQL(sql, self.teaName,
+                                                   self.teaSex, self.teaAge,
+                                                   self.teaPassword,
+                                                   self.teaPhoneNumber,
+                                                   self.teaQQ, self.teaAddress,
+                                                   self.teaUid):
                     return True
 
         return False

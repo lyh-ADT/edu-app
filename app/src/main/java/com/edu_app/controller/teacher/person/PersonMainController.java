@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.edu_app.R;
 import com.edu_app.view.teacher.person.activityContactService;
-import com.edu_app.view.teacher.person.activityPersonCourse;
 import com.edu_app.view.teacher.person.activityPersonInfo;
 
 public class PersonMainController implements View.OnClickListener {
@@ -26,10 +25,6 @@ public class PersonMainController implements View.OnClickListener {
             case R.id.personPage_stuInfo:
                 intent.setClass(activity,activityPersonInfo.class);
                 break;
-            case R.id.personPage_stuCourse:
-                intent.setClass(activity,activityPersonCourse.class);
-                break;
-
             case R.id.personPage_contactCS:
 
                 intent.setClass(activity,activityContactService.class);

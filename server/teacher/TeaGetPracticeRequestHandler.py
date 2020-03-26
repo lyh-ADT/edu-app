@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import json
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
@@ -17,7 +19,9 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
             self.practiceId = self.get_argument("practiceId")
             if self.getStuPractice():
                 print(self.practicelist)
-                self.write(json.dumps(self.practicelist) if len(self.practicelist) > 0 else "[]")
+                self.write(
+                    json.dumps(self.practicelist
+                               ) if len(self.practicelist) > 0 else "[]")
                 self.finish()
             else:
                 raise RuntimeError
@@ -33,10 +37,7 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
         """
         返回班级本次所有学生习题列表
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
             """
@@ -44,28 +45,30 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
             """
             # 获取班级学生
 
-            sql = "select Student from CLASS where ClassId='" + self.classId + "'"
+            sql = "select Student from CLASS where ClassId=%s"
             stuIdList = str(
-                self.sqlhandler.executeQuerySQL(sql)[0]['Student']).split(',')
-
+                self.sqlhandler.executeQuerySQL(
+                    sql, self.classId)[0]['Student']).split(',')
 
             for stuId in stuIdList:
                 if stuId == "None":
                     break
                 # 判断该学生的某次习题是否被改过
-                sql = """select * from SCORE where PracticeId='{0}' and StuId='{1}'""".format(
-                    self.practiceId, stuId)
+                sql = """select * from SCORE where PracticeId=%s and StuId=%s"""
                 print(sql)
-                if len(self.sqlhandler.executeQuerySQL(sql)) == 1:
+                if len(
+                        self.sqlhandler.executeQuerySQL(
+                            sql, self.practiceId, stuId)) == 1:
                     isDone = True
                 else:
                     isDone = False
-                sql = """select StuName from StuPersonInfo where StuId='{0}';""".format(stuId)
-                stuName = self.sqlhandler.executeQuerySQL(sql)[0]['StuName']
+                sql = """select StuName from StuPersonInfo where StuId=%s;"""
+                stuName = self.sqlhandler.executeQuerySQL(sql,
+                                                          stuId)[0]['StuName']
                 self.practicelist.append({
-                    "practiceId":self.practiceId,
-                    "stuId" : stuId,
-                    "stuName":stuName,
+                    "practiceId": self.practiceId,
+                    "stuId": stuId,
+                    "stuName": stuName,
                     "isDone": isDone
                 })
             return True
@@ -74,8 +77,8 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(
-        handlers=[(r"/", TeaGetPracticeRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/",
+                                             TeaGetPracticeRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

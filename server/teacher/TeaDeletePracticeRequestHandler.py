@@ -1,10 +1,11 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import utils
 import json
-
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class TeaDeletePracticeRequestHandler(tornado.web.RequestHandler):
@@ -39,25 +40,25 @@ class TeaDeletePracticeRequestHandler(tornado.web.RequestHandler):
         """
         从数据库读取学生信息
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
             """
             插入信息
             """
-            
-            sql = "delete from PRACTICE where PracticeId='{0}';".format(self.practiceId)
-            sql2 = "UPDATE CLASS SET Practice=REPLACE(REPLACE(Practice, '{0}', ''), ',,', ',') WHERE ClassId='{1}';".format(self.practiceId, self.classId)
-            if self.sqlhandler.executeOtherSQL(sql) and self.sqlhandler.executeOtherSQL(sql2):
+
+            sql = "delete from PRACTICE where PracticeId=%s;"
+            sql2 = "UPDATE CLASS SET Practice=REPLACE(REPLACE(Practice, %s, ''), ',,', ',') WHERE ClassId=%s;"
+            if self.sqlhandler.executeOtherSQL(
+                    sql, self.practiceId) and self.sqlhandler.executeOtherSQL(
+                        sql2, self.practiceId, self.classId):
                 return True
         return False
 
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(handlers=[(r"/", TeaDeletePracticeRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/",
+                                             TeaDeletePracticeRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

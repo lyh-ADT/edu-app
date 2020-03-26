@@ -1,6 +1,8 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
+import sys
+sys.path.append("..")
 import SqlHandler
 
 
@@ -32,27 +34,25 @@ class TeaLookStuPracticeRequestHandler(tornado.web.RequestHandler):
         """
         返回某个学生某个练习题
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
             """
             查询练习题和成绩
             """
 
-            sql = """select ScoreDetail,FullScore from SCORE where PracticeId='{0}' and StuId='{1}'""".format(
-                self.practiceId, self.stuId)
+            sql = """select ScoreDetail,FullScore from SCORE where PracticeId=%s and StuId=%s"""
             # print(sql)
-            self.stuScore = dict(self.sqlhandler.executeQuerySQL(sql)[0])
+            self.stuScore = dict(
+                self.sqlhandler.executeQuerySQL(sql, self.practiceId,
+                                                self.stuId)[0])
 
-            sql = """select ExamDetail from PRACTICE where PracticeId='{0}'""".format(
-                self.practiceId)
-            self.stuExam = dict(self.sqlhandler.executeQuerySQL(sql)[0])
+            sql = """select ExamDetail from PRACTICE where PracticeId=%s"""
+            self.stuExam = dict(
+                self.sqlhandler.executeQuerySQL(sql, self.practiceId)[0])
 
             self.stuScoreExamDetail.update(self.stuScore, self.stuExam)
-        
+
             return True
         return False
 

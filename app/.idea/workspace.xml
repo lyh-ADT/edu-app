@@ -12,26 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/bg_course_code.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/捕获.PNG" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,9 +76,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -132,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_nodejs.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/IViewCallback.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioChatController.java" />
@@ -159,7 +144,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatController.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatuser.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ProxyVideoSink.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" />
@@ -181,6 +165,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_register.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/bg_course_code.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml" />
       </list>
     </option>
   </component>
@@ -192,10 +180,39 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -322,48 +339,6 @@
               <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
               <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="python" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -647,7 +622,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585145091646</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/src/main/java/com/edu_app/model/student/ChatCourseInfo.java&#10;#&#9;app/src/main/java/com/edu_app/model/student/ChatData.java&#10;#&#9;app/src/main/java/com/edu_app/model/student/ChatMsg.java&#10;#&#9;app/src/main/java/com/edu_app/model/student/VedioInfo.java">
+      <created>1585189758504</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1585189758504</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Squashed commit of the following:&#10;&#10;commit ba9cc3bd14f838308e29145bf633549ce34f9de3&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 26 10:29:18 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatCourseInfo.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatData.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatMsg.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/VedioInfo.java&#10;&#10;commit 5bc4c9bf4cba641f4c6aa89591cf717f23190385&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 26 10:23:05 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;    #&#9;app/src/main/res/layout/fragment_login.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit 4671b3122f834353d81ff2fb10d81e74ebae2e80&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 21:09:46 2020 +0800&#10;&#10;    修复学生显示同一个练习的bug，修改使用md5传递密码&#10;&#10;commit f0da8e2d8c9659ce14ca9c8451db067d5d56463a&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 18:16:07 2020 +0800&#10;&#10;    合并服务端文件的存放位置&#10;&#10;commit dc7e844fce49f2492508206994449c462b2140bc&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Wed Mar 25 17:55:44 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;    #&#9;app/src/main/res/layout/fragment_login.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit 113560d55a9d8c7833d8793b86664daa19f202ff&#10;Merge: 798d900 1f38202&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 17:45:20 2020 +0800&#10;&#10;    Merge branch 'dev' of github.com:lyh-ADT/edu-app into dev&#10;&#10;commit 798d900dc9afc84d35f73a3f5eca7bc72af31702&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 17:41:26 2020 +0800&#10;&#10;    merge lyh&#10;    &#10;    直播平台完成&#10;    美化登陆界面&#10;    管理系统添加修改账号密码、不可修改班级邀请码&#10;&#10;commit 1f38202c8e948e5227ab266dd58371c2b4e92914&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 24 22:32:24 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/res/values/strings.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit f6d74984ff775e59df3032a9abce570badc843e3&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sat Mar 21 19:15:18 2020 +0800&#10;&#10;    生成apk&#10;&#10;commit c464571c1761e90169b3b838cecb1747327195ab&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sat Mar 21 19:14:43 2020 +0800&#10;&#10;    更新教师直播平台，消息、uuid检测、静音、摄像头画面&#10;&#10;commit 30bb6e33136c2a32339c2efb413adf2674473069&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 18:11:16 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/src/main/java/com/edu_app/vediochat/WebRTCManager.java&#10;    #&#9;app/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java&#10;    #&#9;app/src/main/res/layout/activity_chat_single.xml&#10;&#10;commit 41afce7f67480706ceb4ea9648628b0d3272c740&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 18:10:29 2020 +0800&#10;&#10;    # 增加显示课程信息&#10;    # 修复tabTitle不显示&#10;    # 修复显示消息崩溃&#10;    # 增加悬浮按钮&#10;&#10;commit e8fb9d8fa946f794c104109c5a7322557cc124dd&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 14:21:30 2020 +0800&#10;&#10;    # 增加显示课程信息&#10;    # 修复tabTitle不显示&#10;    # 修复显示消息崩溃&#10;&#10;commit d1cb6bc8efd4e72075efa33a6b0ca168f2191887&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 22:50:07 2020 +0800&#10;&#10;    # 修改聊天界面为约束百分比布局&#10;&#10;commit 2b8a6485acd13e730f6f48d2eae0c6131514ffae&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 22:39:36 2020 +0800&#10;&#10;    # 修改聊天界面为约束百分比布局&#10;&#10;commit 7a1eaa80f0423fd748bcb2db5ffd288fecea70d5&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 12:05:42 2020 +0800&#10;&#10;    # 更改在加入房间时发送uuid&#10;&#10;commit 5be237d4a3e10a982d8a2a36b01942f1d5542fff&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 11:20:28 2020 +0800&#10;&#10;    # 打开通话界面发送uuid&#10;&#10;commit 7bb5723eec5ab202ef4670a04b3c27ea11c25cdf&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sun Mar 15 17:54:57 2020 +0800&#10;&#10;    #增加发送消息&#10;&#10;commit 7d9cf6cd2b5e4baa2de487f3778b98c8e3e630bb&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sun Mar 15 16:11:06 2020 +0800&#10;&#10;    #更改视图 增加聊天和用户视图&#10;&#10;commit 9c427a095945dfa8fd98b073ad535fb0ce894f3b&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 5 18:53:18 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/gradle.xml&#10;    #&#9;app/.idea/workspace.xml&#10;&#10;commit e9eb8129fa03b015dfea9f4827c84c71d7bac647&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 4 00:05:25 2020 +0800&#10;&#10;    教师直播平台添加老师旁观功能&#10;    客户端添加不显示旁观老师的逻辑&#10;&#10;commit 79e64f665c21a9e1440e5c09eb648400d3a9dfae&#10;Merge: 57e7003 4766bde&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 4 00:01:37 2020 +0800&#10;&#10;    Merge remote-tracking branch 'origin/dev' into dev&#10;&#10;commit 4766bdebd39351d7881187ef0f6b81acde096985&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 3 20:18:21 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/misc.xml&#10;&#10;commit d168410e36b9a4c1b25e8ad0f2d35df970641b2f&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 3 20:17:13 2020 +0800&#10;&#10;    Squashed commit of the following:&#10;    &#10;    commit 0b8de5c99dea97e140519c1785e2cb11a6cce5a2&#10;    Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;    Date:   Sun Mar 1 21:10:08 2020 +0800&#10;    &#10;        学生直播端一对一辅导取消远端画面镜像&#10;&#10;commit 57e7003010e5d96a4dbe0335c1077ce16a96c782&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sun Mar 1 23:45:11 2020 +0800&#10;&#10;    生成apk，修改AndroidManifest&#10;&#10;commit 0b8de5c99dea97e140519c1785e2cb11a6cce5a2&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sun Mar 1 21:10:08 2020 +0800&#10;&#10;    学生直播端一对一辅导取消远端画面镜像">
+      <created>1585189842894</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1585189842894</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -670,16 +659,16 @@
       <window_info id="Designer" order="5" />
       <window_info id="Resources Explorer" order="6" sideWeight="0.49408284" weight="0.31770834" />
       <window_info id="Capture Tool" order="7" />
-      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.5015432" side_tool="true" visible="true" weight="0.29101562" />
+      <window_info active="true" content_ui="combo" id="Project" order="8" sideWeight="0.5015432" side_tool="true" visible="true" weight="0.2747396" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49932432" weight="0.94135803" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49932432" weight="0.94135803" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44753087" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3287037" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006757" side_tool="true" weight="0.94135803" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49932432" weight="0.3287037" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932432" weight="0.47685185" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49932432" weight="0.32840237" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932432" weight="0.47633135" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.7191358" />
       <window_info anchor="right" id="Device File Explorer" order="0" sideWeight="0.5015432" side_tool="true" weight="0.32972974" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -688,7 +677,7 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Preview" order="5" />
       <window_info active="true" anchor="right" id="Assistant" order="6" visible="true" weight="0.32972974" />
-      <window_info active="true" anchor="right" id="simpleUML" order="7" sideWeight="0.49845678" visible="true" weight="0.6842448" />
+      <window_info anchor="right" id="simpleUML" order="7" sideWeight="0.49845678" weight="0.6842448" />
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
@@ -774,7 +763,9 @@
     <MESSAGE value="# 修复一条消息显示两次" />
     <MESSAGE value="# 增加显示课程信息&#10;# 修复tabTitle不显示&#10;# 修复显示消息崩溃" />
     <MESSAGE value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" />
+    <MESSAGE value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/src/main/java/com/edu_app/model/student/ChatCourseInfo.java&#10;#&#9;app/src/main/java/com/edu_app/model/student/ChatData.java&#10;#&#9;app/src/main/java/com/edu_app/model/student/ChatMsg.java&#10;#&#9;app/src/main/java/com/edu_app/model/student/VedioInfo.java" />
+    <MESSAGE value="Squashed commit of the following:&#10;&#10;commit ba9cc3bd14f838308e29145bf633549ce34f9de3&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 26 10:29:18 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatCourseInfo.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatData.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatMsg.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/VedioInfo.java&#10;&#10;commit 5bc4c9bf4cba641f4c6aa89591cf717f23190385&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 26 10:23:05 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;    #&#9;app/src/main/res/layout/fragment_login.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit 4671b3122f834353d81ff2fb10d81e74ebae2e80&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 21:09:46 2020 +0800&#10;&#10;    修复学生显示同一个练习的bug，修改使用md5传递密码&#10;&#10;commit f0da8e2d8c9659ce14ca9c8451db067d5d56463a&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 18:16:07 2020 +0800&#10;&#10;    合并服务端文件的存放位置&#10;&#10;commit dc7e844fce49f2492508206994449c462b2140bc&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Wed Mar 25 17:55:44 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;    #&#9;app/src/main/res/layout/fragment_login.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit 113560d55a9d8c7833d8793b86664daa19f202ff&#10;Merge: 798d900 1f38202&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 17:45:20 2020 +0800&#10;&#10;    Merge branch 'dev' of github.com:lyh-ADT/edu-app into dev&#10;&#10;commit 798d900dc9afc84d35f73a3f5eca7bc72af31702&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 17:41:26 2020 +0800&#10;&#10;    merge lyh&#10;    &#10;    直播平台完成&#10;    美化登陆界面&#10;    管理系统添加修改账号密码、不可修改班级邀请码&#10;&#10;commit 1f38202c8e948e5227ab266dd58371c2b4e92914&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 24 22:32:24 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/res/values/strings.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit f6d74984ff775e59df3032a9abce570badc843e3&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sat Mar 21 19:15:18 2020 +0800&#10;&#10;    生成apk&#10;&#10;commit c464571c1761e90169b3b838cecb1747327195ab&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sat Mar 21 19:14:43 2020 +0800&#10;&#10;    更新教师直播平台，消息、uuid检测、静音、摄像头画面&#10;&#10;commit 30bb6e33136c2a32339c2efb413adf2674473069&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 18:11:16 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/src/main/java/com/edu_app/vediochat/WebRTCManager.java&#10;    #&#9;app/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java&#10;    #&#9;app/src/main/res/layout/activity_chat_single.xml&#10;&#10;commit 41afce7f67480706ceb4ea9648628b0d3272c740&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 18:10:29 2020 +0800&#10;&#10;    # 增加显示课程信息&#10;    # 修复tabTitle不显示&#10;    # 修复显示消息崩溃&#10;    # 增加悬浮按钮&#10;&#10;commit e8fb9d8fa946f794c104109c5a7322557cc124dd&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 14:21:30 2020 +0800&#10;&#10;    # 增加显示课程信息&#10;    # 修复tabTitle不显示&#10;    # 修复显示消息崩溃&#10;&#10;commit d1cb6bc8efd4e72075efa33a6b0ca168f2191887&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 22:50:07 2020 +0800&#10;&#10;    # 修改聊天界面为约束百分比布局&#10;&#10;commit 2b8a6485acd13e730f6f48d2eae0c6131514ffae&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 22:39:36 2020 +0800&#10;&#10;    # 修改聊天界面为约束百分比布局&#10;&#10;commit 7a1eaa80f0423fd748bcb2db5ffd288fecea70d5&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 12:05:42 2020 +0800&#10;&#10;    # 更改在加入房间时发送uuid&#10;&#10;commit 5be237d4a3e10a982d8a2a36b01942f1d5542fff&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 11:20:28 2020 +0800&#10;&#10;    # 打开通话界面发送uuid&#10;&#10;commit 7bb5723eec5ab202ef4670a04b3c27ea11c25cdf&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sun Mar 15 17:54:57 2020 +0800&#10;&#10;    #增加发送消息&#10;&#10;commit 7d9cf6cd2b5e4baa2de487f3778b98c8e3e630bb&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sun Mar 15 16:11:06 2020 +0800&#10;&#10;    #更改视图 增加聊天和用户视图&#10;&#10;commit 9c427a095945dfa8fd98b073ad535fb0ce894f3b&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 5 18:53:18 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/gradle.xml&#10;    #&#9;app/.idea/workspace.xml&#10;&#10;commit e9eb8129fa03b015dfea9f4827c84c71d7bac647&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 4 00:05:25 2020 +0800&#10;&#10;    教师直播平台添加老师旁观功能&#10;    客户端添加不显示旁观老师的逻辑&#10;&#10;commit 79e64f665c21a9e1440e5c09eb648400d3a9dfae&#10;Merge: 57e7003 4766bde&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 4 00:01:37 2020 +0800&#10;&#10;    Merge remote-tracking branch 'origin/dev' into dev&#10;&#10;commit 4766bdebd39351d7881187ef0f6b81acde096985&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 3 20:18:21 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/misc.xml&#10;&#10;commit d168410e36b9a4c1b25e8ad0f2d35df970641b2f&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 3 20:17:13 2020 +0800&#10;&#10;    Squashed commit of the following:&#10;    &#10;    commit 0b8de5c99dea97e140519c1785e2cb11a6cce5a2&#10;    Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;    Date:   Sun Mar 1 21:10:08 2020 +0800&#10;    &#10;        学生直播端一对一辅导取消远端画面镜像&#10;&#10;commit 57e7003010e5d96a4dbe0335c1077ce16a96c782&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sun Mar 1 23:45:11 2020 +0800&#10;&#10;    生成apk，修改AndroidManifest&#10;&#10;commit 0b8de5c99dea97e140519c1785e2cb11a6cce5a2&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sun Mar 1 21:10:08 2020 +0800&#10;&#10;    学生直播端一对一辅导取消远端画面镜像" />
+    <option name="LAST_COMMIT_MESSAGE" value="Squashed commit of the following:&#10;&#10;commit ba9cc3bd14f838308e29145bf633549ce34f9de3&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 26 10:29:18 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatCourseInfo.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatData.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/ChatMsg.java&#10;    #&#9;app/src/main/java/com/edu_app/model/student/VedioInfo.java&#10;&#10;commit 5bc4c9bf4cba641f4c6aa89591cf717f23190385&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 26 10:23:05 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;    #&#9;app/src/main/res/layout/fragment_login.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit 4671b3122f834353d81ff2fb10d81e74ebae2e80&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 21:09:46 2020 +0800&#10;&#10;    修复学生显示同一个练习的bug，修改使用md5传递密码&#10;&#10;commit f0da8e2d8c9659ce14ca9c8451db067d5d56463a&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 18:16:07 2020 +0800&#10;&#10;    合并服务端文件的存放位置&#10;&#10;commit dc7e844fce49f2492508206994449c462b2140bc&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Wed Mar 25 17:55:44 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;    #&#9;app/src/main/res/layout/fragment_login.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit 113560d55a9d8c7833d8793b86664daa19f202ff&#10;Merge: 798d900 1f38202&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 17:45:20 2020 +0800&#10;&#10;    Merge branch 'dev' of github.com:lyh-ADT/edu-app into dev&#10;&#10;commit 798d900dc9afc84d35f73a3f5eca7bc72af31702&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 25 17:41:26 2020 +0800&#10;&#10;    merge lyh&#10;    &#10;    直播平台完成&#10;    美化登陆界面&#10;    管理系统添加修改账号密码、不可修改班级邀请码&#10;&#10;commit 1f38202c8e948e5227ab266dd58371c2b4e92914&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 24 22:32:24 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/release/app-release.apk&#10;    #&#9;app/src/main/res/values/strings.xml&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;    #&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js&#10;&#10;commit f6d74984ff775e59df3032a9abce570badc843e3&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sat Mar 21 19:15:18 2020 +0800&#10;&#10;    生成apk&#10;&#10;commit c464571c1761e90169b3b838cecb1747327195ab&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sat Mar 21 19:14:43 2020 +0800&#10;&#10;    更新教师直播平台，消息、uuid检测、静音、摄像头画面&#10;&#10;commit 30bb6e33136c2a32339c2efb413adf2674473069&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 18:11:16 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/workspace.xml&#10;    #&#9;app/src/main/java/com/edu_app/vediochat/WebRTCManager.java&#10;    #&#9;app/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java&#10;    #&#9;app/src/main/res/layout/activity_chat_single.xml&#10;&#10;commit 41afce7f67480706ceb4ea9648628b0d3272c740&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 18:10:29 2020 +0800&#10;&#10;    # 增加显示课程信息&#10;    # 修复tabTitle不显示&#10;    # 修复显示消息崩溃&#10;    # 增加悬浮按钮&#10;&#10;commit e8fb9d8fa946f794c104109c5a7322557cc124dd&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sat Mar 21 14:21:30 2020 +0800&#10;&#10;    # 增加显示课程信息&#10;    # 修复tabTitle不显示&#10;    # 修复显示消息崩溃&#10;&#10;commit d1cb6bc8efd4e72075efa33a6b0ca168f2191887&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 22:50:07 2020 +0800&#10;&#10;    # 修改聊天界面为约束百分比布局&#10;&#10;commit 2b8a6485acd13e730f6f48d2eae0c6131514ffae&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 22:39:36 2020 +0800&#10;&#10;    # 修改聊天界面为约束百分比布局&#10;&#10;commit 7a1eaa80f0423fd748bcb2db5ffd288fecea70d5&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 12:05:42 2020 +0800&#10;&#10;    # 更改在加入房间时发送uuid&#10;&#10;commit 5be237d4a3e10a982d8a2a36b01942f1d5542fff&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Mon Mar 16 11:20:28 2020 +0800&#10;&#10;    # 打开通话界面发送uuid&#10;&#10;commit 7bb5723eec5ab202ef4670a04b3c27ea11c25cdf&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sun Mar 15 17:54:57 2020 +0800&#10;&#10;    #增加发送消息&#10;&#10;commit 7d9cf6cd2b5e4baa2de487f3778b98c8e3e630bb&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Sun Mar 15 16:11:06 2020 +0800&#10;&#10;    #更改视图 增加聊天和用户视图&#10;&#10;commit 9c427a095945dfa8fd98b073ad535fb0ce894f3b&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Thu Mar 5 18:53:18 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/gradle.xml&#10;    #&#9;app/.idea/workspace.xml&#10;&#10;commit e9eb8129fa03b015dfea9f4827c84c71d7bac647&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 4 00:05:25 2020 +0800&#10;&#10;    教师直播平台添加老师旁观功能&#10;    客户端添加不显示旁观老师的逻辑&#10;&#10;commit 79e64f665c21a9e1440e5c09eb648400d3a9dfae&#10;Merge: 57e7003 4766bde&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Wed Mar 4 00:01:37 2020 +0800&#10;&#10;    Merge remote-tracking branch 'origin/dev' into dev&#10;&#10;commit 4766bdebd39351d7881187ef0f6b81acde096985&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 3 20:18:21 2020 +0800&#10;&#10;    # Conflicts:&#10;    #&#9;app/.idea/misc.xml&#10;&#10;commit d168410e36b9a4c1b25e8ad0f2d35df970641b2f&#10;Author: MrZheng99 &lt;masterzheng1125@gmail.com&gt;&#10;Date:   Tue Mar 3 20:17:13 2020 +0800&#10;&#10;    Squashed commit of the following:&#10;    &#10;    commit 0b8de5c99dea97e140519c1785e2cb11a6cce5a2&#10;    Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;    Date:   Sun Mar 1 21:10:08 2020 +0800&#10;    &#10;        学生直播端一对一辅导取消远端画面镜像&#10;&#10;commit 57e7003010e5d96a4dbe0335c1077ce16a96c782&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sun Mar 1 23:45:11 2020 +0800&#10;&#10;    生成apk，修改AndroidManifest&#10;&#10;commit 0b8de5c99dea97e140519c1785e2cb11a6cce5a2&#10;Author: lyh-ADT &lt;1043970238@qq.com&gt;&#10;Date:   Sun Mar 1 21:10:08 2020 +0800&#10;&#10;    学生直播端一对一辅导取消远端画面镜像" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -784,55 +775,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_chinese.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatuser.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/792464df520ade0cf7ae13a7404b45a7/jetified-google-webrtc-1.0.28262/jars/classes.jar!/org/webrtc/RendererCommon.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatFragmentAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#739#740#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/792464df520ade0cf7ae13a7404b45a7/jetified-google-webrtc-1.0.28262/jars/classes.jar!/org/webrtc/VideoSink.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -943,14 +885,6 @@
           <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_chat_single.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/teacher/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1070,13 +1004,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/Model.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/StudentInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1160,6 +1088,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_chat_single.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="52" column="36" selection-start-line="52" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_register.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="249" column="57" selection-start-line="249" selection-start-column="6" selection-end-line="249" selection-end-column="57" />
+          <folding>
+            <element signature="e#696#720#0" expanded="true" />
+            <element signature="e#7699#7727#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="46" column="32" lean-forward="true" selection-start-line="46" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_round_grey.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="13" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/bg_course_code.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_stu_person_course.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
         </state>
       </provider>
     </entry>

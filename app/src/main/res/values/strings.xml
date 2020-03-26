@@ -11,7 +11,7 @@
     <string name="password_text">密码</string>
     <string name="login_title">济桓教育</string>
     <string name="register_text">注册</string>
-    <string name="register_title">注册</string>
+    <string name="register_title">注   册</string>
     <string name="repeat_password_text">重复密码</string>
     <string name="back_to_login_text">已有账号，登录</string>
     <string name="add_practice_text">添加练习</string>

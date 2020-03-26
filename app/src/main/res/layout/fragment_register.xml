@@ -12,10 +12,12 @@
 
     <TextView
         android:id="@+id/title"
-        android:textSize="50sp"
+        android:textSize="30dp"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:background="@android:color/holo_blue_light"
         android:text="@string/register_title"/>
 
     <LinearLayout
@@ -33,70 +35,89 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/username_text"
-                android:textSize="30sp" />
+                android:gravity="center"
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/name"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/sex"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/age"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/birthday"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/phone_number"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/QQ"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/address"
-                android:textSize="30sp"/>
+                android:gravity="center"
+
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/password_text"
-                android:textSize="30sp" />
+                android:gravity="center"
+
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/repeat_password_text"
-                android:textSize="30sp" />
+                android:gravity="center"
+
+                android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -198,25 +219,34 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.percentlayout.widget.PercentRelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center">
 
         <Button
             android:id="@+id/back_to_login_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/back_to_login_text"
-            android:textSize="30sp"/>
+            android:textSize="20dp"
+            app:layout_widthPercent="69%"
+            android:background="@android:color/holo_blue_light"
+
+            android:layout_alignParentRight="true"
+
+            />
 
         <Button
             android:id="@+id/register_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_widthPercent="29%"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/holo_blue_light"
             android:text="@string/register_text"
-            android:textSize="30sp"/>
+            android:textSize="20dp"/>
 
-    </LinearLayout>
+    </androidx.percentlayout.widget.PercentRelativeLayout>
 </TableLayout>
 </ScrollView>

@@ -68,13 +68,14 @@ public class activityStuFunction extends AppCompatActivity implements View.OnCli
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        int count = 0;
-        while (keyCode == KeyEvent.KEYCODE_BACK && count < 2) {
-            count++;
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            activityStuFunction.this.finish();
         }
-        activityStuFunction.this.finish();
-        return true;
+        return super.onKeyDown(keyCode, event);
     }
+
+
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
 

@@ -1,11 +1,12 @@
 package com.edu_app.model;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Practice implements Serializable {
+public class Practice extends Model implements Serializable {
     private String id;
     private String classId;
     private String title;

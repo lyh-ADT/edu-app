@@ -2,9 +2,10 @@ package com.edu_app.model.student;
 
 import androidx.annotation.NonNull;
 
-import java.util.Map;
+import com.edu_app.model.Model;
 
-public class ChatData {
+
+public class ChatData extends Model {
     private String type;
     private String data;
 

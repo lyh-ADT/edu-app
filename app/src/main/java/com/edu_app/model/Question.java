@@ -1,10 +1,11 @@
 package com.edu_app.model;
 
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Question implements Serializable {
+public class Question extends Model implements Serializable {
     public static final HashMap<String, String> typeText;
     public   static final String QUESTION_TYPE_CHOICE = "CHOICE";
     public   static final String QUESTION_TYPE_FILL = "FILL";

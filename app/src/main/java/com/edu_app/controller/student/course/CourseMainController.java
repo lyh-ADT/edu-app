@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 import com.edu_app.R;
+import com.edu_app.controller.student.Controller;
 import com.edu_app.view.student.course.NodejsActivity;
 import com.edu_app.view.student.course.activityLivePlay;
 import com.edu_app.view.student.course.fragmentCourseChinese;
@@ -19,7 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-public class CourseMainController  implements View.OnClickListener {
+public class CourseMainController extends Controller implements View.OnClickListener {
     private ArrayList<Fragment> fragments;
     private ArrayList<String> tab_titles;
     private Fragment fragment;

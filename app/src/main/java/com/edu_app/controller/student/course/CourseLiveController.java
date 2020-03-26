@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.edu_app.controller.student.Controller;
 import com.edu_app.R;
 
 import cn.nodemedia.NodePlayer;
@@ -15,7 +15,7 @@ import cn.nodemedia.NodePlayerView;
 /**
  * 用于控制直播活动页面
  */
-public class CourseLiveController implements View.OnClickListener {
+public class CourseLiveController extends Controller implements View.OnClickListener {
     private final AppCompatActivity activity;
     private boolean fullFlag;
     private NodePlayerView playerview;

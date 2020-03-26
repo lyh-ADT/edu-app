@@ -10,11 +10,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.edu_app.model.Practice;
 import com.edu_app.view.student.pracitce.activityDoExam;
 import com.edu_app.view.student.pracitce.activityLookExam;
-
+import com.edu_app.controller.student.Controller;
 /**
  * 控制某个试题是跳转看试题，还是做试题
  */
-public class BrowseExercisesController implements View.OnClickListener {
+public class BrowseExercisesController extends Controller implements View.OnClickListener {
     private AppCompatActivity activity;
     private Practice practice;
     private String practiceId;

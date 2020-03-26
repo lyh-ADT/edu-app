@@ -14,10 +14,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
 import com.edu_app.model.MD5;
 import com.edu_app.model.NetworkUtility;
-
+import com.edu_app.controller.student.Controller;
 import java.io.IOException;
 
-public class PersonInfoController implements View.OnClickListener {
+public class PersonInfoController extends Controller implements View.OnClickListener {
     private final AppCompatActivity activity;
     private final String uid;
     private EditText idEditText;

@@ -13,11 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
+import com.edu_app.controller.student.Controller;
 import com.edu_app.model.NetworkUtility;
 
 import java.io.IOException;
 
-public class PersonCourseController implements View.OnClickListener {
+public class PersonCourseController extends Controller implements View.OnClickListener {
     private final AppCompatActivity activity;
     private Button addBt;
     private Button getBt;

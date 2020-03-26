@@ -1,9 +1,11 @@
 package com.edu_app.model.student;
 
+import com.edu_app.model.Model;
+
 /**
  * 课堂信息
  */
-public class ChatCourseInfo {
+public class ChatCourseInfo extends Model {
     private String teacherName;
     private String courseName;
     private long startTimeStamp;

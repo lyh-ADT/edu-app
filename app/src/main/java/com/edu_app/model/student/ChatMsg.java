@@ -1,6 +1,8 @@
 package com.edu_app.model.student;
 
-public class ChatMsg {
+import com.edu_app.model.Model;
+
+public class ChatMsg extends Model {
     private String userId;
     private String content;
 

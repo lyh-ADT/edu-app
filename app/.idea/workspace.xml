@@ -11,11 +11,27 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js">
+    <list default="true" id="244f252f-5ae3-4fb6-954a-285f2956a81e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/Request.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/pythonWork/postRequest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +42,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ac41226d" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -70,44 +85,7 @@
     <favorites_list name="edu-app" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/GetPracticeList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -168,17 +146,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/IWebSocket.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/WebrtcUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ws/JavaWebSocket.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/NodejsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/ExamAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/SendMsg.java" />
         <option value="$PROJECT_DIR$/../build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_stu_course_chatadapter.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatmsg.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/ChatAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/PeerConnectionHelper.java" />
@@ -186,18 +160,34 @@
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatController.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_stu_course_roomchatuser.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ProxyVideoSink.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/WebRTCManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_chat_single.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="950" />
+    <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="980" />
+    <option name="width" value="1940" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -206,7 +196,139 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+              <item name="practice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="edu_app" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="edu-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="edu-app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -228,154 +350,20 @@
             <path>
               <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="pythonWork" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="teacher" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="student" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="vediochat" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="student" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="edu_app" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="student" type="462c0819:PsiDirectoryNode" />
-              <item name="course" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="edu-app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="edu-app" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\appWork\edu-app" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="python" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -397,6 +385,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\appWork\edu-app\app\src\main\java\com\edu_app\controller\student\course" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.edu_app.controller.student" />
+      <recent name="com.edu_app.controller.teacher" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.edu_app.vediochat.ui" />
@@ -634,7 +626,28 @@
       <option name="project" value="LOCAL" />
       <updated>1584771794731</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js">
+      <created>1585144892691</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1585144892691</updated>
+    </task>
+    <task id="LOCAL-00023" summary="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js">
+      <created>1585144957579</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1585144957579</updated>
+    </task>
+    <task id="LOCAL-00024" summary="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js">
+      <created>1585145091646</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1585145091646</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -650,24 +663,24 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
-      <window_info id="Structure" order="1" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
+      <window_info id="Structure" order="1" sideWeight="0.508046" side_tool="true" weight="0.31770834" />
       <window_info id="Favorites" order="2" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
       <window_info id="Build Variants" order="3" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="5" />
       <window_info id="Resources Explorer" order="6" sideWeight="0.49408284" weight="0.31770834" />
       <window_info id="Capture Tool" order="7" />
-      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.50591713" side_tool="true" visible="true" weight="0.29101562" />
+      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.5015432" side_tool="true" visible="true" weight="0.29101562" />
       <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49932432" weight="0.94135803" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.94135803" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49932432" weight="0.94135803" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44753087" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3287037" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006757" side_tool="true" weight="0.60493827" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="6" visible="true" weight="0.3287037" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5006757" side_tool="true" weight="0.94135803" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49932432" weight="0.3287037" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932432" weight="0.47685185" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" />
-      <window_info anchor="bottom" id="Find" order="9" weight="0.32988167" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.7191358" />
       <window_info anchor="right" id="Device File Explorer" order="0" sideWeight="0.5015432" side_tool="true" weight="0.32972974" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" sideWeight="0.49845678" weight="0.32972974" />
@@ -675,6 +688,7 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Preview" order="5" />
       <window_info active="true" anchor="right" id="Assistant" order="6" visible="true" weight="0.32972974" />
+      <window_info active="true" anchor="right" id="simpleUML" order="7" sideWeight="0.49845678" visible="true" weight="0.6842448" />
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" sideWeight="0.508046" side_tool="true" weight="0.32972974" />
@@ -760,8 +774,7 @@
     <MESSAGE value="# 修复一条消息显示两次" />
     <MESSAGE value="# 增加显示课程信息&#10;# 修复tabTitle不显示&#10;# 修复显示消息崩溃" />
     <MESSAGE value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" />
-    <MESSAGE value="# model中的类继承Model，controller中的类继承Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="# model中的类继承Model，controller中的类继承Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;# Conflicts:&#10;#&#9;app/.idea/workspace.xml&#10;#&#9;app/release/app-release.apk&#10;#&#9;app/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java&#10;#&#9;app/src/main/res/layout/fragment_login.xml&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC-client.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/SkyRTC.js&#10;#&#9;server/webrtc/server/webrtc_server_node/public/dist/js/conn.js" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -771,197 +784,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/parser/JSONScanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/parser/JSONLexerBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="393" selection-start-line="393" selection-end-line="393" />
-          <folding>
-            <element signature="e#11192#11193#0" expanded="true" />
-            <element signature="e#15089#15090#0" expanded="true" />
-            <element signature="e#15114#15115#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/util/IdentityHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/util/TypeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="2631" selection-start-line="2631" selection-end-line="2631" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/util/ServiceLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/parser/ParserConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="644" selection-start-line="644" selection-end-line="644" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/parser/DefaultJSONParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="668" selection-start-line="668" selection-end-line="668" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.56/4df1ca5b7111844d71c250b7a82e7b5a4f19dff/fastjson-1.2.56-sources.jar!/com/alibaba/fastjson/JSON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="133" column="25" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
-          <folding>
-            <element signature="e#5373#5374#0" expanded="true" />
-            <element signature="e#5431#5432#0" expanded="true" />
-            <element signature="e#23147#23148#0" expanded="true" />
-            <element signature="e#23204#23205#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/DoExamController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="56" column="106" selection-start-line="56" selection-start-column="71" selection-end-line="56" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="1308" column="16" selection-start-line="1308" selection-start-column="16" selection-end-line="1308" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/ChatAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1695#1696#0" expanded="true" />
-            <element signature="e#1726#1727#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="23" column="9" selection-start-line="21" selection-start-column="30" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#678#679#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourserFragmentAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/login/RegisterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1025">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/login/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-650">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1025">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/fragmentRoomChatUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="33" column="30" selection-start-line="31" selection-start-column="7" selection-end-line="33" selection-end-column="30" />
-          <folding>
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/view/student/course/fragmentCourse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="45" column="43" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_nodejs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_course.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_practice.xml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
@@ -999,13 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/controller/RoomChatFragmentAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1015,13 +830,6 @@
             <element signature="e#693#694#0" expanded="true" />
             <element signature="e#739#740#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1067,7 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/vediochat/ui/ChatSingleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2875">
@@ -1145,17 +952,214 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/teacher/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+        <state relative-caret-position="-156">
+          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/GetPracticeList.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/Controller.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseLiveController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourseMainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/VedioAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/CourserFragmentAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/course/TabSelectedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonCourseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/person/PersonMainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/BrowseExercisesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/DoChoiceViewHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/LookExamController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/controller/student/practice/PracticeMainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/teacher/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/StudentInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/MD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/UserInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/Practice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/VedioInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/edu_app/model/student/ChatCourseInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
         </state>
       </provider>
     </entry>

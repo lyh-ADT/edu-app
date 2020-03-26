@@ -10,7 +10,7 @@ import com.edu_app.model.Practice;
 import com.edu_app.view.student.pracitce.activitySubjectChinese;
 import com.edu_app.view.student.pracitce.activitySubjectEnglish;
 import com.edu_app.view.student.pracitce.activitySubjectMath;
-
+import com.edu_app.controller.student.Controller;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * 控制跳转到哪个科目练习
  *
  */
-public class PracticeMainController implements View.OnClickListener {
+public class PracticeMainController extends Controller implements View.OnClickListener {
     private FragmentActivity activity;
     private ArrayList<Practice> practicelist;
     public PracticeMainController(FragmentActivity activity) {

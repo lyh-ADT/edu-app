@@ -1,9 +1,11 @@
 package com.edu_app.model;
 
+
+
 import java.io.Serializable;
 
 // 用户类
-public class UserInfo implements Serializable {
+public class UserInfo extends Model implements Serializable {
     //  姓名，年龄，性别，职业，住址，联系电话，qq号
     private String sex;
     private String name;

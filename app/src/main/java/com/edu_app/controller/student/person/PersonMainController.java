@@ -9,8 +9,8 @@ import com.edu_app.R;
 import com.edu_app.view.student.person.activityContactService;
 import com.edu_app.view.student.person.activityPersonCourse;
 import com.edu_app.view.student.person.activityPersonInfo;
-
-public class PersonMainController implements View.OnClickListener {
+import com.edu_app.controller.student.Controller;
+public class PersonMainController extends Controller implements View.OnClickListener {
     private Activity activity;
 
     public PersonMainController(Activity activity) {

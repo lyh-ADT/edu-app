@@ -1,8 +1,10 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
 import utils
+import sys
+sys.path.append("..")
+import SqlHandler
 
 
 class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
@@ -37,21 +39,18 @@ class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
 
     def deleteClassStu(self):
 
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
 
-            sql = "SELECT Student FROM CLASS where ClassId='{0}'".format(
-                self.classId)
+            sql = "SELECT Student FROM CLASS where ClassId=%s"
 
             stuIdList = str(
-                self.sqlhandler.executeOtherSQL(sql)[0]["Student"]).split(",")
+                self.sqlhandler.executeOtherSQL(
+                    sql, self.classId)[0]["Student"]).split(",")
             stuIdList.remove(self.stuId)
-            sql = "UPDATE CLASS SET Student='{0}' where ClassId='{1}'".format(
-                ",".join(stuIdList), self.classId)
-            if self.sqlhandler.executeOtherSQL(sql):
+            sql = "UPDATE CLASS SET Student=%s where ClassId=%s"
+            if self.sqlhandler.executeOtherSQL(sql, ",".join(stuIdList),
+                                               self.classId):
                 return True
         return False
 

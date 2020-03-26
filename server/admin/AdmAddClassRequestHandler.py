@@ -1,10 +1,14 @@
 import tornado.ioloop
 import tornado.web
 import tornado.httpclient
-import SqlHandler
+import uuid
 import utils
+import sys
+sys.path.append("..")
+import SqlHandler
 
-class AdmModifyTeaRequestHandler(tornado.web.RequestHandler):
+
+class AdmAddClassRequestHandler(tornado.web.RequestHandler):
     def post(self):
         """
         添加班级信息
@@ -18,13 +22,11 @@ class AdmModifyTeaRequestHandler(tornado.web.RequestHandler):
             if not utils.isUIDValid(self):
                 self.write("no uid")
                 return
-            self.teaId = self.get_argument("TeaId")
-            self.teaName = self.get_argument("TeaName")
-            self.teaSex = self.get_argument("TeaSex")
-            self.teaPhoneNumber = self.get_argument("TeaPhoneNumber")
-            self.teaClass = self.get_argument("TeaClass")
+            self.courseName = self.get_argument("courseName")
+            self.teacher = self.get_argument("teacherId")
+            self.classStuNumber = self.get_argument("stuCount")
             if self.setClass():
-                
+
                 self.write("success")
                 self.finish()
             else:
@@ -41,22 +43,28 @@ class AdmModifyTeaRequestHandler(tornado.web.RequestHandler):
         """
         将班级信息写入数据库
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
-                                                User='root',
-                                                Password='liyuhang8',
-                                                DBName='PersonDatabase')
+        self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
-            sql = "UPDATE TeaPersonInfo SET TeaName='{0}', TeaSex='{1}',TeaPhoneNumber='{2}', TeaClass='{3}' WHERE TeaId='{4}';".format(
-                self.teaName, self.teaSex, self.teaPhoneNumber,self.teaClass, self.teaId)
-            if self.sqlhandler.executeOtherSQL(sql):
+            self.classId = str(uuid.uuid4())
+            self.inviteCode = self.getInviteCode()
+            sql = "INSERT INTO CLASS(ClassId,CourseName,Teacher,StuNumber, InviteCode) VALUES(%s,%s,%s,%s, %s)"
+            if self.sqlhandler.executeOtherSQL(sql, self.classId,
+                                               self.courseName, self.teacher,
+                                               self.classStuNumber,
+                                               self.inviteCode):
                 return True
         return False
+
+    def getInviteCode(self):
+        import string, random
+        return "".join(random.sample(string.ascii_lowercase + string.digits,
+                                     6))
 
 
 if __name__ == "__main__":
 
-    app = tornado.web.Application(handlers=[(r"/", AdmModifyTeaRequestHandler)])
+    app = tornado.web.Application(handlers=[(r"/", AdmAddClassRequestHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(8080)
     tornado.ioloop.IOLoop.current().start()

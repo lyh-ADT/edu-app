@@ -53,6 +53,6 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
             if len(rs) == 1:
                 self.stuId = rs[0]['StuId']
                 sql = """insert into SCORE (PracticeId,StuId,StuAnswer) values(%s,%s,%s)"""
-                if self.sqlhandler.executeOtherSQL(sql,self.practiceId, self.stuId, self.stuAnswer):
+                if self.sqlhandler.executeOtherSQL(sql,self.practiceId, self.stuId, str(self.stuAnswer)):
                     return True
         return False

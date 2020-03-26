@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
+import com.edu_app.controller.student.Controller;
 import com.edu_app.model.NetworkUtility;
 import com.edu_app.model.Practice;
 
@@ -21,7 +22,7 @@ import java.io.IOException;
 /**
  * 控制查看练习题的页面
  */
-public class LookExamController {
+public class LookExamController extends Controller {
     private final AppCompatActivity activity;
     private final String  uid;
     private final String practiceId;

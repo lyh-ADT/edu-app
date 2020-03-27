@@ -124,7 +124,7 @@ public class TabSelectedListener implements TabLayout.OnTabSelectedListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent openVideo = new Intent(Intent.ACTION_VIEW);
-                openVideo.setDataAndType(Uri.parse(urls.get(i)), "*/*");
+                openVideo.setDataAndType(Uri.parse(urls.get(i)), "video/*");
                 activity.startActivity(openVideo);
             }
         });

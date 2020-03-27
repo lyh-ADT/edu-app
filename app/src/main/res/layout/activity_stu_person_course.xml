@@ -14,7 +14,7 @@
         android:gravity="center"
         android:background="@drawable/bg_course_code"
         android:textColor="@android:color/holo_red_dark"
-        android:text="输入班级邀请码"></EditText>
+        android:hint="输入班级邀请码"></EditText>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

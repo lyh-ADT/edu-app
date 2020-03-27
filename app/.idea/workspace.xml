@@ -259,6 +259,7 @@
       <find>remo</find>
       <find>config</find>
       <find>remote</find>
+      <find>tablayout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">

@@ -57,6 +57,9 @@ public class QuestionItem implements Model, Serializable {
     }
 
     public void setQuestion(String o) {
+        if(o == null){
+            return;
+        }
         question.setQuestion(o.replace("\n", "\\n").replace("\r", "\\r"));
     }
 

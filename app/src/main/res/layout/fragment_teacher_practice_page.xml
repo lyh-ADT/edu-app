@@ -3,12 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableRow>
+    <TableRow android:gravity="center">
         <Button
             android:id="@+id/add_practice_btn"
+            android:background="@drawable/addcourse"
+            android:textStyle="bold"
+            android:layout_weight="1"
             android:text="@string/add_practice_text"/>
         <Button
             android:id="@+id/delete_practice_btn"
+            android:background="@drawable/addcourse"
+            android:textStyle="bold"
+
+            android:layout_weight="1"
+
             android:text="@string/delete_practice_text"/>
     </TableRow>
 

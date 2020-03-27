@@ -160,26 +160,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         }
 
         startCall();
-// 添加悬浮球
-        fab =(FloatingActionButton) findViewById(R.id.chat_coursePage_roomChat_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG,"悬浮被点击");
-                if(!msgFragmentGone){
-                    tablayout.setVisibility(View.GONE);
-                    viewpager.setVisibility(View.GONE);
-
-                }else{
-
-                    tablayout.setVisibility(View.VISIBLE);
-                    viewpager.setVisibility(View.VISIBLE);
 
 
-                }
-                msgFragmentGone = !msgFragmentGone;
-            }
-        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -370,6 +352,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
                     findViewById(R.id.single_switch_mute).setVisibility(View.GONE);
                     findViewById(R.id.single_switch_hang_up).setVisibility(View.GONE);
                     findViewById(R.id.single_switch_camera).setVisibility(View.GONE);
+                    tablayout.setVisibility(View.GONE);
+                    viewpager.setVisibility(View.GONE);
                     fragmentVisible=false;
                     return true;
 
@@ -377,6 +361,8 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
                     findViewById(R.id.single_switch_mute).setVisibility(View.VISIBLE);
                     findViewById(R.id.single_switch_hang_up).setVisibility(View.VISIBLE);
                     findViewById(R.id.single_switch_camera).setVisibility(View.VISIBLE);
+                    tablayout.setVisibility(View.VISIBLE);
+                    viewpager.setVisibility(View.VISIBLE);
                     fragmentVisible = true;
                     return true;
 

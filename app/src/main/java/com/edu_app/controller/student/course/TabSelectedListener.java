@@ -96,7 +96,7 @@ public class TabSelectedListener implements TabLayout.OnTabSelectedListener {
             String body = String.format("{\"stuUid\":\"%s\",\"course\":\"%s\"}", uuid,courseName);
             Log.e("error",body);
 
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetVedioList", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetVedioList", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             getSuccess = jsonObject.getBoolean("success");
             data = jsonObject.getJSONArray("data");

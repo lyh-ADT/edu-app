@@ -16,7 +16,7 @@ public class Register {
 
 
     public void post(final Form form){
-        final String Host = "http://139.159.176.78:8080";
+        final String Host = "http://123.57.101.238:8080";
         new Thread(){
             @Override
             public void run(){

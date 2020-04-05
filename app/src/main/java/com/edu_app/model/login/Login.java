@@ -14,7 +14,7 @@ public class Login {
     }
 
     public void sendRequest(final String userName, final String password, final int flag){
-        final String SERVER_HOST = "http://139.159.176.78:8080/login";// TODO: 修改为服务器地址
+        final String SERVER_HOST = "http://123.57.101.238:8080/login";// TODO: 修改为服务器地址
         new Thread(){
             @Override
             public void run(){

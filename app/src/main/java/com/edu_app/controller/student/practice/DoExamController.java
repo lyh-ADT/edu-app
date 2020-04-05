@@ -110,7 +110,7 @@ public class DoExamController implements View.OnClickListener {
         Log.e("error",body);
         String response = null;
         try {
-            response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuPostAnswer", body);
+            response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuPostAnswer", body);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,7 +133,7 @@ public class DoExamController implements View.OnClickListener {
         try {
             String body = "{\"stuUid\":\"" + this.uid + "\",\"practiceId\":\"" + this.practiceId + "\"}";
             Log.e("error", body);
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetPracticeToDo", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetPracticeToDo", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             getSuccess = jsonObject.getBoolean("success");
             data = jsonObject.getJSONArray("data");

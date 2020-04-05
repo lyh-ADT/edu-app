@@ -13,11 +13,11 @@ import com.edu_app.controller.student.course.WebrtcUtil;
 
 /**
  *
- * 聊天活动页面，服务器使用nodejs
+ * 在线辅导活动页面，服务器使用nodejs
  */
 public class NodejsActivity extends AppCompatActivity {
     private EditText et_room;
-    private final String serverUrl = "wss://139.159.176.78:3000/teacher-stream/wss";
+    private final String serverUrl = "wss://123.57.101.238:3000/teacher-stream/wss";
     private String uuid;
 
 

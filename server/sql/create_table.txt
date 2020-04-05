@@ -11,7 +11,7 @@ CREATE TABLE StuPersonInfo
 	StuQQ VARCHAR(11),
 	StuAddress VARCHAR(50),
 	StuClass VARCHAR(30)
-)
+);
 
 CREATE TABLE TeaPersonInfo
 (
@@ -26,7 +26,7 @@ CREATE TABLE TeaPersonInfo
 	TeaQQ VARCHAR(11),
 	TeaAddress VARCHAR(50),
 	TeaClass VARCHAR(36)
-)
+);
 
 CREATE TABLE CLASS(
 	ClassId VARCHAR(36) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE CLASS(
 	Student VARCHAR(1024),
 	StuNumber VARCHAR(2) NOT NULL,
 	InviteCode CHAR(6) UNIQUE
-)
+);
 
 
 CREATE TABLE PRACTICE(
@@ -44,18 +44,18 @@ CREATE TABLE PRACTICE(
 	ExamDetail TEXT NOT NULL,
 	FullScore VARCHAR(3) NOT NULL,
 	TeaAnswer TEXT
-)
+);
 CREATE TABLE SCORE(
 	PracticeId VARCHAR(50) NOT NULL,
 	StuId VARCHAR(20) NOT NULL,
 	StuScore VARCHAR(3) NOT NULL,
 	ScoreDetail TEXT NOT NULL
-)
+);
 CREATE TABLE AdminAccount(
  AdminId VARCHAR(30) PRIMARY KEY,
  AdminPassword VARCHAR(30) NOT NULL,
  UID CHAR(36)
-)
+);
 CREATE TABLE RecordVedio(
  ReCordId int(10) PRIMARY KEY AUTO_INCREMENT,
  ReCordTitle VARCHAR(50) NOT NULL,
@@ -63,20 +63,20 @@ CREATE TABLE RecordVedio(
  ReCordUrl VARCHAR(100) NOT NULL,
  PushTeacherId VARCHAR(4) NOT NULL,
  Constraint FK_RecordVedio_PushTeacherId foreign key(PushTeacherId) references TeaPersonInfo(TeaId)
-)
+);
 -- 添加约束
-ALTER TABLE StuPersonInfo add Constraint PK_StuPersonInfo_StuId primary key(StuId)
+ALTER TABLE StuPersonInfo add Constraint PK_StuPersonInfo_StuId primary key(StuId);
 
 
-ALTER TABLE TeaPersonInfo add Constraint PK_TeaPersonInfo_TeaId primary key(TeaId)
+ALTER TABLE TeaPersonInfo add Constraint PK_TeaPersonInfo_TeaId primary key(TeaId);
 
 
-ALTER TABLE CLASS add Constraint PK_CLASS_ClassId primary key(ClassId)
+ALTER TABLE CLASS add Constraint PK_CLASS_ClassId primary key(ClassId);
 
 
-ALTER TABLE PRACTICE add Constraint PK_PRACTICE_PracticeId primary key(PracticeId)
+ALTER TABLE PRACTICE add Constraint PK_PRACTICE_PracticeId primary key(PracticeId);
 
 -- 联合主键
-ALTER TABLE SCORE add Constraint PK_SCORE_PracticeAndStuId primary key(PracticeId,StuId)
+ALTER TABLE SCORE add Constraint PK_SCORE_PracticeAndStuId primary key(PracticeId,StuId);
 
 

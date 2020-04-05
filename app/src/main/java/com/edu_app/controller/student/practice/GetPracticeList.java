@@ -60,7 +60,7 @@ public class GetPracticeList{
         try {
             String body = "{\"stuUid\":\"" + this.uid + "\",\"subject\":\"" + this.subject + "\"}";
             Log.e("error",body);
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetPracticeList", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetPracticeList", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             getSuccess = jsonObject.getBoolean("success");
             if(getSuccess){

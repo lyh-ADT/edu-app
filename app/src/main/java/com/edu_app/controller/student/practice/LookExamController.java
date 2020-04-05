@@ -93,7 +93,7 @@ public class LookExamController extends Controller {
         try {
             String body = "{\"stuUid\":\"" + this.uid + "\",\"practiceId\":\"" + this.practiceId + "\"}";
             Log.e("error", body);
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetPracticeToLook", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetPracticeToLook", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             getSuccess = jsonObject.getBoolean("success");
 

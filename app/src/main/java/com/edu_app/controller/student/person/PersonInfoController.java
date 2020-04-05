@@ -222,7 +222,7 @@ public class PersonInfoController extends Controller implements View.OnClickList
         Log.e("error", body);
         String response = null;
         try {
-            response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuSetInfo", body);
+            response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuSetInfo", body);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -250,7 +250,7 @@ public class PersonInfoController extends Controller implements View.OnClickList
             String oldPassword = this.oldPasswordEditText.getText().toString();
             String body = "{\"stuUid\":\"" + this.uid + "\",\"stuPassword\":\"" + oldPassword + "\"}";
             Log.e("error", body);
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuCheckPassword", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuCheckPassword", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             this.passwordVaild = jsonObject.getBoolean("success");
             Log.e("error",this.passwordVaild.toString());
@@ -267,7 +267,7 @@ public class PersonInfoController extends Controller implements View.OnClickList
         try {
             String body = String.format("{\"stuUid\":\"%s\"}", this.uid);
             Log.e("error", body);
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetInfo", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetInfo", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             this.getSuccess = jsonObject.getBoolean("success");
             if(getSuccess){

@@ -103,7 +103,7 @@ public class PersonCourseController extends Controller implements View.OnClickLi
     private void getCourseName() {
         try {
             String body = "{\"stuUid\":\"" + this.uid + "\"}";
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetClass", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetClass", body);
             Log.e("error",body);
             JSONObject jsonObject = JSONObject.parseObject(response);
 

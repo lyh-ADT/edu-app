@@ -37,7 +37,7 @@ public class StreamPageController extends Controller implements NodePublisherDel
         bindListener();
         nodePublisher = new NodePublisher(fragment.getActivity().getApplicationContext(),"c0KzkWKg5LoyRg+hR+2wtrnf/k61cQuoAibf2T8ghqFObNhHVuBiWqn28RhSSyAmLhcxuLVOXVLUf0Blk/axig==");
         nodePublisher.setNodePublisherDelegate(this);
-        nodePublisher.setOutputUrl("rtmp://139.159.176.78:1935/live/test_stream");
+        nodePublisher.setOutputUrl("rtmp://123.57.101.238:1935/live/test_stream");
         NodeCameraView nodeCameraView = view.findViewById(R.id.video);
         nodePublisher.setCameraPreview(nodeCameraView, 0, true);
         nodePublisher.setVideoParam(1, 15, 500000, 0, false);

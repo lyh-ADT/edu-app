@@ -74,7 +74,7 @@ public class CourseLiveController extends Controller implements View.OnClickList
         player.setBufferTime(4000);
 //        设置协议
         player.setRtspTransport(NodePlayer.RTSP_TRANSPORT_UDP_MULTICAST);
-        player.setInputUrl("rtmp://139.159.176.78:1935/live/test_stream");
+        player.setInputUrl("rtmp://123.57.101.238:1935/live/test_stream");
         player.start();
     }
 }

@@ -45,7 +45,7 @@ class RegisterRequestHandler(tornado.web.RequestHandler):
         """
         判断用户名是否重复
         """
-        self.sqlhandler = SqlHandler.SqlHandler(Host='139.159.176.78',
+        self.sqlhandler = SqlHandler.SqlHandler(Host='123.57.101.238',
                                                 User='root',
                                                 Password='liyuhang8',
                                                 DBName='PersonDatabase')

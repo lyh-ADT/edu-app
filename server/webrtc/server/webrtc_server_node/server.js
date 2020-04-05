@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001;
 const hostname = "0.0.0.0";
 const fs = require('fs');
 
-const videoUrlPrefix = "https://139.159.176.78:7002/video/";
+const videoUrlPrefix = "https://123.57.101.238:7002/video/";
 const videoStorePath = "./Videos/";
 
 app.use(express.static(path.join(__dirname, 'public', 'dist')), null);

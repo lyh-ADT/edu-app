@@ -15,7 +15,7 @@ class StuSetInfoRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到修改个人信息请求")
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.sqlhandler = None
 
             self.stuUid = body["stuUid"]

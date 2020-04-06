@@ -15,7 +15,7 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到修改班级请求")
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.sqlhandler = None
             self.stuUid = body["stuUid"]
             self.inviteCode = body["inviteCode"]
@@ -40,36 +40,25 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
         """
         self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
-            sql = """select Student,ClassId from CLASS where InviteCode=%s"""
+            sql = """select ClassId from CLASS where InviteCode=%s"""
 
             rs = self.sqlhandler.executeQuerySQL(sql, self.inviteCode)
             if len(rs) == 1:
-                self.stuClass = rs[0]["ClassId"]
-                if rs[0]['Student'] is not None:
-                    self.studentList = eval(str(rs[0]['Student']))
-                else:
-                    self.studentList = list()
-                print(self.studentList)
-                sql = """select StuId,StuClass from StuPersonInfo where StuUid=%s"""
+                stuClass = rs[0]["ClassId"]
+                sql = """select StuId from StuPersonInfo where StuUid=%s"""
 
                 rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
                 if len(rs) == 1:
-                    if rs[0]["StuClass"] is not None:
-                        classList = eval(str(rs[0]["StuClass"]))
-                    else:
-                        classList = list()
                     stuId = rs[0]["StuId"]
-                    if self.stuClass in classList:
+                    sql = """select * from ClassStuRelation where StuId=%s and ClassId=%s"""
+                    rs = self.sqlhandler.executeQuerySQL(
+                        sql, self.StuId, stuClass)
+                    if len(rs) >= 0:
                         return True
-                    classList.append(self.stuClass)
-                    print(classList)
-                    sql = """UPDATE StuPersonInfo SET StuClass=%s"""
+                    sql = """insert into ClassStuRelation(ClassId,StuId) values(%s,%s)"""
 
                     updateStudent = self.sqlhandler.executeOtherSQL(
-                        sql, classList)
-                    sql = """UPDATE CLASS SET Student=%s"""
-                    updateClass = self.sqlhandler.executeOtherSQL(
-                        sql, self.studentList.append(stuId))
-                    if updateStudent and updateClass:
+                        sql, stuId, stuClass)
+                    if updateStudent:
                         return True
         return False

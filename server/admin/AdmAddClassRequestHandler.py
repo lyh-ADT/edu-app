@@ -50,7 +50,7 @@ class AdmAddClassRequestHandler(tornado.web.RequestHandler):
             self.inviteCode = self.getInviteCode()
             sql = "INSERT INTO CLASS(ClassId,CourseName,Teacher,StuNumber, InviteCode) VALUES(%s,%s,%s,%s, %s)"
             if self.sqlhandler.executeOtherSQL(sql, self.classId,
-                                               self.courseName, self.teacher,
+                                             0  self.courseName, self.teacher,
                                                self.classStuNumber,
                                                self.inviteCode):
                 return True

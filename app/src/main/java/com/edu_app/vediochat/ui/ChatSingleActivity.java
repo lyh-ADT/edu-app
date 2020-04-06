@@ -386,7 +386,7 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
         String uuid = intent.getStringExtra("uuid");
         try {
             String body = String.format("{\"stuUid\":\"%s\"}", uuid);
-            String response = NetworkUtility.postRequest("http://139.159.176.78:8081/stuGetInfo", body);
+            String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuGetInfo", body);
             JSONObject jsonObject = JSONObject.parseObject(response);
             Boolean getSuccess = jsonObject.getBoolean("success");
             JSONObject data = jsonObject.getJSONObject("data");

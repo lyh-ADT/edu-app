@@ -22,7 +22,7 @@ import com.edu_app.view.login.LoginAndRegisterFragment;
 import java.io.IOException;
 
 public class RegisterController {
-    private final String HOST = "http://123.57.101.238:2000";
+    private final String HOST = "http://123.57.101.238:8080";
     private Fragment fragment;
     private View view;
     private boolean formValid = false;

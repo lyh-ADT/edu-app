@@ -16,7 +16,7 @@ class StuInfoRequestHandler(tornado.web.RequestHandler):
             print("收到获取学生信息的请求")
             self.sqlhandler = None
 
-            body = json.loads(self.request.body)          
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.stuUid = body["stuUid"]
            
             if self.getStuInfo():

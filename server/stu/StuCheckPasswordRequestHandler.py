@@ -16,7 +16,7 @@ class StuCheckPasswordRequestHandler(tornado.web.RequestHandler):
         try:
             print("收到检查密码信息的请求")
             self.sqlhandler = None
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.stuUid = body["stuUid"]
             self.stuPassword = body["stuPassword"]
             print(self.stuUid)
@@ -44,7 +44,8 @@ class StuCheckPasswordRequestHandler(tornado.web.RequestHandler):
             查询该用户的课程信息
             """
             sql = """select * from StuPersonInfo where StuUid=%s and StuPassword=%s"""
-            rs = self.sqlhandler.executeQuerySQL(sql,self.stuUid, self.stuPassword)
+            rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid,
+                                                 self.stuPassword)
             print(rs)
             if len(rs) == 1:
                 return True

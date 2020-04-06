@@ -47,7 +47,7 @@ startBtn.onclick = function (event) {
     if (rtc.socket) {
         rtc.socket.close();
     } else {
-        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode, courseName);
+        rtc.connect("wss://123.57.101.238:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode, courseName);
     }
 }
 stopBtn.onclick = function (event) {
@@ -173,7 +173,7 @@ function bindListeners() {
         }
         rtc = SkyRTC();
         bindListeners();
-        rtc.connect("wss://139.159.176.78:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
+        rtc.connect("wss://123.57.101.238:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode);
     });
 
      //接收到文字信息

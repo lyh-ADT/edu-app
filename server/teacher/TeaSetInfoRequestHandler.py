@@ -14,7 +14,7 @@ class TeaSetInfoRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到修改个人信息请求")
-            body = json.loads(self.request.body)
+            body = json.loads(self.request.body.decode('utf8'))
             self.sqlhandler = None
 
             self.teaUid = body["teaUid"]

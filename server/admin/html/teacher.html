@@ -40,7 +40,7 @@
   <script src="/jquery.min.js"></script>
   <script src="/popper.min.js"></script>
   <script src="/bootstrap.min.js"></script>
-
+  <script src="/md5.js"></script>
   <script>
     const tableKeyList = [
       "TeaId",
@@ -59,8 +59,7 @@
     const editables = [
       "TeaName",
       "TeaSex",
-      "TeaPhoneNumber",
-      "TeaClass"
+      "TeaPhoneNumber"
     ];
     var data = null;
     function getTable() {
@@ -69,7 +68,12 @@
           parent.location.assign("/admin-login.html")
           return;
         }
-        data = JSON.parse(result);
+        try{
+          data = JSON.parse(result);
+        }catch{
+          parent.location.assign("/admin-login.html")
+          return;
+        }
         console.log(data)
         let tbody = $("#tableBody");
         tbody.empty();
@@ -232,7 +236,7 @@
         data: {
           "teaId": teacherId_text,
           "teaName": teacherName_text,
-          "teaPassword": teacherPassword_text
+          "teaPassword": hex_md5(teacherPassword_text)
         },
         success: function (result) {
           $("#addTeacher").modal("hide");

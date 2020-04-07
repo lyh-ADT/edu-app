@@ -16,7 +16,7 @@ class TeaCheckPasswordRequestHandler(tornado.web.RequestHandler):
         try:
             print("收到检查密码信息的请求")
             self.sqlhandler = None
-            body = json.loads(self.request.body)
+            body = json.loads(self.request.body.decode('utf8'))
             self.teaUid = body["teaUid"]
             self.teaPassword = body["teaPassword"]
             print(self.teaUid)

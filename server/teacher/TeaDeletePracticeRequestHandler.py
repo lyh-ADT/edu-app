@@ -47,10 +47,7 @@ class TeaDeletePracticeRequestHandler(tornado.web.RequestHandler):
             """
 
             sql = "delete from PRACTICE where PracticeId=%s;"
-            sql2 = "UPDATE CLASS SET Practice=REPLACE(REPLACE(Practice, %s, ''), ',,', ',') WHERE ClassId=%s;"
-            if self.sqlhandler.executeOtherSQL(
-                    sql, self.practiceId) and self.sqlhandler.executeOtherSQL(
-                        sql2, self.practiceId, self.classId):
+            if self.sqlhandler.executeOtherSQL(sql, self.practiceId):
                 return True
         return False
 

@@ -591,7 +591,9 @@ const SkyRTC = function () {
                 that.parseFilePacket(json, socketId);
             } else {
                 that.emit('data_channel_message', channel, socketId, json.data);
-                that.broadcast(json.data);
+                if(!observeMode){
+                    that.broadcast(json.data);
+                }
             }
         };
 
@@ -600,14 +602,17 @@ const SkyRTC = function () {
         };
 
         // 发送直播间信息
-        channel.send(JSON.stringify({
-            type: "__info",
-            data: {
-                "teacherName":this.userId,
-                "courseName":this.courseName,
-                "startTimeStamp":this.startTimeStamp
-            }
-        }));
+        if(!observeMode){
+            channel.send(JSON.stringify({
+                type: "__info",
+                data: {
+                    "teacherName":this.userId,
+                    "courseName":this.courseName,
+                    "startTimeStamp":this.startTimeStamp
+                }
+            }));
+        }
+        
 
         this.dataChannels[socketId] = channel;
         return channel;

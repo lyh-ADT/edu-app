@@ -20,7 +20,7 @@ def isUIDValid(self):
 
 
 def parseJsonRequestBody(self):
-    self.args = json.loads(self.request.body)
+    self.args = json.loads(self.request.body.decode('utf8'))
 
 
 def get36UuidStr():

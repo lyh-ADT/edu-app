@@ -38,9 +38,14 @@ class AdmDeleteTeaRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
 
-            sql = "DELETE FROM TeaPersonInfo where TeaId=%s"
+            sql = "delete from ClassTeaRelation where TeaId=%s"
+            sql2 = "delete from StreamTeaAccount where TeaId=%s"
+            sql3 = "DELETE FROM TeaPersonInfo where TeaId=%s"
+            
             if self.sqlhandler.executeOtherSQL(sql,self.teaId):
-                return True
+                if self.sqlhandler.executeOtherSQL(sql2,self.teaId):
+                    if self.sqlhandler.executeOtherSQL(sql3,self.teaId):
+                        return True
         return False
 
 

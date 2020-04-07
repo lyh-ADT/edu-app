@@ -40,7 +40,7 @@
                 url: "/teacher-stream/login",
                 data: {
                     "userId": userId_text,
-                    "userPassword": password_text
+                    "userPassword": hex_md5(password_text)
                 },
                 success: function (result) {
                     console.log(result)
@@ -80,6 +80,6 @@
     <script src="/teacher-stream/js/jquery.min.js"></script>
     <script src="/teacher-stream/js/popper.min.js"></script>
     <script src="/teacher-stream/js/bootstrap.min.js"></script>
+    <script src="/teacher-stream/js/md5.js"></script>
 </body>
-
 </html>

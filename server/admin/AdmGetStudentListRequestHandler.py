@@ -45,7 +45,11 @@ class AdmGetStudentListRequestHandler(tornado.web.RequestHandler):
             查询所有学生
             """
 
-            sql = "select StuId, stuName, StuSex, StuAge, StuPhoneNumber, StuQQ, StuAddress,CLASS.CourseName as StuClass from StuPersonInfo, CLASS where CLASS.ClassId=StuPersonInfo.StuClass;"
+            sql = """select StuId, stuName, StuSex, StuAge, StuPhoneNumber, StuQQ, StuAddress, group_concat(CourseName separator ',') as StuClass from 
+                (select StuPersonInfo.StuId, stuName, StuSex, StuAge, StuPhoneNumber, StuQQ, StuAddress, ClassId from StuPersonInfo left join ClassStuRelation on StuPersonInfo.StuId=ClassStuRelation.StuId) as s
+                left join CLASS on s.ClassId=CLASS.ClassId
+                group by StuId, stuName, StuSex, StuAge, StuPhoneNumber, StuQQ, StuAddress;
+            """
 
             self.stuList = self.sqlhandler.executeQuerySQL(sql)
 

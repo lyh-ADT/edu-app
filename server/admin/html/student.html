@@ -69,7 +69,12 @@
           parent.location.assign("/admin-login.html")
           return;
         }
-        data = JSON.parse(result);
+        try{
+          data = JSON.parse(result);
+        }catch{
+          parent.location.assign("/admin-login.html")
+          return;
+        }
         
         console.log(data)
         let tbody = $("#tableBody");

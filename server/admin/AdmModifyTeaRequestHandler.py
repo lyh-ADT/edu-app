@@ -25,7 +25,6 @@ class AdmModifyTeaRequestHandler(tornado.web.RequestHandler):
             self.teaName = self.get_argument("TeaName")
             self.teaSex = self.get_argument("TeaSex")
             self.teaPhoneNumber = self.get_argument("TeaPhoneNumber")
-            self.teaClass = self.get_argument("TeaClass")
             if self.setClass():
 
                 self.write("success")
@@ -47,10 +46,9 @@ class AdmModifyTeaRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
-            sql = "UPDATE TeaPersonInfo SET TeaName=%s, TeaSex=%s,TeaPhoneNumber=%s, TeaClass=%s WHERE TeaId=%s;"
+            sql = "UPDATE TeaPersonInfo SET TeaName=%s, TeaSex=%s,TeaPhoneNumber=%s WHERE TeaId=%s;"
             if self.sqlhandler.executeOtherSQL(sql, self.teaName, self.teaSex,
-                                               self.teaPhoneNumber,
-                                               self.teaClass, self.teaId):
+                                               self.teaPhoneNumber , self.teaId):
                 return True
         return False
 

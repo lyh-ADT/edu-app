@@ -48,7 +48,7 @@ class AdmChangePasswordRequestHandler(tornado.web.RequestHandler):
 
             sql = "update AdminAccount set AdminPassword=%s where AdminPassword=%s  and UID=%s;"
             print(sql)
-            return 1 == self.sqlhandler.update(sql, self.new_psd, self.old_psd,
+            return self.sqlhandler.executeOtherSQL(sql, self.new_psd, self.old_psd,
                                                self.get_cookie("UID", "no"))
         return False
 

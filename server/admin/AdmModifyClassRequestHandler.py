@@ -23,7 +23,6 @@ class AdmModifyClassRequestHandler(tornado.web.RequestHandler):
                 return
             self.classId = self.get_argument("classId")
             self.courseName = self.get_argument("courseName")
-            self.teacher = self.get_argument("teacher")
             self.classStuNumber = self.get_argument("classStuNumber")
             if self.setClass():
 
@@ -45,9 +44,8 @@ class AdmModifyClassRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
 
         if self.sqlhandler.getConnection():
-            sql = "UPDATE CLASS SET CourseName=%s, Teacher=%s,StuNumber=%s WHERE ClassId=%s;"
+            sql = "UPDATE CLASS SET CourseName=%s, StuNumber=%s WHERE ClassId=%s;"
             if self.sqlhandler.executeOtherSQL(sql, self.courseName,
-                                               self.teacher,
                                                self.classStuNumber,
                                                self.classId):
                 return True

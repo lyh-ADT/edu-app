@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
 import com.edu_app.R;
+import com.edu_app.model.MD5;
 import com.edu_app.model.NetworkUtility;
 
 import java.io.IOException;
@@ -206,7 +207,7 @@ public class PersonInfoController implements View.OnClickListener {
         }
     }
     private  void setInfo() {
-        String newPassword = this.newPasswordEditText.getText().toString();
+        String newPassword = MD5.md5(this.newPasswordEditText.getText().toString());
         String userName = this.nameEditText.getText().toString();
         String userSex = this.sexEditText.getText().toString();
 
@@ -245,6 +246,7 @@ public class PersonInfoController implements View.OnClickListener {
 
         try {
             String oldPassword = this.oldPasswordEditText.getText().toString();
+            oldPassword = MD5.md5(oldPassword);
             String body = "{\"teaUid\":\"" + this.uid + "\",\"teaPassword\":\"" + oldPassword + "\"}";
             Log.e("error", body);
             String response = NetworkUtility.postRequest("http://123.57.101.238:2000/teaCheckPassword", body);

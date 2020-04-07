@@ -26,7 +26,6 @@
       <tr>
         <th scope="col">班级Id</th>
         <th scope="col">课程名称</th>
-        <th scope="col">教师</th>
         <th scope="col">学生数量</th>
         <th scope="col">邀请码</th>
         <th scope="col"> </th>
@@ -46,21 +45,18 @@
     const tableKeyList = [
       "ClassId",
       "CourseName",
-      "Teacher",
       "StuNumber",
       "InviteCode"
     ];
     const tableTextList = [
       "班级Id",
       "课程名称",
-      "教师",
       "学生",
       "学生数量",
       "邀请码"
     ];
     const editables = [
       "CourseName",
-      "Teacher",
       "StuNumber"
     ];
     var data = null;
@@ -70,7 +66,12 @@
           parent.location.assign("/admin-login.html")
           return;
         }
-        data = JSON.parse(result);
+        try{
+          data = JSON.parse(result);
+        }catch{
+          parent.location.assign("/admin-login.html")
+          return;
+        }
         console.log(data)
         let tbody = $("#tableBody");
         tbody.empty();
@@ -154,10 +155,7 @@
         return;
       }
       $.post("/admin/deleteclass", {
-        "ClassId": data[index]["ClassId"],
-        "courseName":data[index]["CourseName"],
-        "teacher": data[index]["Teacher"],
-        "classStuNumber":data[index]["StuNumber"]
+        "classId": data[index]["ClassId"]
       }, function (result) {
         if(result == "success"){
             getTable();
@@ -239,13 +237,17 @@
 
       $.ajax({
         type: "POST",
-        url: "addclass",
+        url: "/admin/addclass",
         data: {
           "courseName": className_text,
           "teacherId": teacherId_text,
           "stuCount": stuCount_text
         },
         success: function (result) {
+          if(result!="success"){
+            alert("添加失败");
+            return;
+          }
           $("#addClass").modal("hide");
           getTable();
         },

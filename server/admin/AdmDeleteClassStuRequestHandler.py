@@ -42,16 +42,11 @@ class AdmDeleteClassStuRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
 
-            sql = "SELECT Student FROM CLASS where ClassId=%s"
-
-            stuIdList = str(
-                self.sqlhandler.executeOtherSQL(
-                    sql, self.classId)[0]["Student"]).split(",")
-            stuIdList.remove(self.stuId)
-            sql = "UPDATE CLASS SET Student=%s where ClassId=%s"
-            if self.sqlhandler.executeOtherSQL(sql, ",".join(stuIdList),
-                                               self.classId):
-                return True
+            sql = "delete from ClassStuRelation where StuId=%s and ClassId=%s"
+            sql2 = "delete from PRACTICE where StuId=%s and ClassId=%s"
+            if self.sqlhandler.executeOtherSQL(sql, self.stuId, self.classId):
+                if self.sqlhandler.executeOtherSQL(sql2, self.stuId, self.classId):
+                    return True
         return False
 
 

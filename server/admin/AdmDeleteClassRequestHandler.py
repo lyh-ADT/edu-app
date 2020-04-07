@@ -6,7 +6,7 @@ import sys
 sys.path.append("..")
 import SqlHandler
 class AdmDeleteClassRequestHandler(tornado.web.RequestHandler):
-    def get(self):
+    def post(self):
         """
         从数据库删除班级信息
 
@@ -39,10 +39,15 @@ class AdmDeleteClassRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
 
-            sql = "DELETE FROM CLASS where ClassId=%s"
-
+            sql = "delete from ClassTeaRelation where ClassId=%s"
+            sql2 = "delete from ClassStuRelation where ClassId=%s"
+            sql3 = "delete from PRACTICE where ClassId=%s"
+            sql4 = "DELETE FROM CLASS where ClassId=%s"
             if self.sqlhandler.executeOtherSQL(sql,self.classId):
-                return True
+                if self.sqlhandler.executeOtherSQL(sql2,self.classId):
+                    if self.sqlhandler.executeOtherSQL(sql3,self.classId):
+                        if self.sqlhandler.executeOtherSQL(sql4,self.classId):
+                            return True
         return False
 
 

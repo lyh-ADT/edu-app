@@ -33,6 +33,12 @@ PROGRAMS = [
         "cwd":"./webrtc/server/webrtc_server_node",
         "command":"node server.js",
         "log-file":"./log/webrtc-log.log"
+    },
+    {
+        "name":"rtmp",
+        "cwd":"./nms/Node-Media-Server",
+        "command":"node app.js",
+        "log-file":"./log/rtmp-log.log"
     }
 ]
 

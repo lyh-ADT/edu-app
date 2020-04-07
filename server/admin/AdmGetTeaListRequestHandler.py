@@ -41,8 +41,12 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
 
-            sql = "select TeaId,TeaName,TeaSex,TeaPhoneNumber,CLASS.CourseName as TeaClass from TeaPersonInfo, CLASS where TeaPersonInfo.TeaClass=CLASS.ClassId"
-            print(sql)
+            sql = """select TeaId,TeaName,TeaSex,TeaPhoneNumber, group_concat(CourseName separator ',') as TeaClass from
+                ((select TeaPersonInfo.TeaId,TeaName,TeaSex,TeaPhoneNumber, ClassId from TeaPersonInfo left join ClassTeaRelation on TeaPersonInfo.TeaId=ClassTeaRelation.TeaId) as t
+                left join CLASS
+                on t.ClassId=CLASS.ClassId)
+                group by TeaId,TeaName,TeaSex,TeaPhoneNumber"""
+
             self.teaList = self.sqlhandler.executeQuerySQL(sql)
 
             return True

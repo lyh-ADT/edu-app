@@ -10,6 +10,9 @@ var observeMode = location.search.search(/observe=true/) == 1;
 
 var rtc = SkyRTC();
 bindListeners();
+if(observeMode){
+    rtc.connect("wss://123.57.101.238:3000/teacher-stream/wss", window.location.hash.slice(1), observeMode, '');
+}
 /**********************************************************/
 function add_meesage(message) {
     let msg_box = $("#message_box");

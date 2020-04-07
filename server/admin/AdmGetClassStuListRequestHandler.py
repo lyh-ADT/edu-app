@@ -45,16 +45,8 @@ class AdmGetClassStuListRequestHandler(tornado.web.RequestHandler):
             """
             查询该用户的信息 id+名字
             """
+            sql = "select StuPersonInfo.StuId stuName, StuSex, StuAge, StuPhoneNumber, StuQQ, StuAddress from StuPersonInfo right join (select StuId from ClassStuRelation where ClassId=%s) as c on StuPersonInfo.StuId=c.StuId;"
 
-            sql = "select Student from CLASS where ClassId=%s"
-
-            stuIdList = self.sqlhandler.executeQuerySQL(sql,self.classId)[0]["Student"]
-            if stuIdList is None:
-                self.classStu = {"length":0}
-                return True
-            
-            sql = "select StuName from StuPersonInfo where StuId in (" + stuIdList + ");"
-            print(sql)
             self.classStu = self.sqlhandler.executeQuerySQL(sql)
 
             return True

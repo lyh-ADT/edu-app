@@ -48,10 +48,10 @@ class AdmAddTeaRequestHandler(tornado.web.RequestHandler):
 
         if self.sqlhandler.getConnection():
             sql = "INSERT INTO TeaPersonInfo(TeaId,TeaPassword,TeaName) VALUES(%s,%s,%s)"
-            print(sql)
-            if self.sqlhandler.executeOtherSQL(sql, self.teaId,
-                                               self.teaPassword, self.teaName):
-                return True
+            sql2 = "INSERT INTO StreamTeaAccount(TeaId,TeaPassword) VALUES(%s,%s)"
+            if self.sqlhandler.executeOtherSQL(sql, self.teaId, self.teaPassword, self.teaName):
+                if self.sqlhandler.executeOtherSQL(sql2, self.teaId, self.teaPassword):
+                    return True
         return False
 
 

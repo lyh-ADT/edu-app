@@ -17,7 +17,7 @@ class TeaInfoRequestHandler(tornado.web.RequestHandler):
             print("收到获取教师信息的请求")
             self.sqlhandler = None
 
-            body = json.loads(self.request.body)
+            body = json.loads(self.request.body.decode('utf8'))
             self.TeaUid = body["teaUid"]
 
             if self.getTeaInfo():

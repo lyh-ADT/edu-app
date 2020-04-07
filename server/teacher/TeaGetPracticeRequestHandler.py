@@ -44,13 +44,11 @@ class TeaGetPracticeRequestHandler(tornado.web.RequestHandler):
             查询练习题
             """
             # 获取班级学生
-
-            sql = "select Student from CLASS where ClassId=%s"
-            stuIdList = str(
-                self.sqlhandler.executeQuerySQL(
-                    sql, self.classId)[0]['Student']).split(',')
+            sql = "select StuId from ClassStuRelation where ClassId=%s"
+            stuIdList = self.sqlhandler.executeQuerySQL(sql, self.classId)
 
             for stuId in stuIdList:
+                stuId = stuId['StuId']
                 if stuId == "None":
                     break
                 # 判断该学生的某次习题是否被改过

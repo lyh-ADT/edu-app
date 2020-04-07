@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
 
 app.post('/login', function(req, res){
     let info = req.body;
-    let sql = "select TeaId from StreamTeaAccount where TeaId='"+ info.userId +"' and TeaPassword='"+info.userPassword+"';"
+    let sql = "select TeaId from StreamTeaAccount where TeaId='"+ info.userId +"' and (select TeaPassword from TeaPersonInfo where TeaId='"+info.userId+"')='"+info.userPassword+"';"
     db.select(sql, function(err, result){
         if(err){
             res.send({
@@ -112,7 +112,7 @@ app.get("/teacherclass", function(req, res){
             return;
         }
         let sql = `select ClassId,CourseName from CLASS where ClassId in 
-            (select TeaClass from TeaPersonInfo where TeaId='${TeaId[0].TeaId}');`
+            (select ClassId from ClassTeaRelation where TeaId='${TeaId[0].TeaId}');`
         console.log(sql);
         db.select(sql, function(err, result){
             if(err){
@@ -391,7 +391,7 @@ SkyRTC.rtc.on('socket_message', function (socket, msg) {
 });
 
 SkyRTC.rtc.on('ice_candidate', function (socket, ice_candidate) {
-    console.log("接收到来自" + socket.id + "的ICE Candidate");
+    // console.log("接收到来自" + socket.id + "的ICE Candidate");
 });
 
 SkyRTC.rtc.on('offer', function (socket, offer) {

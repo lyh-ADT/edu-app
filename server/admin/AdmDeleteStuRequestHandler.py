@@ -40,10 +40,13 @@ class AdmDeleteStuRequestHandler(tornado.web.RequestHandler):
         self.sqlhandler = SqlHandler.SqlHandler()
         if self.sqlhandler.getConnection():
 
-            sql = "DELETE FROM StuPersonInfo where StuId=%s"
-
+            sql = "delete from PRACTICE where StuId=%s"
+            sql2 = "delete from ClassStuRelation where StuId=%s"
+            sql3 = "DELETE FROM StuPersonInfo where StuId=%s"
             if self.sqlhandler.executeOtherSQL(sql, self.stuId):
-                return True
+                if self.sqlhandler.executeOtherSQL(sql2, self.stuId):
+                    if self.sqlhandler.executeOtherSQL(sql3, self.stuId):
+                        return True
         return False
 
 

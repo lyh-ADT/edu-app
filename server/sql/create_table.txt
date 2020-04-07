@@ -24,15 +24,15 @@ CREATE TABLE TeaPersonInfo
 	TeaPhoneNumber CHAR(11),
 	TeaQQ VARCHAR(11),
 	TeaAddress VARCHAR(50)
-	
+
 );
 
 CREATE TABLE CLASS(
 	ClassId VARCHAR(36) NOT NULL,
 	CourseName VARCHAR(50) NOT NULL,
-	
+
 	Practice TEXT,
-	
+
 	StuNumber VARCHAR(2) NOT NULL,
 	InviteCode CHAR(6) UNIQUE
 );

@@ -48,12 +48,11 @@ class AdmAddClassRequestHandler(tornado.web.RequestHandler):
         if self.sqlhandler.getConnection():
             self.classId = str(uuid.uuid4())
             self.inviteCode = self.getInviteCode()
-            sql = "INSERT INTO CLASS(ClassId,CourseName,Teacher,StuNumber, InviteCode) VALUES(%s,%s,%s,%s, %s)"
-            if self.sqlhandler.executeOtherSQL(sql, self.classId,
-                                             0  self.courseName, self.teacher,
-                                               self.classStuNumber,
-                                               self.inviteCode):
-                return True
+            sql = "INSERT INTO CLASS(ClassId,CourseName,StuNumber, InviteCode) VALUES(%s,%s,%s,%s)"
+            sql2 = "insert into ClassTeaRelation(TeaId, ClassId) values(%s, %s)"
+            if self.sqlhandler.executeOtherSQL(sql, self.classId, self.courseName,self.classStuNumber,self.inviteCode):
+                if self.sqlhandler.executeOtherSQL(sql2, self.teacher, self.classId):
+                    return True
         return False
 
     def getInviteCode(self):

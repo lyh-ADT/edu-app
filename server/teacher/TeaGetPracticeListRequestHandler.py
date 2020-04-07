@@ -48,7 +48,7 @@ class TeaGetPracticeListRequestHandler(tornado.web.RequestHandler):
             查询班级列表
             """
             # 获取班级id
-            sql = "select * from (select ClassId,CourseName,Practice from CLASS where Teacher=(select TeaId from TeaPersonInfo where TeaUid=%s)) as a inner join PRACTICE where FIND_IN_SET(PracticeId, a.Practice);"
+            sql = "select c.ClassId, PracticeId, FullScore, ExamDetail from (select ClassId from ClassTeaRelation where TeaId=(select TeaId from TeaPersonInfo where TeaUid=%s)) as c left join PRACTICE as p on c.ClassId=p.ClassId;"
             classes = self.sqlhandler.executeQuerySQL(sql, self.UID)
             print(classes)
             for rs in classes:

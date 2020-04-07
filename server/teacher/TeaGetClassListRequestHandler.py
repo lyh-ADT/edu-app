@@ -46,21 +46,9 @@ class TeaGetClassListRequestHandler(tornado.web.RequestHandler):
             查询班级列表
             """
             # 获取班级id
-            sql = "select TeaClass from TeaPersonInfo where TeaUid=%s"
-            classes = self.sqlhandler.executeQuerySQL(sql, self.UID)
-            teaClassId = str(classes[0]['TeaClass']).split(",")
-            if teaClassId[0] == 'None':
-                self.teaClass = []
-                return True
-
-            for clsId in teaClassId:
-                # 获取班级名称，班级id
-                sql = "select CourseName,Practice from CLASS where ClassId=%s"
-                rs = self.sqlhandler.executeQuerySQL(sql, clsId)
-                self.teaClass.append({
-                    "classId": clsId,
-                    "CourseName": rs[0]["CourseName"]
-                })
+            sql = "select ClassId as classId, CourseName from CLASS where ClassId in (select ClassId from ClassTeaRelation where TeaId=(select teaId from TeaPersonInfo where TeaUID=%s))"
+            
+            self.teaClass = self.sqlhandler.executeQuerySQL(sql, self.UID)
 
             return True
         return False

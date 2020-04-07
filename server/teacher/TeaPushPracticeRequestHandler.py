@@ -6,6 +6,7 @@ import json
 import sys
 sys.path.append("..")
 import SqlHandler
+import traceback
 
 
 class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
@@ -43,6 +44,7 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
                 raise RuntimeError
         except Exception as e:
             print(e)
+            traceback.print_exc()
             self.write("请检查练习标题是否重复")
             self.finish()
         finally:
@@ -58,13 +60,10 @@ class TeaPushPracticeRequestHandler(tornado.web.RequestHandler):
             """
             插入信息
             """
-            sql = """INSERT INTO PRACTICE(PracticeId,ExamDetail,FullScore, TeaAnswer) VALUES('{0}','{1}','{2}', '{3}')""".format(
+            sql = """INSERT INTO PRACTICE(ClassId, PracticeId,ExamDetail,FullScore, TeaAnswer) VALUES('{0}','{1}','{2}', '{3}', '{4}')""".format(self.classId,
                 self.practiceId, str(self.examDetail).replace("'", "\\'"), self.fullScore, str(self.answers).replace("'", "\\'"))
             if self.sqlhandler.executeOtherSQL(sql):
-                sql = "UPDATE CLASS SET Practice=CONCAT_WS(',', Practice, '{0}') WHERE ClassId='{1}';".format(self.practiceId, self.classId)
-                print(sql)
-                if self.sqlhandler.executeOtherSQL(sql):
-                    return True
+                return True
         return False
 
 

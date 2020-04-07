@@ -45,7 +45,7 @@ class AdmGetClassListRequestHandler(tornado.web.RequestHandler):
             查询所有班级
             """
 
-            sql = "select ClassId,CourseName,Teacher,StuNumber,InviteCode from CLASS"
+            sql = "select ClassId,CourseName,StuNumber,InviteCode from CLASS"
 
             self.classList = self.sqlhandler.executeQuerySQL(sql)
 

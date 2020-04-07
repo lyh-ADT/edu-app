@@ -63,10 +63,12 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
                         stuCourseName = str(rs2[0]['CourseName'])
                         if self.subject not in stuCourseName:
                             continue
-                        sql = "select PraticeId from PRACTICE where ClassId=%s"
+                        sql = "select PracticeId from PRACTICE where ClassId=%s"
+                        print(sql)
                         rs3 = self.sqlhandler.executeQuerySQL(sql, rs["ClassId"])
+                        print(rs3)
                         for rs4 in rs3:
-                            practiceId = rs4["PraticeId"]
+                            practiceId = rs4["PracticeId"]
                             # 判断该习题是否被做过
                             sql = """select StuAnswer from SCORE where PracticeId=%s and StuId=%s"""
 

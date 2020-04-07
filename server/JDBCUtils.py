@@ -1,6 +1,6 @@
 import configparser
 import pymysql
-
+import traceback
 
 class JDBCUtils():
     # 读取配置
@@ -31,4 +31,4 @@ class JDBCUtils():
             if connection.open:
                 return connection
         except Exception as e:
-            print(e)
+            print(e, traceback.format_exc())

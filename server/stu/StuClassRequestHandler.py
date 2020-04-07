@@ -48,11 +48,9 @@ class StuClassRequestHandler(tornado.web.RequestHandler):
             rs = self.sqlhandler.executeQuerySQL(sql2,rs[0]["StuId"])
             if len(rs) == 1:
                 print(rs)
-                classid = rs[0]["ClassId"]
-
-                for clsid in classid:
+                for clsid in rs:
                     sql = "select CourseName from CLASS where ClassId=%s"
-                    rs = self.sqlhandler.executeQuerySQL(sql,clsid)
+                    rs = self.sqlhandler.executeQuerySQL(sql,clsid["ClassId"])
                     if len(rs) == 1:
                         self.courses.append(rs[0]["CourseName"])
 

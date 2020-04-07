@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
 
 app.post('/login', function(req, res){
     let info = req.body;
-    let sql = "select TeaId from StreamTeaAccount where TeaId='"+ info.userId +"' and (select TeaPassword from TeaPersonInfo where TeaId='"+info.userId+"')='"+info.userPassword+"';"
+    let sql = "select TeaId from StreamTeaAccount where TeaId='"+ info.userId +"' and TeaPassword='"+info.userPassword+"';"
     db.select(sql, function(err, result){
         if(err){
             res.send({

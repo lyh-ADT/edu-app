@@ -51,14 +51,15 @@ class StuSetClassRequestHandler(tornado.web.RequestHandler):
                 if len(rs) == 1:
                     stuId = rs[0]["StuId"]
                     sql = """select * from ClassStuRelation where StuId=%s and ClassId=%s"""
+                    print(sql)
                     rs = self.sqlhandler.executeQuerySQL(
-                        sql, self.StuId, stuClass)
-                    if len(rs) >= 0:
+                        sql, stuId, stuClass)
+                    if len(rs) > 0:
                         return True
                     sql = """insert into ClassStuRelation(ClassId,StuId) values(%s,%s)"""
-
+                    print(sql)
                     updateStudent = self.sqlhandler.executeOtherSQL(
-                        sql, stuId, stuClass)
+                        sql, stuClass,stuId)
                     if updateStudent:
                         return True
         return False

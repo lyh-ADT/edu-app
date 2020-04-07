@@ -11,7 +11,7 @@ class StuRegisterRequestHandler(tornado.web.RequestHandler):
     def post(self):
         try:
             self.sqlhandler = None
-            self.args = json.loads(self.request.body)
+            self.args = json.loads(str(self.request.body,encoding="utf-8"))
 
             if self.register():
                 self.write("success")

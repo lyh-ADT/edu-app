@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:textColor="@android:color/background_light"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:text="横/竖屏"></TextView>
     <TextView
@@ -30,7 +30,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:textColor="@android:color/background_light"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:text="播放/暂停"></TextView>
 

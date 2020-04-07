@@ -45,10 +45,14 @@ public class CourseLiveController extends Controller implements View.OnClickList
                 break;
             case R.id.coursePage_live_tv_stop:
                 if(player.isPlaying()){
+                    player.setVideoEnable(false);
+                    player.setAudioEnable(false);
                     player.stop();
-
                 }else {
+                    player.setVideoEnable(true);
+                    player.setAudioEnable(true);
                     player.start();
+
                 }
 
         }
@@ -71,10 +75,16 @@ public class CourseLiveController extends Controller implements View.OnClickList
 //        硬件加速
         player.setHWEnable(true);
 //        设置启动缓冲时间
-        player.setBufferTime(4000);
+        player.setBufferTime(2000);
 //        设置协议
         player.setRtspTransport(NodePlayer.RTSP_TRANSPORT_UDP_MULTICAST);
         player.setInputUrl("rtmp://123.57.101.238:1935/live/test_stream");
         player.start();
+    }
+    public NodePlayer getPlayer(){
+        if(player!=null){
+            return player;
+        }
+        return null;
     }
 }

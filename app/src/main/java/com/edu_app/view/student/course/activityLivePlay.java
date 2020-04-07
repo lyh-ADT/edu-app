@@ -18,12 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.edu_app.R;
 import com.edu_app.controller.student.course.CourseLiveController;
 
+import cn.nodemedia.NodePlayer;
+
 /**
  * 用于直播页面活动
  */
 public class activityLivePlay extends AppCompatActivity {
 
     private boolean tvVisible;
+    private CourseLiveController controller;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class activityLivePlay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stu_course_live_play);
         tvVisible = true;
-        CourseLiveController controller = new CourseLiveController(this);
+        controller = new CourseLiveController(this);
 
     }
 
@@ -53,6 +56,11 @@ public class activityLivePlay extends AppCompatActivity {
         }else{
             if (keyCode == KeyEvent.KEYCODE_BACK && orientation == Configuration.ORIENTATION_PORTRAIT) {
                 {
+                    NodePlayer player = controller.getPlayer();
+                    if(player!=null){
+                        player.stop();
+                        player.release();
+                    }
                     activityLivePlay.this.finish();
 
                 }

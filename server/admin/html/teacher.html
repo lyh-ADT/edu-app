@@ -40,7 +40,7 @@
   <script src="/jquery.min.js"></script>
   <script src="/popper.min.js"></script>
   <script src="/bootstrap.min.js"></script>
-
+  <script src="/md5.js">< /script>
   <script>
     const tableKeyList = [
       "TeaId",
@@ -232,7 +232,7 @@
         data: {
           "teaId": teacherId_text,
           "teaName": teacherName_text,
-          "teaPassword": teacherPassword_text
+          "teaPassword": hex_md5(teacherPassword_text)
         },
         success: function (result) {
           $("#addTeacher").modal("hide");

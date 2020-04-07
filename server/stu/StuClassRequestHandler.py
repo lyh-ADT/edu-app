@@ -15,7 +15,7 @@ class StuClassRequestHandler(tornado.web.RequestHandler):
         try:
             print("收到获取班级信息的请求")
             self.sqlhandler = None
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.courses = list()
             self.stuUid = body["stuUid"]
             print(self.stuUid)
@@ -42,16 +42,15 @@ class StuClassRequestHandler(tornado.web.RequestHandler):
             """
             查询该用户的课程信息
             """
-            sql = """select StuClass from StuPersonInfo where StuUid=%s"""
+            sql = """select StuId from StuPersonInfo where StuUid=%s"""
             rs = self.sqlhandler.executeQuerySQL(sql,self.stuUid)
-
+            sql2 = """select ClassId from ClassStuRelation where StuId=%s"""
+            rs = self.sqlhandler.executeQuerySQL(sql2,rs[0]["StuId"])
             if len(rs) == 1:
                 print(rs)
-                classid = str(rs[0]["StuClass"]).split(",")
-
-                for clsid in classid:
+                for clsid in rs:
                     sql = "select CourseName from CLASS where ClassId=%s"
-                    rs = self.sqlhandler.executeQuerySQL(sql,clsid)
+                    rs = self.sqlhandler.executeQuerySQL(sql,clsid["ClassId"])
                     if len(rs) == 1:
                         self.courses.append(rs[0]["CourseName"])
 

@@ -15,7 +15,7 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
         """
         try:
             print("收到获取练习列表的请求")
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.sqlhandler = None
             self.practicelist = list()
             self.stuUid = body["stuUid"]
@@ -47,39 +47,41 @@ class StuPracticeListRequestHandler(tornado.web.RequestHandler):
             """
 
             # 获取班级id
-            sql = "select StuClass,StuId from StuPersonInfo where StuUid=%s"
+            sql = "select StuId from StuPersonInfo where StuUid=%s"
             rs = self.sqlhandler.executeQuerySQL(sql, self.stuUid)
             if len(rs) == 1:
-                stuClassId = str(rs[0]['StuClass']).split(",")
                 stuId = str(rs[0]['StuId'])
-                print(stuClassId)
-                for clsId in stuClassId:
-                    # 获取习题id
-                    sql = "select Practice,CourseName from CLASS where ClassId=%s"
-                    rs = self.sqlhandler.executeQuerySQL(sql, clsId)
-                    if len(rs) == 0:
-                        continue
-                    stuPracticeId = str(rs[0]['Practice']).split(",")
-                    stuCourseName = str(rs[0]['CourseName'])
-                    if self.subject not in stuCourseName:
-                        continue
-
-                    for practiceId in stuPracticeId:
-                        if practiceId == '':
+                sql = "select ClassId from ClassStuRelation where StuId=%s"
+                listClass = self.sqlhandler.executeQuerySQL(sql, stuId)
+                if len(rs) >= 1:
+                    for rs in listClass:
+                        # 获取习题id
+                        sql = "select CourseName from CLASS where ClassId=%s"
+                        rs2 = self.sqlhandler.executeQuerySQL(sql, rs["ClassId"])
+                        if len(rs2) == 0:
                             continue
-                        # 判断该习题是否被做过
-                        sql = """select StuAnswer from SCORE where PracticeId=%s and StuId=%s"""
+                        stuCourseName = str(rs2[0]['CourseName'])
+                        if self.subject not in stuCourseName:
+                            continue
+                        sql = "select PracticeId from PRACTICE where ClassId=%s"
+                        print(sql)
+                        rs3 = self.sqlhandler.executeQuerySQL(sql, rs["ClassId"])
+                        print(rs3)
+                        for rs4 in rs3:
+                            practiceId = rs4["PracticeId"]
+                            # 判断该习题是否被做过
+                            sql = """select StuAnswer from SCORE where PracticeId=%s and StuId=%s"""
 
-                        rs = self.sqlhandler.executeQuerySQL(
-                            sql, practiceId, stuId)
-                        print(rs, len(rs))
-                        if len(rs) == 1 and rs[0]['StuAnswer'] is not None:
-                            isDone = True
-                        else:
-                            isDone = False
-                        self.practicelist.append({
-                            "practiceId": practiceId,
-                            "isDone": isDone
-                        })
-            return True
+                            rs5 = self.sqlhandler.executeQuerySQL(
+                                sql, practiceId, stuId)
+                            print(rs5, len(rs5))
+                            if len(rs5) == 1 and rs5[0]['StuAnswer'] is not None:
+                                isDone = True
+                            else:
+                                isDone = False
+                            self.practicelist.append({
+                                "practiceId": practiceId,
+                                "isDone": isDone
+                            })
+                return True
         return False

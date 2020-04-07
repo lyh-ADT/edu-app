@@ -11,7 +11,7 @@ class TeaStuLoginRequestHandler(tornado.web.RequestHandler):
         print("接收到登录请求")
         try:
             self.sqlhandler = None
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             self.userId = body["userId"]
             self.userPassword = body["userPassword"]
             self.flag = body["flag"]

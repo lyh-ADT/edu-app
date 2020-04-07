@@ -15,7 +15,7 @@ class StuPostAnswerRequestHandler(tornado.web.RequestHandler):
         try:
             print("收到提交试题答案的请求")
             self.sqlhandler = None
-            body = json.loads(self.request.body)
+            body = json.loads(str(self.request.body,encoding="utf-8"))
             print(body)
 
             self.stuUid = body["stuUid"]

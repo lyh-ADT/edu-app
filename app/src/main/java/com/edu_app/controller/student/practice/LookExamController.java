@@ -46,7 +46,7 @@ public class LookExamController extends Controller {
         getPractice();
 
             try {
-                Thread.sleep(1500);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

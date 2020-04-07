@@ -248,6 +248,7 @@ public class PersonInfoController extends Controller implements View.OnClickList
 
         try {
             String oldPassword = this.oldPasswordEditText.getText().toString();
+            oldPassword = MD5.md5(oldPassword);
             String body = "{\"stuUid\":\"" + this.uid + "\",\"stuPassword\":\"" + oldPassword + "\"}";
             Log.e("error", body);
             String response = NetworkUtility.postRequest("http://123.57.101.238:8081/stuCheckPassword", body);

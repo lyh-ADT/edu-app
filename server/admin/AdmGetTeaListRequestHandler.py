@@ -42,7 +42,7 @@ class AdmGetTeaListRequestHandler(tornado.web.RequestHandler):
         if self.sqlhandler.getConnection():
 
             sql = "select TeaId,TeaName,TeaSex,TeaPhoneNumber,CLASS.CourseName as TeaClass from TeaPersonInfo, CLASS where TeaPersonInfo.TeaClass=CLASS.ClassId"
-
+            print(sql)
             self.teaList = self.sqlhandler.executeQuerySQL(sql)
 
             return True

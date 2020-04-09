@@ -181,8 +181,19 @@
           <form>
             <div class="form-group">
               <label for="className">班级名称</label>
-              <input class="form-control" type="text" id="className" data-container="#addClass" data-toggle="popover"
-                data-placement="top" data-content="信息不完整">
+              <div id="className" class="input-group">
+                <select class="form-control">
+                  <option>语文</option>
+                  <option>数学</option>
+                  <option>英语</option>
+                  <option>其它</option>
+                </select>
+                <input class="form-control" type="number">
+                <span class="input-group-text">年级</span>
+                <input class="form-control" type="number">
+                <span class="input-group-text">班</span>
+              </div>
+
               <label for="teahcerId">教师Id</label>
               <input class="form-control" type="text" id="teacherId" data-container="#addClass" data-toggle="popover"
                 data-placement="top" data-content="信息不完整">
@@ -212,14 +223,13 @@
       let stuCount = $("#stuCount");
       let title = $("titleAddClass");
 
-      let className_text = className.val();
+      let className_text = className.find("select").first().val() + className.find("input").first().val() + "年级" + className.find("input").last().val() + "班";
       let teacherId_text = teacherId.val();
       let stuCount_text = parseInt(stuCount.val());
 
-      if (className_text.length <= 0) {
-        className.popover("enable");
-        className.popover("show");
-        disablePopover(className);
+
+      if (className_text.match(".+\d+年级\d+班")){
+        alert("班级名称非法");
         return;
       }
       if (teacherId_text.length <= 0) {

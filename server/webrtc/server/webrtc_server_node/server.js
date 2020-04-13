@@ -12,6 +12,7 @@ const fs = require('fs');
 
 const videoUrlPrefix = "https://123.57.101.238:7002/video/";
 const videoStorePath = "./Videos/";
+const cookiesExpires = 1000*60*60*24*7;// milliseconds
 
 app.use(express.static(path.join(__dirname, 'public', 'dist')), null);
 app.use(cookieParser());
@@ -30,7 +31,7 @@ app.get('/', function (req, res) {
 
 app.post('/login', function(req, res){
     let info = req.body;
-    let sql = "select TeaId from StreamTeaAccount where TeaId='"+ info.userId +"' and TeaPassword='"+info.userPassword+"';"
+    let sql = "select TeaId from StreamTeaAccount where TeaId='"+ info.userId +"' and (select TeaPassword from TeaPersonInfo where TeaId='"+info.userId+"')='"+info.userPassword+"';"
     db.select(sql, function(err, result){
         if(err){
             res.send({
@@ -57,7 +58,7 @@ app.post('/login', function(req, res){
                 });
                 return;
             }
-            res.cookie("UID", uid);
+            res.cookie("UID", uid, { maxAge: cookiesExpires});
             res.send({
                 success:true,
                 data:""

@@ -241,10 +241,10 @@ public class ChatSingleActivity extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onCloseWithId(String socketId) {
-                runOnUiThread(() -> {
-                    disConnect();
-                    ChatSingleActivity.this.finish();
-                });
+//                runOnUiThread(() -> {
+//                    disConnect();
+//                    ChatSingleActivity.this.finish();
+//                });
 
             }
         });

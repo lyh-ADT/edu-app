@@ -62,9 +62,9 @@ public class CourseLiveController extends Controller implements View.OnClickList
 
     //    进入直播页面开始观看直播
     private void initView() {
-        this.tvFull = (TextView) this.activity.findViewById(R.id.coursePage_live_tv_fullScreen);
+        this.tvFull = this.activity.findViewById(R.id.coursePage_live_tv_fullScreen);
         this.tvFull.setOnClickListener(this);
-        this.tvStop = (TextView) this.activity.findViewById(R.id.coursePage_live_tv_stop);
+        this.tvStop = this.activity.findViewById(R.id.coursePage_live_tv_stop);
         this.tvStop.setOnClickListener(this);
         playerview = activity.findViewById(R.id.coursePage_live_playerView);
 

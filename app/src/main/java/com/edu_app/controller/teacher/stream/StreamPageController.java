@@ -70,19 +70,6 @@ public class StreamPageController extends Controller implements NodePublisherDel
             }
         });
 
-        View send_btn = view.findViewById(R.id.send_btn);
-        send_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText input_et = StreamPageController.this.view.findViewById(R.id.input_chat_et);
-                model.sendChatMessage(input_et.getText().toString());
-                input_et.setText("");
-            }
-        });
-
-        WebView chat_wv = view.findViewById(R.id.chat_wv);
-        chat_wv.loadUrl(model.getChatRoomUrl());
-
         Button mute_btn = view.findViewById(R.id.mute_btn);
         mute_btn.setOnClickListener(new View.OnClickListener() {
             private boolean isMuted = false;
@@ -99,60 +86,14 @@ public class StreamPageController extends Controller implements NodePublisherDel
                 }
             }
         });
-    }
 
-    @Override
-    public void onConfigurationChanged(Configuration config) {
-        // TODO: 重构 用Fragment分开两个区域
-        final LinearLayout.LayoutParams PORTRAIT_PARAMS = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dip2px(0));
-        final LinearLayout.LayoutParams LANDSCAPE_PARAMS = new LinearLayout.LayoutParams(dip2px(0), ViewGroup.LayoutParams.MATCH_PARENT);
-        PORTRAIT_PARAMS.weight = 1;
-        LANDSCAPE_PARAMS.weight = 1;
-
-        int orientation = config.orientation;
-        if(orientation == Configuration.ORIENTATION_PORTRAIT){
-            // 竖屏模式
-            LinearLayout page = (LinearLayout)view;
-            page.setOrientation(LinearLayout.VERTICAL);
-
-            LinearLayout control = page.findViewById(R.id.stream_control_lo);
-            control.setLayoutParams(PORTRAIT_PARAMS);
-            control.setOrientation(LinearLayout.HORIZONTAL);
-
-            View video = page.findViewById(R.id.video);
-            video.setLayoutParams(LANDSCAPE_PARAMS);
-
-            View chat_lo = page.findViewById(R.id.chat_lo);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(PORTRAIT_PARAMS);
-            params.weight = 2;
-            chat_lo.setLayoutParams(params);
-
-            LinearLayout button = control.findViewById(R.id.button_lo);
-            button.setOrientation(LinearLayout.VERTICAL);
-
-            page.invalidate();
-        } else if(orientation == Configuration.ORIENTATION_LANDSCAPE){
-            // 横屏模式
-            LinearLayout page = (LinearLayout)view;
-            page.setOrientation(LinearLayout.HORIZONTAL);
-
-            LinearLayout control = page.findViewById(R.id.stream_control_lo);
-            control.setLayoutParams(LANDSCAPE_PARAMS);
-            control.setOrientation(LinearLayout.VERTICAL);
-
-            View video = page.findViewById(R.id.video);
-            video.setLayoutParams(PORTRAIT_PARAMS);
-
-            View chat_lo = page.findViewById(R.id.chat_lo);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LANDSCAPE_PARAMS);
-            params.weight = 2;
-            chat_lo.setLayoutParams(params);
-
-            LinearLayout button = control.findViewById(R.id.button_lo);
-            button.setOrientation(LinearLayout.HORIZONTAL);
-
-            page.invalidate();
-        }
+        Button camera_btn = view.findViewById(R.id.single_switch_camera);
+        camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nodePublisher.switchCamera();
+            }
+        });
     }
 
     @Override

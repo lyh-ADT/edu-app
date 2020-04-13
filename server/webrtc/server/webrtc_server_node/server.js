@@ -12,6 +12,7 @@ const fs = require('fs');
 
 const videoUrlPrefix = "https://123.57.101.238:7002/video/";
 const videoStorePath = "./Videos/";
+const cookiesExpires = 1000*60*60*24*7;// milliseconds
 
 app.use(express.static(path.join(__dirname, 'public', 'dist')), null);
 app.use(cookieParser());
@@ -57,7 +58,7 @@ app.post('/login', function(req, res){
                 });
                 return;
             }
-            res.cookie("UID", uid);
+            res.cookie("UID", uid, { maxAge: cookiesExpires});
             res.send({
                 success:true,
                 data:""

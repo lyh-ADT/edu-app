@@ -50,8 +50,9 @@
                 android:layout_margin="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_round_grey"
-                android:inputType="text"
                 android:gravity="center"
+                android:hint="账号"
+                android:inputType="text"
                 android:textSize="20sp" />
 
             <EditText
@@ -61,8 +62,9 @@
                 android:layout_margin="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_round_grey"
-                android:inputType="textPassword"
                 android:gravity="center"
+                android:hint="密码"
+                android:inputType="textPassword"
                 android:textSize="20sp" />
 
             <RadioGroup

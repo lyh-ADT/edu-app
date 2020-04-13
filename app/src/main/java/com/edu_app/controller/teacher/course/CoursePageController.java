@@ -20,6 +20,7 @@ import com.edu_app.view.teacher.Fragment;
 
 public class CoursePageController extends Controller {
     private final int CAMERA_PERMISSION = 0;
+    private final int MIC_PERMISSION = 1;
     private Fragment fragment;
     private TeacherInfo info;
 
@@ -43,7 +44,7 @@ public class CoursePageController extends Controller {
                 }
                 // 检查录音机权限
                 if(ContextCompat.checkSelfPermission(fragment.getActivity().getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(fragment.getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, CAMERA_PERMISSION);
+                    ActivityCompat.requestPermissions(fragment.getActivity(), new String[]{Manifest.permission.RECORD_AUDIO}, MIC_PERMISSION);
                     return;
                 }
                 FragmentManager manager = fragment.getFragmentManager();
@@ -62,6 +63,12 @@ public class CoursePageController extends Controller {
                 view.findViewById(R.id.start_live_stream_btn).performClick();
             }else{
                 Toast.makeText(fragment.getActivity().getApplicationContext(), "没有相机权限，无法直播", Toast.LENGTH_LONG).show();
+            }
+        } else if(requestCode == MIC_PERMISSION){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                view.findViewById(R.id.start_live_stream_btn).performClick();
+            }else{
+                Toast.makeText(fragment.getActivity().getApplicationContext(), "没有麦克风权限，无法直播", Toast.LENGTH_LONG).show();
             }
         }
     }

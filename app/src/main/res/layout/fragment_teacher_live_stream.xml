@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/stream_control_lo"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -12,14 +12,13 @@
 
         <cn.nodemedia.NodeCameraView
             android:id="@+id/video"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <LinearLayout
             android:id="@+id/button_lo"
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <Button
                 android:id="@+id/stop_btn"
                 android:layout_width="wrap_content"
@@ -31,39 +30,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mute_text" />
-        </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/chat_lo"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
-
-        <WebView
-            android:id="@+id/chat_wv"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/input_chat_et"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text=""/>
             <Button
-                android:id="@+id/send_btn"
+                android:id="@+id/single_switch_camera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/send_text"/>
+                android:text="@string/switch_camera"/>
         </LinearLayout>
-    </LinearLayout>
-
-
+    </RelativeLayout>
 </LinearLayout>

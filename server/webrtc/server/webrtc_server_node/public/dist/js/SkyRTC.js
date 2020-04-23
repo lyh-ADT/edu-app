@@ -26,14 +26,14 @@ function SkyRTC() {
             return;
         }
 
-        console.log("房间里有" + this.sockets.length + "人");
         let ids = [],
         i, m,
         room = data.room || "__default",
         curSocket,
         curRoom;
-
-        console.log("房间的老师id"+this.teachers[room]);
+        
+        console.log(room + "房间里有" + this.sockets.length + "人");
+        console.log(room + "房间的老师id"+this.teachers[room]);
         
         
         curRoom = this.rooms[room] = this.rooms[room] || [];

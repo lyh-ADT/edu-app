@@ -39,6 +39,12 @@ PROGRAMS = [
         "cwd":"./nms/Node-Media-Server",
         "command":"node app.js",
         "log-file":"./log/rtmp-log.log"
+    },
+    {
+        "name":"turn-server",
+        "cwd":"./",
+        "command":"turnserver -a -o -v -n -u user:root -p 3478 -L 172.17.208.209 -r someRealm -X 123.57.101.238/172.17.208.209  --no-dtls --no-tls",
+        "log-file":"./log/turnserver-log.log"
     }
 ]
 

@@ -19,16 +19,11 @@ public class WebrtcUtil {
 
     // turn and stun
     private static MyIceServer[] iceServers = {
-            new MyIceServer("stun:stun.l.google.com:19302"),
-
             // 测试地址1
-            new MyIceServer("stun:" + HOST + ":3478?transport=udp"),
-            new MyIceServer("turn:" + HOST + ":3478?transport=udp",
-                    "ddssingsong",
-                    "123456"),
-            new MyIceServer("turn:" + HOST + ":3478?transport=tcp",
-                    "ddssingsong",
-                    "123456"),
+
+            new MyIceServer("turn:123.57.101.238:3478?transport=udp",
+                    "user",
+                    "root"),
     };
 
     // signalling

@@ -18,20 +18,9 @@ const SkyRTC = function () {
     const iceServer = {
         "iceServers": [
             {
-                "url": "stun:stun.l.google.com:19302"
-            },
-            {
-                "url": "stun:47.93.186.97:3478?transport=udp"
-            },
-            {
-                "url": "turn:47.93.186.97:3478?transport=udp",
-                "username": "ddssingsong",
-                "credential": "123456"
-            },
-            {
-                "url": "turn:47.93.186.97:3478?transport=tcp",
-                "username": "ddssingsong",
-                "credential": "123456"
+                "url": "turn:123.57.101.238:3478?transport=udp",
+                "username": "user",
+                "credential": "root"
             }
         ]
     };
